@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ADAC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.adac.com.au" version="6.0.0">
+  <Project>
+    <ExportDateTime>2023-10-19T12:46:05.05+10:00</ExportDateTime>
+    <Name>Example ADAC capture</Name>
+    <Owner>Council</Owner>
+    <Receiver>Authority Name</Receiver>
+    <WorksApprovalID>OPW123456</WorksApprovalID>
+    <DrawingNumber>DWG123456</DrawingNumber>
+    <DrawingRevision>2023-10-19</DrawingRevision>
+    <ConstructionDate>2023-10-19</ConstructionDate>
+    <CoordinateSystem>
+      <HorizontalCoordinateSystem>MGA56</HorizontalCoordinateSystem>
+      <HorizontalDatum>GDA2020</HorizontalDatum>
+      <VerticalDatum>AHD</VerticalDatum>
+      <IsApproximate>false</IsApproximate>
+      <OriginMark>PSM123456</OriginMark>
+      <Notes>Coordinate notes go here.</Notes>
+    </CoordinateSystem>
+    <DrawingExtents>
+      <SouthWest>
+        <X>495386.979</X>
+        <Y>6935638.499</Y>
+      </SouthWest>
+      <NorthEast>
+        <X>495531.619</X>
+        <Y>6935756.750</Y>
+      </NorthEast>
+    </DrawingExtents>
+    <Description>Sample data describing a staged subdivision</Description>
+    <ProjectStatus>As Constructed</ProjectStatus>
+    <Software>
+      <Product>Notepad++</Product>
+      <Version>8.5.7</Version>
+    </Software>
+    <Surveyor>
+      <Name>Surveyors'R'us</Name>
+      <DateFinalSurvey>2023-10-19</DateFinalSurvey>
+      <DateApproved>2023-10-19</DateApproved>
+    </Surveyor>
+    <Engineer>
+      <Name>FUBAR Engineering Pty Ltd</Name>
+      <DateApproved>2023-10-19</DateApproved>
+    </Engineer>
+    <ProjectData>
+      <Sewerage>
+        <MaintenanceHoles>
+          <MaintenanceHole>
+            <ADACId>3/1</ADACId>
+            <ComponentInfo>
+              <InfrastructureCode xsi:nil="true" />
+              <Owner>Council</Owner>
+              <DrawingNumber xsi:nil="true" />
+              <DrawingRevision xsi:nil="true" />
+              <ConstructionDate xsi:nil="true" />
+              <Department>Sewerage</Department>
+              <Surveyor xsi:nil="true" />
+              <Engineer xsi:nil="true" />
+              <Status>Newly Constructed</Status>
+              <DataQuality>APlus</DataQuality>
+              <Notes>Extra information goes here</Notes>
+              <SupportingFiles xsi:nil="true" />
+            </ComponentInfo>
+            <Use>Maintenance Hole</Use>
+            <ChamberSize>
+              <Circular>
+                <Diameter_mm>1050</Diameter_mm>
+              </Circular>
+            </ChamberSize>
+            <ShaftSizeDiameter_mm>600</ShaftSizeDiameter_mm>
+            <SurfaceLevel_m>52.602</SurfaceLevel_m>
+            <InvertLevel_m>50.48</InvertLevel_m>
+            <FloorConstruction>Prefabricated</FloorConstruction>
+            <FloorMaterial>Concrete</FloorMaterial>
+            <WallConstruction>Prefabricated</WallConstruction>
+            <WallMaterial>Concrete</WallMaterial>
+            <RoofMaterial>Concrete</RoofMaterial>
+            <Lining>PVC</Lining>
+            <LidType>Non-trafficable</LidType>
+            <LidAccessRestraint>None</LidAccessRestraint>
+            <LidMaterial>Cast Iron</LidMaterial>
+            <DropType>No Drop</DropType>
+            <Benching>No benching</Benching>
+            <CatchmentPS xsi:nil="true" />
+            <LineNumber>1</LineNumber>
+            <MH_Number>3</MH_Number>
+            <Chainage_m xsi:nil="true" />
+            <TieDistance_m xsi:nil="true" />
+            <OffsetDistance_m xsi:nil="true" />
+            <Rotation>0</Rotation>
+            <Geometry>
+              <Point>
+                <X>495478.066</X>
+                <Y>6935720.188</Y>
+                <Z>52.602</Z>
+              </Point>
+            </Geometry>
+          </MaintenanceHole>
+        </MaintenanceHoles>
+      </Sewerage>
+    </ProjectData>
+  </Project>
+</ADAC>

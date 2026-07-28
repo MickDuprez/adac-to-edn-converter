@@ -1,0 +1,175 @@
+;; Minimal SchemaCraft schema EDN for external importers / exporters.
+;; Contract: ../schemacraft-edn-contract.md
+;;
+;; Shape: {:schema … :typedefs […] :elements […]}
+;; Records are ready for SchemaCraft repository/put-element! (runtime envelope included).
+
+{:schema
+ {:record/type :schema
+  :record/id #uuid "a1000000-0000-4000-8000-000000000001"
+  :schema/id #uuid "a1000000-0000-4000-8000-000000000001"
+  :record/parent-id nil
+  :record/name "TemplateDemo"
+  :record/label "TemplateDemo"
+  :record/documentation "Worked example for EDN import templates."
+  :schema/version 0.1M
+  :schema/status :draft
+  :element/key :Schema
+  :element/kind :schema
+  :element/label "TemplateDemo"
+  :element/documentation "Worked example for EDN import templates."
+  :element/cardinality {:min 1 :max 1}
+  :element/children []
+  :element/data {}}
+
+ :typedefs
+ [{:record/type :typedef
+   :record/id #uuid "a1000000-0000-4000-8000-000000000101"
+   :schema/id #uuid "a1000000-0000-4000-8000-000000000001"
+   :record/parent-id #uuid "a1000000-0000-4000-8000-000000000001"
+   :record/name :String_32
+   :record/label "String (32)"
+   :record/documentation nil
+   :typedef/primitive :string
+   :typedef/facets {:trim? true :max-length 32}
+   :element/key :String_32
+   :element/kind :typedef
+   :element/label "String (32)"
+   :element/documentation nil
+   :element/cardinality {:min 0 :max 1}
+   :element/children []
+   :element/data {:type/primitive :string
+                  :type/facets {:trim? true :max-length 32}}}]
+
+ :elements
+ [;; Required scalar
+  {:record/type :element
+   :record/id #uuid "a1000000-0000-4000-8000-000000000201"
+   :schema/id #uuid "a1000000-0000-4000-8000-000000000001"
+   :record/parent-id #uuid "a1000000-0000-4000-8000-000000000001"
+   :record/name :Name
+   :record/label "Name"
+   :record/documentation nil
+   :element/type :simple
+   :element/key :Name
+   :element/kind :scalar
+   :element/label "Name"
+   :element/documentation nil
+   :element/typedef-id #uuid "a1000000-0000-4000-8000-000000000101"
+   :element/child-refs nil
+   :element/cardinality {:min 1 :max 1}
+   :element/order 10
+   :element/children []
+   :element/data {:type/ref #uuid "a1000000-0000-4000-8000-000000000101"}}
+
+  ;; Nillable scalar (explicit nil allowed)
+  {:record/type :element
+   :record/id #uuid "a1000000-0000-4000-8000-000000000202"
+   :schema/id #uuid "a1000000-0000-4000-8000-000000000001"
+   :record/parent-id #uuid "a1000000-0000-4000-8000-000000000001"
+   :record/name :Note
+   :record/label "Note"
+   :record/documentation "May be cleared to :schemacraft/nil."
+   :element/type :simple
+   :element/key :Note
+   :element/kind :scalar
+   :element/label "Note"
+   :element/documentation "May be cleared to :schemacraft/nil."
+   :element/typedef-id #uuid "a1000000-0000-4000-8000-000000000101"
+   :element/nillable? true
+   :element/child-refs nil
+   :element/cardinality {:min 1 :max 1}
+   :element/order 20
+   :element/children []
+   :element/data {:type/ref #uuid "a1000000-0000-4000-8000-000000000101"
+                  :nillable? true}}
+
+  ;; Parent-property scalar (exporters may treat as XML attr / JSON key)
+  {:record/type :element
+   :record/id #uuid "a1000000-0000-4000-8000-000000000203"
+   :schema/id #uuid "a1000000-0000-4000-8000-000000000001"
+   :record/parent-id #uuid "a1000000-0000-4000-8000-000000000001"
+   :record/name :ValName
+   :record/label "Value name"
+   :record/documentation nil
+   :element/type :simple
+   :element/key :ValName
+   :element/kind :scalar
+   :element/label "Value name"
+   :element/documentation nil
+   :element/typedef-id #uuid "a1000000-0000-4000-8000-000000000101"
+   :element/placement :parent-property
+   :element/property-name "valname"
+   :element/child-refs nil
+   :element/cardinality {:min 0 :max 1}
+   :element/order 30
+   :element/children []
+   :element/data {:type/ref #uuid "a1000000-0000-4000-8000-000000000101"
+                  :placement :parent-property
+                  :property-name "valname"}}
+
+  ;; Sequence item type for the collection
+  {:record/type :element
+   :record/id #uuid "a1000000-0000-4000-8000-000000000210"
+   :schema/id #uuid "a1000000-0000-4000-8000-000000000001"
+   :record/parent-id #uuid "a1000000-0000-4000-8000-000000000001"
+   :record/name :Item
+   :record/label "Item"
+   :record/documentation nil
+   :element/type :complex
+   :element/key :Item
+   :element/kind :sequence
+   :element/label "Item"
+   :element/documentation nil
+   :element/typedef-id nil
+   :element/child-refs [#uuid "a1000000-0000-4000-8000-000000000201"]
+   :element/cardinality {:min 0 :max 1}
+   :element/order 40
+   :element/children []
+   :element/data {:child-refs [#uuid "a1000000-0000-4000-8000-000000000201"]}}
+
+  ;; Collection (empty [] preserved on assemble)
+  {:record/type :element
+   :record/id #uuid "a1000000-0000-4000-8000-000000000220"
+   :schema/id #uuid "a1000000-0000-4000-8000-000000000001"
+   :record/parent-id #uuid "a1000000-0000-4000-8000-000000000001"
+   :record/name :Items
+   :record/label "Items"
+   :record/documentation nil
+   :element/type :complex
+   :element/key :Items
+   :element/kind :collection
+   :element/label "Items"
+   :element/documentation nil
+   :element/typedef-id nil
+   :element/child-refs [#uuid "a1000000-0000-4000-8000-000000000210"]
+   :element/cardinality {:min 0 :max :many}
+   :element/order 50
+   :element/children []
+   :element/data {:child-refs [#uuid "a1000000-0000-4000-8000-000000000210"]
+                  :collection/item-ref #uuid "a1000000-0000-4000-8000-000000000210"}}
+
+  ;; Sequence with nillable + parent-property children
+  ;; (Items stays top-level so empty [] appears on a fresh Document.)
+  {:record/type :element
+   :record/id #uuid "a1000000-0000-4000-8000-000000000230"
+   :schema/id #uuid "a1000000-0000-4000-8000-000000000001"
+   :record/parent-id #uuid "a1000000-0000-4000-8000-000000000001"
+   :record/name :Record
+   :record/label "Record"
+   :record/documentation nil
+   :element/type :complex
+   :element/key :Record
+   :element/kind :sequence
+   :element/label "Record"
+   :element/documentation nil
+   :element/typedef-id nil
+   :element/child-refs [#uuid "a1000000-0000-4000-8000-000000000201"
+                        #uuid "a1000000-0000-4000-8000-000000000202"
+                        #uuid "a1000000-0000-4000-8000-000000000203"]
+   :element/cardinality {:min 0 :max 1}
+   :element/order 60
+   :element/children []
+   :element/data {:child-refs [#uuid "a1000000-0000-4000-8000-000000000201"
+                               #uuid "a1000000-0000-4000-8000-000000000202"
+                               #uuid "a1000000-0000-4000-8000-000000000203"]}}]}

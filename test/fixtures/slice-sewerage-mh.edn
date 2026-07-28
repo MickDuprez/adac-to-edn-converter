@@ -1,0 +1,11 @@
+;; Partial expectations for Milestone 1 sewerage-mh slice.
+;; Full emitted bundle: lein run → target/adac-v600-sewerage-mh.edn
+{:required-typedef-names #{:String_NonEmpty :String_32 :String_40 :String_64
+                           :String_128 :String_254 :sewer_mh_use :asset_status}
+ :required-element-names #{:ADAC :Project :ProjectData :Sewerage
+                           :MaintenanceHoles :MaintenanceHole
+                           :InfrastructureCode :version}
+ :excluded-element-names #{:Transport :PipesNonPressure :WaterSupply}
+ :maintenance-holes {:kind :collection :max :many}
+ :infrastructure-code {:nillable? true}
+ :version {:placement :parent-property :property-name "version"}}
