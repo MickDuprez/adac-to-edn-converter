@@ -74,6 +74,7 @@
   [el]
   (let [a (attrs el)
         name (:name a)
+        ref (when-let [r (:ref a)] (u/local-name r))
         type-ref (:type a)
         min-o (u/parse-occurs (:minOccurs a))
         max-o (u/parse-occurs (:maxOccurs a))
@@ -83,20 +84,29 @@
         doc (documentation el)
         inline-ct (find-child el "complexType")
         inline-st (find-child el "simpleType")]
-    (cond-> {:kind :element
-             :name name
-             :type-ref type-ref
-             :min-occurs min-o
-             :max-occurs max-o
-             :nillable? nillable?
-             :documentation doc}
-      default (assoc :default default)
-      fixed (assoc :fixed fixed)
-      inline-ct (assoc :inline-complex (parse-complex-type-body inline-ct))
-      inline-st (assoc :inline-simple
-                       (let [r (find-child inline-st "restriction")]
-                         {:base (get-in r [:attrs :base])
-                          :facets (when r (parse-facets r))})))))
+    (if ref
+      (cond-> {:kind :element
+               :ref ref
+               :min-occurs min-o
+               :max-occurs max-o
+               :documentation doc}
+        (= "true" (:nillable a)) (assoc :nillable? true)
+        default (assoc :default default)
+        fixed (assoc :fixed fixed))
+      (cond-> {:kind :element
+               :name name
+               :type-ref type-ref
+               :min-occurs min-o
+               :max-occurs max-o
+               :nillable? nillable?
+               :documentation doc}
+        default (assoc :default default)
+        fixed (assoc :fixed fixed)
+        inline-ct (assoc :inline-complex (parse-complex-type-body inline-ct))
+        inline-st (assoc :inline-simple
+                         (let [r (find-child inline-st "restriction")]
+                           {:base (get-in r [:attrs :base])
+                            :facets (when r (parse-facets r))}))))))
 
 (defn- parse-attribute
   [el]

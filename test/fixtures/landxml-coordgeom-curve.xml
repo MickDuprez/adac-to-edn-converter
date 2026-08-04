@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Synthetic LandXML-1.2 fixture: Alignment → CoordGeom → Line/Curve/Spiral -->
+<LandXML xmlns="http://www.landxml.org/schema/LandXML-1.2"
+         date="2026-07-30" time="00:00:00" version="1.2">
+  <Units>
+    <Metric linearUnit="meter" areaUnit="squareMeter"
+            volumeUnit="cubicMeter" temperatureUnit="celsius"
+            pressureUnit="HPA" diameterUnit="millimeter"
+            widthUnit="meter" heightUnit="meter"/>
+  </Units>
+  <CgPoints>
+    <CgPoint name="P1">1000 2000 10</CgPoint>
+    <CgPoint name="P2">1100 2000 10</CgPoint>
+    <CgPoint name="P3">1200 2050 10</CgPoint>
+    <CgPoint name="P4">1300 2100 10</CgPoint>
+  </CgPoints>
+  <Alignments>
+    <Alignment name="CL" length="300" staStart="0">
+      <CoordGeom name="CL-geom">
+        <Line length="100">
+          <Start pntRef="P1"/>
+          <End pntRef="P2"/>
+        </Line>
+        <Curve rot="cw" radius="500" length="80">
+          <Start pntRef="P2"/>
+          <Center>1150 2500 10</Center>
+          <End pntRef="P3"/>
+        </Curve>
+        <Spiral length="50" radiusStart="500" radiusEnd="INF" rot="cw" spiType="clothoid">
+          <Start pntRef="P3"/>
+          <PI>1250 2200 10</PI>
+          <End pntRef="P4"/>
+        </Spiral>
+      </CoordGeom>
+    </Alignment>
+  </Alignments>
+</LandXML>

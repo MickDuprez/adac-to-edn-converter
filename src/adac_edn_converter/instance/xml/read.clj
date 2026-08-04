@@ -8,6 +8,7 @@
 (def ^:private nil-sentinel :schemacraft/nil)
 
 (declare read-complex)
+(declare read-complex-body)
 
 (defn- first-child-named
   [node name]
@@ -57,12 +58,16 @@
 (defn- read-host-event
   [idx el node]
   (let [k (idx/element-key el)
-        target (idx/host-target idx el)
-        target-name (name (:record/name target))
-        target-node (first-child-named node target-name)]
-    (when target-node
-      {k {(idx/element-key target)
-          (read-complex idx target target-node)}})))
+        mode (or (idx/host-payload-mode el) :target)]
+    (if (= mode :self)
+      (when-let [body (read-complex-body idx el node)]
+        {k body})
+      (let [target (idx/host-target idx el)
+            target-name (name (:record/name target))
+            target-node (first-child-named node target-name)]
+        (when target-node
+          {k {(idx/element-key target)
+              (read-complex idx target target-node)}})))))
 
 (defn- read-complex-body
   [idx el node]
@@ -85,14 +90,13 @@
                   (let [k (idx/element-key child-el)
                         item-el (idx/collection-item idx child-el)
                         item-name (name (:record/name item-el))
-                        wrapper (first (get child-map el-name))
-                        items (if wrapper
-                                (get (xu/children-by-name wrapper) item-name [])
-                                (get child-map item-name []))]
-                    (if (seq items)
-                      {k (mapv #(read-complex idx item-el %) items)}
-                      (when (>= (idx/min-occurs child-el) 1)
-                        {k []})))
+                        wrapper (first (get child-map el-name))]
+                    (cond
+                      (nil? wrapper) nil
+                      (xu/xsi-nil? wrapper) {k nil-sentinel}
+                      :else
+                      (let [items (get (xu/children-by-name wrapper) item-name [])]
+                        {k (mapv #(read-complex idx item-el %) items)})))
 
                   (idx/host-event? child-el)
                   (when-let [cn (first (get child-map el-name))]

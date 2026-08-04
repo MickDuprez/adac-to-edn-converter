@@ -64,14 +64,21 @@
   [el]
   (= :host-event (:element/kind el)))
 
+(defn host-payload-mode
+  "Host-event payload mode: :target (ADAC default) or :self (LandXML segments)."
+  [el]
+  (when (host-event? el)
+    (or (get-in el [:element/host-action :mode]) :target)))
+
 (defn collection-item
   [idx el]
   (when-let [item-id (get-in el [:element/data :collection/item-ref])]
     (element idx item-id)))
 
 (defn host-target
+  "Target Element for :target host-events; nil for :self hosts."
   [idx el]
-  (when (host-event? el)
+  (when (and (host-event? el) (= :target (host-payload-mode el)))
     (first (children idx el))))
 
 (defn nillable?

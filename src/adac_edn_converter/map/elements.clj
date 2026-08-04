@@ -9,6 +9,41 @@
   "Optional (fn [parent-path child-name] boolean). Nil = include all."
   nil)
 
+(def ^:dynamic *geometry-host-events?*
+  "When true (ADAC profile), Geometry + geometry_* becomes :host-event."
+  true)
+
+(def ^:dynamic *segment-host-events?*
+  "When true (LandXML profile), GeomList segment types become :self host-events."
+  false)
+
+(def ^:dynamic *flatten-type-choices?*
+  "When true, flatten type-level unbounded choices into named sequence fields."
+  false)
+
+(def flatten-type-choice-names
+  "LandXML types whose unbounded choice content becomes a flat form."
+  #{"Alignment" "PlanFeature" "Parcel"})
+
+(def ^:dynamic *emit-frames*
+  "Map of emit-frame-key → {:name :id :hit?} for recursive element graphs."
+  {})
+
+(def ^:dynamic *current-emit-frame*
+  "Frame for the element declaration currently being expanded."
+  nil)
+
+(defn- emit-frame-key
+  [name min-occurs max-occurs nillable?]
+  [name min-occurs max-occurs (boolean nillable?)])
+
+(defn- recursive-force-id
+  "When a recursive ref hit this frame, reuse the preallocated id."
+  [name]
+  (when-let [frame *current-emit-frame*]
+    (when (and (= (:name frame) name) @(:hit? frame))
+      (:id frame))))
+
 (defn- include-child?
   [parent-path child-name]
   (if *include-child?*
@@ -45,9 +80,52 @@
 (defn geometry-host-event?
   "True when this is an ADAC Geometry field backed by a geometry_* complex type."
   [name type-ref]
-  (and (= "Geometry" (u/local-name name))
+  (and *geometry-host-events?*
+       (= "Geometry" (u/local-name name))
        (let [t (u/local-name type-ref)]
          (and (string? t) (str/starts-with? t "geometry_")))))
+
+(def segment-host-names
+  "LandXML CoordGeom / GeomList segment types that are CAD host-events."
+  #{"Line" "Curve" "Spiral" "IrregularLine"})
+
+(defn segment-host-event?
+  "True when this LandXML segment type should be a :self host-event."
+  [name]
+  (and *segment-host-events?*
+       (contains? segment-host-names (u/local-name name))))
+
+(defn segment-host-action-base
+  "CAD capture metadata for a LandXML segment host-event (:mode :self)."
+  [name]
+  (let [n (u/local-name name)]
+    {:heading n
+     :label (str "Capture " (str/lower-case n) " from CAD")
+     :handler (str "onCapture" n)
+     :mode :self}))
+
+(defn- flatten-choice-to-fields
+  "Expand choice/sequence wrappers into a flat list of element particles.
+  Nested exclusive choices become optional sibling fields (practical type forms)."
+  [particles]
+  (mapcat
+   (fn [p]
+     (case (:kind p)
+       :choice (flatten-choice-to-fields (:particles p))
+       :sequence (flatten-choice-to-fields (:particles p))
+       :element [p]
+       []))
+   (or particles [])))
+
+(defn- should-flatten-type-choice?
+  [name]
+  (and *flatten-type-choices?*
+       (contains? flatten-type-choice-names (u/local-name name))))
+
+(defn- root-bag-collection?
+  "LandXML document root stays an outer collection of fragments."
+  [name]
+  (= "LandXML" (u/local-name name)))
 
 (defn element-shape
   "Canonical fingerprint for Element reuse (no path / order)."
@@ -70,26 +148,35 @@
   (u/stable-uuid (str "element/shape/" (pr-str shape))))
 
 (defn find-or-create-element!
-  "Reuse existing Element when shape matches; otherwise mint id from shape and store."
-  [store shape build-fn]
-  (if-let [existing-id (get-in @store [:by-shape shape])]
-    (get-in @store [:by-id existing-id])
-    (let [id (shape-id shape)
-          el (build-fn id)]
-      (swap! store (fn [s]
-                     (-> s
-                         (assoc-in [:by-id id] el)
-                         (assoc-in [:by-shape shape] id))))
-      el)))
+  "Reuse existing Element when shape matches; otherwise mint id from shape and store.
+  Optional `force-id` is used for recursive elements (self/mutual refs)."
+  ([store shape build-fn]
+   (find-or-create-element! store shape build-fn nil))
+  ([store shape build-fn force-id]
+   (if-let [existing-id (get-in @store [:by-shape shape])]
+     (get-in @store [:by-id existing-id])
+     (let [id (or force-id (shape-id shape))
+           el (build-fn id)]
+       (swap! store (fn [s]
+                      (-> s
+                          (assoc-in [:by-id id] el)
+                          (assoc-in [:by-shape shape] id))))
+       el))))
+
+(defn- multi-occurs?
+  "True when maxOccurs allows more than one item (`unbounded` or numeric > 1)."
+  [max-o]
+  (or (= :many max-o)
+      (and (number? max-o) (> max-o 1))))
 
 (defn collection-wrapper?
-  "ADAC pattern: sequence of a single unbounded element child."
+  "ADAC pattern: sequence of a single multi-occurs element child."
   [particle]
   (and (= :sequence (:kind particle))
        (= 1 (count (:particles particle)))
        (let [c (first (:particles particle))]
          (and (= :element (:kind c))
-              (= :many (:max-occurs c))))))
+              (multi-occurs? (:max-occurs c))))))
 
 (defn flatten-particles
   "Expand group-refs and unwrap single nested sequences for walking."
@@ -116,6 +203,73 @@
        [p]))
    particles))
 
+(defn resolve-element-decl
+  "Resolve xs:element ref= against global elements; keep local occurs/nillable/docs overrides."
+  [schema el-decl]
+  (if-let [ref (:ref el-decl)]
+    (let [target (get-in schema [:elements (u/local-name ref)])]
+      (when-not target
+        (throw (ex-info "Unresolved element ref" {:ref ref})))
+      (-> target
+          (assoc :min-occurs (:min-occurs el-decl)
+                 :max-occurs (:max-occurs el-decl))
+          (cond->
+            (contains? el-decl :nillable?) (assoc :nillable? (:nillable? el-decl))
+            (:documentation el-decl) (assoc :documentation (:documentation el-decl))
+            (:fixed el-decl) (assoc :fixed (:fixed el-decl))
+            (:default el-decl) (assoc :default (:default el-decl)))))
+    el-decl))
+
+(defn resolve-simple-content
+  "Flatten simpleContent extension chains (attrs + ultimate simple base)."
+  [schema sc]
+  (loop [base (:base sc)
+         attrs (vec (:attributes sc))
+         documentation (:documentation sc)
+         facets (:facets sc)
+         seen #{}]
+    (let [local (u/local-name base)]
+      (cond
+        (or (nil? local) (seen local))
+        {:kind :simple-content
+         :base (or base "xs:string")
+         :attributes attrs
+         :documentation documentation
+         :facets facets}
+
+        (contains? (:simple-types schema) local)
+        {:kind :simple-content
+         :base local
+         :attributes attrs
+         :documentation documentation
+         :facets facets}
+
+        (u/xs-qname? base)
+        {:kind :simple-content
+         :base base
+         :attributes attrs
+         :documentation documentation
+         :facets facets}
+
+        :else
+        (if-let [ct (get-in schema [:complex-types local])]
+          (if (= :simple-content (:kind ct))
+            (recur (:base ct)
+                   (into (vec (:attributes ct)) attrs)
+                   (or documentation (:documentation ct))
+                   (or facets (:facets ct))
+                   (conj seen local))
+            {:kind :simple-content
+             :base (or base "xs:string")
+             :attributes attrs
+             :documentation documentation
+             :facets facets})
+          {:kind :simple-content
+           :base (or base "xs:string")
+           :attributes attrs
+           :documentation documentation
+           :facets facets})))))
+
 (defn resolve-complex-particles
   "Flatten complexContent extension bases into a single particle list."
   [schema type-name]
@@ -124,10 +278,7 @@
     (when ct
       (case (:kind ct)
         :simple-content
-        [{:kind :simple-content
-          :base (:base ct)
-          :attributes (:attributes ct)
-          :documentation (:documentation ct)}]
+        [(resolve-simple-content schema ct)]
         (let [base-parts (when (:base ct)
                            (resolve-complex-particles schema (:base ct)))
               own (mapcat
@@ -140,6 +291,23 @@
               attrs (:attributes ct)]
           (cond-> (vec (concat base-parts own))
             (seq attrs) (into attrs)))))))
+
+(defn- inline-complex-particles
+  "Own particles for an inline complex type, merging complexContent base if present."
+  [schema ct]
+  (let [base-parts (when (:base ct)
+                     (resolve-complex-particles schema (:base ct)))
+        own (mapcat
+             (fn [p]
+               (case (:kind p)
+                 :sequence (:particles p)
+                 :choice [p]
+                 :any []
+                 [p]))
+             (or (:particles ct) []))
+        attrs (:attributes ct)]
+    (cond-> (vec (concat (or base-parts []) own))
+      (seq attrs) (into attrs))))
 
 (defn- ensure-typedef!
   [*typedefs schema-id simple-types type-name]
@@ -167,9 +335,20 @@
 (defn- cardinality
   [min-occurs max-occurs & {:keys [collection?]}]
   {:min (or min-occurs 0)
-   :max (if (or (= :many max-occurs) collection?)
-          :many
-          (or max-occurs 1))})
+   :max (cond
+          (= :many max-occurs) :many
+          (number? max-occurs) max-occurs
+          collection? :many
+          :else 1)})
+
+(defn- collection-max-occurs
+  "List max from the XSD item particle (finite cap or :many)."
+  [item]
+  (let [m (:max-occurs item)]
+    (cond
+      (= :many m) :many
+      (number? m) m
+      :else :many)))
 
 (defn register-scalar!
   [store {:keys [schema-id name documentation nillable? min-occurs max-occurs
@@ -221,7 +400,7 @@
 
 (defn register-complex!
   [store {:keys [schema-id name documentation kind min-occurs max-occurs
-                 child-refs order item-ref]}]
+                 child-refs order item-ref nillable? force-id]}]
   (let [collection? (= kind :collection)
         card (cardinality min-occurs max-occurs :collection? collection?)
         shape (element-shape
@@ -229,7 +408,7 @@
                 :kind kind
                 :documentation documentation
                 :cardinality card
-                :nillable? false
+                :nillable? nillable?
                 :child-refs child-refs
                 :item-ref item-ref})]
     (find-or-create-element!
@@ -239,33 +418,48 @@
              label (u/element-label name)
              data (cond-> {:child-refs child-refs}
                     item-ref (assoc :collection/item-ref item-ref))]
-         {:record/type :element
-          :record/id id
-          :schema/id schema-id
-          :record/parent-id schema-id
-          :record/name kw
-          :record/label label
-          :record/documentation (normalize-doc documentation)
-          :element/type :complex
-          :element/key kw
-          :element/kind kind
-          :element/label label
-          :element/documentation (normalize-doc documentation)
-          :element/typedef-id nil
-          :element/child-refs child-refs
-          :element/cardinality card
-          :element/order (or order 0)
-          :element/children []
-          :element/status :active
-          :element/data data})))))
+         (cond-> {:record/type :element
+                  :record/id id
+                  :schema/id schema-id
+                  :record/parent-id schema-id
+                  :record/name kw
+                  :record/label label
+                  :record/documentation (normalize-doc documentation)
+                  :element/type :complex
+                  :element/key kw
+                  :element/kind kind
+                  :element/label label
+                  :element/documentation (normalize-doc documentation)
+                  :element/typedef-id nil
+                  :element/child-refs child-refs
+                  :element/cardinality card
+                  :element/order (or order 0)
+                  :element/children []
+                  :element/status :active
+                  :element/data data}
+           nillable? (assoc :element/nillable? true))))
+     force-id)))
 
 (defn register-host-event!
-  "Register Geometry as a CAD host-event with exactly one ordinary Target."
+  "Register a CAD host-event.
+
+  :target mode (default / ADAC): exactly one Target via `:target-id`.
+  :self mode (LandXML segments): `:child-refs` are the host's own form children;
+  `:host-action` includes `:mode :self` and omits `:target-id`."
   [store {:keys [schema-id name documentation min-occurs max-occurs
-                 target-id order]}]
+                 target-id child-refs order host-action-base]}]
   (let [card (cardinality min-occurs max-occurs)
-        host-action (assoc geometry-host-action-base :target-id target-id)
-        child-refs [target-id]
+        action-base (or host-action-base geometry-host-action-base)
+        mode (or (:mode action-base) :target)
+        self? (= mode :self)
+        child-refs (if self?
+                     (vec child-refs)
+                     [(or target-id (first child-refs))])
+        host-action (if self?
+                      (-> action-base
+                          (assoc :mode :self)
+                          (dissoc :target-id))
+                      (assoc (dissoc action-base :mode) :target-id (first child-refs)))
         shape (element-shape
                {:name name
                 :kind :host-event
@@ -324,9 +518,10 @@
 
 (defn- emit-simple-content!
   [store *typedefs schema schema-id path name documentation sc order]
-  (let [simple-types (:simple-types schema)
+  (let [resolved (resolve-simple-content schema sc)
+        simple-types (:simple-types schema)
         content-tdef (ensure-typedef! *typedefs schema-id simple-types
-                                      (or (:base sc) "xs:string"))
+                                      (or (:base resolved) "xs:string"))
         content-el (register-scalar!
                     store
                     {:schema-id schema-id
@@ -340,23 +535,25 @@
         attr-els (map-indexed
                   (fn [i attr]
                     (emit-attribute! store *typedefs schema schema-id path attr (inc i)))
-                  (:attributes sc))
+                  (:attributes resolved))
         child-refs (into [(:record/id content-el)] (mapv :record/id attr-els))]
     (register-complex!
      store
      {:schema-id schema-id
       :name name
-      :documentation documentation
+      :documentation (or documentation (:documentation resolved))
       :kind :sequence
       :min-occurs 0
       :max-occurs 1
       :child-refs child-refs
-      :order order})))
+      :order order
+      :force-id (recursive-force-id name)})))
 
 (defn- register-geometry-or-complex!
-  "Register Geometry as host-event when requested; otherwise as ordinary complex."
-  [store {:keys [host-event-owner? schema-id name documentation kind
-                 min-occurs max-occurs child-refs item-ref order path]}]
+  "Register Geometry/segment as host-event when requested; otherwise ordinary complex.
+  :self host-events keep all child-refs; :target (default) requires exactly one Target."
+  [store {:keys [host-event-owner? host-action-base schema-id name documentation kind
+                 min-occurs max-occurs child-refs item-ref order path nillable?]}]
   (if-not host-event-owner?
     (register-complex!
      store
@@ -368,11 +565,14 @@
       :max-occurs max-occurs
       :child-refs child-refs
       :item-ref item-ref
-      :order order})
-    (do
-      (when-not (= 1 (count child-refs))
+      :nillable? nillable?
+      :order order
+      :force-id (recursive-force-id name)})
+    (let [mode (or (:mode host-action-base) :target)
+          self? (= mode :self)]
+      (when (and (not self?) (not= 1 (count child-refs)))
         (throw (ex-info
-                "Geometry host-event requires exactly one Target child"
+                "Host-event requires exactly one Target child"
                 {:path path
                  :name name
                  :child-refs child-refs
@@ -383,16 +583,19 @@
         :name name
         :documentation documentation
         :min-occurs min-occurs
-        :max-occurs (if (= :many max-occurs) 1 max-occurs)
-        :target-id (first child-refs)
-        :order order}))))
+        :max-occurs (if (and (not self?) (= :many max-occurs)) 1 max-occurs)
+        :target-id (when-not self? (first child-refs))
+        :child-refs child-refs
+        :order order
+        :host-action-base host-action-base}))))
 
 (defn emit-complex-type!
   "Emit a sequence/choice/collection element for a named or anonymous complex type.
   When `:host-event-owner?` is true, the owner is registered as a Geometry host-event
-  around its single ordinary Target child."
+  around its single ordinary Target child. LandXML segment names may also become
+  :self host-events when `*segment-host-events?*` is true."
   [store *typedefs schema schema-id path name documentation type-ref-or-inline order
-   & {:keys [min-occurs max-occurs host-event-owner?]}]
+   & {:keys [min-occurs max-occurs host-event-owner? nillable?]}]
   (let [inline? (map? type-ref-or-inline)
         type-name (when-not inline? type-ref-or-inline)
         ct (if inline?
@@ -408,15 +611,27 @@
 
       :else
       (let [raw-parts (if inline?
-                        (mapcat (fn [p]
-                                  (case (:kind p)
-                                    :sequence (:particles p)
-                                    [p]))
-                                (or (:particles ct) []))
+                        (inline-complex-particles schema ct)
                         (or (resolve-complex-particles schema type-name) []))
-            coll? (and (= 1 (count raw-parts))
-                       (= :element (:kind (first raw-parts)))
-                       (= :many (:max-occurs (first raw-parts))))
+            ;; Skip xs:any wildcards in v1; keep attributes out of content detection
+            content-parts0 (vec (remove #(or (= :any (:kind %))
+                                             (= :attribute (:kind %)))
+                                        raw-parts))
+            attrs-from-parts (filter #(= :attribute (:kind %)) raw-parts)
+            ;; Flatten type-level unbounded choices into named fields (Alignment/Parcel/…)
+            content-parts (if (should-flatten-type-choice? name)
+                            (vec
+                             (mapcat
+                              (fn [p]
+                                (if (and (= :choice (:kind p))
+                                         (multi-occurs? (:max-occurs p)))
+                                  (flatten-choice-to-fields (:particles p))
+                                  [p]))
+                              content-parts0))
+                            content-parts0)
+            coll? (and (= 1 (count content-parts))
+                       (= :element (:kind (first content-parts)))
+                       (multi-occurs? (:max-occurs (first content-parts))))
             wrapper-seq (when inline?
                           (first (filter #(and (= :sequence (:kind %))
                                                (collection-wrapper? %))
@@ -424,91 +639,169 @@
             item (when (or coll? wrapper-seq)
                    (if wrapper-seq
                      (first (:particles wrapper-seq))
-                     (first raw-parts)))]
-        (if item
-          (let [item-el (emit-element-decl! store *typedefs schema schema-id
-                                            (conj path (:name item)) item 0)]
+                     (first content-parts)))
+            seg-host? (and (segment-host-event? name) (not host-event-owner?))
+            as-host? (boolean (or host-event-owner? seg-host?))
+            host-action (when seg-host? (segment-host-action-base name))]
+        (cond
+          item
+          ;; List cardinality comes from the item particle; item Element is one instance.
+          (let [item-decl (assoc item :min-occurs 1 :max-occurs 1)
+                item-el (emit-element-decl! store *typedefs schema schema-id
+                                            (conj path (or (:name item) (:ref item))) item-decl 0)]
             (register-geometry-or-complex!
              store
-             {:host-event-owner? host-event-owner?
+             {:host-event-owner? as-host?
+              :host-action-base host-action
               :schema-id schema-id
               :name name
               :documentation (or documentation (:documentation ct))
               :kind :collection
-              :min-occurs (or min-occurs 1)
-              :max-occurs :many
+              :min-occurs (or (:min-occurs item) 0)
+              :max-occurs (collection-max-occurs item)
               :child-refs [(:record/id item-el)]
               :item-ref (:record/id item-el)
+              :nillable? nillable?
               :order order
               :path path}))
-          (let [only (when (= 1 (count raw-parts)) (first raw-parts))
+
+          :else
+          (let [only (when (= 1 (count content-parts)) (first content-parts))
                 choice? (= :choice (:kind only))
-                unbounded-choice? (and choice? (= :many (:max-occurs only)))
+                unbounded-choice? (and choice? (multi-occurs? (:max-occurs only)))
+                ;; Non-root sole unbounded choice with attrs → sequence wrapping {name}_list
+                ;; (Alignment/Curve). No attrs (ADAC Pathways) → keep outer collection.
+                wrap-sole-choice? (and unbounded-choice?
+                                       (not (root-bag-collection? name))
+                                       (seq attrs-from-parts))
                 child-particles (filter
                                  (fn [p]
                                    (or (not= :element (:kind p))
-                                       (include-child? path (:name p))))
-                                 (if choice?
-                                   (:particles only)
-                                   (remove #(= :attribute (:kind %)) raw-parts)))
-                attrs (filter #(= :attribute (:kind %)) raw-parts)
+                                       (include-child? path (or (:name p) (:ref p)))))
+                                 (cond
+                                   wrap-sole-choice? (:particles only)
+                                   unbounded-choice? (:particles only)
+                                   choice? (:particles only)
+                                   :else content-parts))
+                attrs attrs-from-parts
+                emit-child-particle!
+                (fn emit-child-particle!
+                  ([parent-path parent-name i p]
+                   (emit-child-particle! parent-path parent-name i p {}))
+                  ([parent-path parent-name i p {:keys [as-choice-branch?]}]
+                   (case (:kind p)
+                     :element
+                     (let [el-name (or (:name p) (:ref p))
+                           p' (cond-> p
+                                as-choice-branch? (assoc :min-occurs 1 :max-occurs 1))]
+                       (if (and (not as-choice-branch?)
+                                (multi-occurs? (:max-occurs p)))
+                         (let [item-decl (assoc p :min-occurs 1 :max-occurs 1)
+                               item-el (emit-element-decl! store *typedefs schema schema-id
+                                                           (conj parent-path el-name) item-decl i)
+                               resolved (resolve-element-decl schema p)
+                               base-name (or (:name resolved) el-name)
+                               coll-name (str base-name "_list")]
+                           (register-complex!
+                            store
+                            {:schema-id schema-id
+                             :name coll-name
+                             :documentation (:documentation resolved)
+                             :kind :collection
+                             :min-occurs (or (:min-occurs p) 0)
+                             :max-occurs (collection-max-occurs p)
+                             :child-refs [(:record/id item-el)]
+                             :item-ref (:record/id item-el)
+                             :nillable? (:nillable? resolved)
+                             :order i}))
+                         (emit-element-decl! store *typedefs schema schema-id
+                                             (conj parent-path el-name) p' i)))
+                     :choice
+                     (if (multi-occurs? (:max-occurs p))
+                       (let [list-name (str parent-name "_list")
+                             frag-name (str parent-name "_Fragment")
+                             frag-path (conj parent-path "Fragment")
+                             ch-children
+                             (vec
+                              (map-indexed
+                               (fn [j c]
+                                 (emit-child-particle! frag-path parent-name j c
+                                                       {:as-choice-branch? true}))
+                               (:particles p)))
+                             frag (register-complex!
+                                   store
+                                   {:schema-id schema-id
+                                    :name frag-name
+                                    :documentation "Ordered heterogeneous choice item"
+                                    :kind :choice
+                                    :min-occurs 1
+                                    :max-occurs 1
+                                    :child-refs (mapv :record/id (remove nil? ch-children))
+                                    :order 0})]
+                         (register-complex!
+                          store
+                          {:schema-id schema-id
+                           :name list-name
+                           :documentation nil
+                           :kind :collection
+                           :min-occurs (or (:min-occurs p) 0)
+                           :max-occurs (collection-max-occurs p)
+                           :child-refs [(:record/id frag)]
+                           :item-ref (:record/id frag)
+                           :order i}))
+                       (let [ch-path (conj parent-path (str "choice_" i))
+                             ch-children
+                             (vec
+                              (map-indexed
+                               (fn [j c]
+                                 (emit-child-particle! ch-path parent-name j c
+                                                       {:as-choice-branch? true}))
+                               (:particles p)))]
+                         (register-complex!
+                          store
+                          {:schema-id schema-id
+                           :name (str parent-name "_choice_" i)
+                           :documentation nil
+                           :kind :choice
+                           :min-occurs (:min-occurs p)
+                           :max-occurs (or (:max-occurs p) 1)
+                           :child-refs (mapv :record/id (remove nil? ch-children))
+                           :order i})))
+                     :sequence
+                     (let [seq-path (conj parent-path (str "seq_" i))
+                           seq-children
+                           (vec
+                            (map-indexed
+                             (fn [j c]
+                               (emit-child-particle! seq-path parent-name j c))
+                             (:particles p)))]
+                       (register-complex!
+                        store
+                        {:schema-id schema-id
+                         :name (str parent-name "_seq_" i)
+                         :documentation nil
+                         :kind :sequence
+                         :min-occurs (:min-occurs p)
+                         :max-occurs (:max-occurs p)
+                         :child-refs (mapv :record/id (remove nil? seq-children))
+                         :order i}))
+                     nil)))
+                ;; Root bag / wrapped sole choice: alternatives are card-1 choice branches.
+                ;; Flattened types: emit as normal fields (multi → *_list).
+                ;; Unbounded choice alternatives (root bag, Pathways, wrapped Curve list): card-1.
+                branch-opts (when unbounded-choice? {:as-choice-branch? true})
                 child-els (vec
                            (map-indexed
                             (fn [i p]
-                              (case (:kind p)
-                                :element
-                                (emit-element-decl! store *typedefs schema schema-id
-                                                    (conj path (:name p)) p i)
-                                :choice
-                                (let [ch-path (conj path (str "choice_" i))
-                                      ch-children
-                                      (vec
-                                       (map-indexed
-                                        (fn [j c]
-                                          (emit-element-decl! store *typedefs schema schema-id
-                                                              (conj ch-path (:name c)) c j))
-                                        (:particles p)))]
-                                  (register-complex!
-                                   store
-                                   {:schema-id schema-id
-                                    :name (str name "_choice_" i)
-                                    :documentation nil
-                                    :kind :choice
-                                    :min-occurs (:min-occurs p)
-                                    :max-occurs (if (= :many (:max-occurs p)) 1 (:max-occurs p))
-                                    :child-refs (mapv :record/id ch-children)
-                                    :order i}))
-                                :sequence
-                                (let [seq-path (conj path (str "seq_" i))
-                                      seq-children
-                                      (vec
-                                       (map-indexed
-                                        (fn [j c]
-                                          (emit-element-decl! store *typedefs schema schema-id
-                                                              (conj seq-path (:name c)) c j))
-                                        (:particles p)))]
-                                  (register-complex!
-                                   store
-                                   {:schema-id schema-id
-                                    :name (str name "_seq_" i)
-                                    :documentation nil
-                                    :kind :sequence
-                                    :min-occurs (:min-occurs p)
-                                    :max-occurs (:max-occurs p)
-                                    :child-refs (mapv :record/id seq-children)
-                                    :order i}))
-                                nil))
+                              (emit-child-particle! path name i p (or branch-opts {})))
                             child-particles))
                 attr-els (map-indexed
                           (fn [i a]
                             (emit-attribute! store *typedefs schema schema-id path a
                                              (+ (count child-els) i)))
-                          (concat attrs (:attributes ct)))
-                kind (cond
-                       unbounded-choice? :collection
-                       choice? :choice
-                       :else :sequence)
-                choice-item (when unbounded-choice?
+                          attrs)
+                ;; Build outer shape
+                choice-item (when (and unbounded-choice? (not wrap-sole-choice?))
                               (register-complex!
                                store
                                {:schema-id schema-id
@@ -519,25 +812,64 @@
                                 :max-occurs 1
                                 :child-refs (mapv :record/id (remove nil? child-els))
                                 :order 0}))
-                child-refs (if unbounded-choice?
-                             [(:record/id choice-item)]
+                wrapped-list
+                (when wrap-sole-choice?
+                  (let [frag (register-complex!
+                              store
+                              {:schema-id schema-id
+                               :name (str name "_Fragment")
+                               :documentation "Ordered heterogeneous choice item"
+                               :kind :choice
+                               :min-occurs 1
+                               :max-occurs 1
+                               :child-refs (mapv :record/id (remove nil? child-els))
+                               :order 0})]
+                    (register-complex!
+                     store
+                     {:schema-id schema-id
+                      :name (str name "_list")
+                      :documentation nil
+                      :kind :collection
+                      :min-occurs (or (:min-occurs only) 0)
+                      :max-occurs (collection-max-occurs only)
+                      :child-refs [(:record/id frag)]
+                      :item-ref (:record/id frag)
+                      :order 0})))
+                outer-as-collection? (and unbounded-choice? (not wrap-sole-choice?))
+                kind (cond
+                       wrap-sole-choice? :sequence
+                       outer-as-collection? :collection
+                       choice? :choice
+                       :else :sequence)
+                child-refs (cond
+                             outer-as-collection?
+                             (into [(:record/id choice-item)] (mapv :record/id attr-els))
+                             wrap-sole-choice?
+                             (into [(:record/id wrapped-list)] (mapv :record/id attr-els))
+                             :else
                              (into (mapv :record/id (remove nil? child-els))
                                    (mapv :record/id attr-els)))]
             (register-geometry-or-complex!
              store
-             {:host-event-owner? host-event-owner?
+             {:host-event-owner? as-host?
+              :host-action-base host-action
               :schema-id schema-id
               :name name
               :documentation (or documentation (:documentation ct))
               :kind kind
-              :min-occurs (or min-occurs 0)
-              :max-occurs (if unbounded-choice? :many (or max-occurs 1))
+              :min-occurs (if outer-as-collection?
+                            (or (:min-occurs only) 0)
+                            (or min-occurs 0))
+              :max-occurs (if outer-as-collection?
+                            (collection-max-occurs only)
+                            (or max-occurs 1))
               :child-refs child-refs
-              :item-ref (when unbounded-choice? (:record/id choice-item))
+              :item-ref (when outer-as-collection? (:record/id choice-item))
+              :nillable? nillable?
               :order order
               :path path})))))))
 
-(defn emit-element-decl!
+(defn- emit-element-decl-body!
   [store *typedefs schema schema-id path el-decl order]
   (let [simple-types (:simple-types schema)
         name (:name el-decl)
@@ -548,9 +880,12 @@
         fixed (:fixed el-decl)]
     (cond
       (:inline-complex el-decl)
-      (emit-complex-type! store *typedefs schema schema-id path name doc
-                          (:inline-complex el-decl) order
-                          :min-occurs min-o :max-occurs max-o)
+      (let [ict (:inline-complex el-decl)]
+        (if (= :simple-content (:kind ict))
+          (emit-simple-content! store *typedefs schema schema-id path name doc ict order)
+          (emit-complex-type! store *typedefs schema schema-id path name doc
+                              ict order
+                              :min-occurs min-o :max-occurs max-o :nillable? nillable?)))
 
       (:type-ref el-decl)
       (let [tref (:type-ref el-decl)
@@ -571,11 +906,16 @@
               :fixed fixed}))
 
           (contains? (:complex-types schema) local)
-          (emit-complex-type! store *typedefs schema schema-id path name doc
-                              tref order
-                              :min-occurs min-o
-                              :max-occurs max-o
-                              :host-event-owner? (geometry-host-event? name tref))
+          (let [ct (get-in schema [:complex-types local])]
+            (if (= :simple-content (:kind ct))
+              (emit-simple-content! store *typedefs schema schema-id path name
+                                    (or doc (:documentation ct)) ct order)
+              (emit-complex-type! store *typedefs schema schema-id path name doc
+                                  tref order
+                                  :min-occurs min-o
+                                  :max-occurs max-o
+                                  :nillable? nillable?
+                                  :host-event-owner? (geometry-host-event? name tref))))
 
           :else
           (throw (ex-info "Unresolved element type" {:type tref :path path}))))
@@ -596,3 +936,25 @@
 
       :else
       (throw (ex-info "Element without type" {:element el-decl :path path})))))
+
+(defn emit-element-decl!
+  [store *typedefs schema schema-id path el-decl order]
+  (let [el-decl (resolve-element-decl schema el-decl)
+        name (:name el-decl)
+        min-o (:min-occurs el-decl)
+        max-o (:max-occurs el-decl)
+        nillable? (:nillable? el-decl)]
+    (when-not name
+      (throw (ex-info "Element without name after ref resolution"
+                      {:element el-decl :path path})))
+    (let [frame-key (emit-frame-key name min-o max-o nillable?)]
+      (if-let [frame (get *emit-frames* frame-key)]
+        (do
+          (reset! (:hit? frame) true)
+          {:record/id (:id frame)})
+        (let [frame {:name name
+                     :id (u/stable-uuid (str "element/frame/" (pr-str frame-key)))
+                     :hit? (atom false)}]
+          (binding [*emit-frames* (assoc *emit-frames* frame-key frame)
+                    *current-emit-frame* frame]
+            (emit-element-decl-body! store *typedefs schema schema-id path el-decl order)))))))

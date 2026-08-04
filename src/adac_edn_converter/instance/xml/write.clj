@@ -52,16 +52,24 @@
 (defn- write-host-event
   [idx el data]
   (let [el-name (name (:record/name el))
-        target (idx/host-target idx el)
+        mode (or (idx/host-payload-mode el) :target)
         payload (get data (idx/element-key el))]
     (when (and payload (map? payload))
-      (let [target-key (idx/element-key target)
-            target-data (get payload target-key payload)]
-        (xml-node (xml-tag el-name)
-                  {}
-                  [(xml-node (xml-tag (name (:record/name target)))
-                             {}
-                             (write-complex-content idx target target-data))])))))
+      (if (= mode :self)
+        (let [attrs (into {}
+                          (mapcat #(parent-property-attrs idx % payload)
+                                  (filter idx/parent-property? (idx/children idx el))))]
+          (xml-node (xml-tag el-name)
+                    attrs
+                    (write-complex-content idx el payload)))
+        (let [target (idx/host-target idx el)
+              target-key (idx/element-key target)
+              target-data (get payload target-key payload)]
+          (xml-node (xml-tag el-name)
+                    {}
+                    [(xml-node (xml-tag (name (:record/name target)))
+                               {}
+                               (write-complex-content idx target target-data))]))))))
 
 (defn- write-complex-content
   [idx el data]
@@ -89,16 +97,19 @@
                item-el (idx/collection-item idx child-el)
                item-name (name (:record/name item-el))
                present? (contains? data k)
-               items (if present? v [])
-               emit? (or present? (>= (idx/min-occurs child-el) 1))]
-           (when emit?
+               items (when present? v)]
+           ;; Always emit the plural wrapper when writing a parent. List :min
+           ;; controls item count (SchemaCraft), not whether the wrapper appears in XML.
+           (if (or (= items nil-sentinel)
+                   (and (not present?) (idx/nillable? child-el)))
+             (xml-node (xml-tag coll-name) (xu/xsi-nil-attrs) [])
              (xml-node (xml-tag coll-name)
                        {}
                        (map (fn [item]
                               (xml-node (xml-tag item-name)
                                         {}
                                         (write-complex-content idx item-el item)))
-                            (or items [])))))
+                            (or (when (sequential? items) items) [])))))
 
          (idx/host-event? child-el)
          (write-host-event idx child-el data)

@@ -60,6 +60,18 @@
     (:max-exclusive facets) (assoc :max-exclusive (numeric-facet (:max-exclusive facets)))
     (= primitive :string) (assoc :trim? true)))
 
+(defn- list-item-along-chain
+  "If this simpleType (or an ancestor) is xs:list, return itemType local name."
+  [simple-types type-name]
+  (loop [n type-name seen #{}]
+    (cond
+      (or (nil? n) (seen n) (u/xs-qname? n)) nil
+      :else
+      (let [st (get simple-types (u/local-name n))]
+        (if-let [li (:list-item-type st)]
+          (u/local-name li)
+          (recur (:base st) (conj seen n)))))))
+
 (defn classify-simple
   "Return {:primitive … :facets …} for a named or builtin simple type."
   [simple-types type-name]
@@ -72,20 +84,30 @@
                      (= local "nonNegativeInteger") (assoc :min 0))]
         {:primitive prim :facets facets})
       (let [st (get simple-types local)
+            list-item (or (:list-item-type st)
+                          (list-item-along-chain simple-types local))
             facets (merge-facet-chain simple-types local)
             enums (:enumerations facets)
-            base (resolve-base-chain simple-types local)
-            prim (if (seq enums)
-                   :enum
-                   (u/builtin-primitive (or base "string")))
-            sc-facets (if (= prim :enum)
-                        {:base :string
-                         :items (mapv :value enums)}
-                        (facets->sc (dissoc facets :enumerations) prim))]
-        {:primitive prim
-         :facets sc-facets
-         :documentation (:documentation st)
-         :xsd-name local}))))
+            base (resolve-base-chain simple-types local)]
+        (if list-item
+          {:primitive :string
+           :facets (cond-> (facets->sc (dissoc facets :enumerations) :string)
+                     true (assoc :trim? true
+                                 :list? true
+                                 :item-type (u/local-name list-item)))
+           :documentation (:documentation st)
+           :xsd-name local}
+          (let [prim (if (seq enums)
+                       :enum
+                       (u/builtin-primitive (or base "string")))
+                sc-facets (if (= prim :enum)
+                            {:base :string
+                             :items (mapv :value enums)}
+                            (facets->sc (dissoc facets :enumerations) prim))]
+            {:primitive prim
+             :facets sc-facets
+             :documentation (:documentation st)
+             :xsd-name local}))))))
 
 (defn emit-typedef
   [schema-id simple-types type-name]

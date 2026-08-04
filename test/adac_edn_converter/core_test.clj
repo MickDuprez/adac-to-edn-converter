@@ -88,10 +88,106 @@
   (is (el/collection-wrapper?
        {:kind :sequence
         :particles [{:kind :element :name "MaintenanceHole" :max-occurs :many :min-occurs 0}]}))
+  (is (el/collection-wrapper?
+       {:kind :sequence
+        :particles [{:kind :element :name "Vertex" :max-occurs 2 :min-occurs 2}]})
+      "finite maxOccurs > 1 is a collection wrapper")
   (is (not (el/collection-wrapper?
             {:kind :sequence
              :particles [{:kind :element :name "A" :max-occurs 1}
                          {:kind :element :name "B" :max-occurs 1}]}))))
+
+(deftest collection-cardinality-from-item-not-wrapper
+  "Required plural wrappers may be empty; list :min comes from the item particle."
+  (let [store (atom (el/empty-store))
+        *typedefs (atom {})
+        sid (u/stable-uuid "schema/coll-card-test")
+        schema {:simple-types {"String_254" {:base "xs:string"
+                                             :facets {:max-length 254}}}
+                :complex-types {}}
+        ;; SupportingFiles-style: wrapper min=1 nillable, child min=0 unbounded
+        empty-allowed
+        (el/emit-complex-type!
+         store *typedefs schema sid ["Root"] "SupportingFiles" nil
+         {:kind :complex
+          :particles [{:kind :sequence :min-occurs 1 :max-occurs 1
+                       :particles [{:kind :element :name "SupportingFile"
+                                    :min-occurs 0 :max-occurs :many
+                                    :nillable? false
+                                    :type-ref "String_254"}]}]}
+         0
+         :min-occurs 1 :max-occurs 1 :nillable? true)
+        ;; MaintenanceHoles-style: wrapper min=1 not nillable, child min=0
+        mh-style
+        (el/emit-complex-type!
+         store *typedefs schema sid ["Root"] "Things" nil
+         {:kind :complex
+          :particles [{:kind :sequence :min-occurs 1 :max-occurs 1
+                       :particles [{:kind :element :name "Thing"
+                                    :min-occurs 0 :max-occurs :many
+                                    :nillable? false
+                                    :type-ref "String_254"}]}]}
+         1
+         :min-occurs 1 :max-occurs 1 :nillable? false)
+        ;; True required list: child min=1 unbounded
+        required-list
+        (el/emit-complex-type!
+         store *typedefs schema sid ["Root"] "Points" nil
+         {:kind :complex
+          :particles [{:kind :sequence :min-occurs 1 :max-occurs 1
+                       :particles [{:kind :element :name "Point"
+                                    :min-occurs 1 :max-occurs :many
+                                    :nillable? false
+                                    :type-ref "String_254"}]}]}
+         2
+         :min-occurs 1 :max-occurs 1)
+        ;; Geometry min≥2 + finite max
+        vertices
+        (el/emit-complex-type!
+         store *typedefs schema sid ["Root"] "Segment" nil
+         {:kind :complex
+          :particles [{:kind :sequence :min-occurs 1 :max-occurs 1
+                       :particles [{:kind :element :name "Vertex"
+                                    :min-occurs 2 :max-occurs 2
+                                    :nillable? false
+                                    :type-ref "String_254"}]}]}
+         3
+         :min-occurs 1 :max-occurs 1)
+        by-id (into {} (map (juxt :record/id identity) (el/store-elements store)))
+        supporting-file (by-id (get-in empty-allowed [:element/data :collection/item-ref]))]
+    (is (= :collection (:element/kind empty-allowed)))
+    (is (= {:min 0 :max :many} (:element/cardinality empty-allowed)))
+    (is (true? (:element/nillable? empty-allowed)))
+    (is (= {:min 0 :max :many} (:element/cardinality mh-style)))
+    (is (nil? (:element/nillable? mh-style)))
+    (is (= {:min 1 :max :many} (:element/cardinality required-list)))
+    (is (= {:min 2 :max 2} (:element/cardinality vertices)))
+    (is (= {:min 1 :max 1} (:element/cardinality supporting-file))
+        "collection item Element is one instance, not 0..unbounded")))
+
+(deftest unbounded-choice-collection-min-from-choice
+  "Choice maxOccurs=unbounded minOccurs=0 → empty collection allowed."
+  (let [store (atom (el/empty-store))
+        *typedefs (atom {})
+        sid (u/stable-uuid "schema/choice-coll-test")
+        schema {:simple-types {"String_32" {:base "xs:string"
+                                            :facets {:max-length 32}}}
+                :complex-types {}}
+        pathways
+        (el/emit-complex-type!
+         store *typedefs schema sid ["Root"] "Pathways" nil
+         {:kind :complex
+          :particles [{:kind :choice :min-occurs 0 :max-occurs :many
+                       :particles [{:kind :element :name "Path"
+                                    :min-occurs 1 :max-occurs 1
+                                    :type-ref "String_32"}
+                                   {:kind :element :name "CycleWay"
+                                    :min-occurs 1 :max-occurs 1
+                                    :type-ref "String_32"}]}]}
+         0
+         :min-occurs 1 :max-occurs 1)]
+    (is (= :collection (:element/kind pathways)))
+    (is (= {:min 0 :max :many} (:element/cardinality pathways)))))
 
 (deftest example-schema-contract-smoke
   (let [path "doc/adac-importer-pack/fixtures/example-schema.edn"
@@ -117,6 +213,15 @@
                                   (= :collection (:element/kind %)))
                          %)
                       (:elements bundle))
+        sf-coll (some #(when (and (= :SupportingFiles (:record/name %))
+                                  (= :collection (:element/kind %)))
+                         %)
+                      (:elements bundle))
+        mh-item (when mh-coll
+                  (some #(when (= (:record/id %)
+                                  (get-in mh-coll [:element/data :collection/item-ref]))
+                           %)
+                        (:elements bundle)))
         infra (some #(when (= :InfrastructureCode (:record/name %)) %)
                     (:elements bundle))
         version (some #(when (= :version (:record/name %)) %)
@@ -129,8 +234,15 @@
     (doseq [n (:excluded-element-names expectations)]
       (is (not (contains? names n)) (str "should exclude " n)))
     (is (some? mh-coll))
-    (is (= :many (get-in mh-coll [:element/cardinality :max])))
+    (is (= {:min 0 :max :many} (:element/cardinality mh-coll))
+        "MaintenanceHoles may be empty")
     (is (uuid? (get-in mh-coll [:element/data :collection/item-ref])))
+    (is (= {:min 1 :max 1} (:element/cardinality mh-item))
+        "MaintenanceHole item is one instance")
+    (is (some? sf-coll))
+    (is (= {:min 0 :max :many} (:element/cardinality sf-coll))
+        "SupportingFiles may be empty")
+    (is (true? (:element/nillable? sf-coll)))
     (is (true? (:element/nillable? infra)))
     (is (= :parent-property (:element/placement version)))
     (is (= "version" (:element/property-name version)))

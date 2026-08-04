@@ -1,6 +1,7 @@
 (ns adac-edn-converter.core
-  "CLI: ADAC XSD ↔ SchemaCraft EDN ↔ Instance XML"
-  (:require [adac-edn-converter.convert :as convert]
+  "CLI: ADAC/LandXML XSD ↔ SchemaCraft EDN ↔ Instance XML; BCIB legacy → EDN"
+  (:require [adac-edn-converter.bcib.convert :as bcib]
+            [adac-edn-converter.convert :as convert]
             [adac-edn-converter.edn.emit :as emit]
             [adac-edn-converter.edn.read :as edn-read]
             [adac-edn-converter.instance.xml.read :as xml-read]
@@ -11,15 +12,28 @@
   (:gen-class))
 
 (def default-xsd "adac/ADAC_V600_Flattened.xsd")
+(def default-landxml-xsd "landxml/LandXML-1.2.xsd")
 (def default-sample-xml "adac/Sample-ADAC-V6.0.0.xml")
+(def default-bcib-legacy "doc/bcib/bcib-schema.edn")
+(def default-bcib-overlay "doc/bcib/behaviour-overlay.csv")
 
 (defn- parse-args
   [args]
   (loop [args args
-         opts {:slice :sewerage-mh}]
+         opts {:slice :sewerage-mh :profile :adac}]
     (cond
       (empty? args) opts
       (= "--full" (first args)) (recur (rest args) (assoc opts :slice nil))
+      (= "--schema" (first args))
+      (let [v (second args)
+            profile (case v
+                      ("adac" "ADAC") :adac
+                      ("landxml" "LandXML" "landxml-1.2") :landxml
+                      ("bcib" "BCIB") :bcib
+                      (keyword v))]
+        (recur (drop 2 args)
+               (cond-> (assoc opts :profile profile)
+                 (#{:landxml :bcib} profile) (assoc :slice nil))))
       (= "--slice" (first args))
       (let [v (second args)
             slice (case v
@@ -44,23 +58,51 @@
     (io/resource path) (io/resource path)
     :else (io/file path)))
 
-(defn convert!
-  "Convert XSD to EDN file. Returns out path."
-  [{:keys [xsd out slice] :or {slice :sewerage-mh}}]
-  (let [src (resolve-path xsd default-xsd)
-        out-path (or out
-                     (if (= slice :sewerage-mh)
-                       "target/adac-v600-sewerage-mh.edn"
-                       "target/adac-v600.edn"))
+(defn convert-bcib!
+  "Convert legacy BCIB EDN + overlay → SchemaCraft EDN."
+  [{:keys [xsd out]}]
+  (let [legacy-path (or (when xsd (str (resolve-path xsd nil)))
+                        (when (.exists (io/file default-bcib-legacy))
+                          default-bcib-legacy)
+                        (throw (ex-info "BCIB legacy EDN not found"
+                                        {:tried default-bcib-legacy})))
+        overlay-path (if (.exists (io/file default-bcib-overlay))
+                       default-bcib-overlay
+                       default-bcib-overlay)
+        out-path (or out "target/bcib.edn")
         _ (io/make-parents out-path)
-        bundle (convert/convert
-                (adac-edn-converter.xsd.parse/parse-schema src)
-                :slice slice)]
+        bundle (bcib/convert-files legacy-path overlay-path)]
     (emit/write-edn bundle out-path)
     {:out out-path
      :typedef-count (count (:typedefs bundle))
      :element-count (count (:elements bundle))
-     :slice slice}))
+     :slice nil
+     :profile :bcib}))
+
+(defn convert!
+  "Convert XSD (or BCIB legacy EDN) to SchemaCraft EDN file."
+  [{:keys [xsd out slice profile] :or {slice :sewerage-mh profile :adac} :as opts}]
+  (if (= profile :bcib)
+    (convert-bcib! opts)
+    (let [default (if (= profile :landxml) default-landxml-xsd default-xsd)
+          src (resolve-path xsd default)
+          out-path (or out
+                       (case profile
+                         :landxml "target/landxml-1.2.edn"
+                         (if (= slice :sewerage-mh)
+                           "target/adac-v600-sewerage-mh.edn"
+                           "target/adac-v600.edn")))
+          _ (io/make-parents out-path)
+          bundle (convert/convert
+                  (adac-edn-converter.xsd.parse/parse-schema src)
+                  :slice slice
+                  :profile profile)]
+      (emit/write-edn bundle out-path)
+      {:out out-path
+       :typedef-count (count (:typedefs bundle))
+       :element-count (count (:elements bundle))
+       :slice slice
+       :profile profile})))
 
 (defn xml-to-edn!
   [{:keys [schema xml out]}]
@@ -107,12 +149,14 @@
      (str/join
       \newline
       ["Usage:"
-       "  lein run -- [xsd-path] [out.edn] [--slice sewerage-mh|none] [--full]"
+       "  lein run -- [xsd-path] [out.edn] [--slice sewerage-mh|none] [--full] [--schema adac|landxml|bcib]"
        "  lein run -- xml-to-edn [schema.edn] [sample.xml] [out-instance.edn]"
        "  lein run -- edn-to-xml [schema.edn] [instance.edn] [out.xml]"
        "  lein run -- validate-xml [xsd-path] [document.xml]"
        ""
-       "  Default XSD: resources/adac/ADAC_V600_Flattened.xsd"
+       "  Default ADAC XSD: resources/adac/ADAC_V600_Flattened.xsd"
+       "  LandXML: lein run -- --schema landxml"
+       "  BCIB:    lein run -- --schema bcib"
        "  Default sample XML: resources/adac/Sample-ADAC-V6.0.0.xml"]))
 
     (= "xml-to-edn" (first args))
@@ -138,5 +182,6 @@
       (println "Wrote" (:out result)
                "typedefs=" (:typedef-count result)
                "elements=" (:element-count result)
+               "profile=" (pr-str (:profile result))
                "slice=" (pr-str (:slice result)))))
   (shutdown-agents))
