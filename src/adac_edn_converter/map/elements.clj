@@ -26,16 +26,26 @@
   #{"Alignment" "PlanFeature" "Parcel"})
 
 (def ^:dynamic *emit-frames*
-  "Map of emit-frame-key → {:name :id :hit?} for recursive element graphs."
+  "Map of emit-frame-key → {:name :type-key :id :hit?} for recursive element graphs."
   {})
 
 (def ^:dynamic *current-emit-frame*
   "Frame for the element declaration currently being expanded."
   nil)
 
+(defn- decl-type-key
+  "Distinguish same-named elements with different types (e.g. Feature vs enum)."
+  [el-decl]
+  (cond
+    (:type-ref el-decl) (str "type:" (u/local-name (:type-ref el-decl)))
+    (:inline-complex el-decl) (str "ict:" (hash (pr-str (:inline-complex el-decl))))
+    (:inline-simple el-decl) (str "ist:" (hash (pr-str (:inline-simple el-decl))))
+    (:ref el-decl) (str "ref:" (u/local-name (:ref el-decl)))
+    :else "unknown"))
+
 (defn- emit-frame-key
-  [name min-occurs max-occurs nillable?]
-  [name min-occurs max-occurs (boolean nillable?)])
+  [name min-occurs max-occurs nillable? type-key]
+  [name min-occurs max-occurs (boolean nillable?) type-key])
 
 (defn- recursive-force-id
   "When a recursive ref hit this frame, reuse the preallocated id."
@@ -179,7 +189,7 @@
               (multi-occurs? (:max-occurs c))))))
 
 (defn flatten-particles
-  "Expand group-refs and unwrap single nested sequences for walking."
+  "Expand group-refs and unwrap nested sequences for walking."
   [schema particles]
   (mapcat
    (fn [p]
@@ -199,7 +209,7 @@
                        :max-occurs max-o)]
                expanded))
            []))
-       :sequence [p]
+       :sequence (flatten-particles schema (:particles p))
        [p]))
    particles))
 
@@ -610,9 +620,11 @@
                             (or documentation (:documentation ct)) ct order)
 
       :else
-      (let [raw-parts (if inline?
-                        (inline-complex-particles schema ct)
-                        (or (resolve-complex-particles schema type-name) []))
+      (let [raw-parts (->> (if inline?
+                             (inline-complex-particles schema ct)
+                             (or (resolve-complex-particles schema type-name) []))
+                           (flatten-particles schema)
+                           vec)
             ;; Skip xs:any wildcards in v1; keep attributes out of content detection
             content-parts0 (vec (remove #(or (= :any (:kind %))
                                              (= :attribute (:kind %)))
@@ -646,9 +658,17 @@
         (cond
           item
           ;; List cardinality comes from the item particle; item Element is one instance.
-          (let [item-decl (assoc item :min-occurs 1 :max-occurs 1)
-                item-el (emit-element-decl! store *typedefs schema schema-id
-                                            (conj path (or (:name item) (:ref item))) item-decl 0)]
+          ;; Same local name as the wrapper (e.g. LandStabilisation/LandStabilisation) must not
+          ;; reuse the wrapper's emit frame — that creates a self item-ref.
+          (let [item-name (or (:name item) (:ref item))
+                item-decl (assoc item :min-occurs 1 :max-occurs 1)
+                item-resolved (resolve-element-decl schema item-decl)
+                item-frame-key (emit-frame-key item-name 1 1 (:nillable? item-resolved)
+                                               (decl-type-key item-resolved))
+                item-el (binding [*emit-frames* (dissoc *emit-frames* item-frame-key)
+                                  *current-emit-frame* nil]
+                          (emit-element-decl! store *typedefs schema schema-id
+                                              (conj path item-name) item-decl 0))]
             (register-geometry-or-complex!
              store
              {:host-event-owner? as-host?
@@ -657,6 +677,7 @@
               :name name
               :documentation (or documentation (:documentation ct))
               :kind :collection
+              ;; SchemaCraft list :min is the item particle min (0 ⇒ empty list OK).
               :min-occurs (or (:min-occurs item) 0)
               :max-occurs (collection-max-occurs item)
               :child-refs [(:record/id item-el)]
@@ -785,6 +806,11 @@
                          :max-occurs (:max-occurs p)
                          :child-refs (mapv :record/id (remove nil? seq-children))
                          :order i}))
+                     :group-ref
+                     (let [expanded (flatten-particles schema [p])]
+                       (when (= 1 (count expanded))
+                         (emit-child-particle! parent-path parent-name i (first expanded)
+                                               {:as-choice-branch? as-choice-branch?})))
                      nil)))
                 ;; Root bag / wrapped sole choice: alternatives are card-1 choice branches.
                 ;; Flattened types: emit as normal fields (multi → *_list).
@@ -947,12 +973,14 @@
     (when-not name
       (throw (ex-info "Element without name after ref resolution"
                       {:element el-decl :path path})))
-    (let [frame-key (emit-frame-key name min-o max-o nillable?)]
+    (let [type-key (decl-type-key el-decl)
+          frame-key (emit-frame-key name min-o max-o nillable? type-key)]
       (if-let [frame (get *emit-frames* frame-key)]
         (do
           (reset! (:hit? frame) true)
           {:record/id (:id frame)})
         (let [frame {:name name
+                     :type-key type-key
                      :id (u/stable-uuid (str "element/frame/" (pr-str frame-key)))
                      :hit? (atom false)}]
           (binding [*emit-frames* (assoc *emit-frames* frame-key frame)

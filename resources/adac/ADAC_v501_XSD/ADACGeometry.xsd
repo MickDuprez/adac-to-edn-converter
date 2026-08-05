@@ -1,0 +1,705 @@
+<?xml version="1.0"?>
+<!-- version 4.0.0 edited by Ian Read 2009 (RCC) -->
+<!-- version 4.0.1 edited by Ian Read 25 Aug 2011 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 6 Aug 2012 (RCC) [NO CHANGES TO GEOMETRY at 4.2.0 ]-->
+<!-- version 4.2.0 edited by Martin Dore' Feb 2015(LCC) to change version number only-->
+<!-- version 5.0.0 edited by Blake Slaven July 2017 (Lion Systems) to change version number only-->
+<!-- version 5.0.1 edited by Blake Slaven January 2018 (Lion Systems) to change version number only -->
+<xs:schema version="5.0.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.adac.com.au" targetNamespace="http://www.adac.com.au" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <!-- **************************************************************************************** -->
+  <!-- The following constructs define the generic geometries used by all objects               -->
+  <!-- Note: all objects use 3D points. If receiving system is 2D, then Z values are ignored.   -->
+  <!-- plane PolySegments, Curves, Paths and Rings are only valid in the map plane              -->
+  <!-- N.B: These differ significantly from Version 3 and now closely mimic the geometric       -->
+  <!-- constructs of target GIS systems.                                                        -->
+  <!-- **************************************************************************************** -->
+  <!-- COMPLEXTYPES USED TO DEFINE ADAC VERSION 4+ GEOMETRY ELEMENTS -->
+  <!-- POLYGONS -->
+  <!-- Use to define a polygon geometry that contains one or more closed complex rings in the map plane -->
+  <!-- the receiving system must supply the logic of which rings are included or excluded  -->
+  <xs:complexType name="geometry_area_multipatch_complex">
+    <xs:annotation>
+      <xs:documentation>This type may be used to define a feature instance geometry element.</xs:documentation>
+      <xs:appinfo>Use to represent features where multiple rings, islands, doughnut holes and complex curves are appropriate.</xs:appinfo>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Polygon" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents an area on the map plane that may contain multiple rings.  Rings may be inclusions or exclusions (donut holes) of space.  All rings will be stored at the same level.  It is up to the receiving system to validate the geometric conditions such as self-intersection, zero area or containment.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Ring" type="geometry_path_complex" minOccurs="1" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>More than one ring permitted.  At least one required.  May contain complex curves.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Use to define a polygon geometry that contains only one closed complex ring in the map plane -->
+  <!-- N.B: Use where no holes or islands are permitted but curves are OK  -->
+  <xs:complexType name="geometry_area_singlepatch_complex">
+    <xs:annotation>
+      <xs:documentation>This type may be used to define a feature instance geometry element.</xs:documentation>
+      <xs:appinfo>Use to represent features where only a single included ring is appropriate. Complex curves are permitted in the ring.  Multiple rings, islands or doughnut holes are not permitted.</xs:appinfo>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Polygon" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents an area on the map plane that may contain a single ring of included space.  It is up to the receiving system to validate the geometric conditions such as self-intersection or zero area.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Ring" type="geometry_path_complex" minOccurs="1" maxOccurs="1" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Only one ring permitted.  At least one required.  May contain complex curves.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Use to define a polygon geometry that contains one or more closed simple rings in the map plane -->
+  <!--N.B: No curves are permitted-->
+  <!-- the receiving system must supply the logic of which rings are included or excluded  -->
+  <xs:complexType name="geometry_area_multipatch_simple">
+    <xs:annotation>
+      <xs:documentation>This type may be used to define a feature instance geometry element.</xs:documentation>
+      <xs:appinfo>Use to represent features where multiple rings, islands and doughnut holes are appropriate., but complex curves are not allowed.  E.g. Cadastral boundaries may have excluded areas, but must consist only of straight lines.</xs:appinfo>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Polygon" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents an area on the map plane that may contain multiple rings.  Rings may be inclusions or exclusions (donut holes) of space.  All rings will be stored at the same level.  It is up to the receiving system to validate the geometric conditions such as self-intersection, zero area or containment.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Ring" type="geometry_ring_simple" minOccurs="1" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>More than one ring permitted.  At least one required.  May not contain complex curves, only PolySegment.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Use to define a polygon geometry that contains only one closed simple ring in the map plane -->
+  <!-- N.B: Use where no holes or islands or curves are permitted -->
+  <xs:complexType name="geometry_area_singlepatch_simple">
+    <xs:annotation>
+      <xs:documentation>This type may be used to define a feature instance geometry element.</xs:documentation>
+      <xs:appinfo>Use to represent features where only a single included ring of straight lines is appropriate.  Multiple rings, islands,  doughnut holes or complex curves are not permitted.</xs:appinfo>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Polygon" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents an area on the map plane that may contain a single ring of included space.  It is up to the receiving system to validate the geometric conditions such as self-intersection or zero area.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Ring" type="geometry_ring_simple" minOccurs="1" maxOccurs="1" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Only one ring permitted.  At least one required.  May not contain complex curves, only PolySegment.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- POLYLINES -->
+  <!-- Use to define a polyline geometry that contains one or more unbroken complex paths in the map plane -->
+  <!-- N.B: Use where multiple paths and curves are OK -->
+  <xs:complexType name="geometry_linear_multipath_complex">
+    <xs:annotation>
+      <xs:documentation>This type may be used to define a feature instance geometry element.</xs:documentation>
+      <xs:appinfo>Use to represent linear features where any number of paths with curves is permitted.  E.g: to represent kerb line, broken by driveways, but regarded as a single features.</xs:appinfo>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Polyline" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents a sequence of one or more linear paths. Paths need not be connected. Paths may contain complex curves.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Path" type="geometry_path_complex" minOccurs="1" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Continuous path consisting of linear fragments.  May contain complex curves.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Use to define a polyline geometry that contains only one unbroken complex path in the map plane -->
+  <!-- N.B: Use where curves are OK, but only one path is allowed -->
+  <xs:complexType name="geometry_linear_singlepath_complex">
+    <xs:annotation>
+      <xs:documentation>This type may be used to define a feature instance geometry element.</xs:documentation>
+      <xs:appinfo>Use to represent linear features that must be a single unbroken line, but may contain curved sections. Single path features may be destined for a network topology.</xs:appinfo>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Polyline" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents a sequence of only one linear path.  Path may contain complex curves.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Path" type="geometry_path_complex" minOccurs="1" maxOccurs="1" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Continuous path consisting of linear fragments.  May contain complex curves.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Use to define a polyline geometry that contains one or more unbroken simple paths in the map plane -->
+  <!-- N.B: Use where multiple paths are OK but curves are NOT -->
+  <xs:complexType name="geometry_linear_multipath_simple">
+    <xs:annotation>
+      <xs:documentation>This type may be used to define a feature instance geometry element.</xs:documentation>
+      <xs:appinfo>Use to represent features that may have multiple paths, but the paths may only contain straight segments.  No curves are permitted.</xs:appinfo>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Polyline" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents a sequence of one or more linear paths, that may contain only straight segments.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Path" type="geometry_path_simple" minOccurs="1" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Continuous path consisting of linear fragments.  May NOT contain complex curves.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Use to define a polyline geometry that contains only one unbroken simple path in the map plane -->
+  <!-- N.B: Use where only one path is allowed and curves are NOT OK -->
+  <xs:complexType name="geometry_linear_singlepath_simple">
+    <xs:annotation>
+      <xs:documentation>This type may be used to define a feature instance geometry element.</xs:documentation>
+      <xs:appinfo>Use to represent features that may have only one path, and the path may only contain straight segments.  No curves are permitted.  Single path features may be destined for a network topology.  E.g:  A water supply pipe may be described from valve to valve, but may pass through several bends.  The pipes sections must be straight.</xs:appinfo>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Polyline" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents a sequence of only one path, that may contain only straight segments.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Path" type="geometry_path_simple" minOccurs="1" maxOccurs="1" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Continuous path consisting of linear fragments.  May NOT contain complex curves.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Use to define a polyline geometry that contains only one path with a single segment in the map plane -->
+  <!-- N.B: Use where only end points are permitted to define a linear feature -->
+  <xs:complexType name="geometry_linear_segment_simple">
+    <xs:annotation>
+      <xs:documentation>This type may be used to define a feature instance geometry element.</xs:documentation>
+      <xs:appinfo>Use to represent features that may have only one path, and the path may only contain ONE straight segment.  No curves are permitted.  Single path features may be destined for a network topology.  E.g:  A sewer pipe may be described from pit to pit, it is not permitted to have bends.  The pipes sections must be straight.  This is the stictest linear geometry</xs:appinfo>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Polyline" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents a sequence of only one path, that may contain only one straight segment.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Path" type="geometry_path_segment" minOccurs="1" maxOccurs="1" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Continuous path consisting of one linear fragments with only TWO vertices.  May NOT contain complex curves.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- POINTS -->
+  <!-- Use to define a multiple point geometry in the map plane -->
+  <xs:complexType name="geometry_point_multipoint">
+    <xs:annotation>
+      <xs:documentation>This type may be used to define a feature instance geometry element.</xs:documentation>
+      <xs:appinfo>Use to represent features where multiple articles of the same nature are considered to constitute a single feature or record.</xs:appinfo>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="MultiPoint" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents a container for a set of 1-n points.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Point" type="geometry_position_3d" minOccurs="1" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a single point in coordinate space.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Use to define a simple point geometry in the map plane -->
+  <xs:complexType name="geometry_point_singlepoint">
+    <xs:annotation>
+      <xs:documentation>This type may be used to define a feature instance geometry element.</xs:documentation>
+      <xs:appinfo>Use the represent features that are regarded as a single unit at a single position.</xs:appinfo>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Point" type="geometry_position_3d" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents a single point in coordinate space.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- PATHS -->
+  <!-- Foundation structure for complex Paths and Rings in the map plane -->
+  <!-- allows one or more plane elements that may be polysegments or curves -->
+  <!-- When used in a Path, the end of the last element  -->
+  <!--  -->
+  <xs:complexType name="geometry_path_complex">
+    <xs:annotation>
+      <xs:documentation>This type controls the content of a single unbroken linear path that may contain any number of complex fragments in any order.  Fragments should be regarded to form a continuous chain even if their start and end points  do not meet each other in space.  Implementers should consider this when constructing the path in a target system.  The end of one fragment and the start of the next should be considered to be joined by a straight segment when not coincident.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:group ref="geometry_fragment_complex" minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any one of the geometry fragment choices may be used in any order.  Any single fragment is sufficient to describe a complete path on its own if desired.</xs:documentation>
+        </xs:annotation>
+      </xs:group>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Foundation structure for simple Paths in the map plane -->
+  <!-- allows one unbroken polysegment only -->
+  <xs:complexType name="geometry_path_simple">
+    <xs:annotation>
+      <xs:documentation>Represents a simple path.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PolySegment" type="geometry_fragment_multisegment" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>contains a single unbroken sequence of 2 - n point vertices.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Foundation structure for simple Paths in the map plane -->
+  <!-- allows one simple segment with end points only -->
+  <xs:complexType name="geometry_path_segment">
+    <xs:annotation>
+      <xs:documentation>Represents a straight segment path.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PolySegment" type="geometry_fragment_singlesegment" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Must contain exactly 2 point vertices.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Foundation structure for simple Rings in the map plane -->
+  <!-- allows one unbroken polysegment only -->
+  <!-- When used in a Ring it is implied that the polysegment closes on itself -->
+  <xs:complexType name="geometry_ring_simple">
+    <xs:annotation>
+      <xs:documentation>Represents a simple Ring structure.  May not contain complex curves.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PolySegment" type="geometry_fragment_ringsegment" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>contains a single unbroken sequence of 3 - n point vertices. When used in a Ring it is implied that the polysegment closes on itself.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- LINEAR FRAGMENTS -->
+  <!-- Building block for complex geometries -->
+  <xs:group name="geometry_fragment_complex">
+    <xs:annotation>
+      <xs:documentation>This is the most important element group in the geometry model.  It is crucial to the flexible description of complex geometries. Any one of the geometry fragment choices may be used in any order.  Any single fragment is sufficient to describe a complete path on its own if desired.</xs:documentation>
+      <xs:appinfo>N.B.  As this group is also used to construct a complex Ring, is is possible to create and validate a Ring that consists only of a PolySegment that has two vertices.  This will result in a ring that degrades to a straight line with zero area.  It is unlikely that an operator would purposely digitise such a ring, but it is possible.</xs:appinfo>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PolySegment" type="geometry_fragment_multisegment" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents a sequence of 2 - n vertices.  The first shall be regarded as the start point, proceeding in order and the last shall be regarded as the end point.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurveCircular" type="geometry_plane_curve_circular" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents a self-contained circular curve.  A circular curve may comstitute a complex Polyline Path or Polygon Ring by itself.  When used in a Ring, the FromPoint and To Point shall be taken to be joined by a straight segment unless already coincident.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurveElliptical" type="geometry_plane_curve_elliptical" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents a self-contained elliptical curve.  An elliptical curve may comstitute a complex Polyline Path or Polygon Ring by itself.  When used in a Ring, the FromPoint and ToPoint shall be taken to be joined by a straight segment unless already coincident.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <!-- Uncomment the following line when bezier curves become practical to implement ...
+      <xs:element name="CurveBezier" type="geometry_plane_curve_bezier" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Bezier curves are not implemented at version 4.0 because there is no known geometry translator for them.  Their description is included as a future capacity.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      -->
+    </xs:choice>
+  </xs:group>
+  <!-- a linear sequence of 2 or more vertices in the map plane -->
+  <!-- use to enforce an unbroken sequence of vertices with straight segments and no curves -->
+  <xs:complexType name="geometry_fragment_multisegment">
+    <xs:annotation>
+      <xs:documentation>Represents a sequence of 2 - n vertices.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Vertex" type="geometry_position_3d" minOccurs="2" maxOccurs="unbounded" nillable="false">
+        <xs:annotation>
+          <xs:documentation>A point vertex</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- a linear sequence of 3 or more vertices in the map plane -->
+  <!-- use to enforce an unbroken sequence of vertices with straight segments and no curves -->
+  <!-- use to define polygon rings that must have straight sides -->
+  <xs:complexType name="geometry_fragment_ringsegment">
+    <xs:annotation>
+      <xs:documentation>Represents a sequence of 3 - n vertices.  Used in simple Ring structures where a minimum of 3 points must define a closed shape.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Vertex" type="geometry_position_3d" minOccurs="3" maxOccurs="unbounded" nillable="false">
+        <xs:annotation>
+          <xs:documentation>A point vertex</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- the simplest linear sequence of only 2 vertices in the map plane -->
+  <!-- use to enforce a straight feature with no deflections -->
+  <xs:complexType name="geometry_fragment_singlesegment">
+    <xs:annotation>
+      <xs:documentation>Represents a sequence of exactly 2 vertices.  Used in Path structures where the geometry must be constrained to one straight segment.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Vertex" type="geometry_position_3d" minOccurs="2" maxOccurs="2" nillable="false">
+        <xs:annotation>
+          <xs:documentation>A point vertex</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- CURVES -->
+  <!-- Abstract super-class, the simplest curve may be a line from point to point -->
+  <xs:complexType name="geometry_plane_curve_abstract">
+    <xs:annotation>
+      <xs:documentation>An abstract type that is inhereted by all parametric curves.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FromPoint" type="geometry_position_3d" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the start point of any curve.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ToPoint" type="geometry_position_3d" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the end point of any curve.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Circular Arc -->
+  <xs:complexType name="geometry_plane_curve_circular">
+    <xs:annotation>
+      <xs:documentation>Defines the parameters for a circular curve.</xs:documentation>
+      <xs:documentation>A choice of circular desciptions was provided as draft.  Centrepoint method was chosen so as to be consistent with Elliptical description, a circle being a degradation of an ellipse.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="geometry_plane_curve_abstract">
+        <xs:sequence>
+          <xs:element name="CentrePoint" type="geometry_position_3d" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The centre of the circle on which the arc is described.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Clockwise" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Angular direction of travel around the centre from point to point.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Elliptical Arc -->
+  <xs:complexType name="geometry_plane_curve_elliptical">
+    <xs:annotation>
+      <xs:documentation>Defines the parameters for an elliptical curve.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="geometry_plane_curve_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="CentrePoint" type="geometry_position_3d" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The centre of the ellipse on which the arc is described.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rotation" type="xs:double" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The angle of rotation of the ellipse's semi-major axis in degrees clockwise from the X coordinate axis of the map plane.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SemiMajor" type="xs:double" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The semi-major axis of the ellipse.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SemiMinor" type="xs:double" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The semi-minor axis of the ellipse.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Clockwise" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Angular direction of travel around the centre.  True indicates clockwise, false indicates counterclockwise.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Bezier Curve -->
+  <!-- While the number of control points is theoretically unbounded                          -->
+  <!-- Some systems will have an upper limit (e.g. ESRI currently limited to start + 2 + end) -->
+  <xs:complexType name="geometry_plane_curve_bezier">
+    <xs:annotation>
+      <xs:documentation>A proposed future implementation of a bezier curve of order (n).  It consists of the inherited FromPoint and ToPoint and a collection of ControlPoints that will be used to compute the path of the bezier.  The first and last ControlPoints will be the same as the FromPoint and ToPoint.  Currently ESRI is the only known GIS implimentation of the bezier curve, and then, only using four ControlPoints.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="geometry_plane_curve_abstract">
+        <xs:sequence>
+          <xs:element name="ControlPoint" type="geometry_position_3d" minOccurs="1" maxOccurs="unbounded" nillable="false">
+            <xs:annotation>
+              <xs:documentation>
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- NEW POINT PRIMITIVE -->
+  <!-- Introduced to permit the transmission of GPS Metadata from field collection systems -->
+  <xs:complexType name="geometry_position_3d">
+    <xs:sequence>
+      <xs:element name="X" type="xs:double" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The X ordinate in a cartesian system, easting in a UTM plane or longitude in a spheroidal system.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Y" type="xs:double" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The Y ordinate in a cartesian system, northing in a UTM plane or latitude in a spheroidal system.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Z" type="xs:double" minOccurs="0" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>The Z ordinate in a cartesian system, elevation above a geoidal height datum or spheroidal height in a spheroidal system.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GNSSMetadata" type="geometry_gnss_metadata" minOccurs="0" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Contains the GNSS conditions at capture</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Point level metadata, capable of storing the Global Navigation Satellite System (GNSS) conditions at capture-->
+  <xs:complexType name="geometry_gnss_metadata">
+    <xs:annotation>
+      <xs:documentation>Contains the Global Navigation Satellite System conditions at capture.  All elements are optional due to the wide range of receiver devices.</xs:documentation>
+      <xs:documentation>Original positions may be stored as captured for later comparison against final feature geometry in the office edited data.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="X" type="xs:double" minOccurs="0" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The X ordinate in a cartesian system, easting in a UTM plane or longitude in a spheroidal system.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Y" type="xs:double" minOccurs="0" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The Y ordinate in a cartesian system, northing in a UTM plane or latitude in a spheroidal system.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Z" type="xs:double" minOccurs="0" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The Z ordinate in a cartesian system, elevation above a geoidal height datum or spheroidal height in a spheroidal system.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GNSSTime" type="xs:dateTime" minOccurs="0" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>The GNSS Date and Time of capture.  ISO 8601 is the accepted format.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="H_Prec" type="xs:float" minOccurs="0" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Horizontal Precision</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="V_Prec" type="xs:float" minOccurs="0" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Vertical Precision</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Std_Dev" type="xs:float" minOccurs="0" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Standard Deviation</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PDOP" type="xs:float" minOccurs="0" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Positional Dilution of Precision.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="HDOP" type="xs:float" minOccurs="0" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Horizontal Dilution of Precision.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Corrn" type="geometry_gnss_correctionstatus" minOccurs="0" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>The correction status of this position</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Receiver" type="xs:string" minOccurs="0" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>The manufacturer and model of GNSS receiver used.  While there are no restrictions on this element, the length of this string should be minimised to control data volumes as every vertex may receive it.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Status" type="geometry_gnss_editstatus" minOccurs="0" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>The edit status of this position.</xs:documentation>
+          <xs:documentation>This value is for tracking the status of the position when moving data between the office and the field during the capture and edit phases.  It would not generally be considered useful to the end customer.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="pair_of_offsets">
+    <xs:annotation>
+      <xs:documentation>Represents a pair of offsets at right angles to an axis line.</xs:documentation>
+      <xs:documentation>Used to define the extent of a line at right angles to the axis line, such as the measure lines of a dimension feature.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Left" type="xs:double" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The leftmost offset measure, in map units. By convention negative measures are left of the axis line and positive measures are right.</xs:documentation>
+          <xs:documentation>Note that the leftmost offset may still fall to the right of the axis, so long as it is numerically less than the Right offset.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Right" type="xs:double" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The rightmost offset measure, in map units. By convention negative measures are left of the axis line and positive measures are right.</xs:documentation>
+          <xs:documentation>Note that the rightmost offset may still fall to the left of the axis, so long as it is numerically greater than the Left offset.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="geometry_gnss_correctionstatus">
+    <xs:annotation>
+      <xs:documentation>The correction status of a position</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Uncorrected">
+        <xs:annotation>
+          <xs:documentation>Uncorrected position.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="P-Code">
+        <xs:annotation>
+          <xs:documentation>Position collected using the P-Code or pseudorandom noise signal.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Y-Code">
+        <xs:annotation>
+          <xs:documentation>Position collected using the Y-code (an encryption of the P-Code). Only military receivers can compute or log positions using this code.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Real-time SBAS">
+        <xs:annotation>
+          <xs:documentation>Position that has been corrected using real-time SBAS.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Real-time Code">
+        <xs:annotation>
+          <xs:documentation>Position collected using real-time differential GPS and computed  using a code phase solution.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Postprocessed Code">
+        <xs:annotation>
+          <xs:documentation>Position has been differentially corrected using code processing.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Real-time Carrier Float">
+        <xs:annotation>
+          <xs:documentation>Position collected using real-time differential GPS and computed using a carrier float solution.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Postprocessed Carrier Float">
+        <xs:annotation>
+          <xs:documentation>Position that has a carrier float position.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="RTK Fixed">
+        <xs:annotation>
+          <xs:documentation>Position collected using real-time kinematic techniques and computed using a carrier fixed solution.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Postprocessed Carrier Fixed">
+        <xs:annotation>
+          <xs:documentation>Position has been differentially corrected using code processing and has a carrier fixed solution.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="geometry_gnss_editstatus">
+    <xs:annotation>
+      <xs:documentation>The edit status of a position</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="New">
+        <xs:annotation>
+          <xs:documentation>A new feature is one that has been added to a data file in the most recent session. A new data file will only contain new features.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Updated">
+        <xs:annotation>
+          <xs:documentation>An updated feature is one that previously existed in a data file, but has been edited or updated in the most recent session.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Imported">
+        <xs:annotation>
+          <xs:documentation>An imported feature is one that previously existed in a data file and has not been edited or updated in the most recent session. When data is imported from a GIS or CAD system, all features are considered to be imported.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- * END OF GEOMETRY SECTION  ************************************************************* -->
+</xs:schema>

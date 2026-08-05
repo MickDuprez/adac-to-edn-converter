@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<!-- version 4.0.0 edited by Ian Read 24 Feb 2011 (RCC) -->
+<!-- version 4.0.1 edited by Ian Read 25 Aug 2011 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 6 Aug 2012 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 4 Jan 2013 (RCC) -->
+<!-- version 4.2.0 edited by Martin Dore' Feb 2015(LCC) to change version number only -->
+<!-- version 5.0.0 edited by Blake Slaven July 2017 (Lion Systems) to change version number only-->
+<!-- version 5.0.1 edited by Blake Slaven January 2018 (Lion Systems) to change version number only-->
+<xs:schema version="5.0.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.adac.com.au" targetNamespace="http://www.adac.com.au" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <!-- INCLUDES -->
+  <!-- Enumerated Types -->
+  <xs:include schemaLocation="./ADACEnumeratedTypes.xsd">
+    <xs:annotation>
+      <xs:documentation>Uses ADAC enumerated SimpleType definitions</xs:documentation>
+    </xs:annotation>
+  </xs:include>
+  <!-- Global Types -->
+  <xs:include schemaLocation="./ADACGlobalTypes.xsd">
+    <xs:annotation>
+      <xs:documentation>Contains ADAC globally referenced type definitions</xs:documentation>
+    </xs:annotation>
+  </xs:include>
+  <!-- Geometry -->
+  <xs:include schemaLocation="./ADACGeometry.xsd">
+    <xs:annotation>
+      <xs:documentation>Contains ADAC geometry definitions</xs:documentation>
+    </xs:annotation>
+  </xs:include>
+  <!-- **************************************************************************************** -->
+  <!-- ENHANCEMENTS - Contains the specification for annotation and dimension features          -->
+  <!-- **************************************************************************************** -->
+  <xs:complexType name="objectModelEnhancements">
+    <xs:annotation>
+      <xs:documentation>Data structure constraining information relating to annotation and dimension features.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Annotations" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of annotation features</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Annotation" type="Feature_Annotation" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents a single annotation feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Dimensions" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of dimension features</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Dimension" type="Feature_Dimension" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents a single dimension feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- FEATURE ENHANCEMENT ANNOTATION -->
+  <xs:complexType name="Feature_Annotation" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents an annotation feature.  Note that the presentation elements are all optional as they can all be over-ridden by the presentation definitions in receiving systems.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="object_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Type" type="String_64" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The type of annotation.  Data users can determine the presentation to apply to each type of dimension.</xs:documentation>
+              <xs:documentation>This element is not constrained but the simpleType enhancement_annotation_type provides some suggested standard classes of annotation.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Text" type="String_254" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The textual content of the annotation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Justification" type="text_justification" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Text justification within the annotation envelope.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Font" type="String_128" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The font or typeface for presentation. May include comma delimited point-size and config</xs:documentation>
+              <xs:documentation>E.g: Microsoft Sans Serif,10,Regular</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Height_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Text height (in metres) for scaled annotation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Width_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Text character width (in metres) scaled annotation. Assume same as height if omitted</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rotation" type="Float_Direction" default="0" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the text insertion point in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE ENHANCEMENT DIMENSION -->
+  <xs:complexType name="Feature_Dimension" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a measured dimension between two features.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="object_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Type" type="String_64" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The type of dimension.  Data users can determine the presentation to apply to each type of dimension.</xs:documentation>
+              <xs:documentation>This element is not constrained but the simpleType enhancement_dimension_type provides some suggested standard classes of dimension.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Measure" type="xs:float" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The measurement being represented.  No units are specified, but it is expected that all dimensions of the same type will be expressed in the same units, allowing uniform presentations to be applied in client applications.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FromFeatureId" type="String_40" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The ObjectId of the feature being measured from</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ToFeatureId" type="String_40" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The ObjectId of the feature being measured to</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RefLineFrom" type="pair_of_offsets" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>A pair of decimal offsets in map units describing the extent of the reference line at the start of the baseline.  Negative measures are left of the baseline, positive measures are right in the direction of the baseline.</xs:documentation>
+              <xs:documentation>E.g: the values -0.5 4.0 represent a line through the start point, perpendicular to the baseline, that runs from 0.5m left of the baseline to 4.0m right.  By convention the leftmost offset should be stated first.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RefLineTo" type="pair_of_offsets" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>A pair of decimal offsets in map units describing the extent of the reference line at the end of the baseline.  Negative measures are left of the baseline, positive measures are right in the direction of the baseline.</xs:documentation>
+              <xs:documentation>E.g: the values -0.5 4.0 represent a line through the end point, perpendicular to the baseline, that runs from 0.5m left of the baseline to 4.0m right.  By convention the leftmost offset should be stated first.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BaseLineOffset" type="xs:float" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>A single decimal offset in map units describing the position of the measure line parallel to the baseline.  Negative measures are left of the baseline, positive measures are right in the direction of the baseline.</xs:documentation>
+              <xs:documentation>E.g: the value 2.0 represents a measure line parallel to the baseline, that runs from 2.0m right of the baseline.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_segment_simple" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Line segment geometry representing the baseline (start and end point) of the dimension in coordinate space.  The start and end points should represent the actual points being measured from and to</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,705 @@
+<?xml version="1.0"?>
+<!-- version 4.0.0 edited by Ian Read 24 Feb 2011 (RCC) -->
+<!-- version 4.0.1 edited by Ian Read 25 Aug 2011 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 6 Aug 2012 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 4 Jan 2013 (RCC) -->
+<!-- version 4.2.0 edited by Martin Dore' Feb 2015(LCC) addition of domestic water service feature and water quality attributes-->
+<!-- version 5.0.0 edited by Blake Slaven July 2017 (Lion Systems)-->
+<!-- version 5.0.1 edited by Blake Slaven January 2018 (Lion Systems) to change version number only -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.adac.com.au" targetNamespace="http://www.adac.com.au" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0.1">
+  <xs:annotation>
+    <xs:documentation>The ADAC Water Schema constrains the data structure for all water supply features within an ADAC Project</xs:documentation>
+  </xs:annotation>
+  <!-- INCLUDES -->
+  <!-- Enumerated Types -->
+  <xs:include schemaLocation="./ADACEnumeratedTypes.xsd">
+    <xs:annotation>
+      <xs:documentation>Uses ADAC enumerated SimpleType definitions</xs:documentation>
+    </xs:annotation>
+  </xs:include>
+  <!-- Global Types -->
+  <xs:include schemaLocation="./ADACGlobalTypes.xsd">
+    <xs:annotation>
+      <xs:documentation>Uses ADAC globally referenced type definitions</xs:documentation>
+    </xs:annotation>
+  </xs:include>
+  <!-- Geometry -->
+  <xs:include schemaLocation="./ADACGeometry.xsd">
+    <xs:annotation>
+      <xs:documentation>Uses ADAC geometry definitions</xs:documentation>
+    </xs:annotation>
+  </xs:include>
+  <!-- **************************************************************************************** -->
+  <!-- Water - contains the specification for all water supply feature classes                  -->
+  <!-- **************************************************************************************** -->
+  <xs:complexType name="objectModelWaterSupply">
+    <xs:annotation>
+      <xs:documentation>Data structure constraining the description of water supply features.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <!-- New in 4.2.0********************************************************************************* -->
+      <!-- Ben Pham modified:removes spaces in Water Services and Water Service name-->
+      <xs:element name="WaterServices" nillable="false" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of domestic sized water services</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="WaterService" type="Feature_Water_Service" nillable="false" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents a domestic water service feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Pipes" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of water supply pipes</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Pipe" type="Feature_Water_Pipe" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a water supply pipe feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Valves" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of water supply valves</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Valve" type="Feature_Water_Valve" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a water supply valve feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Hydrants" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of water supply hydrants</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Hydrant" type="Feature_Water_Hydrant" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a water supply hydrant feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Meters" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of water supply meters</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Meter" type="Feature_Water_Meter" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a water supply meter feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Fittings" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of water supply fittings</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Fitting" type="Feature_Water_Fitting" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a water supply pipe fitting, other than a valve, meter or hydrant</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="MaintenanceHoles" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of water supply maintenance access holes</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="MaintenanceHole" type="Feature_Water_MaintenanceHole" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a water supply maintenance access hole feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ServiceFittings" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of water service fittings</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="ServiceFitting" type="Feature_Water_ServiceFitting" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a water service fitting feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="StorageTanks" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of water storage points</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="StorageTank" type="Feature_Water_StorageTank" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a domestic storage tank feature.  Includes roofwater storage not fed from mains service.</xs:documentation>
+                <xs:documentation>Not to be used for bulk storage features that are part of the mains distribution network</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- **************************************************************************************** -->
+  <!-- FEATURES  - Water Supply                                                                 -->
+  <!-- **************************************************************************************** -->
+  <!-- FEATURE WATER SERVICE Added for 4.2.0 -->
+  <xs:complexType name="Feature_Water_Service" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a water supply domestic sized service.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <!--Ben Pham modified: changed from Service_dia to Diameter.-->
+          <xs:element name="Diameter_mm" type="water_service_diameter" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Nominal diameter of the pipe in millimetres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Material" type="water_service_material" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>The service pipe material.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Class" type="water_service_class" nillable="true" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>The service pipe class as specified by the manufacture and relevant to the material.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Protection" type="water_service_protection" nillable="true" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Provision of conduit or other protection</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Termination" type="water_service_termination" nillable="true" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>fitting or valve at the customer end of the service</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+           <xs:element name="WaterQuality" type="water_service_use" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Type of water supplied through water service:Drinking water, recycled water or disused service</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Length_m" type="Float_Positive_NonZero" nillable="true" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Material length of the pipe in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_singlepath_simple" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Polyline representing the geometry of the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE WATER PIPE -->
+  <xs:complexType name="Feature_Water_Pipe" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a water supply pipe section.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Use" type="water_pipe_use" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The purpose of this feature in the network.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+	        <xs:element name="WaterQuality" type="water_supply_water_quality" nillable="false" minOccurs="1" maxOccurs="1">
+     	      <xs:annotation>
+	            <xs:documentation>The quality of the water being carried by the pipe.</xs:documentation>
+            </xs:annotation>
+ 	        </xs:element>
+	        <xs:element name="Alignment_m" type="Float_Positive_NonZero" nillable="true" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Offset from casdastral boundary to the main.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Diameter_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Nominal diameter of the pipe in millimetres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Material" type="water_pipe_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The pipe material.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Class" type="water_pipe_class" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The pipe class as specified by the manufacture. Pipe class refers to the wall thickness and performance of the material.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Lining" type="water_pipe_lining" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The internal corrosion protection method employed on the pipe material.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Protection" type="water_pipe_protection" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The external corrosion protection method employed on the pipe material.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="JointType" type="water_pipe_jointtype" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Pipe jointing method employed.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Depth_m" type="xs:float" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The average depth in metres that the pipe is buried.  This measure is useful in most residential developments, but will be less reliable in sharply changing terrain or where significant cuts and fills have been applied. Negative depths may be used to indicate exposed or suspended pipes above the surface.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Embedment" type="water_pipe_embedment" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Embedment types.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Length_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Material length of the pipe in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_singlepath_simple" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Polyline representing the geometry of the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE WATER VALVE -->
+  <xs:complexType name="Feature_Water_Valve" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a water supply valve</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Use" type="water_valve_use" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The purpose of the valve in the network.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Type" type="water_valve_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The type of valve.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Diameter_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The nominal bore diameter of the valve.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+            </xs:annotation>
+          </xs:group>
+          <xs:element name="Rotation" type="Float_Direction" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WaterQuality" type="water_supply_water_quality" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>The quality of the water in the network the valve is part of.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+ 	      </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE WATER HYDRANT -->
+  <xs:complexType name="Feature_Water_Hydrant" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a water supply hydrant feature</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Use" type="water_hydrant_use" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The purpose of the hydrant in the network.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Diameter_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The nominal bore size of the hydrant.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rotation" type="Float_Direction" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WaterQuality" type="water_supply_water_quality" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>The quality of the water being delivered through the hydrant.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+  	    </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE WATER METER -->
+  <xs:complexType name="Feature_Water_Meter" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a water supply meter feature.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="SerialNumber" type="String_64" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The manufacturers serial number, as stamped or fixed on the meter.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Type" type="water_meter_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Configuration of the meter.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Diameter_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The nominal bore diameter of the meter.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Dials" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The number of dials on the reading face.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+            </xs:annotation>
+          </xs:group>
+          <xs:element name="InitialReading" type="xs:integer" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The reading on the meter face at the time of installation.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PrivateBooster" type="xs:boolean" default="false" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>True indicates that the meter is associated with a private pressure boosting system.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OffsetSide" type="which_side" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Is the offset from the left or the right side boundary when looking from the road.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Offset_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The distance in metres to measure along the frontage from the indicated side.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InstallationDate" type="xs:date" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Installation Date of the meter.  ISO 8601 is the accepted format.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:group ref="lot_plan_details" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Standard element group called in to support lot and plan cadastral description of the property serviced by the meter.</xs:documentation>
+            </xs:annotation>
+          </xs:group>
+          <xs:element name="Rotation" type="Float_Direction" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WaterQuality" type="water_supply_water_quality" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>The quality of the water being metered.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+  	    </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE WATER FITTING -->
+  <xs:complexType name="Feature_Water_Fitting" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a water supply pipe fitting, other than a valve, meter or hydrant</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Type" type="water_fittings_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The fitting type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Material" type="water_fittings_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The fitting material.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Lining" type="water_pipe_lining" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The internal corrosion protection method employed on the fitting material.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Protection" type="water_pipe_protection" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The external corrosion protection method employed on the fitting material.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BodySize_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The nominal diameter of the largest pipe entering the fitting.</xs:documentation>
+              <xs:documentation>Although not constrained, software may use the simpleType water_fittings_boresize for a starting list of values</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BranchSize_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The nominal diameter of the smallest pipe entering the fitting.</xs:documentation>
+              <xs:documentation>Although not constrained, software may use the simpleType water_fittings_boresize for a starting list of values</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rotation" type="Float_Direction" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WaterQuality" type="water_supply_water_quality" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>The quality of the water being carried by the network to which the fitting is a part</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+	      </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE WATER MAINTENANCEHOLE -->
+  <xs:complexType name="Feature_Water_MaintenanceHole" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a water supply maintenance access hole feature.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Use" type="water_mh_use" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Purpose of aater maintenance hole.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ChamberSize" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Data structure describing the chamber configuration and dimensions.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:choice minOccurs="1" maxOccurs="1">
+                <xs:element name="Rectangular" type="rectangular_struct_mm" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Data container for rectangular dimensions.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Circular" type="circular_struct_mm" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Data container for circular dimensions</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:choice>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="SurfaceLevel_m" type="xs:float" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The height of the top surface of the lid, hatch, rim or roof. Surface level in metres against the vertical datum for this project.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InvertLevel_m" type="xs:float" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The height of the top surface of interior floor/bottom. Invert level in metres against the vertical datum for this project.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FloorConstruction" type="construction_method" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Method of chamber construction.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FloorMaterial" type="water_mh_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Material type for chamber floor construction.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WallConstruction" type="construction_method" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Method of chamber construction.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WallMaterial" type="water_mh_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Material type for chamber wall construction.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RoofMaterial" type="water_mh_roofmaterial" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Material type for chamber roof construction.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LidMaterial" type="water_mh_lidmaterial" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Chamber lid configuration and material.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rotation" type="Float_Direction" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE WATER SERVICE FITTING -->
+  <xs:complexType name="Feature_Water_ServiceFitting" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a domestic service fitting.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Type" type="water_service_fitting_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The type of service fitting</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BelowGround" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Is the fitting below ground</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WaterSaver" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Does the fitting employ waste minimisation technology (other than auto shut-off)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AutoShutOff" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Does the fitting employ auto shut-off technology</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rotation" type="Float_Direction" default="0" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WaterQuality" type="water_supply_water_quality" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>The quality/source of the water being supplied through the service fitting.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+	      </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE WATER STORAGE TANK -->
+  <xs:complexType name="Feature_Water_StorageTank" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a domestic storage tank feature.  Includes roof water storage not fed from mains service.</xs:documentation>
+      <xs:documentation>Not to be used for bulk storage features that are part of the mains distribution network</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Material" type="water_storage_tank_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The material that the storage tank is made from.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Source" type="water_storage_source" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The source of water in the tank.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+            </xs:annotation>
+          </xs:group>
+          <xs:element name="Volume_m3" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The effective volume in cubic metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rotation" type="Float_Direction" default="0" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

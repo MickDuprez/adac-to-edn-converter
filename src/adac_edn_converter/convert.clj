@@ -3,7 +3,8 @@
   (:require [adac-edn-converter.map.elements :as el]
             [adac-edn-converter.map.typedefs :as td]
             [adac-edn-converter.util :as u]
-            [adac-edn-converter.xsd.parse :as parse]))
+            [adac-edn-converter.xsd.parse :as parse]
+            [clojure.string :as str]))
 
 (def adac-schema-id
   (u/stable-uuid "schema/ADAC"))
@@ -14,6 +15,24 @@
 
 (def landxml-schema-id
   (u/stable-uuid "schema/LandXML-1.2"))
+
+(defn- parse-schema-version
+  "Coerce XSD @version to :schema/version BigDecimal.
+
+  Plain decimals (\"1.2\") parse directly. Dotted triples (\"5.0.1\", \"6.0.0\")
+  become major.minorpatch (5.01M, 6.00M) so the patch is not dropped."
+  [version fallback]
+  (let [s (some-> version str str/trim)
+        try-bigdec (fn [x]
+                     (try (bigdec x)
+                          (catch Exception _ nil)))]
+    (or (when (not-empty s)
+          (or (try-bigdec s)
+              (let [parts (str/split s #"\.")]
+                (when (seq parts)
+                  (try-bigdec (str (first parts) "." (str/join (rest parts))))))))
+        (try-bigdec fallback)
+        1.0M)))
 
 (defn- emit-schema-root
   [schema {:keys [schema-id name label version-default]}]
@@ -26,11 +45,7 @@
      :record/name name
      :record/label label
      :record/documentation doc
-     :schema/version (try
-                       (bigdec (or (:version schema) version-default))
-                       (catch Exception _
-                         (try (bigdec version-default)
-                              (catch Exception _ 1.0M))))
+     :schema/version (parse-schema-version (:version schema) version-default)
      :schema/status :draft
      :element/key :Schema
      :element/kind :schema
@@ -109,6 +124,7 @@
      :root-name "ADAC"
      :schema-name "ADAC"
      :schema-label "ADAC"
+     ;; Fallback only when the XSD omits @version (entry doc version is preferred).
      :version-default "6.0.0"
      :seed-all-simple? false
      :host-events? true}))

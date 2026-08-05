@@ -1,0 +1,1054 @@
+<?xml version="1.0"?>
+<!-- version 4.0.0 edited by Ian Read 24 Feb 2011 (RCC) -->
+<!-- version 4.0.1 edited by Ian Read 25 Aug 2011 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 26 Apr 2012 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 6 Aug 2012 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 4 Jan 2013 (RCC) -->
+<!-- version 4.2.0 edited by Martin Dore' Feb 2015(LCC) change to version number only -->
+<!-- version 5.0.0 edited by Blake Slaven July 2017 (Lion Systems)-->
+<!-- version 5.0.1 edited by Blake Slaven January 2018 (Lion Systems)-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.adac.com.au" targetNamespace="http://www.adac.com.au" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0.1">
+  <xs:annotation>
+    <xs:documentation>The ADAC Transport Schema constrains the data structure for all transport features within an ADAC Project</xs:documentation>
+  </xs:annotation>
+  <!-- INCLUDES -->
+  <!-- Enumerated Types -->
+  <xs:include schemaLocation="./ADACEnumeratedTypes.xsd">
+    <xs:annotation>
+      <xs:documentation>Uses ADAC enumerated SimpleType definitions</xs:documentation>
+    </xs:annotation>
+  </xs:include>
+  <!-- Global Types -->
+  <xs:include schemaLocation="./ADACGlobalTypes.xsd">
+    <xs:annotation>
+      <xs:documentation>Uses ADAC globally referenced type definitions</xs:documentation>
+    </xs:annotation>
+  </xs:include>
+  <!-- Geometry -->
+  <xs:include schemaLocation="./ADACGeometry.xsd">
+    <xs:annotation>
+      <xs:documentation>Uses ADAC geometry definitions</xs:documentation>
+    </xs:annotation>
+  </xs:include>
+  <!-- **************************************************************************************** -->
+  <!-- Transport - contains the specification for all Transport feature classes                 -->
+  <!-- **************************************************************************************** -->
+  <xs:complexType name="objectModelTransport">
+    <xs:annotation>
+      <xs:documentation>Data structure constraining information on road related features.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PavementAreas" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the featureclass of road pavement areas</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Pavement" type="Feature_Transport_Pavement" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents an area of road pavement.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ParkingAreas" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the featureclass of parking areas</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Parking" type="Feature_Transport_Parking" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents an area of parking pavement.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RoadEdges" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the featureclass of road edges</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="RoadEdge" type="Feature_Transport_RoadEdge" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents an edge feature of a pavement area.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RoadIslands" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the featureclass of road islands</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="RoadIsland" type="Feature_Transport_RoadIsland" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents an area of road island , local traffic calming, or median structure.  Where the structure incorporates water sensitive urban design (WSUD) features, those features should be independently captured.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Pathways" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the featureclass of pathways.  Subtypes are provided for the correct validation of in-ground paths, on-road cycleways and structures functioning as part of a linear path network.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Pathway" type="Feature_Transport_Pathway" minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents an on-ground footpath or cycleway feature.  Do not use to describe on-road cycleway.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="RoadPathway" type="Feature_Transport_RoadPathway" minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents a linear section of on-road cycleway.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="PathStructure" type="Feature_Transport_PathStructure" minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents a structure functioning as a linear section of footpath or cycleway.  Do not use to describe on-road cycleway.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RoadSafetyBarriers" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the featureclass of transport barriers</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="RoadSafetyBarrier" type="Feature_Transport_RoadSafetyBarrier" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents a barrier dedicated to transport features.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PramRamps" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="PramRamp" type="Feature_Transport_PramRamp" minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents a pram ramp or disabled entry-point to a road edge as a Point object</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="PramRampPolygon" type="Feature_Transport_PramRamp_Polygon" minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents a pram ramp or disabled entry-point to a road edge as a Polygon object</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SubSoilDrains" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="SubSoilDrain" type="Feature_Transport_SubSoilDrain" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents a road sub-soil drain.  Formerly called RoadSubsoilDrain in ADAC Version 3.0.1</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FlushPoints" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="FlushPoint" type="Feature_Transport_DrainFlushPoint" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents a sub-soil drain flush point.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Bridges" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the featureclass of bridges.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="BridgeExtent" type="Feature_Transport_BridgeExtent" minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Describes the envelope or footprint for the whole structure and all of its parts. It holds properties that apply at the assembly level.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="BridgeDeck" type="Feature_Transport_BridgeDeck" minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents a single deck unit between abutments or supports. There may be one or more BridgeDeck objects for any given bridge assembly.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="ContainmentClass" type="Feature_Transport_ContainmentClass" minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Containment Class of Parapet/Railing as per AS5100.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="BridgeSuperstructure" type="Feature_Transport_BridgeSuperstructure" minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents superstructure of bridge.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="BridgeAbutment" type="Feature_Transport_BridgeAbutment" minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents the extent of one abutment for a bridge assembly. A BridgeAbutment will be independently described at each end of the structure.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="BridgePier" type="Feature_Transport_BridgePier" minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents a single supporting structure that supports deck spans between abutments.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- **************************************************************************************** -->
+  <!-- FEATURES  - Transport                                                                    -->
+  <!-- **************************************************************************************** -->
+  <!-- FEATURE TRANSPORT PAVEMENT -->
+  <xs:complexType name="Feature_Transport_Pavement" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents an area of road pavement.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Name" type="String_254" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The gazetted, or proposed, road name.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Surface" type="transport_surface_struct" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Data container for surface characteristics.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PavementStructure" type="transport_pavement_struct" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Data container for pavement structure characteristics.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PavementGeoTextile" type="transport_pavement_geotextile" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Pavement geotextile type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SubGrade" type="transport_pavement_subgrade_struct" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Data container for subgrade structure characteristics.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_area_multipatch_complex">
+            <xs:annotation>
+              <xs:documentation>Polygon geometry delineating the pavement area in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT PARKING -->
+  <xs:complexType name="Feature_Transport_Parking" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents an area of parking pavement.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Name" type="String_254" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Parking area name</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NoOfCarparks" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Number of individual vehicle spaces.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OnOffStreet" type="transport_parking_onoff" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Value indicating whether the parking is an uninterupted part of the road pavement, or a seperate area with road access.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Surface" type="parking_surface_struct" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Data container for surface characteristics.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PavementStructure" type="transport_pavement_struct" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Data container for pavement structure characteristics.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PavementGeoTextile" type="transport_pavement_geotextile" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Pavement geotextile type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SubGrade" type="transport_pavement_subgrade_struct" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Data container for subgrade structure characteristics.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_area_multipatch_complex">
+            <xs:annotation>
+              <xs:documentation>Polygon geometry delineating the pavement area in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT ROADEDGE -->
+  <xs:complexType name="Feature_Transport_RoadEdge" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents an edge feature of a pavement area.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Type" type="transport_edge_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Road edge configuration.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Material" type="transport_edge_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Material of Road edge.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Width_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Width in millimetres of the Edge feature.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Length_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Length in metres of edge material.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PavementExtension_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The pavement extension, in millimetres, behind the back of kerb.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_multipath_complex" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Polyline geometry describing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT ROADISLAND -->
+  <xs:complexType name="Feature_Transport_RoadIsland" abstract="false">
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Type" type="transport_island_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The type of structure.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Area_sqm" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The area, in square metres, of the infill.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InfillType" type="transport_island_infill_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The type of infill.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_area_multipatch_complex" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Polygon geometry describing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT PATHWAY-->
+  <xs:complexType name="Feature_Transport_Pathway" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a linear section of on ground footpath or off-road cycleway.  Should not be used to describe on-road cycleway.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Use" type="transport_pathway_use" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Intended traffic use of the structure.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Structure" type="String_32" fixed="In Ground" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Type of pathway structure.  A fixed value of In Ground is required for this sub type</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SurfaceMaterial" type="transport_pathway_surface_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Surface material of the structure.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Width_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Nominal width of the pathway in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Depth_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The nominal depth of the pathway material in millimetres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_singlepath_complex" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Polyline geometry describing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT ROADPATHWAY-->
+  <xs:complexType name="Feature_Transport_RoadPathway" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a linear section of on on-road cycleway.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Use" type="transport_pathway_use" fixed ="CycleWay" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Intended traffic use of the structure.</xs:documentation>
+              <xs:documentation>A fixed value of CycleWay is applied to this sub type</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Structure" type="String_32" fixed="On Road" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Type of pathway structure.  A fixed value of On Road is required for this sub type</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SurfaceMaterial" type="String_32" fixed="Road Pavement" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Surface material of the structure.</xs:documentation>
+              <xs:documentation>A fixed value of Road Pavement is applied to this sub type</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Width_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Nominal width of the marked pathway in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_singlepath_complex" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Polyline geometry describing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT PATHSTRUCTURE -->
+  <xs:complexType name="Feature_Transport_PathStructure" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a linear section of structure that functions as part of a pathway network</xs:documentation>
+      <xs:documentation>Note that this type shares the same elements as Feature_Transport_Pathway</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Use" type="transport_pathway_use" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Intended traffic use of the structure.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Structure" type="transport_pathway_structure" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Type of pathway structure.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SurfaceMaterial" type="transport_pathway_surface_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Surface material of the structure.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SubStructureMaterial" type="transport_pathway_substructure_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Material of the sub structure.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Width_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Nominal width of the pathway in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_singlepath_complex" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Polyline geometry describing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT BARRIER -->
+  <xs:complexType name="Feature_Transport_RoadSafetyBarrier" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a barrier dedicated to transport features.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Type" type="transport_barrier_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The type of road safety barrier employed.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LeadingEndTreatment" type="transport_barrier_leading_end_treatment" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The type of Leading End treatment.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TrailingEndTreatment" type="transport_barrier_trailing_end_treatment" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The type of Trailing End treatment.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StandardHeight" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Is barrier height standard?</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Height_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Nominal height of the barrier in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Length_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Nominal length of the barrier in metres including terminals.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MotorcyclistProtectionType" type="transport_barrier_motorcyclist_protection_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The type of motorcyclist protection rail.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PedestrianProtectionSheeting" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Has pedestrian protection sheeting been installed?</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BridgeTransition" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Is this a bridge transition?</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StandardPostSpacing" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Is the post spacing standard?</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PostSpacing_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Spacing of posts in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PostType" type="transport_barrier_post_type" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The type of post installed with road safety barrier.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RailType" type="transport_barrier_post_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The type of rail installed with road safety barrier.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="HorizontalAlignment" type="transport_barrier_horizontal_alignment" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Horizontal alignment of road safety barrier.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NumberOfBollards" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Number of bollards.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_multipath_complex" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Polyline geometry describing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT PRAMRAMP -->
+  <xs:complexType name="Feature_Transport_PramRamp" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a pram ramp or disabled entry-point to a road edge as a point object</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Rotation" type="Float_Direction" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Feature_Transport_PramRamp_Polygon" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a pram ramp or disabled entry-point to a road edge as a polygon object</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Rotation" type="Float_Direction" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_area_singlepatch_complex" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT SUBSOILDRAIN -->
+  <xs:complexType name="Feature_Transport_SubSoilDrain" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a road sub-soil drain.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Use" type="transport_subsoil_drain_use" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The use (orientation) of the drain.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Type" type="transport_subsoil_drain_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The type (configuration) of the drain.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Length_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The length in metres of the drain.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_singlepath_complex" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Polyline geometry representing the centreline of the sub-soil drain in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT DRAINFLUSHPOINT -->
+  <xs:complexType name="Feature_Transport_DrainFlushPoint" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a road sub-soil drain flushing out point</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Function" type="transport_flushpoint_function" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The function of the flushing out point</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the flush point of the sub-soil drain in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT BRIDGEEXTENT -->
+  <xs:complexType name="Feature_Transport_BridgeExtent" abstract="false">
+    <xs:annotation>
+      <xs:documentation>The BridgeExtent object describes the envelope or footprint for the whole structure and all of its parts. It holds properties that apply at the assembly level.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="BridgeID" type="String_64" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Unique identifier, used to associate components of the same bridge assembly.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Name" type="String_254" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Road name or nearest road where bridge resides, or the recognised name of the bridge.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Use" type="transport_bridgeextent_use" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Predominant use of bridge.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Type" type="transport_bridgeextent_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Type of bridge construction.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CrossingType" type="transport_bridgeextent_crossingtype" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The layout and configuration of this structure.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Spans" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Number of spans.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MinimumClearance_m" type="xs:float" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Minimum clearance in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PredominantMaterial" type="transport_bridgeextent_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Predominant Material of bridge.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DesignLoad" type="String_64" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Design load of bridge as per AS5100.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_area_singlepatch_complex" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT BRIDGEDECK -->
+  <xs:complexType name="Feature_Transport_BridgeDeck" abstract="false">
+    <xs:annotation>
+      <xs:documentation>The BridgeDeck object describes a single deck unit between abutments or supports. There may be one or more BridgeDeck objects for any given bridge assembly.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="BridgeID" type="String_64" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Unique identifier, used to associate components of the same bridge assembly.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Material" type="transport_bridgedeck_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Material types for Bridge deck.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NomWidth_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Nominal Width of deck in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DeckLength_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Length of Bridge deck between joints at abutments in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_area_multipatch_complex" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT CONTAINMENTCLASS -->
+  <xs:complexType name="Feature_Transport_ContainmentClass" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Containment Class of Parapet/Railing as per AS5100.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="object_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="BridgeID" type="String_64" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Unique identifier, used to associate components of the same bridge assembly.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ContainmentClass" type="transport_bridge_containmentclass" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Containment Class of Parapet/Railing as per AS5100.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT BRIDGE SUPERSTRUCTURE -->
+  <xs:complexType name="Feature_Transport_BridgeSuperstructure" abstract="false">
+    <xs:annotation>
+      <xs:documentation>The Bridge Superstructure object describes a single superstructure between abutments or supports.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="BridgeID" type="String_64" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Unique identifier, used to associate components of the same bridge assembly.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Material" type="transport_bridgedeck_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Material types for the Superstructure.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_area_multipatch_complex" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT BRIDGE ABUTMENT -->
+  <xs:complexType name="Feature_Transport_BridgeAbutment" abstract="false">
+    <xs:annotation>
+      <xs:documentation>The BridgeAbutment object describes the extent of one abutment for a bridge assembly. A BridgeAbutment will be independently described at each end of the structure.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="BridgeID" type="String_64" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Unique identifier, used to associate components of the same bridge assembly.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Material" type="transport_bridgeabutment_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The predominant material of the abutment.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_area_multipatch_complex" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE TRANSPORT BRIDGE PIER -->
+  <xs:complexType name="Feature_Transport_BridgePier" abstract="false">
+    <xs:annotation>
+      <xs:documentation>The BridgeSupport object describes a single supporting structure that supports deck spans between abutments.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="BridgeID" type="String_64" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Unique identifier, used to associate components of the same bridge assembly.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Material" type="transport_bridgepier_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Predominant Pier material type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_area_multipatch_complex" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- **************************************************************************************** -->
+  <!-- ComplexTypes  - Transport                                                                -->
+  <!-- **************************************************************************************** -->
+  <xs:complexType name="transport_surface_struct">
+    <xs:annotation>
+      <xs:documentation>Data structure for road surface</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SurfaceType" type="transport_surface_type" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The surface type of the road or street</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SurfaceThickness_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>The surface thickness in millimetres</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SurfaceNomWidth_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The nominal width of the surface of the road or street as a decimal number in metres.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="parking_surface_struct">
+    <xs:annotation>
+      <xs:documentation>Data structure for a parking area surface</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SurfaceType" type="transport_surface_type" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The surface type of the parking area</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SurfaceThickness_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The surface thickness in millimetres</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SurfaceArea_sqm" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true" >
+        <xs:annotation>
+          <xs:documentation>The area of the parking surface as a decimal number in square metres.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="transport_pavement_struct">
+    <xs:annotation>
+      <xs:documentation>Data structure describing the strata of the road pavement.  </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PavementType" type="transport_pavement_type" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Pavement construction type</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BaseLayer" type="transport_pavement_base_struct" minOccurs="1" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Describes the pavement base layer</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SubBaseLayer" type="transport_pavement_subbase_struct" minOccurs="1" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Describes the pavement sub-base layer</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LowerSubBaseLayer" type="transport_pavement_lower_subbase_struct" minOccurs="1" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Describes the pavement lower sub-base layer</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="transport_pavement_base_struct">
+    <xs:annotation>
+      <xs:documentation>Data structure describing the pavement base layer</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LayerType" type="transport_pavement_base" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Construction type of the base layer. Must be CONC if PavementType is Rigid, otherwise must not be CONC</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LayerDepth_mm" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Base layer depth in millimetres</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Stabilisation" type="transport_pavement_stabilisation" minOccurs="1" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Base layer stabilisation method</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="transport_pavement_subbase_struct">
+    <xs:annotation>
+      <xs:documentation>Data structure describing the pavement sub-base layer</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LayerType" type="transport_pavement_subbase" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Construction type of the sub-base layer.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LayerDepth_mm" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Sub-base layer depth in millimetres</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Stabilisation" type="transport_pavement_stabilisation" minOccurs="1" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Sub-base layer stabilisation method</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="transport_pavement_lower_subbase_struct">
+    <xs:annotation>
+      <xs:documentation>Data structure describing the pavement lower sub-base layer</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LayerType" type="transport_pavement_lower_subbase" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Construction type of the lower sub-base layer.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LayerDepth_mm" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Lower sub-base layer depth in millimetres</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Stabilisation" type="transport_pavement_stabilisation" minOccurs="1" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Lower sub-base layer stabilisation method</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="transport_pavement_subgrade_struct">
+    <xs:annotation>
+      <xs:documentation>Data structure describing the pavement subgrade</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CBR" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>California Bearing Ratio.  An expression of the load bearing and shear properties of the material.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Stabilisation" type="transport_pavement_stabilisation" minOccurs="1" maxOccurs="1" nillable="true">
+        <xs:annotation>
+          <xs:documentation>Subgrade stabilisation method</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

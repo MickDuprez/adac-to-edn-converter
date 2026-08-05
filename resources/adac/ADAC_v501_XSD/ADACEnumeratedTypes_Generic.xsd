@@ -1,0 +1,1000 @@
+<?xml version="1.0"?>
+<!-- **************************************************************************************** -->
+<!-- ADACEnumeratedTypes_Generic.xsd - contains all SimpleDataTypes for the Relaxed Implementation of ADAC 5.0.1
+using only the basic data types for each constrained property. 
+Replacing references to ADACEnumeratedTypes.xsd with this module ADACEnumeratedTypes_Generic.xsd will result 
+in a relaxed validation without enumerations enforced.  This may be useful when dealing with legacy data that 
+does not conform to current constraints.
+Jurisdictions with State implemntation needs must edit and maintain these types according to need in ADACEnumeratedTypes.xsd
+No SimpleType may be added, removed or renamed as such action will invalidate the ADAC structure
+No SimpleType may have its base datatype changed as such action will invalidate the ADAC structure
+IPWEAQ and the ADAC Strategic Reference Group must approve all regional implementation changes.   -->
+<!-- **************************************************************************************** -->
+<!-- version 4.0.0 edited by Ian Read 24 Feb 2011 (RCC) -->
+<!-- version 4.0.1 edited by Ian Read 25 Aug 2011 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 6 Apr 2012 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 4 Jan 2013 (RCC) -->
+<!-- version 4.2.0 edited by Martin Dore' Feb 2015(LCC) to change version number only -->
+<!-- version 5.0.0 edited by Blake Slaven July 2017 (Lion Systems)-->
+<!-- version 5.0.1 edited by Blake Slaven January 2018 (Lion Systems) to change version number only -->
+<xs:schema version="5.0.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.adac.com.au" targetNamespace="http://www.adac.com.au" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <!-- INCLUDES -->
+  <xs:include schemaLocation="ADACStringTypes.xsd">
+  </xs:include>
+  <!-- Simpletypes used by the ADAC Schema -->
+  <!-- **************************************************************************************** -->
+  <!-- Enumerations - General                                                                   -->
+  <!-- **************************************************************************************** -->
+  <xs:simpleType name="owner_enum">
+    <xs:annotation>
+      <xs:documentation>The entity that owns, or bears responsibility for the asset.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="submission_status">
+    <xs:annotation>
+      <xs:documentation>The submission status of this ADAC data set.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="asset_status">
+    <xs:annotation>
+      <xs:documentation>The status of the asset at the time the data was captured.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="construction_method">
+    <xs:annotation>
+      <xs:documentation>Method of construction</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <!-- **************************************************************************************** -->
+  <!-- Enumerations  - Sewerage                                                                 -->
+  <!-- **************************************************************************************** -->
+  <xs:simpleType name="sewer_mh_use">
+    <xs:annotation>
+      <xs:documentation>Allowed uses for a manhole</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_mh_material">
+    <xs:annotation>
+      <xs:documentation>Sewer Manhole Construction Material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_mh_roofmaterial">
+    <xs:annotation>
+      <xs:documentation>Sewer Manhole Roof Construction Material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_mh_lining">
+    <xs:annotation>
+      <xs:documentation>Sewer Manhole Lining material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_mh_lidmaterial">
+    <xs:annotation>
+      <xs:documentation>Sewer Manhole Lid materials</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_mh_droptype">
+    <xs:annotation>
+      <xs:documentation>Sewer Manhole Drop type - based on WSAA standard types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_pipe_embedment">
+    <xs:annotation>
+      <xs:documentation>Embedment type (WSAA Sewerage Codes - both pressure and non-pressure)</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_pipe_jointtype">
+    <xs:annotation>
+      <xs:documentation>Pipe jointing type (pressure and non-pressure)</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_pipe_nonpressure_use">
+    <xs:annotation>
+      <xs:documentation>Use for non pressure sewerage pipes</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_pipe_nonpressure_material">
+    <xs:annotation>
+      <xs:documentation>Pipe wall materials for non-pressure sewer pipes</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_pipe_nonpressure_class">
+    <xs:annotation>
+      <xs:documentation>Pipe class</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_pipe_nonpressure_protection">
+    <xs:annotation>
+      <xs:documentation>Wrapping types for non-pressure sewer pipes</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_pipe_nonpressure_lining">
+    <xs:annotation>
+      <xs:documentation>Pipe lining protection</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_pipe_pressure_use">
+    <xs:annotation>
+      <xs:documentation>Use codes for pressure sewerage pipes</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_pipe_pressure_material">
+    <xs:annotation>
+      <xs:documentation>Pipe materials for sewer pressurer pipes</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_pipe_pressure_class">
+    <xs:annotation>
+      <xs:documentation>Pipe class</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_pipe_pressure_protection">
+    <xs:annotation>
+      <xs:documentation>Pipe protection (wrapping)</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_pipe_pressure_lining">
+    <xs:annotation>
+      <xs:documentation>Pipe lining protection</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_valve_manufacturer">
+    <xs:annotation>
+      <xs:documentation>Valve manufacturer</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_valve_protection">
+    <xs:annotation>
+      <xs:documentation>Sewer Valve Protection</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_valve_use">
+    <xs:annotation>
+      <xs:documentation>Sewer Valve Uses</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_valve_type">
+    <xs:annotation>
+      <xs:documentation>Type of Sewer Valve</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_fitting_material">
+    <xs:annotation>
+      <xs:documentation>Fitting material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_fitting_type">
+    <xs:annotation>
+      <xs:documentation>Type of Sewer Fitting</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_house_connection_use">
+    <xs:annotation>
+      <xs:documentation>Sewer house connection uses</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_house_connection_material">
+    <xs:annotation>
+      <xs:documentation>Material used for sewer house connection</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_house_connection_material_class">
+    <xs:annotation>
+      <xs:documentation>Class of Material for connection</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_house_connection_size">
+    <xs:annotation>
+      <xs:documentation>Allowable house connection sizes in mm</xs:documentation>
+      <xs:appinfo>Although not presently constraining any values, these enumerations may used in applications to populate pick lists of suggested values.</xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:positiveInteger"/>
+  </xs:simpleType>
+  <xs:simpleType name="sewer_house_connection_type">
+    <xs:annotation>
+      <xs:documentation>Type of connection - based on WSAA standard types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <!-- **************************************************************************************** -->
+  <!-- Enumerations  - Stormwater Drainage                                                      -->
+  <!-- **************************************************************************************** -->
+  <xs:simpleType name="stormwater_pit_diameter_mm">
+    <xs:annotation>
+      <xs:documentation>Drainage Manhole Circular Internal Diameter</xs:documentation>
+      <xs:appinfo>Although not presently constraining any values, these enumerations may used in applications to populate pick lists of suggested values.</xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:positiveInteger"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_pit_inlet_config">
+    <xs:annotation>
+      <xs:documentation>Pit pre-entry configurations (for Pits only)</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_pit_inlet_type">
+    <xs:annotation>
+      <xs:documentation>Inlet types for stormwater pit only</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_64"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_pit_lid_type">
+    <xs:annotation>
+      <xs:documentation>Lid types for stormwater manholes and pits</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_pit_use">
+    <xs:annotation>
+      <xs:documentation>Stormwater pit uses</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_pit_outlet_type">
+    <xs:annotation>
+      <xs:documentation>Pit outlet type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_construction_type">
+    <xs:annotation>
+      <xs:documentation>Endstructure construction types for endwalls, wings and aprons</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_grate_type">
+    <xs:annotation>
+      <xs:documentation>Endstructure grate types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_tidegate_type">
+    <xs:annotation>
+      <xs:documentation>Stormwater tidegate types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_predominant_material_type">
+    <xs:annotation>
+      <xs:documentation>Endstructure predominant material types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_outlet_protection_type">
+    <xs:annotation>
+      <xs:documentation>Endstructure outlet protection types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_fitting_type">
+    <xs:annotation>
+      <xs:documentation>The type of stormwater fitting</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_pipe_joint_type">
+    <xs:annotation>
+      <xs:documentation>Stormwater pipe joint types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_pipe_material">
+    <xs:annotation>
+      <xs:documentation>Stormwater pipe materials</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_box_material">
+    <xs:annotation>
+      <xs:documentation>Stormwater box culvert materials</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_pipe_class_type">
+    <xs:annotation>
+      <xs:documentation>Stormwater pipe class</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_conc_cover_type">
+    <xs:annotation>
+      <xs:documentation>Stormwater pipe concrete cover type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_surface_drain_type">
+    <xs:annotation>
+      <xs:documentation>Surface drainage types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_surface_drain_shape">
+    <xs:annotation>
+      <xs:documentation>Surface drain cross section shapes</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_surface_drain_lining_material">
+    <xs:annotation>
+      <xs:documentation>Surface drain lining materials</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_wsud_location">
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_wsud_area_function">
+    <xs:annotation>
+      <xs:documentation>Functions that may be performed by a WSUD Area</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_wsud_area_measure">
+    <xs:annotation>
+      <xs:documentation>Treatment measures applicable to WSUD areas</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_wsud_NonGPTPoint_measure">
+    <xs:annotation>
+      <xs:documentation>Treatment measures applicable to WSUD points that are neither simple nor complex Gross Pollutant Traps</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_wsud_GPTSimple_measure">
+    <xs:annotation>
+      <xs:documentation>Simple treatment measures fitted to existing infrastructure to intercept solid litter being transported in stormwater.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_wsud_NonGPTPoint_function">
+    <xs:annotation>
+      <xs:documentation>Functions that may be performed by a WSUD Point</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="stormwater_wsud_GPTComplex_function">
+    <xs:annotation>
+      <xs:documentation>Functions that may be performed by a GPTComplex</xs:documentation>
+      <xs:documentation>Note that there is no simpleType for GPTSimple functions as they only perform the function of Gross Pollutant Capture.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <!-- ****************************************************************************************   -->
+  <!-- *** Enumerations  - OpenSpace                                                        ***   -->
+  <!-- ****************************************************************************************   -->
+  <xs:simpleType name="openspace_area_type">
+    <xs:annotation>
+      <xs:documentation>Type of openspace area</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_activity_area_use">
+    <xs:annotation>
+      <xs:documentation>Use of activity area</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_activity_area_material">
+    <xs:annotation>
+      <xs:documentation>Activity area surface material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_activity_area_edgetype">
+    <xs:annotation>
+      <xs:documentation>Activity area edge material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_activity_item_use">
+    <xs:annotation>
+      <xs:documentation>Activity item use category</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_activity_item_material">
+    <xs:annotation>
+      <xs:documentation>Activity item predominant material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_bbq_plates">
+    <xs:annotation>
+      <xs:documentation>The number of plates in the barbeque installation</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:positiveInteger">
+      <xs:minInclusive value="1">
+        <xs:annotation>
+          <xs:documentation>At least one plate must be recorded.</xs:documentation>
+        </xs:annotation>
+      </xs:minInclusive>
+      <xs:maxInclusive value="10">
+        <xs:annotation>
+          <xs:documentation>Up to ten plates are provided for, where they are built into a single structure.</xs:documentation>
+        </xs:annotation>
+      </xs:maxInclusive>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_bbq_SurroundingMaterial">
+    <xs:annotation>
+      <xs:documentation>The structural material of the barbeque installation</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_bbq_TopMaterial">
+    <xs:annotation>
+      <xs:documentation>The top surface material of the barbeque installation</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_bbq_EnergySource">
+    <xs:annotation>
+      <xs:documentation>Barbeque energy source</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_table_type">
+    <xs:annotation>
+      <xs:documentation>Table configuration</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_table_seattype">
+    <xs:annotation>
+      <xs:documentation>Type of seating associated with table units.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_seat_seattype">
+    <xs:annotation>
+      <xs:documentation>Types of seating not associated with table units.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_table_Material">
+    <xs:annotation>
+      <xs:documentation>Predominant construction material of table</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_bin_type">
+    <xs:annotation>
+      <xs:documentation>Waste collection point type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_bin_Material">
+    <xs:annotation>
+      <xs:documentation>Waste collection point material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_fixture_type">
+    <xs:annotation>
+      <xs:documentation>Fixture type, for general fixtures</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_fixture_Material">
+    <xs:annotation>
+      <xs:documentation>Fixture material, for general fixtures</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_bikefitting_type">
+    <xs:annotation>
+      <xs:documentation>Bicycle fitting type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_bikefitting_Material">
+    <xs:annotation>
+      <xs:documentation>Bicycle fitting material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_barrier_type">
+    <xs:annotation>
+      <xs:documentation>Barrier type, for linear barriers</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_barrier_upright_material">
+    <xs:annotation>
+      <xs:documentation>Material that barrier uprights consist of</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_barrier_link_material">
+    <xs:annotation>
+      <xs:documentation>Link material for linear barrier.  This is the fencing material between the uprights.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_barrier_top_material">
+    <xs:annotation>
+      <xs:documentation>Material along the top of the linear barrier.  For handrails this will be the rail material.  For fences it could be barb or a top-rail.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_singlebarrier_type">
+    <xs:annotation>
+      <xs:documentation>Barrier type, for single barrier point.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_singlebarrier_upright_material">
+    <xs:annotation>
+      <xs:documentation>Upright material for single barrier point.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_retainingwall_use">
+    <xs:annotation>
+      <xs:documentation>Describes the context in which the wall is used.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_retainingwall_material">
+    <xs:annotation>
+      <xs:documentation>Revetment wall material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_retainingwall_construction">
+    <xs:annotation>
+      <xs:documentation>Revetment wall construction</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_shelter_type">
+    <xs:annotation>
+      <xs:documentation>Shelter type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_shelter_floor_material">
+    <xs:annotation>
+      <xs:documentation>Shelter floor material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_shelter_wall_material">
+    <xs:annotation>
+      <xs:documentation>Shelter wall material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_shelter_roof_material">
+    <xs:annotation>
+      <xs:documentation>Shelter roof material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_artwork_type">
+    <xs:annotation>
+      <xs:documentation>Artwork type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_artwork_material">
+    <xs:annotation>
+      <xs:documentation>Predominant artwork material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_building_type">
+    <xs:annotation>
+      <xs:documentation>Building type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_building_material">
+    <xs:annotation>
+      <xs:documentation>Predominant building material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_boatingfacility_type">
+    <xs:annotation>
+      <xs:documentation>Boating facility type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_boatingfacility_material">
+    <xs:annotation>
+      <xs:documentation>Boating facility material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_electrical_fitting_type">
+    <xs:annotation>
+      <xs:documentation>Electrical fitting type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_electrical_fitting_material">
+    <xs:annotation>
+      <xs:documentation>Electrical fitting material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_electrical_fitting_base">
+    <xs:annotation>
+      <xs:documentation>Electrical fitting base</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_electrical_fitting_EnergySource">
+    <xs:annotation>
+      <xs:documentation>Electrical fitting energy source</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_electrical_conduit_type">
+    <xs:annotation>
+      <xs:documentation>Electrical conduit type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_electrical_conduit_material">
+    <xs:annotation>
+      <xs:documentation>Electrical conduit material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_electrical_conduit_protection">
+    <xs:annotation>
+      <xs:documentation>Electrical conduit protection</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_landscapearea_type">
+    <xs:annotation>
+      <xs:documentation>Landscape area type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_landscapearea_Material">
+    <xs:annotation>
+      <xs:documentation>Landscape area border material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_sign_material">
+    <xs:annotation>
+      <xs:documentation>Sign material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_sign_type">
+    <xs:annotation>
+      <xs:documentation>The purpose of a sign.  Applied to individual sign blades as blades may have different purposes in a compound sign.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="openspace_sign_structure">
+    <xs:annotation>
+      <xs:documentation>The type of structure the individual sign blade is fixed to.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <!-- **************************************************************************************** -->
+  <!-- Enumerations  - Transport                                                                -->
+  <!-- **************************************************************************************** -->
+  <xs:simpleType name="transport_surface_type">
+    <xs:annotation>
+      <xs:documentation>Allowed surfaces for Roads</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_pavement_type">
+    <xs:annotation>
+      <xs:documentation>Road Pavement Types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_pavement_base">
+    <xs:annotation>
+      <xs:documentation>Road Pavement Base Material Types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_pavement_subbase">
+    <xs:annotation>
+      <xs:documentation>Road Pavement SubBase Material Types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_pavement_lower_subbase">
+    <xs:annotation>
+      <xs:documentation>Road Pavement Lower-subbase Types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_pavement_stabilisation">
+    <xs:annotation>
+      <xs:documentation>Road Pavement Stabilisation Treatments</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_pavement_geotextile">
+    <xs:annotation>
+      <xs:documentation>Road Pavement Geotextile Types As per MRS11-27 Table 3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_edge_type">
+    <xs:annotation>
+      <xs:documentation>Type of Road Edge - As per DMR drawing 1033</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_crashbarrier_type">
+    <xs:annotation>
+      <xs:documentation>Types of Crash Barrier</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_pathway_use">
+    <xs:annotation>
+      <xs:documentation>Traffic on pathway</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_pathway_structure">
+    <xs:annotation>
+      <xs:documentation>Pathway structure</xs:documentation>
+    </xs:annotation>
+    <!-- N.B the values "In Ground" and "On Road" are explicitly required by the "Structure" element of
+      Feature_Transport_Pathway and Feature_Transport_RoadPathway as fixed values. 
+      This type is only used to constrain Feature_Transport_PathStructure-->
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_pathway_surface_material">
+    <xs:annotation>
+      <xs:documentation>Surface material used</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_pathway_substructure_material">
+    <xs:annotation>
+      <xs:documentation>SubStructure material</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_parking_onoff">
+    <xs:annotation>
+      <xs:documentation>Parking Type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_island_type">
+    <xs:annotation>
+      <xs:documentation>Type of Road Island</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_island_infill_type">
+    <xs:annotation>
+      <xs:documentation>Type of Road Island Infill</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_subsoil_drain_use">
+    <xs:annotation>
+      <xs:documentation>Use for Road subsoil drain</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_subsoil_drain_type">
+    <xs:annotation>
+      <xs:documentation>Type of Road subsoil drain</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="transport_flushpoint_function">
+    <xs:annotation>
+      <xs:documentation>Transport flushpoint function</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <!-- **************************************************************************************** -->
+  <!-- Enumerations  - Water                                                                    -->
+  <!-- **************************************************************************************** -->
+    <xs:simpleType name="water_fittings_material">
+    <xs:annotation>
+      <xs:documentation>Water fitting materials</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_meter_manufacturer">
+    <xs:annotation>
+      <xs:documentation>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_meter_type">
+    <xs:annotation>
+      <xs:documentation>Water meter types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_mh_lidmaterial">
+    <xs:annotation>
+      <xs:documentation>Water maintenance hole lid materials</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_mh_material">
+    <xs:annotation>
+      <xs:documentation>Water maintenance hole materials</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_mh_roofmaterial">
+    <xs:annotation>
+      <xs:documentation>Water maintenance hole roof materials</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_mh_use">
+    <xs:annotation>
+      <xs:documentation>Maintenace hole uses</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_pipe_class">
+    <xs:annotation>
+      <xs:documentation>Water pipe class</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_pipe_embedment">
+    <xs:annotation>
+      <xs:documentation>WSAA Embedment types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_pipe_material">
+    <xs:annotation>
+      <xs:documentation>Water pipe and conduit materials</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_pipe_protection">
+    <xs:annotation>
+      <xs:documentation>Water pipe anti-corrosion protection types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_pipe_lining">
+    <xs:annotation>
+      <xs:documentation>Water pipe anti-corrosion lining types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_pipe_jointtype">
+    <xs:annotation>
+      <xs:documentation>Water pipe joining methods</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_pipe_use">
+    <xs:annotation>
+      <xs:documentation>Water pipe use codes</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_valve_manufacturer">
+    <xs:annotation>
+      <xs:documentation>Water valve manufacturers</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_valve_type">
+    <xs:annotation>
+      <xs:documentation>Allowed water valve types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_valve_use">
+    <xs:annotation>
+      <xs:documentation>Allowed uses for water valves</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_hydrant_use">
+    <xs:annotation>
+      <xs:documentation>Allowed Hydrant uses</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_fittings_type">
+    <xs:annotation>
+      <xs:documentation>Allowed water fittings types</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_storage_source">
+    <xs:annotation>
+      <xs:documentation>The source of water for a storage feature</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_storage_tank_material">
+    <xs:annotation>
+      <xs:documentation>The material that the storage tank is made from.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_irrigation_fitting_type">
+    <xs:annotation>
+      <xs:documentation>The type of irrigation fitting.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <xs:simpleType name="water_service_fitting_type">
+    <xs:annotation>
+      <xs:documentation>The type of service fitting.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <!-- ****************************************************************************************   -->
+  <!-- *** Enumerations  - Surface                                                          ***   -->
+  <!-- ****************************************************************************************   -->
+  <xs:simpleType name="surface_elevation_status">
+    <xs:annotation>
+      <xs:documentation>The status of the elevation at the time of recording this ADAC project</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_32"/>
+  </xs:simpleType>
+  <!-- **************************************************************************************** -->
+  <!-- Enumerations  - Cadastre                                                                 -->
+  <!-- **************************************************************************************** -->
+  <!-- There are presently no enumerated types for Cadastre -->
+  
+  <!-- **************************************************************************************** -->
+  <!-- Enumerations - Enhancements                                                              -->
+  <!-- **************************************************************************************** -->
+  <!-- There are presently no enumerated types for Enhancements -->
+  
+  <!-- **************************************************************************************** -->
+  <!-- Enumerations  - Supplementary                                                            -->
+  <!-- **************************************************************************************** -->
+  <!-- There are presently no enumerated types for Supplementary -->
+  
+</xs:schema>

@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ADAC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.adac.com.au" version="6.0.0">
+<ADAC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.adac.com.au" version="5.0.1">
   <Project>
-    <ExportDateTime>2023-10-19T12:46:05.05+10:00</ExportDateTime>
-    <Name>Example ADAC capture</Name>
+    <ExportDateTime>2017-07-01T12:00:00.0000000+10:00</ExportDateTime>
+    <Name>Sample ADAC V5.0.1 XML</Name>
     <Owner>Council</Owner>
     <Receiver>Authority Name</Receiver>
     <WorksApprovalID>OPW123456</WorksApprovalID>
     <DrawingNumber>DWG123456</DrawingNumber>
-    <DrawingRevision>2023-10-19</DrawingRevision>
-    <ConstructionDate>2023-10-19</ConstructionDate>
+    <DrawingRevision>2017-07-02</DrawingRevision>
+    <ConstructionDate>2017-07-01</ConstructionDate>
     <CoordinateSystem>
       <HorizontalCoordinateSystem>MGA56</HorizontalCoordinateSystem>
-      <HorizontalDatum>GDA2020</HorizontalDatum>
+      <HorizontalDatum>GDA94</HorizontalDatum>
       <VerticalDatum>AHD</VerticalDatum>
       <IsApproximate>false</IsApproximate>
       <OriginMark>PSM123456</OriginMark>
@@ -28,19 +28,19 @@
       </NorthEast>
     </DrawingExtents>
     <Description>Sample data describing a staged subdivision</Description>
-    <ProjectStatus>As Constructed</ProjectStatus>
+    <ProjectStatus>For Approval</ProjectStatus>
     <Software>
-      <Product>Notepad++</Product>
-      <Version>8.5.7</Version>
+      <Product>MS Visual Studio prepared by Lion Systems</Product>
+      <Version>Product Version ID</Version>
     </Software>
     <Surveyor>
       <Name>Surveyors'R'us</Name>
-      <DateFinalSurvey>2023-10-19</DateFinalSurvey>
-      <DateApproved>2023-10-19</DateApproved>
+      <DateFinalSurvey>2017-07-01</DateFinalSurvey>
+      <DateApproved>2017-07-01</DateApproved>
     </Surveyor>
     <Engineer>
       <Name>FUBAR Engineering Pty Ltd</Name>
-      <DateApproved>2023-10-19</DateApproved>
+      <DateApproved>2017-07-01</DateApproved>
     </Engineer>
     <ProjectData>
       <Sewerage>
@@ -57,7 +57,7 @@
               <Surveyor xsi:nil="true" />
               <Engineer xsi:nil="true" />
               <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
+              <DataQuality>A</DataQuality>
               <Notes>Extra information goes here</Notes>
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
@@ -67,7 +67,6 @@
                 <Diameter_mm>1050</Diameter_mm>
               </Circular>
             </ChamberSize>
-			<ShaftSizeDiameter_mm>600</ShaftSizeDiameter_mm>
             <SurfaceLevel_m>52.602</SurfaceLevel_m>
             <InvertLevel_m>50.48</InvertLevel_m>
             <FloorConstruction>Prefabricated</FloorConstruction>
@@ -76,11 +75,8 @@
             <WallMaterial>Concrete</WallMaterial>
             <RoofMaterial>Concrete</RoofMaterial>
             <Lining>PVC</Lining>
-			<LidType>Non-trafficable</LidType>
-			<LidAccessRestraint>None</LidAccessRestraint>
             <LidMaterial>Cast Iron</LidMaterial>
-            <DropType>No Drop</DropType>
-			<Benching>No benching</Benching>
+            <DropType>Straight Through MH</DropType>
             <CatchmentPS xsi:nil="true" />
             <LineNumber>1</LineNumber>
             <MH_Number>3</MH_Number>
@@ -93,6 +89,53 @@
                 <X>495478.066</X>
                 <Y>6935720.188</Y>
                 <Z>52.602</Z>
+              </Point>
+            </Geometry>
+          </MaintenanceHole>
+          <MaintenanceHole>
+            <ADACId>2/1</ADACId>
+            <ComponentInfo>
+              <InfrastructureCode xsi:nil="true" />
+              <Owner>Council</Owner>
+              <DrawingNumber xsi:nil="true" />
+              <DrawingRevision xsi:nil="true" />
+              <ConstructionDate xsi:nil="true" />
+              <Department>Sewerage</Department>
+              <Surveyor xsi:nil="true" />
+              <Engineer xsi:nil="true" />
+              <Status>Newly Constructed</Status>
+              <DataQuality>A</DataQuality>
+              <Notes>Extra information goes here</Notes>
+              <SupportingFiles xsi:nil="true" />
+            </ComponentInfo>
+            <Use>Maintenance Hole</Use>
+            <ChamberSize>
+              <Circular>
+                <Diameter_mm>1050</Diameter_mm>
+              </Circular>
+            </ChamberSize>
+            <SurfaceLevel_m>51.698</SurfaceLevel_m>
+            <InvertLevel_m>49.542</InvertLevel_m>
+            <FloorConstruction>Prefabricated</FloorConstruction>
+            <FloorMaterial>Concrete</FloorMaterial>
+            <WallConstruction>Prefabricated</WallConstruction>
+            <WallMaterial>Concrete</WallMaterial>
+            <RoofMaterial>Concrete</RoofMaterial>
+            <Lining xsi:nil="true" />
+            <LidMaterial>Cast Iron</LidMaterial>
+            <DropType>Change In Direction Through MH</DropType>
+            <CatchmentPS xsi:nil="true" />
+            <LineNumber>1</LineNumber>
+            <MH_Number>2</MH_Number>
+            <Chainage_m xsi:nil="true" />
+            <TieDistance_m xsi:nil="true" />
+            <OffsetDistance_m xsi:nil="true" />
+            <Rotation>0</Rotation>
+            <Geometry>
+              <Point>
+                <X>495477.893</X>
+                <Y>6935675.717</Y>
+                <Z>51.698</Z>
               </Point>
             </Geometry>
           </MaintenanceHole>
@@ -118,7 +161,6 @@
                 <Diameter_mm>1050</Diameter_mm>
               </Circular>
             </ChamberSize>
-			<ShaftSizeDiameter_mm>600</ShaftSizeDiameter_mm>
             <SurfaceLevel_m>51.731</SurfaceLevel_m>
             <InvertLevel_m>48.542</InvertLevel_m>
             <FloorConstruction>Prefabricated</FloorConstruction>
@@ -127,11 +169,8 @@
             <WallMaterial>Concrete</WallMaterial>
             <RoofMaterial>Concrete</RoofMaterial>
             <Lining xsi:nil="true" />
-			<LidType>Non-trafficable</LidType>
-			<LidAccessRestraint>None</LidAccessRestraint>
             <LidMaterial>Cast Iron</LidMaterial>
-            <DropType>External Drop</DropType>
-			<Benching>No benching</Benching>
+            <DropType>Change In Direction Through MH</DropType>
             <CatchmentPS xsi:nil="true" />
             <LineNumber>1</LineNumber>
             <MH_Number>EX1</MH_Number>
@@ -173,7 +212,6 @@
                 <Diameter_mm>1200</Diameter_mm>
               </Circular>
             </ChamberSize>
-			<ShaftSizeDiameter_mm>600</ShaftSizeDiameter_mm>
             <SurfaceLevel_m>51.35</SurfaceLevel_m>
             <InvertLevel_m>47.899</InvertLevel_m>
             <FloorConstruction>Insitu</FloorConstruction>
@@ -182,11 +220,8 @@
             <WallMaterial>Concrete</WallMaterial>
             <RoofMaterial>Concrete</RoofMaterial>
             <Lining xsi:nil="true" />
-			<LidType>Non-trafficable</LidType>
-			<LidAccessRestraint>None</LidAccessRestraint>
             <LidMaterial>Cast Iron</LidMaterial>
-            <DropType>Internal Drop</DropType>
-			<Benching>No benching</Benching>
+            <DropType>Change In Direction Through MH</DropType>
             <CatchmentPS xsi:nil="true" />
             <LineNumber>1</LineNumber>
             <MH_Number>EX11</MH_Number>
@@ -204,51 +239,6 @@
             </Geometry>
           </MaintenanceHole>
         </MaintenanceHoles>
-		<MaintenanceShafts>
-		  <MaintenanceShaft>
-            <ADACId>2/1</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department>Sewerage</Department>
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>A</DataQuality>
-              <Notes>Extra information goes here</Notes>
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-            <Type>MS</Type>
-            <Diameter_mm>600</Diameter_mm>
-			<RiserDiameter_mm>300</RiserDiameter_mm>
-            <SurfaceLevel_m>51.698</SurfaceLevel_m>
-            <InvertLevel_m>49.542</InvertLevel_m>
-			<BaseMaterial>PE</BaseMaterial>
-			<RiserMaterial>PE</RiserMaterial>
-			<LidType>Non-trafficable</LidType>
-			<LidAccessRestraint>Hinged</LidAccessRestraint>
-			<LidMaterial>DI</LidMaterial>
-			<Manufacturer>Smartstream</Manufacturer>
-			<ModelNumber>PooPit</ModelNumber>
-            <CatchmentPS xsi:nil="true" />
-            <LineNumber>1</LineNumber>
-            <MH_Number>2</MH_Number>
-            <Chainage_m xsi:nil="true" />
-            <TieDistance_m xsi:nil="true" />
-            <OffsetDistance_m xsi:nil="true" />
-            <Rotation>0</Rotation>
-            <Geometry>
-              <Point>
-                <X>495477.893</X>
-                <Y>6935675.717</Y>
-                <Z>51.698</Z>
-              </Point>
-            </Geometry>
-          </MaintenanceShaft>
-		</MaintenanceShafts>
         <PipesNonPressure>
           <PipeNonPressure>
             <ADACId>3/1 - 2/1</ADACId>
@@ -324,7 +314,7 @@
             <LineNumber>1</LineNumber>
             <Use>Reticulation</Use>
             <Diameter_mm>150</Diameter_mm>
-             <Material>PVC-U</Material>
+            <Material>PVC-U</Material>
             <Class>SN8</Class>
             <Lining>Unlined</Lining>
             <Protection>Uncoated</Protection>
@@ -437,12 +427,7 @@
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
             <Use>Rising</Use>
-            <Diameter_mm>400</Diameter_mm>
-			<InternalDiameter_mm>325</InternalDiameter_mm>
-			<US_InvertLevel_m>49.822</US_InvertLevel_m>
-			<DS_InvertLevel_m>48.888</DS_InvertLevel_m>
-			<US_SurfaceLevel_m>50.422</US_SurfaceLevel_m>
-			<DS_SurfaceLevel_m>51.350</DS_SurfaceLevel_m>
+            <Diameter_mm>300</Diameter_mm>
             <Material>PE-100</Material>
             <Class>PN16</Class>
             <Lining>Unlined</Lining>
@@ -508,8 +493,6 @@
             <Protection>FBE</Protection>
             <Manufacturer>Bermad</Manufacturer>
             <ModelNumber xsi:nil="true" />
-			<GearboxActuator>false</GearboxActuator>
-			<ConnectionType>FL-FL</ConnectionType>
             <Rotation>0</Rotation>
             <Geometry>
               <Point>
@@ -544,7 +527,7 @@
             <Type>Bend</Type>
             <Material>DI</Material>
             <Lining>CL</Lining>
-            <Protection>FBPE</Protection>
+            <Protection>FBE</Protection>
             <BodySize_mm>300</BodySize_mm>
             <BranchSize_mm xsi:nil="true" />
             <Rotation>0</Rotation>
@@ -684,7 +667,7 @@
             <Material>PVC-U</Material>
             <Class>SN10</Class>
             <Length_m>2.32</Length_m>
-            <Type>Sloped into MS Base</Type>
+            <Type>Stub</Type>
             <Chainage_m>0.0</Chainage_m>
             <Offset_m>1.78</Offset_m>
             <LineNumber>1</LineNumber>
@@ -713,39 +696,6 @@
             </Geometry>
           </Connection>
         </Connections>
-		<SepticTanks>
-		  <SepticTank>
-		    <ADACId>HC 15</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>A</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<Material>Concrete</Material>
-			<Source>Wastewater</Source>
-			<Volume_m3>9.99</Volume_m3>
-			<Manufacturer>Blahblahblah</Manufacturer>
-			<ModelNumber>Blahblahblah</ModelNumber>
-			<Rotation>0</Rotation>
-			<Geometry>
-              <Point>
-                <X>495497.494</X>
-                <Y>6935709.666</Y>
-                <Z>49.898</Z>
-                <GNSSMetadata xsi:nil="true" />
-              </Point>
-            </Geometry>
-		  </SepticTank>
-		</SepticTanks>
       </Sewerage>
       <Transport>
         <PavementAreas>
@@ -769,7 +719,6 @@
             <Surface>
               <SurfaceType>AC</SurfaceType>
               <SurfaceThickness_mm>35</SurfaceThickness_mm>
-			  <SurfaceNomLength_m>57.25</SurfaceNomLength_m>
               <SurfaceNomWidth_m>7.0</SurfaceNomWidth_m>
             </Surface>
             <PavementStructure>
@@ -790,7 +739,6 @@
                 <Stabilisation>Cement</Stabilisation>
               </LowerSubBaseLayer>
             </PavementStructure>
-			<PavementHierarchy>Access/Local</PavementHierarchy>
             <PavementGeoTextile>Class A</PavementGeoTextile>
             <SubGrade>
               <CBR>3</CBR>
@@ -934,7 +882,7 @@
             <Surface>
               <SurfaceType>AC</SurfaceType>
               <SurfaceThickness_mm>25</SurfaceThickness_mm>
-              <SurfaceArea_m2>96.952</SurfaceArea_m2>
+              <SurfaceArea_sqm>96.952</SurfaceArea_sqm>
             </Surface>
             <PavementStructure>
               <PavementType>Flexible</PavementType>
@@ -1171,7 +1119,7 @@
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
             <Type>Splitter</Type>
-            <Area_m2>12.746</Area_m2>
+            <Area_sqm>12.746</Area_sqm>
             <InfillType>Pavers</InfillType>
             <Geometry>
               <Polygon>
@@ -1364,8 +1312,8 @@
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
             <Type>Energy-absorbing Bollard</Type>
-            <LeadingEndTreatment>Brakemaster</LeadingEndTreatment>
-            <TrailingEndTreatment>X Tension 350</TrailingEndTreatment>
+            <LeadingEndTreatment>Breakmaster</LeadingEndTreatment>
+            <TrailingEndTreatment>DOT</TrailingEndTreatment>
             <StandardHeight>true</StandardHeight>
             <Height_m xsi:nil="true" />
             <Length_m>59.681</Length_m>
@@ -1669,6 +1617,11 @@
               </Polygon>
             </Geometry>
           </BridgeDeck>
+          <ContainmentClass>
+            <ADACId>CC</ADACId>
+            <BridgeID>Bridge1</BridgeID>
+            <ContainmentClass>Low</ContainmentClass>
+          </ContainmentClass>
           <BridgeSuperstructure>
             <ADACId>SS1</ADACId>
             <ComponentInfo>
@@ -2015,8 +1968,6 @@
             <Diameter_mm>100</Diameter_mm>
             <Manufacturer xsi:nil="true" />
             <ModelNumber xsi:nil="true" />
-			<GearboxActuator>false</GearboxActuator>
-			<ConnectionType>FL-FL</ConnectionType>
             <Rotation>0</Rotation>
             <WaterQuality>Drinking Water</WaterQuality>
             <Geometry>
@@ -2045,7 +1996,7 @@
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
             <Use>Spring</Use>
-            <Diameter_mm>100</Diameter_mm>
+            <Diameter_mm>80</Diameter_mm>
             <Rotation>0</Rotation>
             <WaterQuality>Drinking Water</WaterQuality>
             <Geometry>
@@ -2077,13 +2028,13 @@
             <Type>Conventional</Type>
             <Diameter_mm>20</Diameter_mm>
             <Dials>8</Dials>
-            <Manufacturer>ITRON</Manufacturer>
-            <ModelNumber>TD8</ModelNumber>
+            <Manufacturer>ELSTER</Manufacturer>
+            <ModelNumber xsi:nil="true" />
             <InitialReading>0</InitialReading>
             <PrivateBooster>false</PrivateBooster>
             <OffsetSide>Left</OffsetSide>
             <Offset_m>8.193</Offset_m>
-            <InstallationDate>2023-10-19</InstallationDate>
+            <InstallationDate>2017-07-01</InstallationDate>
             <LotNo>17</LotNo>
             <PlanNo>SP123456</PlanNo>
             <Rotation>0</Rotation>
@@ -2115,8 +2066,8 @@
             </ComponentInfo>
             <Type>Bend</Type>
             <Material>PE</Material>
-            <Lining>Unlined</Lining>
-            <Protection>Uncoated</Protection>
+            <Lining xsi:nil="true" />
+            <Protection xsi:nil="true" />
             <BodySize_mm>100</BodySize_mm>
             <BranchSize_mm xsi:nil="true" />
             <Rotation>0</Rotation>
@@ -2251,7 +2202,7 @@
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
             <PitNumber>1/4</PitNumber>
-            <Use>Kerb Inlet</Use>
+            <Use>Pit</Use>
             <ChamberConstruction>Insitu</ChamberConstruction>
             <ChamberSize>
               <Rectangular>
@@ -2259,7 +2210,7 @@
                 <Width_mm>835</Width_mm>
               </Rectangular>
             </ChamberSize>
-            <LidType>Galv Grate</LidType>
+            <LidType xsi:nil="true" />
             <SurfaceLevel_m>52.422</SurfaceLevel_m>
             <InvertLevel_m>50.58</InvertLevel_m>
             <Depth_m>1.842</Depth_m>
@@ -2301,14 +2252,14 @@
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
             <PitNumber>4/1</PitNumber>
-            <Use>Kerb Inlet</Use>
+            <Use>Pit</Use>
             <ChamberConstruction>Insitu</ChamberConstruction>
             <ChamberSize>
               <Circular>
                 <Diameter_mm>1050</Diameter_mm>
               </Circular>
             </ChamberSize>
-            <LidType>Hydroflow Grate</LidType>
+            <LidType xsi:nil="true" />
             <SurfaceLevel_m>52.271</SurfaceLevel_m>
             <InvertLevel_m>50.405</InvertLevel_m>
             <Depth_m>1.866</Depth_m>
@@ -2350,7 +2301,7 @@
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
             <PitNumber>3/1</PitNumber>
-            <Use>Kerb Inlet</Use>
+            <Use>Pit</Use>
             <ChamberConstruction>Insitu</ChamberConstruction>
             <ChamberSize>
               <Rectangular>
@@ -2358,7 +2309,7 @@
                 <Width_mm>835</Width_mm>
               </Rectangular>
             </ChamberSize>
-            <LidType>Galv Grate</LidType>
+            <LidType xsi:nil="true" />
             <SurfaceLevel_m>51.421</SurfaceLevel_m>
             <InvertLevel_m>49.893</InvertLevel_m>
             <Depth_m>1.528</Depth_m>
@@ -2400,7 +2351,7 @@
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
             <PitNumber>2/1</PitNumber>
-            <Use>Junction Pit with access</Use>
+            <Use>Maintenance Hole</Use>
             <ChamberConstruction>Insitu</ChamberConstruction>
             <ChamberSize>
               <Circular>
@@ -2454,10 +2405,25 @@
               <Material>Concrete</Material>
               <Construction>Prefabricated</Construction>
             </EndWall>
-            <OutletProtection>
-			  <Material>Grouted Rock</Material>
-			  <Area_m2>8.073</Area_m2>
-			</OutletProtection>
+            <WingWall>
+              <LWW_Length_m>1.472</LWW_Length_m>
+              <LWW_Height_m>0.5</LWW_Height_m>
+              <LWW_Thickness_m>0.1</LWW_Thickness_m>
+              <LWW_Material>Concrete</LWW_Material>
+              <LWW_Construction>Prefabricated</LWW_Construction>
+              <RWW_Length_m>1.472</RWW_Length_m>
+              <RWW_Height_m>0.5</RWW_Height_m>
+              <RWW_Thickness_m>0.1</RWW_Thickness_m>
+              <RWW_Material>Concrete</RWW_Material>
+              <RWW_Construction>Prefabricated</RWW_Construction>
+            </WingWall>
+            <Apron>
+              <Apron_Width_m>3.038</Apron_Width_m>
+              <Apron_Thickness_m>0.15</Apron_Thickness_m>
+              <Apron_Area_m2>8.073</Apron_Area_m2>
+              <Apron_Material>Concrete Energy Dissepiment</Apron_Material>
+              <Apron_Construction>Insitu</Apron_Construction>
+            </Apron>
             <GrateType>None</GrateType>
             <TideGate>None</TideGate>
             <Geometry>
@@ -2496,10 +2462,25 @@
               <Material>Concrete</Material>
               <Construction>Prefabricated</Construction>
             </EndWall>
-           <OutletProtection>
-			  <Material>Grouted Rock</Material>
-			  <Area_m2>8.073</Area_m2>
-			</OutletProtection>
+            <WingWall>
+              <LWW_Length_m>1.472</LWW_Length_m>
+              <LWW_Height_m>0.5</LWW_Height_m>
+              <LWW_Thickness_m>0.1</LWW_Thickness_m>
+              <LWW_Material>Concrete</LWW_Material>
+              <LWW_Construction>Prefabricated</LWW_Construction>
+              <RWW_Length_m>1.472</RWW_Length_m>
+              <RWW_Height_m>0.5</RWW_Height_m>
+              <RWW_Thickness_m>0.1</RWW_Thickness_m>
+              <RWW_Material>Concrete</RWW_Material>
+              <RWW_Construction>Prefabricated</RWW_Construction>
+            </WingWall>
+            <Apron>
+              <Apron_Width_m>3.038</Apron_Width_m>
+              <Apron_Thickness_m>0.15</Apron_Thickness_m>
+              <Apron_Area_m2>8.073</Apron_Area_m2>
+              <Apron_Material>Concrete Energy Dissepiment</Apron_Material>
+              <Apron_Construction>Insitu</Apron_Construction>
+            </Apron>
             <GrateType>None</GrateType>
             <TideGate>None</TideGate>
             <Geometry>
@@ -2509,7 +2490,7 @@
                     <Vertex>
                       <X>495474.587</X>
                       <Y>6935653.015</Y>
-                      <Z>47.482</Z>
+                      <Z>48.482</Z>
                       <GNSSMetadata xsi:nil="true" />
                     </Vertex>
                     <Vertex>
@@ -2527,7 +2508,7 @@
                     <Vertex>
                       <X>495477.495</X>
                       <Y>6935652.137</Y>
-                      <Z>47.482</Z>
+                      <Z>48.482</Z>
                       <GNSSMetadata xsi:nil="true" />
                     </Vertex>
                   </PolySegment>
@@ -2803,6 +2784,7 @@
                 <Height_mm>450</Height_mm>
                 <Width_mm>600</Width_mm>
                 <Material>RCBC</Material>
+                <Class>1</Class>
               </BoxPipe>
             </PipeStructure>
             <Cells>1</Cells>
@@ -2851,9 +2833,8 @@
             <Type>Overland Flow Path</Type>
             <DrainShape>Flat Bottom Drain</DrainShape>
             <LiningMaterial>Concrete</LiningMaterial>
-            <BaseWidth_m>0.25</BaseWidth_m>
-			<LinedWidth_m>1.25</LinedWidth_m>
-			<BatterMaterial>Grassed</BatterMaterial>
+            <LinedWidth_m>1.25</LinedWidth_m>
+            <BatterMaterial>Grassed</BatterMaterial>
             <BatterWidth_m>3.25</BatterWidth_m>
             <US_InvertLevel_m>47.97</US_InvertLevel_m>
             <DS_InvertLevel_m>47.031</DS_InvertLevel_m>
@@ -2981,7 +2962,7 @@
             </Geometry>
           </GPTSimple>
           <NonGPTSimple>
-            <ADACId>nonsimplegpt</ADACId>
+            <ADACId>simplegpt</ADACId>
             <ComponentInfo>
               <InfrastructureCode xsi:nil="true" />
               <Owner>Council</Owner>
@@ -2996,7 +2977,7 @@
               <Notes xsi:nil="true" />
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
-            <Sqid_Id>nonsimple gpt</Sqid_Id>
+            <Sqid_Id>simple gpt</Sqid_Id>
             <Construction>Insitu</Construction>
             <Manufacturer xsi:nil="true" />
             <ModelNumber xsi:nil="true" />
@@ -3210,7 +3191,6 @@
             </ComponentInfo>
             <Use>Play</Use>
             <Type>Kids Playground</Type>
-			<SurfaceTreatment>None</SurfaceTreatment>
             <Material>Bark</Material>
             <Thickness_mm>250</Thickness_mm>
             <Geometry>
@@ -3313,7 +3293,6 @@
             <Units>1</Units>
             <Manufacturer xsi:nil="true" />
             <ModelNumber xsi:nil="true" />
-			<DDA_Compliance>false</DDA_Compliance>
             <Geometry>
               <Point>
                 <X>495491.278</X>
@@ -3345,7 +3324,6 @@
             <TopMaterial>Concrete</TopMaterial>
             <Manufacturer>Webber</Manufacturer>
             <ModelNumber xsi:nil="true" />
-			<DDA_Compliance>true</DDA_Compliance>
             <Geometry>
               <Point>
                 <X>495510.741</X>
@@ -3377,10 +3355,8 @@
               <Places>8</Places>
             </Seating>
             <Material>Aluminium</Material>
-			<FloorMaterial>Concrete</FloorMaterial>
             <Manufacturer>IKEA</Manufacturer>
             <ModelNumber xsi:nil="true" />
-			<DDA_Compliance>true</DDA_Compliance>
             <Geometry>
               <Point>
                 <X>495510.054</X>
@@ -3408,10 +3384,7 @@
             </ComponentInfo>
             <SeatType>Freestanding</SeatType>
             <Places>3</Places>
-            <Material>Plastic and Steel</Material>
-			<Length_m>4.5</Length_m>
-			<Width_m>2.0</Width_m>
-			<FloorMaterial>Paved</FloorMaterial>
+            <Material>Timber and Steel</Material>
             <Manufacturer>Seats Co.</Manufacturer>
             <ModelNumber>3 seater</ModelNumber>
             <Geometry>
@@ -3441,7 +3414,6 @@
             </ComponentInfo>
             <Type>Wheelie Bin Enclosure</Type>
             <Material>Aluminium</Material>
-			<FloorMaterial>Concrete</FloorMaterial>
             <Manufacturer>Wheelie bins</Manufacturer>
             <ModelNumber xsi:nil="true" />
             <Geometry>
@@ -3469,9 +3441,8 @@
               <Notes xsi:nil="true" />
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
-            <Type>Bicycle Hoop</Type>
+            <Type>Banana Rail</Type>
             <Material>Aluminium</Material>
-			<FloorMaterial>Concrete</FloorMaterial>
             <Manufacturer xsi:nil="true" />
             <ModelNumber xsi:nil="true" />
             <Geometry>
@@ -3501,9 +3472,8 @@
             </ComponentInfo>
             <Type>Dog bag dispenser</Type>
             <Material>Aluminium</Material>
-			<FloorMaterial>Concrete</FloorMaterial>
             <Manufacturer>Dog'gone'it</Manufacturer>
-            <ModelNumber>black bag with little bones printed</ModelNumber>
+            <ModelNumber>black bag with little bones printed on 'em</ModelNumber>
             <Geometry>
               <Point>
                 <X>495489.594</X>
@@ -3529,12 +3499,12 @@
               <Notes xsi:nil="true" />
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
-            <Type>Fauna Fencing</Type>
+            <Type>Bollard Run</Type>
             <UprightMaterial>Timber</UprightMaterial>
-            <LinkMaterial>Wire Mesh</LinkMaterial>
-            <TopMaterial>Aluminium</TopMaterial>
+            <LinkMaterial>None</LinkMaterial>
+            <TopMaterial>None</TopMaterial>
             <Length_m>17.275</Length_m>
-            <Height_m>1.8</Height_m>
+            <Height_m>0.6</Height_m>
             <UprightNumber>4</UprightNumber>
             <Geometry>
               <Polyline>
@@ -3607,8 +3577,8 @@
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
             <Use>Terrestrial</Use>
-            <Material>Gabions</Material>
-            <Construction>Caged</Construction>
+            <Material>Boulder</Material>
+            <Construction>Gravity</Construction>
             <Length_m>29.195</Length_m>
             <Height_m>1.58</Height_m>
             <Width_m>0.75</Width_m>
@@ -3654,7 +3624,6 @@
             <RoofMaterial>Masonry Tiles</RoofMaterial>
             <Manufacturer xsi:nil="true" />
             <ModelNumber xsi:nil="true" />
-			<DDA_Compliance>true</DDA_Compliance>
             <Geometry>
               <Point>
                 <X>495510.647</X>
@@ -3685,7 +3654,6 @@
             <RoofMaterial>Masonry Tiles</RoofMaterial>
             <Manufacturer xsi:nil="true" />
             <ModelNumber xsi:nil="true" />
-			<DDA_Compliance>true</DDA_Compliance>
             <Geometry>
               <Polygon>
                 <Ring>
@@ -3761,10 +3729,7 @@
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
             <Type>Amenities</Type>
-            <WallMaterial>Masonry</WallMaterial>
-			<FloorMaterial>Concrete</FloorMaterial>
-			<RoofMaterial>Steel Sheets</RoofMaterial>
-			<DDA_Compliance>true</DDA_Compliance>
+            <Material>Combination</Material>
             <Geometry>
               <Polygon>
                 <Ring>
@@ -3812,12 +3777,8 @@
               <Notes xsi:nil="true" />
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
-            <Type>Pontoon</Type>
+            <Type>Ramp</Type>
             <Material>Aluminium</Material>
-			<SubStructureMaterial>Steel</SubStructureMaterial>
-			<BalustradeMaterial>Metal Railing Panel</BalustradeMaterial>
-			<HandrailMaterial>Stainless Steel</HandrailMaterial>
-			<DDA_Compliance>true</DDA_Compliance>
             <Geometry>
               <Polygon>
                 <Ring>
@@ -3848,6 +3809,77 @@
             </Geometry>
           </BoatingFacility>
         </BoatingFacilities>
+        <ElectricalFittings>
+          <ElectricalFitting>
+            <ADACId>fitting1</ADACId>
+            <ComponentInfo>
+              <InfrastructureCode xsi:nil="true" />
+              <Owner>Council</Owner>
+              <DrawingNumber xsi:nil="true" />
+              <DrawingRevision xsi:nil="true" />
+              <ConstructionDate xsi:nil="true" />
+              <Department xsi:nil="true" />
+              <Surveyor xsi:nil="true" />
+              <Engineer xsi:nil="true" />
+              <Status>Newly Constructed</Status>
+              <DataQuality>A</DataQuality>
+              <Notes xsi:nil="true" />
+              <SupportingFiles xsi:nil="true" />
+            </ComponentInfo>
+            <Type>Light</Type>
+            <Base>Fixed</Base>
+            <Material>Aluminium</Material>
+            <EnergySource>Main</EnergySource>
+            <Manufacturer>Manufacturer</Manufacturer>
+            <ModelNumber>ModelNumber</ModelNumber>
+            <Geometry>
+              <Point>
+                <X>495503.352</X>
+                <Y>6935740.54</Y>
+              </Point>
+            </Geometry>
+          </ElectricalFitting>
+        </ElectricalFittings>
+        <ElectricalConduits>
+          <ElectricalConduit>
+            <ADACId>conduit</ADACId>
+            <ComponentInfo>
+              <InfrastructureCode xsi:nil="true" />
+              <Owner>Council</Owner>
+              <DrawingNumber xsi:nil="true" />
+              <DrawingRevision xsi:nil="true" />
+              <ConstructionDate xsi:nil="true" />
+              <Department xsi:nil="true" />
+              <Surveyor xsi:nil="true" />
+              <Engineer xsi:nil="true" />
+              <Status>Newly Constructed</Status>
+              <DataQuality>A</DataQuality>
+              <Notes xsi:nil="true" />
+              <SupportingFiles xsi:nil="true" />
+            </ComponentInfo>
+            <Type>Medium Duty</Type>
+            <Material>PVC</Material>
+            <Diameter_mm>200</Diameter_mm>
+            <Length_m>17.37</Length_m>
+            <Protection>Concrete Encased</Protection>
+            <Geometry>
+              <Polyline>
+                <Path>
+                  <PolySegment>
+                    <Vertex>
+                      <X>495503.352</X>
+                      <Y>6935740.54</Y>
+                    </Vertex>
+                    <Vertex>
+                      <X>495503.102</X>
+                      <Y>6935723.172</Y>
+                    </Vertex>
+                  </PolySegment>
+                </Path>
+              </Polyline>
+            </Geometry>
+          </ElectricalConduit>
+        </ElectricalConduits>
         <LandscapeAreas>
           <LandscapeArea>
             <ADACId>area1</ADACId>
@@ -3935,9 +3967,9 @@
               <Notes xsi:nil="true" />
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
-            <Species>Myrtaceae</Species>
+            <Species>	Myrtaceae</Species>
             <Genus>Eucalyptus</Genus>
-            <RootBarrier>true</RootBarrier>
+            <RootBarrier>false</RootBarrier>
             <Grate>false</Grate>
             <Geometry>
               <Point>
@@ -3964,7 +3996,7 @@
               <Notes xsi:nil="true" />
               <SupportingFiles xsi:nil="true" />
             </ComponentInfo>
-            <Type>Traffic Control</Type>
+            <Type>Naming</Type>
             <Material>Stainless Steel</Material>
             <Manufacturer xsi:nil="true" />
             <ModelNumber xsi:nil="true" />
@@ -3979,841 +4011,8 @@
             </Geometry>
           </Sign>
         </Signs>
-		<Platforms>
-		  <Platform>
-		    <ADACId>Platform1</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>A</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-            <Function>Viewing</Function>
-			<Material>Timber</Material>
-			<SubStructureMaterial>Steel</SubStructureMaterial>
-			<BalustradeMaterial>Metal Railing Panel</BalustradeMaterial>
-			<HandrailMaterial>Stainless Steel</HandrailMaterial>
-			<Height_m>2.2</Height_m>
-			<Geometry>
-              <Polygon>
-                <Ring>
-                  <PolySegment>
-                    <Vertex>
-                      <X>495519.714</X>
-                      <Y>6935730.734</Y>
-                    </Vertex>
-                    <Vertex>
-                      <X>495529.721</X>
-                      <Y>6935730.734</Y>
-                    </Vertex>
-                    <Vertex>
-                      <X>495529.721</X>
-                      <Y>6935729.347</Y>
-                    </Vertex>
-                    <Vertex>
-                      <X>495519.714</X>
-                      <Y>6935729.347</Y>
-                    </Vertex>
-                    <Vertex>
-                      <X>495519.714</X>
-                      <Y>6935730.734</Y>
-                    </Vertex>
-                  </PolySegment>
-                </Ring>
-              </Polygon>
-            </Geometry>
-          </Platform>
-		</Platforms>
-		<FaunaInfrastructure>
-		  <FaunaPoint>
-		    <ADACId>Fauna1</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-            <Type>Nesting Box</Type>
-			<Material>Timber</Material>
-			<Height_m>4.2</Height_m>
-			<PoleMounted>true</PoleMounted>
-			<Geometry>
-              <Point>
-                <X>495521.160</X>
-                <Y>6935728.075</Y>
-              </Point>
-            </Geometry>
-		  </FaunaPoint>
-		  <FaunaPolyline>
-		    <ADACId>Fauna2</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-            <Type>Glider Rope</Type>
-			<Material>Combination</Material>
-			<Geometry>
-              <Polyline>
-                <Path>
-                  <PolySegment>
-                    <Vertex>
-                      <X>495521.218</X>
-                      <Y>6935724.780</Y>
-                    </Vertex>
-                    <Vertex>
-                      <X>495525.614</X>
-                      <Y>6935727.786</Y>
-                    </Vertex>
-                    <Vertex>
-                      <X>495529.837</X>
-                      <Y>6935725.705</Y>
-                    </Vertex>
-                  </PolySegment>
-                </Path>
-              </Polyline>
-            </Geometry>
-		  </FaunaPolyline>
-		</FaunaInfrastructure>
-		<LandStabilisation>
-		  <LandStabilisation>
-		    <ADACId>Land1</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-            <Material>Shotcrete</Material>
-			<NumberOfAnchors>99</NumberOfAnchors>
-			<Geometry>
-              <Polygon>
-                <Ring>
-                  <PolySegment>
-                    <Vertex>
-                      <X>495521.623</X>
-                      <Y>6935724.029</Y>
-                    </Vertex>
-                    <Vertex>
-                      <X>495529.605</X>
-                      <Y>6935724.260</Y>
-                    </Vertex>
-                    <Vertex>
-                      <X>495529.027</X>
-                      <Y>6935722.179</Y>
-                    </Vertex>
-                    <Vertex>
-                      <X>495522.722</X>
-                      <Y>6935722.237</Y>
-                    </Vertex>
-                    <Vertex>
-                     <X>495521.623</X>
-                      <Y>6935724.029</Y>
-                    </Vertex>
-                  </PolySegment>
-                </Ring>
-              </Polygon>
-            </Geometry>
-		  </LandStabilisation>
-		</LandStabilisation>
-		<PreparedSurfaces>
-		  <PreparedSurface>
-		    <ADACId>Surf1</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-            <Function>Bin Set Down Area</Function>
-			<Material>Concrete</Material>
-			<Geometry>
-              <Polygon>
-                <Ring>
-                  <PolySegment>
-                    <Vertex>
-                      <X>495487.617</X>
-                      <Y>6935707.268</Y>
-                    </Vertex>
-                    <Vertex>
-                      <X>495490.008</X>
-                      <Y>6935707.222</Y>
-                    </Vertex>
-                    <Vertex>
-                      <X>495490.054</X>
-                      <Y>6935703.632</Y>
-                    </Vertex>
-                    <Vertex>
-                      <X>495487.601</X>
-                      <Y>6935703.701</Y>
-                    </Vertex>
-                    <Vertex>
-                      <X>495487.617</X>
-                      <Y>6935707.268</Y>
-                    </Vertex>
-                  </PolySegment>
-                </Ring>
-              </Polygon>
-            </Geometry>
-		  </PreparedSurface>
-		</PreparedSurfaces>
-	  </OpenSpace>
-	  <Electrical>
-	    <Switchboards>
-		  <Switchboard>
-		    <ADACId>SB1</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<Type>Main Switchboard</Type>
-			<EnclosureMaterial>Sheet Steel</EnclosureMaterial>
-			<EnclosureCoating>Powdercoat</EnclosureCoating>
-			<EnclosureConstruction>Generic Meter Box</EnclosureConstruction>
-			<MountType>Pole</MountType>
-			<ElectricityTariff>Rate 3</ElectricityTariff>
-			<SupplyArrangement>3 Phase</SupplyArrangement>
-			<TypeOfSupply>Underground Supply</TypeOfSupply>
-			<Height_mm>600</Height_mm>
-			<Width_mm>450</Width_mm>
-			<Depth_mm>300</Depth_mm>
-			<NoOfDoors>2</NoOfDoors>
-			<MeterNumber>SER123</MeterNumber>
-			<NationalMeterIdentifier>UNKNOWN</NationalMeterIdentifier>
-			<PointOfSupply>Supply of point</PointOfSupply>
-			<IP_Rating>IP67</IP_Rating>
-			<Manufacturer xsi:nil="true" />
-			<ModelNumber xsi:nil="true" />
-			<Geometry>
-              <Point>
-                <X>495479.383</X>
-                <Y>6935705.704</Y>
-              </Point>
-            </Geometry>
-		  </Switchboard>
-		</Switchboards>
-	    <Pits>
-		  <Pit>
-		    <ADACId>ElectPit1</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<Type>Type 4</Type>
-			<Use>Low and High Voltage</Use>
-			<Material>Plastic</Material>
-			<LidLoadRating>Class B</LidLoadRating>
-			<LidMaterial>Concrete</LidMaterial>
-			<LidDesignation>Electrical</LidDesignation>
-			<KeyType>Smart Key</KeyType>
-			<Size>
-			  <Rectangular>
-			    <Length_mm>900</Length_mm>
-				<Width_mm>600</Width_mm>
-			  </Rectangular>
-			</Size>
-			<Depth_m>0.9</Depth_m>
-			<SurfaceLevel_m>52.000</SurfaceLevel_m>
-			<Geometry>
-              <Point>
-                <X>495476.821</X>
-                <Y>6935705.703</Y>
-				<Z>52.0</Z>
-              </Point>
-            </Geometry>
-		  </Pit>
-		</Pits>
-	    <Conduits>
-		  <Conduit>
-		    <ADACId>ElectConduit1</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<Material>HDPE</Material>
-			<Protection>Warning Tape</Protection>
-			<Placement>Underground</Placement>
-			<Colour>Orange</Colour>
-			<Size_mm>100</Size_mm>
-			<Configuration>1 x 100mm + 1 x 50mm</Configuration>
-			<NoOfConduits>2</NoOfConduits>
-			<AverageDepth_m>0.9</AverageDepth_m>
-			<Geometry>
-              <Polyline>
-                <Path>
-                  <PolySegment>
-                    <Vertex>
-                      <X>495476.596</X>
-                      <Y>6935689.232</Y>
-                    </Vertex>
-                    <Vertex>
-                      <X>495476.821</X>
-                      <Y>6935705.703</Y>
-                    </Vertex>
-                  </PolySegment>
-                </Path>
-              </Polyline>
-            </Geometry>
-		  </Conduit>
-		  <Conduit>
-		    <ADACId>ElectConduit2</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<Material>HDPE</Material>
-			<Protection>Warning Tape</Protection>
-			<Placement>Underground</Placement>
-			<Colour>Orange</Colour>
-			<Size_mm>50</Size_mm>
-			<Configuration>1 x 50mm</Configuration>
-			<NoOfConduits>1</NoOfConduits>
-			<AverageDepth_m>0.9</AverageDepth_m>
-			<Geometry>
-              <Polyline>
-                <Path>
-                  <PolySegment>
-                    <Vertex>
-                      <X>495476.821</X>
-                      <Y>6935705.703</Y>
-                    </Vertex>
-					<Vertex>
-                      <X>495479.383</X>
-                      <Y>6935705.704</Y>
-                    </Vertex>
-                  </PolySegment>
-                </Path>
-              </Polyline>
-            </Geometry>
-		  </Conduit>
-		</Conduits>
-		<Cables>
-		  <Cable>
-		    <ADACId>ElectCable1</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<Type>Multicore</Type>
-			<Material>Copper</Material>
-			<Insulation>PVC</Insulation>
-			<Placement>Underground</Placement>
-			<Size_mm2>16</Size_mm2>
-			<Configuration>1 x 16mm2</Configuration>
-			<NoOfCables>1</NoOfCables>
-			<Geometry>
-              <Polyline>
-                <Path>
-                  <PolySegment>
-                    <Vertex>
-                      <X>495476.596</X>
-                      <Y>6935689.232</Y>
-                    </Vertex>
-                    <Vertex>
-                      <X>495476.821</X>
-                      <Y>6935705.703</Y>
-                    </Vertex>
-					<Vertex>
-                      <X>495479.383</X>
-                      <Y>6935705.704</Y>
-                    </Vertex>
-                  </PolySegment>
-                </Path>
-              </Polyline>
-            </Geometry>
-		  </Cable>
-		</Cables>
-		<Fittings>
-		  <Fitting>
-		    <ADACId>ElectFit</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes>Greenboy pillar</Notes>
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<Type>Other</Type>
-			<MountType>Pillar</MountType>
-			<PowerSource>High Voltage</PowerSource>
-			<Manufacturer xsi:nil="true" />
-			<ModelNumber xsi:nil="true" />
-			<Geometry>
-              <Point>
-                <X>495476.596</X>
-                <Y>6935689.232</Y>
-              </Point>
-            </Geometry>
-		  </Fitting>
-		</Fittings>
-		<Lights>
-		  <Light>
-		    <ADACId>13L1</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<Function>Road Lighting</Function>
-			<Type>Post Top</Type>
-			<Source>Halogen</Source>
-			<Tarif>Rate 3</Tarif>
-			<Wattage>666</Wattage>
-			<OpticsConfiguration xsi:nil="true" />
-			<Controller>7 Pin NEMA - Bottom</Controller>
-			<Sensor xsi:nil="true" />
-			<MountType>Pole Mounted</MountType>
-			<MountingHeight_m>4.5</MountingHeight_m>
-			<NoOfLuminaire>1</NoOfLuminaire>
-			<Shielding>true</Shielding>
-			<ShieldingType>Internal</ShieldingType>
-			<Manufacturer xsi:nil="true" />
-			<ModelNumber xsi:nil="true" />
-			<Geometry>
-              <Point>
-                <X>495481.539</X>
-                <Y>6935705.719</Y>
-			  </Point>
-            </Geometry>
-		  </Light>
-		</Lights>
-		<Poles>
-		  <Pole>
-		    <ADACId>13</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<Function>Light</Function>
-			<Material>Steel</Material>
-			<Base xsi:nil="true" />
-			<HingeType xsi:nil="true" />
-			<Coating xsi:nil="true" />
-			<OutreachArmType xsi:nil="true" />
-			<OutreachShape xsi:nil="true" />
-			<OutreachArmStay xsi:nil="true" />
-			<NoOfOutreach xsi:nil="true" />
-			<BasePlatePCD xsi:nil="true" />
-			<Manufacturer>Unknown</Manufacturer>
-			<ModelNumber>Unknown</ModelNumber>
-			<Height_m>4.5</Height_m>
-			<Width_mm>250</Width_mm>
-			<OutreachLength_m xsi:nil="true" />
-			<OutreachUplift_m xsi:nil="true" />
-			<Geometry>
-              <Point>
-                <X>495479.383</X>
-                <Y>6935705.704</Y>
-			  </Point>
-            </Geometry>
-		  </Pole>
-		</Poles>
-		<SolarUnits>
-		  <SolarUnit>
-		    <ADACId>Solar1</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<GridConnected>Off-Grid</GridConnected>
-			<InverterCapacity_kW>10</InverterCapacity_kW>
-			<InverterManufacturer>Manufacturer</InverterManufacturer>
-			<InverterModelNumber>Model ID</InverterModelNumber>
-			<NoOfInverters>1</NoOfInverters>
-			<PanelCapacity_kW>10</PanelCapacity_kW>
-			<PanelManufacturer>Manufacturer</PanelManufacturer>
-			<PanelModelNumber>Model ID</PanelModelNumber>
-			<NoOfPanels>9</NoOfPanels>
-			<BatteryStorageTotalCapacity_kWh>999</BatteryStorageTotalCapacity_kWh>
-			<BatteryManufacturer>Manufacturer</BatteryManufacturer>
-			<BatteryModelNumber>Model ID</BatteryModelNumber>
-			<NoOfBatteries>15</NoOfBatteries>
-			<Geometry>
-              <Point>
-                <X>495458.060</X>
-                <Y>6935697.263</Y>
-			  </Point>
-            </Geometry>
-		  </SolarUnit>
-		</SolarUnits>
-		<EV_ChargeStations>
-		  <EV_ChargeStation>
-		   <ADACId>ChargeStation</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<ChargeLevel>Level 2 - Fast</ChargeLevel>
-			<PlugType>CCS</PlugType>
-			<ChargingOutput_kW>5.5</ChargingOutput_kW>
-			<Manufacturer>Unknown</Manufacturer>
-			<ModelNumber>Unknown</ModelNumber>
-			<ElectricalSupply>Mains power</ElectricalSupply>
-			<Geometry>
-              <Point>
-                <X>495492.990</X>
-                <Y>6935685.760</Y>
-			  </Point>
-            </Geometry>
-		  </EV_ChargeStation>
-		</EV_ChargeStations>
-		<TrafficSignalLights>
-		  <TrafficSignalLight>
-		    <ADACId>TrafficLight1</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<LanternFunction>Pedestrian Signal</LanternFunction>
-			<LanternType>2 Aspect</LanternType>
-			<LanternActivation>Button control</LanternActivation>
-			<LuminaireType>Halogen</LuminaireType>
-			<LanternSize_mm>300</LanternSize_mm>
-			<Manufacturer>Unknown</Manufacturer>
-			<ModelNumber>Unknown</ModelNumber>
-		    <Geometry>
-              <Point>
-                <X>495477.374</X>
-                <Y>6935669.439</Y>
-			  </Point>
-            </Geometry>
-		  </TrafficSignalLight>
-		</TrafficSignalLights>
-	  </Electrical>
-	  <Communication>
-	    <Pits>
-		  <Pit>
-		    <ADACId>CommPit</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<Type>Type 9</Type>
-			<Surface>Grass</Surface>
-			<Material>Plastic</Material>
-			<LidMaterial>Composite Plastic</LidMaterial>
-			<LidDesignation>Communications</LidDesignation>
-			<LidLoadRating>Class B</LidLoadRating>
-			<KeyType>Allen Key</KeyType>
-			<Size>
-			  <Circular>
-			    <Diameter_mm>900</Diameter_mm>
-			  </Circular>
-			</Size>
-			<Depth_m>0.6</Depth_m>
-			<SurfaceLevel_m>51.698</SurfaceLevel_m>
-			<Geometry>
-              <Point>
-                <X>495477.135</X>
-                <Y>6935677.777</Y>
-				<Z>51.698</Z>
-			  </Point>
-            </Geometry>
-		  </Pit>
-		</Pits>
-		<Conduits>
-		  <Conduit>
-		    <ADACId>CommConduit</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<Use>Fibre</Use>
-			<Material>HDPE</Material>
-			<Placement>Underground</Placement>
-			<Protection>Warning Tape</Protection>
-			<Size_mm>100</Size_mm>
-			<TraceWire>true</TraceWire>
-			<Configuration>1 x 100mm</Configuration>
-			<NoOfConduits>1</NoOfConduits>
-			<AverageDepth_m>0.9</AverageDepth_m>
-			<Geometry>
-              <Polyline>
-                <Path>
-                  <PolySegment>
-                    <Vertex>
-                      <X>495477.386</X>
-                      <Y>6935689.305</Y>
-                    </Vertex>
-					<Vertex>
-                      <X>495477.135</X>
-                      <Y>6935677.777</Y>
-                    </Vertex>
-                  </PolySegment>
-                </Path>
-              </Polyline>
-            </Geometry>
-		  </Conduit>
-		</Conduits>
-		<Cables>
-		  <Cable>
-		    <ADACId>CommCable</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<Type>Cat 6</Type>
-			<ConductorMaterial>Glass Fibre</ConductorMaterial>
-			<Insulation>Nylon</Insulation>
-			<NoOfCores>24 Core</NoOfCores>
-			<Placement>Underground</Placement>
-			<FibreType>SMOF</FibreType>
-			<NoOfCables>1</NoOfCables>
-			<Configuration>1 x 24 Core</Configuration>
-			<Geometry>
-              <Polyline>
-                <Path>
-                  <PolySegment>
-                    <Vertex>
-                      <X>495477.386</X>
-                      <Y>6935689.305</Y>
-                    </Vertex>
-					<Vertex>
-                      <X>495477.135</X>
-                      <Y>6935677.777</Y>
-                    </Vertex>
-                  </PolySegment>
-                </Path>
-              </Polyline>
-            </Geometry>
-		  </Cable>
-		</Cables>
-		<Fittings>
-		  <Fitting>
-		    <ADACId>CommFitting</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<Purpose>Communication</Purpose>
-			<Type>Camera</Type>
-			<MountType>Post</MountType>
-			<Manufacturer xsi:nil="true" />
-			<ModelNumber xsi:nil="true" />
-			<Geometry>
-              <Point>
-                 <X>495477.386</X>
-                 <Y>6935689.305</Y>
-			  </Point>
-            </Geometry>
-		  </Fitting>
-		</Fittings>
-		<MonitoringStations>
-		  <MonitoringStation>
-		    <ADACId>CommFitting</ADACId>
-            <ComponentInfo>
-              <InfrastructureCode xsi:nil="true" />
-              <Owner>Council</Owner>
-              <DrawingNumber xsi:nil="true" />
-              <DrawingRevision xsi:nil="true" />
-              <ConstructionDate xsi:nil="true" />
-              <Department xsi:nil="true" />
-              <Surveyor xsi:nil="true" />
-              <Engineer xsi:nil="true" />
-              <Status>Newly Constructed</Status>
-              <DataQuality>APlus</DataQuality>
-              <Notes xsi:nil="true" />
-              <SupportingFiles xsi:nil="true" />
-            </ComponentInfo>
-			<Type>Weather Station</Type>
-			<Telemetry>false</Telemetry>
-			<Geometry>
-              <Point>
-                 <X>495477.261</X>
-                 <Y>6935683.541</Y>
-			  </Point>
-            </Geometry>
-		  </MonitoringStation>
-		</MonitoringStations>
-	  </Communication>
-	  <Cadastre>
+      </OpenSpace>
+      <Cadastre>
         <LandParcels>
           <Lot>
             <ADACId>lot15</ADACId>
@@ -4834,7 +4033,7 @@
             <LotNo>15</LotNo>
             <PlanNo>SP123456</PlanNo>
             <CancelledLotPlan>100RP987654</CancelledLotPlan>
-            <TitledArea_m2>570</TitledArea_m2>
+            <TitledArea_sqm>570</TitledArea_sqm>
             <Geometry>
               <Polygon>
                 <Ring>
@@ -4899,7 +4098,7 @@
             <LotNo>16</LotNo>
             <PlanNo>SP123456</PlanNo>
             <CancelledLotPlan>100RP987654</CancelledLotPlan>
-            <TitledArea_m2>460</TitledArea_m2>
+            <TitledArea_sqm>460</TitledArea_sqm>
             <Geometry>
               <Polygon>
                 <Ring>
@@ -4948,7 +4147,7 @@
             <LotNo>17</LotNo>
             <PlanNo>SP123456</PlanNo>
             <CancelledLotPlan>100RP987654</CancelledLotPlan>
-            <TitledArea_m2>461.28</TitledArea_m2>
+            <TitledArea_sqm>460</TitledArea_sqm>
             <Geometry>
               <Polygon>
                 <Ring>
@@ -4966,8 +4165,8 @@
                       <Y>6935722.268</Y>
                     </Vertex>
                     <Vertex>
-                      <X>495448.256</X>
-                      <Y>6935705.793</Y>
+                      <X>495448.269</X>
+                      <Y>6935710.268</Y>
                     </Vertex>
                     <Vertex>
                       <X>495476.254</X>
@@ -4997,7 +4196,7 @@
             <LotNo>18</LotNo>
             <PlanNo>SP123456</PlanNo>
             <CancelledLotPlan>100RP987654</CancelledLotPlan>
-            <TitledArea_m2>460</TitledArea_m2>
+            <TitledArea_sqm>460</TitledArea_sqm>
             <Geometry>
               <Polygon>
                 <Ring>

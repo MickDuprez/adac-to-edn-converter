@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!-- version 4.0.0 edited by Ian Read 2009 (RCC) -->
+<!-- version 4.0.1 edited by Ian Read 25 Aug 2011 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 6 Aug 2012 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 4 Jan 2013 (RCC) -->
+<!-- version 4.2.0 edited by Martin Dore' Feb 2015(LCC) change to version number only -->
+<!-- version 5.0.0 edited by Blake Slaven July 2017 (Lion Systems) to change version number only-->
+<!-- version 5.0.1 edited by Blake Slaven January 2018 (Lion Systems) to change version number only -->
+<xs:schema version="5.0.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.adac.com.au" targetNamespace="http://www.adac.com.au" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:simpleType name="String_NonEmpty">
+    <xs:annotation>
+      <xs:documentation>ASCII String Type to hold at least one character</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1">
+        <xs:annotation>
+          <xs:documentation>Must have at least one character.  This is important if user-entered string content is required in an element, as a plain xs:string will still validate even if it is empty</xs:documentation>
+        </xs:annotation>
+      </xs:minLength>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_40">
+    <xs:annotation>
+      <xs:documentation>ASCII String Type to hold Identifier strings.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_NonEmpty">
+      <xs:maxLength value="40">
+        <xs:annotation>
+          <xs:documentation>40 Characters is sufficient space to store string representations of very long integer IDs or GUIDs</xs:documentation>
+        </xs:annotation>
+      </xs:maxLength>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_254">
+    <xs:annotation>
+      <xs:documentation>ASCII String Type that meets the 254 Character restriction of DBF files</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_NonEmpty">
+      <xs:maxLength value="254">
+        <xs:annotation>
+          <xs:documentation>254 Characters is sufficient space for most simple notes or comments</xs:documentation>
+        </xs:annotation>
+      </xs:maxLength>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_128">
+    <xs:annotation>
+      <xs:documentation>ASCII String Type 128 Characters</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_NonEmpty">
+      <xs:maxLength value="128">
+        <xs:annotation>
+          <xs:documentation>128 Characters is sufficient space for most simple notes or comments</xs:documentation>
+        </xs:annotation>
+      </xs:maxLength>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_64">
+    <xs:annotation>
+      <xs:documentation>ASCII String Type 64 Characters in length</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_NonEmpty">
+      <xs:maxLength value="64">
+        <xs:annotation>
+          <xs:documentation>64 Characters is sufficient space for most names</xs:documentation>
+        </xs:annotation>
+      </xs:maxLength>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_32">
+    <xs:annotation>
+      <xs:documentation>ASCII String Type 32 Characters in length</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="String_NonEmpty">
+      <xs:maxLength value="32">
+        <xs:annotation>
+          <xs:documentation>32 Characters is sufficient space for most codes</xs:documentation>
+        </xs:annotation>
+      </xs:maxLength>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

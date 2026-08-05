@@ -1,0 +1,4930 @@
+{:schemacraft/format :instance-graph,
+ :schemacraft/version 1,
+ :schemacraft/kind :document,
+ :schemacraft/exported-at #inst "2026-08-05T01:49:04.760-00:00",
+ :schemacraft/instances
+ [{:instance/id #uuid "cf4e97e9-4aa2-43a1-aa6f-3bc1a8fe06ff",
+   :instance/element :Document,
+   :instance/value {},
+   :instance/root? true,
+   :instance/label "501-test"}
+  {:instance/id #uuid "00054576-4a70-4a11-9924-7a062745ecec",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "617a7f09-7f76-4803-a1c9-411ddf47bcbd",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "00eec966-11c6-4041-a891-fbab8ebb19f3",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :IntegerValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "eb157bc4-252b-447e-9a15-c04de59b79b9",
+   :instance/member-key :Attributes,
+   :instance/member-index 1}
+  {:instance/id #uuid "020b73c9-a44e-4a2e-aff7-eb99f1912494",
+   :instance/element :CircPipe,
+   :instance/value
+   {:Diameter_mm 225,
+    :Material "PVC-U",
+    :Class "SN8",
+    :JointType "RRJ"},
+   :instance/root? false,
+   :instance/parent-id #uuid "3a9ba842-fbad-4baa-b113-5903b0a5097c",
+   :instance/member-key :CircPipe}
+  {:instance/id #uuid "025312fc-581f-4abb-9e75-e08e08508f2e",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner :schemacraft/nil,
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "10e7c321-df48-41c3-995a-42e56bf29819",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "043b359a-2de3-4df0-8f82-a067de4df6e6",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "bc0a2970-fd02-46e0-94ca-2189636e4055",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "04afcd71-0b98-46a8-b46f-2e3bfa4e1b10",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e1d41ff-ebac-4a4c-bdb5-505ce6ec0259",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "062238df-7d8f-46c3-8338-a8afe6583a48",
+   :instance/element :WingWall,
+   :instance/value
+   {:LWW_Construction "Prefabricated",
+    :RWW_Material "Concrete",
+    :LWW_Thickness_m 0.1,
+    :LWW_Length_m 1.472,
+    :RWW_Construction "Prefabricated",
+    :LWW_Height_m 0.5,
+    :RWW_Height_m 0.5,
+    :RWW_Thickness_m 0.1,
+    :RWW_Length_m 1.472,
+    :LWW_Material "Concrete"},
+   :instance/root? false,
+   :instance/parent-id #uuid "617a7f09-7f76-4803-a1c9-411ddf47bcbd",
+   :instance/member-key :WingWall}
+  {:instance/id #uuid "066aa679-f1f7-40ac-8f24-2a4c1874383b",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "5db565c6-d80e-4faa-9e25-fc55a8d89f4a",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "06c61e39-10e8-42eb-ab5c-a6fb2ee7ac0e",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :DateValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "eb157bc4-252b-447e-9a15-c04de59b79b9",
+   :instance/member-key :Attributes,
+   :instance/member-index 3}
+  {:instance/id #uuid "0765574a-530f-492f-8b4b-7716055a63e0",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "4d239e2f-2d1f-49a8-a33d-ba8eeaf28138",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "07743c14-f8fe-4130-9981-6c5155a26490",
+   :instance/element :CircPipe,
+   :instance/value
+   {:Diameter_mm 300, :Material "RCP", :Class "4", :JointType "RRJ"},
+   :instance/root? false,
+   :instance/parent-id #uuid "fc91a3b5-bdb8-4bef-9de3-85f73f3ac36e",
+   :instance/member-key :CircPipe}
+  {:instance/id #uuid "0b48a4aa-690e-4f67-9911-4fb91523083d",
+   :instance/element :SubBaseLayer,
+   :instance/value
+   {:LayerType "GR24",
+    :LayerDepth_mm 200.0,
+    :Stabilisation :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "3c0e785e-039f-4a9c-bd27-2f7ad6056d50",
+   :instance/member-key :SubBaseLayer}
+  {:instance/id #uuid "0c810a7d-9a0b-4399-bd81-709453634b9d",
+   :instance/element :ShelterPolygon,
+   :instance/value
+   {:FloorMaterial "Concrete",
+    :Manufacturer :schemacraft/nil,
+    :WallMaterial "None",
+    :ADACId "666",
+    :ConstructionType "Prefabricated",
+    :Geometry
+    {:Polygon
+     {:Ring
+      [{:PolySegment
+        [{:X 495506.873, :Y 6935725.324}
+         {:X 495514.421, :Y 6935725.324}
+         {:X 495514.421, :Y 6935734.177}
+         {:X 495506.873, :Y 6935734.177}
+         {:X 495506.873, :Y 6935725.324}]}]}},
+    :ModelNumber :schemacraft/nil,
+    :RoofMaterial "Masonry Tiles",
+    :Type "Rigid"},
+   :instance/root? false,
+   :instance/parent-id #uuid "3cc2dde9-baf8-409d-ab69-8c28cb1155c7",
+   :instance/member-key :ShelterPolygon}
+  {:instance/id #uuid "0d53e61f-7d0e-43b2-8b82-b3d949001ee1",
+   :instance/element :ServiceFitting,
+   :instance/value
+   {:ADACId "SF1",
+    :Type "Nipple",
+    :BelowGround false,
+    :WaterSaver false,
+    :AutoShutOff true,
+    :Rotation 0.0,
+    :WaterQuality "Drinking Water",
+    :Geometry {:Point {:X 495490.392, :Y 6935721.669}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "64f3c5ec-924a-4926-99d1-20412bbc7187",
+   :instance/member-key :ServiceFittings,
+   :instance/member-index 0}
+  {:instance/id #uuid "0defd968-8516-42ff-86db-b6732bbe266c",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "f57e7deb-a54a-40fa-adca-a1d4a712b696",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "0efbe193-1c0f-45ca-9abd-d0c85f9453f9",
+   :instance/element :Sewerage,
+   :instance/value {},
+   :instance/root? false,
+   :instance/parent-id #uuid "2a455907-8d65-40e3-a253-020d56810cb1",
+   :instance/member-key :Sewerage}
+  {:instance/id #uuid "0fb82db7-2541-4cf8-bb08-7ccddbda9e9b",
+   :instance/element :SubGrade,
+   :instance/value {:CBR 9, :Stabilisation :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "fb7d2248-a80f-4f30-aa8b-c59c267ef7d1",
+   :instance/member-key :SubGrade}
+  {:instance/id #uuid "10e7c321-df48-41c3-995a-42e56bf29819",
+   :instance/element :RoadEdge,
+   :instance/value
+   {:ADACId "kerb 1",
+    :Type "Mountable Kerb and Channel",
+    :Material "Concrete",
+    :Width_mm 600,
+    :Length_m 17.778,
+    :PavementExtension_mm 150,
+    :Geometry
+    {:Polyline
+     [[{:PolySegment
+        [{:X 495480.272, :Y 6935675.231}
+         {:X 495480.269, :Y 6935674.721}
+         {:X 495479.875, :Y 6935671.76}
+         {:X 495478.738, :Y 6935669.083}
+         {:X 495477.074, :Y 6935666.939}
+         {:X 495475.737, :Y 6935665.912}
+         {:X 495472.971, :Y 6935664.744}
+         {:X 495470.282, :Y 6935664.316}
+         {:X 495469.037, :Y 6935664.276}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :RoadEdges,
+   :instance/member-index 0}
+  {:instance/id #uuid "1258e06e-8720-40c2-a63e-9de531edb396",
+   :instance/element :ChamberSize,
+   :instance/value {:choice/selected :Rectangular},
+   :instance/root? false,
+   :instance/parent-id #uuid "874f091b-79cc-4cfb-b7cc-d1de10704a83",
+   :instance/member-key :ChamberSize}
+  {:instance/id #uuid "12966226-5a94-4879-82e3-0ca0fcfcf562",
+   :instance/element :BoatingFacility,
+   :instance/value
+   {:ADACId "Boaty McBoatface",
+    :Type "Ramp",
+    :Material "Aluminium",
+    :Geometry
+    {:Polygon
+     {:Ring
+      [{:PolySegment
+        [{:X 495517.043, :Y 6935736.854}
+         {:X 495518.024, :Y 6935736.854}
+         {:X 495518.024, :Y 6935731.419}
+         {:X 495517.043, :Y 6935731.419}
+         {:X 495517.043, :Y 6935736.854}]}]}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :BoatingFacilities,
+   :instance/member-index 0}
+  {:instance/id #uuid "12cfeafa-2d25-4629-9d88-1e77c24e75c9",
+   :instance/element :Pathways_Fragment,
+   :instance/value {:choice/selected :Pathway},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :Pathways,
+   :instance/member-index 0}
+  {:instance/id #uuid "12ed4a20-eb00-4da6-b37c-9b2eb1e20ffa",
+   :instance/element :MaintenanceHole,
+   :instance/value
+   {:FloorMaterial "Concrete",
+    :MH_Number "2",
+    :WallMaterial "Concrete",
+    :ADACId "2/1",
+    :Rotation 0.0,
+    :SurfaceLevel_m 51.698,
+    :Geometry {:Point {:X 495477.893, :Y 6935675.717, :Z 51.698}},
+    :LidMaterial "Cast Iron",
+    :DropType "Change In Direction Through MH",
+    :Chainage_m :schemacraft/nil,
+    :WallConstruction "Prefabricated",
+    :OffsetDistance_m :schemacraft/nil,
+    :RoofMaterial "Concrete",
+    :FloorConstruction "Prefabricated",
+    :TieDistance_m :schemacraft/nil,
+    :Use "Maintenance Hole",
+    :InvertLevel_m 49.542,
+    :LineNumber "1",
+    :Lining :schemacraft/nil,
+    :CatchmentPS :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "0efbe193-1c0f-45ca-9abd-d0c85f9453f9",
+   :instance/member-key :MaintenanceHoles,
+   :instance/member-index 1}
+  {:instance/id #uuid "134e6029-3dcb-48ba-9b52-a573f01b4c0a",
+   :instance/element :Circular,
+   :instance/value {:Diameter_mm 1050},
+   :instance/root? false,
+   :instance/parent-id #uuid "85902727-b847-4f45-87a1-73b4fb43fb33",
+   :instance/member-key :Circular}
+  {:instance/id #uuid "13d976d8-cd23-4772-9d4e-8ff296153eea",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode "PIP123",
+    :Owner "Council",
+    :ConstructionDate "2017-06-28",
+    :DataQuality "APlus",
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Sewerage",
+    :Notes "The quick brown fox jumps over the lazy dog",
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "b90dec31-2eb6-4087-a1ad-863396154578",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "13fd023f-de42-4065-90da-81538651d3ea",
+   :instance/element :LandParcels_Fragment,
+   :instance/value {:choice/selected :Lot},
+   :instance/root? false,
+   :instance/parent-id #uuid "b3121585-d926-4bc4-a2b6-df30b08af114",
+   :instance/member-key :LandParcels,
+   :instance/member-index 0}
+  {:instance/id #uuid "17591490-5b1b-43bb-a431-50fdac629032",
+   :instance/element :IntegerValue,
+   :instance/value
+   {:IntegerValue_content 999, :valname "IntegerFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "8f9c8693-cca6-4614-a81f-d473e01f666a",
+   :instance/member-key :IntegerValue}
+  {:instance/id #uuid "18b773c2-8731-4072-bea1-d202a50a863d",
+   :instance/element :Surface,
+   :instance/value {},
+   :instance/root? false,
+   :instance/parent-id #uuid "2a455907-8d65-40e3-a253-020d56810cb1",
+   :instance/member-key :Surface}
+  {:instance/id #uuid "1945c1fb-f97c-48b1-834e-ecf3acd68812",
+   :instance/element :Surveyor,
+   :instance/value
+   {:Name "Surveyors'R'us",
+    :DateFinalSurvey "2017-07-01",
+    :DateApproved "2017-07-01"},
+   :instance/root? false,
+   :instance/parent-id #uuid "e1aef835-f202-4d53-93d4-f61d0bf9bd06",
+   :instance/member-key :Surveyor}
+  {:instance/id #uuid "1b343e66-11c4-49a1-a4af-0fe7dbc46710",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :TimeValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "bc0a2970-fd02-46e0-94ca-2189636e4055",
+   :instance/member-key :Attributes,
+   :instance/member-index 4}
+  {:instance/id #uuid "1c0078cb-a86a-4f83-92de-de363aca75d8",
+   :instance/element :DateValue,
+   :instance/value
+   {:DateValue_content "2017-07-01", :valname "DateFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "06c61e39-10e8-42eb-ab5c-a6fb2ee7ac0e",
+   :instance/member-key :DateValue}
+  {:instance/id #uuid "1dc61346-5c6f-4803-a1a9-8915e16e7e74",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Sewerage",
+    :Notes "Extra information goes here",
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "12ed4a20-eb00-4da6-b37c-9b2eb1e20ffa",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "1e7a040a-6c8e-4215-baf8-1e7241957af1",
+   :instance/element :LandParcels_Fragment,
+   :instance/value {:choice/selected :Lot},
+   :instance/root? false,
+   :instance/parent-id #uuid "b3121585-d926-4bc4-a2b6-df30b08af114",
+   :instance/member-key :LandParcels,
+   :instance/member-index 2}
+  {:instance/id #uuid "1e912d4f-ff7b-4088-976f-60ffe74894fb",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Sewerage",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Existing"},
+   :instance/root? false,
+   :instance/parent-id #uuid "2dbe0e85-85f8-4799-ac81-55c97a767d95",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "1f392664-3821-4558-9ac1-99a2ccf06ef2",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "c9b7ce8c-637d-478b-9721-60d4b4d0bafd",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "1fc6a45a-20c5-4ef1-9085-0402a1dc2875",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "APlus",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Water Supply",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "939b2ef8-ab62-45c2-b108-ea33bd53c373",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "1fce9ff5-d6bf-4157-8a12-a0556015987d",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "3d5d32e9-a4f5-4303-a80e-b535c34e4884",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "219da969-40c5-4b39-bf4b-f5c4e5b2fc10",
+   :instance/element :SurfaceDrain,
+   :instance/value
+   {:LiningMaterial "Concrete",
+    :Length_m 14.461,
+    :ADACId "SurfDrain",
+    :BatterMaterial "Grassed",
+    :DrainShape "Flat Bottom Drain",
+    :Geometry
+    {:Polyline
+     {:Path
+      {:PolySegment
+       [{:X 495475.946,
+         :Y 6935652.48,
+         :Z 47.97,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495473.761,
+         :Y 6935647.288,
+         :Z 47.822,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495473.938,
+         :Y 6935638.499,
+         :Z 47.031,
+         :GNSSMetadata :schemacraft/nil}]}}},
+    :LinedWidth_m 1.25,
+    :DS_InvertLevel_m 47.031,
+    :BatterWidth_m 3.25,
+    :Type "Overland Flow Path",
+    :US_InvertLevel_m 47.97,
+    :AverageGrade 6.493},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :SurfaceDrains,
+   :instance/member-index 0}
+  {:instance/id #uuid "21b0c0fe-c8eb-402a-baa9-fac268d430ce",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "874f091b-79cc-4cfb-b7cc-d1de10704a83",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "22c70417-b5c0-4de3-b5bf-48c52be19606",
+   :instance/element :DecimalValue,
+   :instance/value
+   {:DecimalValue_content 9.99, :valname "DecimalFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "65978ee0-abcb-42b5-b224-6ae16fce4094",
+   :instance/member-key :DecimalValue}
+  {:instance/id #uuid "22d2ebf0-ee03-4de1-9197-84a57a09134b",
+   :instance/element :SubGrade,
+   :instance/value {:CBR 3, :Stabilisation :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "daffccbb-b41f-4353-883f-6c04048cf075",
+   :instance/member-key :SubGrade}
+  {:instance/id #uuid "2332e1a1-f8eb-4b9e-8ae3-54d233157a21",
+   :instance/element :Circular,
+   :instance/value {:Diameter_mm 1050},
+   :instance/root? false,
+   :instance/parent-id #uuid "60589ea6-b4b4-47cc-9663-4ec0da3d54b4",
+   :instance/member-key :Circular}
+  {:instance/id #uuid "235d5738-b4a0-4aab-a642-5a801f22441a",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "ae76923c-147a-455f-8c16-8cd5811bcc41",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "23bb2f48-c9b4-4fc9-8f4d-4ee22b62d042",
+   :instance/element :Pathways_Fragment,
+   :instance/value {:choice/selected :PathStructure},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :Pathways,
+   :instance/member-index 1}
+  {:instance/id #uuid "24205cd8-c545-40e6-9a35-d335be20e12f",
+   :instance/element :WSUDPoints_Fragment,
+   :instance/value {:choice/selected :NonGPTSimple},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :WSUDPoints,
+   :instance/member-index 2}
+  {:instance/id #uuid "252e0227-d9e3-4231-8f6c-d76004a7a2fb",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "9c7451e4-27b5-4f40-855d-fbe439b3b826",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "25cde343-9ac2-4b47-9dd3-813ad179cfa7",
+   :instance/element :LowerSubBaseLayer,
+   :instance/value
+   {:LayerType "GR25", :LayerDepth_mm 200.0, :Stabilisation "Cement"},
+   :instance/root? false,
+   :instance/parent-id #uuid "857711c2-0601-4b2c-a389-169af5e69471",
+   :instance/member-key :LowerSubBaseLayer}
+  {:instance/id #uuid "2717b3ff-eefc-44cb-bed9-952aa5c2eae0",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "2cecad84-a95d-4d66-be58-ff1a768f7fc4",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "27375cb8-9779-440f-b47c-3f86b639ffef",
+   :instance/element :Engineer,
+   :instance/value
+   {:Name "Different Engineer", :DateApproved "2017-06-27"},
+   :instance/root? false,
+   :instance/parent-id #uuid "3e88ef2f-3ea7-4fb3-8ba6-1056bea727c4",
+   :instance/member-key :Engineer}
+  {:instance/id #uuid "281e7a81-e7bd-4d95-b2bf-afb1db89a24d",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "abbcc181-bb5d-4b6f-8189-548e0e419228",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "29c8addb-5442-41b0-b830-c1d131bd86c9",
+   :instance/element :BridgeAbutment,
+   :instance/value
+   {:ADACId "Butt1",
+    :BridgeID "Bridge1",
+    :Material "Prestressed Precast Concrete",
+    :Geometry
+    {:Polygon
+     [[{:PolySegment
+        [{:X 495414.888, :Y 6935736.369}
+         {:X 495419.218, :Y 6935736.369}
+         {:X 495419.218, :Y 6935754.584}
+         {:X 495414.888, :Y 6935754.584}
+         {:X 495414.888, :Y 6935736.369}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "aee07386-f853-4d34-b03e-d23b483153de",
+   :instance/member-key :BridgeAbutment}
+  {:instance/id #uuid "2a455907-8d65-40e3-a253-020d56810cb1",
+   :instance/element :ProjectData,
+   :instance/value {},
+   :instance/root? false,
+   :instance/parent-id #uuid "e1aef835-f202-4d53-93d4-f61d0bf9bd06",
+   :instance/member-key :ProjectData}
+  {:instance/id #uuid "2b59058e-557c-407d-b83b-a8275002e56c",
+   :instance/element :EndStructurePolyline,
+   :instance/value
+   {:ADACId "1/1",
+    :StructureID "1/1",
+    :StructureLevel_m 48.832,
+    :GrateType "None",
+    :TideGate "None",
+    :Geometry
+    {:Polyline
+     {:Path
+      {:PolySegment
+       [{:X 495474.587,
+         :Y 6935653.015,
+         :Z 48.482,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495475.442,
+         :Y 6935654.212,
+         :Z 48.832,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495477.445,
+         :Y 6935653.608,
+         :Z 48.832,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495477.495,
+         :Y 6935652.137,
+         :Z 48.482,
+         :GNSSMetadata :schemacraft/nil}]}}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "c2e9cc61-abb8-4180-b1bd-84b14771f266",
+   :instance/member-key :EndStructurePolyline}
+  {:instance/id #uuid "2cecad84-a95d-4d66-be58-ff1a768f7fc4",
+   :instance/element :Fixture,
+   :instance/value
+   {:ADACId "222",
+    :Type "Dog bag dispenser",
+    :Material "Aluminium",
+    :Manufacturer "Dog'gone'it",
+    :ModelNumber "black bag with little bones printed on 'em",
+    :Geometry {:Point {:X 495489.594, :Y 6935748.453}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :GeneralFixtures,
+   :instance/member-index 0}
+  {:instance/id #uuid "2cf4b4ca-c02c-4517-9767-fd007c88c69a",
+   :instance/element :TextValue,
+   :instance/value
+   {:TextValue_content "Example of text value",
+    :valname "TextFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "ab89a6eb-3055-48a1-89b5-5f41d1015375",
+   :instance/member-key :TextValue}
+  {:instance/id #uuid "2dbe0e85-85f8-4799-ac81-55c97a767d95",
+   :instance/element :MaintenanceHole,
+   :instance/value
+   {:FloorMaterial "Concrete",
+    :MH_Number "EX1",
+    :WallMaterial "Concrete",
+    :ADACId "EX1/1",
+    :Rotation 0.0,
+    :SurfaceLevel_m 51.731,
+    :Geometry
+    {:Point
+     {:X 495488.997,
+      :Y 6935666.169,
+      :Z 51.731,
+      :GNSSMetadata :schemacraft/nil}},
+    :LidMaterial "Cast Iron",
+    :DropType "Change In Direction Through MH",
+    :Chainage_m :schemacraft/nil,
+    :WallConstruction "Prefabricated",
+    :OffsetDistance_m :schemacraft/nil,
+    :RoofMaterial "Concrete",
+    :FloorConstruction "Prefabricated",
+    :TieDistance_m :schemacraft/nil,
+    :Use "Maintenance Hole",
+    :InvertLevel_m 48.542,
+    :LineNumber "1",
+    :Lining :schemacraft/nil,
+    :CatchmentPS :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "0efbe193-1c0f-45ca-9abd-d0c85f9453f9",
+   :instance/member-key :MaintenanceHoles,
+   :instance/member-index 2}
+  {:instance/id #uuid "2dc2a960-0527-4d51-a022-826d66e6b979",
+   :instance/element :SurveyMark,
+   :instance/value
+   {:ADACId "PSM",
+    :MarkName "PSM456",
+    :Geometry {:Point {:X 495513.704, :Y 6935647.441, :Z 46.601}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "b3121585-d926-4bc4-a2b6-df30b08af114",
+   :instance/member-key :SurveyMarks,
+   :instance/member-index 0}
+  {:instance/id #uuid "31ad6032-92be-476d-8712-2ef3b3996904",
+   :instance/element :Apron,
+   :instance/value
+   {:Apron_Width_m 3.038,
+    :Apron_Thickness_m 0.15,
+    :Apron_Area_m2 8.073,
+    :Apron_Material "Concrete Energy Dissepiment",
+    :Apron_Construction "Insitu"},
+   :instance/root? false,
+   :instance/parent-id #uuid "2b59058e-557c-407d-b83b-a8275002e56c",
+   :instance/member-key :Apron}
+  {:instance/id #uuid "3247842d-3e19-4f3e-88d1-b46766da618c",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "APlus",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Water Supply",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "662a8fb0-a058-485c-a9a9-18a2f38a4e96",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "3451b681-c837-4479-8acb-ca6c5f969252",
+   :instance/element :Surface,
+   :instance/value
+   {:SurfaceType "AC",
+    :SurfaceThickness_mm 35,
+    :SurfaceNomWidth_m 7.0},
+   :instance/root? false,
+   :instance/parent-id #uuid "daffccbb-b41f-4353-883f-6c04048cf075",
+   :instance/member-key :Surface}
+  {:instance/id #uuid "34b397a6-50bd-4983-a333-2ef0a7d00b3b",
+   :instance/element :GPTComplex,
+   :instance/value
+   {:ADACId "123456",
+    :MaxInternalVolume_m3 :schemacraft/nil,
+    :Sqid_Id "123456",
+    :Function3 :schemacraft/nil,
+    :MaintenanceCycle_mnths 36,
+    :Rotation 0.0,
+    :DS_PipeDiameter_mm 750,
+    :SumpDepth_m :schemacraft/nil,
+    :HasBoards false,
+    :Function2 "Sediment Capture",
+    :SurfaceLevel_m 42.983,
+    :US_PipeDiameter_mm 600,
+    :Geometry
+    {:Point
+     {:X 495471.416,
+      :Y 6935651.983,
+      :Z 42.983,
+      :GNSSMetadata :schemacraft/nil}},
+    :Function1 "Gross Pollutant Capture",
+    :Depth_m 3.33,
+    :DS_InvertLevel_m 41.087,
+    :CleanoutLevel_m 39.999,
+    :MaxContaminantVolume_m3 :schemacraft/nil,
+    :HasBasket false,
+    :DesignFlow_m3s 25.0,
+    :HasFilterMedia true,
+    :US_InvertLevel_m 41.565},
+   :instance/root? false,
+   :instance/parent-id #uuid "c054f819-8398-4d8f-83c3-8a86d104ac2a",
+   :instance/member-key :GPTComplex}
+  {:instance/id #uuid "3552204b-321e-4d71-b2f7-ac04d54993bf",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "eeb81c58-aca8-42dd-a7ea-77fed32f8efb",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "35715ad3-5f11-4fd3-a068-664d69c61882",
+   :instance/element :NonGPTSimple,
+   :instance/value
+   {:Manufacturer :schemacraft/nil,
+    :Length_mm 2700,
+    :ADACId "simplegpt",
+    :Sqid_Id "simple gpt",
+    :Function3 :schemacraft/nil,
+    :MaintenanceCycle_mnths :schemacraft/nil,
+    :Rotation 0.0,
+    :Width_mm 1350,
+    :Function2 :schemacraft/nil,
+    :Geometry
+    {:Point
+     {:X 495478.702,
+      :Y 6935650.45,
+      :Z 47.043,
+      :GNSSMetadata :schemacraft/nil}},
+    :Construction "Insitu",
+    :ModelNumber :schemacraft/nil,
+    :Function1 "Sediment Capture",
+    :TreatmentMeasure "Sand Filter"},
+   :instance/root? false,
+   :instance/parent-id #uuid "24205cd8-c545-40e6-9a35-d335be20e12f",
+   :instance/member-key :NonGPTSimple}
+  {:instance/id #uuid "36028e7a-c9ee-40a4-bb72-c61768cce785",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "APlus",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Water Supply",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "42459dac-ab08-4892-aa89-b272efce4719",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "362326e4-9703-4ffa-9dfa-2ea13c9f5931",
+   :instance/element :ChamberSize,
+   :instance/value {:choice/selected :Rectangular},
+   :instance/root? false,
+   :instance/parent-id #uuid "e53b7e1c-0974-4f64-9585-2afed58f5808",
+   :instance/member-key :ChamberSize}
+  {:instance/id #uuid "36fbe86f-d66a-4270-a324-75a9cb87f46e",
+   :instance/element :Contour,
+   :instance/value
+   {:ADACId "2873",
+    :Status "Proposed",
+    :Elevation_m 52.0,
+    :Geometry
+    {:Polyline
+     [{:PolySegment
+       [{:X 495449.115, :Y 6935712.756}
+        {:X 495457.171, :Y 6935707.388}
+        {:X 495464.813, :Y 6935709.315}
+        {:X 495470.735, :Y 6935706.356}
+        {:X 495477.069, :Y 6935707.87}]}]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "18b773c2-8731-4072-bea1-d202a50a863d",
+   :instance/member-key :Contours,
+   :instance/member-index 0}
+  {:instance/id #uuid "376f9125-351a-4182-b161-f1f9f2456ec6",
+   :instance/element :RoadIsland,
+   :instance/value
+   {:ADACId "Island 9",
+    :Type "Splitter",
+    :Area_sqm 12.746,
+    :InfillType "Pavers",
+    :Geometry
+    {:Polygon
+     [[{:PolySegment
+        [{:X 495478.709, :Y 6935663.239}
+         {:X 495480.007, :Y 6935663.795}
+         {:X 495479.859, :Y 6935662.386}
+         {:X 495476.779, :Y 6935659.938}
+         {:X 495471.769, :Y 6935659.011}
+         {:X 495470.693, :Y 6935659.456}
+         {:X 495471.547, :Y 6935660.124}
+         {:X 495475.925, :Y 6935661.162}
+         {:X 495478.709, :Y 6935663.239}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :RoadIslands,
+   :instance/member-index 0}
+  {:instance/id #uuid "3781ba4a-1d1a-445f-9e07-81c1b0cc67fe",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :IntegerValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "652f6bc0-ecbf-41a3-be34-a0d2146dfe06",
+   :instance/member-key :Attributes,
+   :instance/member-index 1}
+  {:instance/id #uuid "387c5850-3cf0-4146-9b6e-2a8dddfd5b29",
+   :instance/element :DrawingExtents,
+   :instance/value {},
+   :instance/root? false,
+   :instance/parent-id #uuid "e1aef835-f202-4d53-93d4-f61d0bf9bd06",
+   :instance/member-key :DrawingExtents}
+  {:instance/id #uuid "397d1051-2cb2-4849-bf8f-9216b545a10e",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "3c3e0d08-628d-432f-a1bc-a9c490934699",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "39ef6735-363c-4a8a-aaa1-6815ef789895",
+   :instance/element :Pit,
+   :instance/value
+   {:PitNumber "2/1",
+    :ADACId "2/1",
+    :Rotation 0.0,
+    :SurfaceLevel_m 50.999,
+    :Geometry
+    {:Point
+     {:X 495479.07,
+      :Y 6935662.556,
+      :Z 50.999,
+      :GNSSMetadata :schemacraft/nil}},
+    :LidType "Circ Cast Iron",
+    :Lintel :schemacraft/nil,
+    :Depth_m 2.217,
+    :Use "Maintenance Hole",
+    :FireRetardant false,
+    :OutletType "Dry",
+    :InvertLevel_m 48.782,
+    :ChamberConstruction "Insitu",
+    :Inlet :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :Pits,
+   :instance/member-index 3}
+  {:instance/id #uuid "3a23967a-145b-4df0-ac05-1d36d1c5bf94",
+   :instance/element :Shelter,
+   :instance/value
+   {:FloorMaterial "Concrete",
+    :Manufacturer :schemacraft/nil,
+    :WallMaterial "None",
+    :ADACId "666",
+    :ConstructionType "Prefabricated",
+    :Geometry {:Point {:X 495510.647, :Y 6935729.751}},
+    :ModelNumber :schemacraft/nil,
+    :RoofMaterial "Masonry Tiles",
+    :Type "Rigid"},
+   :instance/root? false,
+   :instance/parent-id #uuid "5763328c-b445-4b42-b845-30be8a335331",
+   :instance/member-key :Shelter}
+  {:instance/id #uuid "3a9ba842-fbad-4baa-b113-5903b0a5097c",
+   :instance/element :PipeStructure,
+   :instance/value {:choice/selected :CircPipe},
+   :instance/root? false,
+   :instance/parent-id #uuid "574c541e-b549-4058-a2c4-a0f2b8258cfe",
+   :instance/member-key :PipeStructure}
+  {:instance/id #uuid "3b334327-ed12-4253-8842-856c7e8d0919",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner :schemacraft/nil,
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "5d5c44dc-9227-42e5-b4ac-33b040fbfc09",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "3b3521b9-c06f-4b58-b350-a62e2598376b",
+   :instance/element :DateValue,
+   :instance/value
+   {:DateValue_content "2017-07-01", :valname "DateFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "6e254e35-7e8a-446d-8334-ae21d97de641",
+   :instance/member-key :DateValue}
+  {:instance/id #uuid "3b400978-670a-4a1a-bd5b-f50093ba906d",
+   :instance/element :WingWall,
+   :instance/value
+   {:LWW_Construction "Prefabricated",
+    :RWW_Material "Concrete",
+    :LWW_Thickness_m 0.1,
+    :LWW_Length_m 1.472,
+    :RWW_Construction "Prefabricated",
+    :LWW_Height_m 0.5,
+    :RWW_Height_m 0.5,
+    :RWW_Thickness_m 0.1,
+    :RWW_Length_m 1.472,
+    :LWW_Material "Concrete"},
+   :instance/root? false,
+   :instance/parent-id #uuid "2b59058e-557c-407d-b83b-a8275002e56c",
+   :instance/member-key :WingWall}
+  {:instance/id #uuid "3bccada5-e5be-4e2d-97c9-75bab89f0f77",
+   :instance/element :Circular,
+   :instance/value {:Diameter_mm 1050},
+   :instance/root? false,
+   :instance/parent-id #uuid "7fa14d21-1145-480a-a8b1-66466be3b84d",
+   :instance/member-key :Circular}
+  {:instance/id #uuid "3c0e785e-039f-4a9c-bd27-2f7ad6056d50",
+   :instance/element :PavementStructure,
+   :instance/value
+   {:PavementType "Flexible", :LowerSubBaseLayer :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "fb7d2248-a80f-4f30-aa8b-c59c267ef7d1",
+   :instance/member-key :PavementStructure}
+  {:instance/id #uuid "3c3e0d08-628d-432f-a1bc-a9c490934699",
+   :instance/element :BicycleFitting,
+   :instance/value
+   {:ADACId "333",
+    :Type "Banana Rail",
+    :Material "Aluminium",
+    :Manufacturer :schemacraft/nil,
+    :ModelNumber :schemacraft/nil,
+    :Geometry {:Point {:X 495489.594, :Y 6935741.409}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :BicycleFittings,
+   :instance/member-index 0}
+  {:instance/id #uuid "3cc2dde9-baf8-409d-ab69-8c28cb1155c7",
+   :instance/element :Shelters_Fragment,
+   :instance/value {:choice/selected :ShelterPolygon},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :Shelters,
+   :instance/member-index 1}
+  {:instance/id #uuid "3d5d32e9-a4f5-4303-a80e-b535c34e4884",
+   :instance/element :GPTSimple,
+   :instance/value
+   {:Manufacturer "ECOSOL",
+    :Length_mm 900,
+    :ADACId "4/1 basket",
+    :Sqid_Id "basket1",
+    :MaintenanceCycle_mnths :schemacraft/nil,
+    :Rotation 0.0,
+    :Width_mm 600,
+    :Geometry
+    {:Point
+     {:X 495480.292,
+      :Y 6935717.479,
+      :Z 52.271,
+      :GNSSMetadata :schemacraft/nil}},
+    :Construction "Prefabricated",
+    :ModelNumber "RSF100",
+    :Function1 "Gross Pollutant Capture",
+    :TreatmentMeasure "Basket",
+    :Material :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "f00b7893-d8a4-407d-aaff-ca5641c48262",
+   :instance/member-key :GPTSimple}
+  {:instance/id #uuid "3e88ef2f-3ea7-4fb3-8ba6-1056bea727c4",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate "2017-06-28",
+    :DataQuality "APlus",
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Sewerage",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "e4bf1dfc-9ad5-4917-8dd5-a2c3e7640ea1",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "3ffbf26b-7be6-4810-b4b6-8cf5ead31d50",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "29c8addb-5442-41b0-b830-c1d131bd86c9",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "40be63c0-be28-4b27-9ce6-3ff1f6c53831",
+   :instance/element :BarrierPoint,
+   :instance/value
+   {:ADACId "121",
+    :Type "Bollard Removable",
+    :UprightMaterial "Timber",
+    :Geometry {:Point {:X 495489.033, :Y 6935742.531}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :BarriersPoint,
+   :instance/member-index 0}
+  {:instance/id #uuid "40d8a016-213d-4b97-91f5-e85d3e775199",
+   :instance/element :ActivityArea,
+   :instance/value
+   {:ADACId "123",
+    :Use "Play",
+    :Type "Kids Playground",
+    :Material "Bark",
+    :Thickness_mm 250.0,
+    :Geometry
+    {:Polygon
+     [[{:PolySegment
+        [{:X 495489.532, :Y 6935723.329}
+         {:X 495502.756, :Y 6935723.329}
+         {:X 495502.756, :Y 6935740.349}
+         {:X 495489.532, :Y 6935740.349}
+         {:X 495489.532, :Y 6935723.329}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :ActivityAreas,
+   :instance/member-index 0}
+  {:instance/id #uuid "42459dac-ab08-4892-aa89-b272efce4719",
+   :instance/element :MaintenanceHole,
+   :instance/value
+   {:FloorMaterial "Concrete",
+    :WallMaterial "Concrete",
+    :ADACId "mh",
+    :Rotation 0.0,
+    :SurfaceLevel_m 51.702,
+    :Geometry {:Point {:X 495490.092, :Y 6935678.003}},
+    :LidMaterial "Aluminium",
+    :WallConstruction "Prefabricated",
+    :RoofMaterial "Concrete",
+    :FloorConstruction "Prefabricated",
+    :Use "Valve Pit",
+    :InvertLevel_m 48.888},
+   :instance/root? false,
+   :instance/parent-id #uuid "64f3c5ec-924a-4926-99d1-20412bbc7187",
+   :instance/member-key :MaintenanceHoles,
+   :instance/member-index 0}
+  {:instance/id #uuid "4246a347-3333-40be-8968-ce4fae651fd7",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "40be63c0-be28-4b27-9ce6-3ff1f6c53831",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "42689f53-d803-4946-b8eb-82dd55766091",
+   :instance/element :Circular,
+   :instance/value {:Diameter_mm 1050},
+   :instance/root? false,
+   :instance/parent-id #uuid "9fff40de-7165-4270-a288-523163b9de54",
+   :instance/member-key :Circular}
+  {:instance/id #uuid "44e086f7-ae67-4abe-9392-27b314bcf51e",
+   :instance/element :BridgeSuperstructure,
+   :instance/value
+   {:ADACId "SS1",
+    :BridgeID "Bridge1",
+    :Material "Fibre Composite",
+    :Geometry
+    {:Polygon
+     [[{:PolySegment
+        [{:X 495414.888, :Y 6935736.369}
+         {:X 495478.022, :Y 6935736.369}
+         {:X 495478.022, :Y 6935754.584}
+         {:X 495414.888, :Y 6935754.584}
+         {:X 495414.888, :Y 6935736.369}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "f0493c51-5672-4c6f-8bd7-3a348a3e8af0",
+   :instance/member-key :BridgeSuperstructure}
+  {:instance/id #uuid "4515d896-3b78-4986-95bb-87b889f9d391",
+   :instance/element :Building,
+   :instance/value
+   {:ADACId "1112",
+    :Type "Amenities",
+    :Material "Combination",
+    :Geometry
+    {:Polygon
+     {:Ring
+      [{:PolySegment
+        [{:X 495513.466, :Y 6935738.379}
+         {:X 495517.327, :Y 6935739.431}
+         {:X 495515.996, :Y 6935744.314}
+         {:X 495512.136, :Y 6935743.261}
+         {:X 495513.466, :Y 6935738.379}]}]}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :Buildings,
+   :instance/member-index 0}
+  {:instance/id #uuid "4562e112-a51b-4a2f-ae04-8ae28c7e4c64",
+   :instance/element :Enhancements,
+   :instance/value {},
+   :instance/root? false,
+   :instance/parent-id #uuid "2a455907-8d65-40e3-a253-020d56810cb1",
+   :instance/member-key :Enhancements}
+  {:instance/id #uuid "4782ccab-c339-4f12-a7c1-8eeffde66988",
+   :instance/element :Circular,
+   :instance/value {:Diameter_mm 1200},
+   :instance/root? false,
+   :instance/parent-id #uuid "67b68640-8a64-45c7-955d-c2fe8a5ef173",
+   :instance/member-key :Circular}
+  {:instance/id #uuid "47e2c870-a631-4a9b-b60f-aaba84cdd4c8",
+   :instance/element :BaseLayer,
+   :instance/value
+   {:LayerType "GR21",
+    :LayerDepth_mm 100.0,
+    :Stabilisation :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "857711c2-0601-4b2c-a389-169af5e69471",
+   :instance/member-key :BaseLayer}
+  {:instance/id #uuid "48b0cdec-a08e-4067-8c76-ab9ae7942804",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "44e086f7-ae67-4abe-9392-27b314bcf51e",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "4998754f-0065-415d-85ac-112c889bd60a",
+   :instance/element :ChainageLine,
+   :instance/value
+   {:ADACId "4873",
+    :ChainageID "CH1",
+    :StartChainage_m 0.0,
+    :EndChainage_m 53.388,
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495483.499, :Y 6935668.01}
+         {:X 495484.054, :Y 6935721.396}]}]}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "b3121585-d926-4bc4-a2b6-df30b08af114",
+   :instance/member-key :ChainageLines,
+   :instance/member-index 0}
+  {:instance/id #uuid "4a1a1066-9668-4042-8c41-ce074f2e64e6",
+   :instance/element :PipeStructure,
+   :instance/value {:choice/selected :BoxPipe},
+   :instance/root? false,
+   :instance/parent-id #uuid "d131e131-69f4-4a46-b683-58ddd8bc3a89",
+   :instance/member-key :PipeStructure}
+  {:instance/id #uuid "4abb6cbb-6309-4fec-8a14-503880c665db",
+   :instance/element :Size,
+   :instance/value {:choice/selected :Circular},
+   :instance/root? false,
+   :instance/parent-id #uuid "9fde17e3-823e-4d1b-9174-35ec3e31253e",
+   :instance/member-key :Size}
+  {:instance/id #uuid "4b2cc5e7-c131-41e9-93cd-c0d0a24eca87",
+   :instance/element :CircPipe,
+   :instance/value
+   {:Diameter_mm 450, :Material "RCP", :Class "2", :JointType "RRJ"},
+   :instance/root? false,
+   :instance/parent-id #uuid "8e8eb6cc-f1de-4da7-bf6c-3b7d6ce60675",
+   :instance/member-key :CircPipe}
+  {:instance/id #uuid "4bdd4905-1102-4cbf-9ece-6fc4181f114b",
+   :instance/element :FlushPoint,
+   :instance/value
+   {:ADACId "FP",
+    :Function "Cleanout",
+    :Geometry {:Point {:X 495480.125, :Y 6935675.809}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :FlushPoints,
+   :instance/member-index 0}
+  {:instance/id #uuid "4be6cb97-ddde-4068-bc96-e167f85b2942",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :DateTimeValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "652f6bc0-ecbf-41a3-be34-a0d2146dfe06",
+   :instance/member-key :Attributes,
+   :instance/member-index 5}
+  {:instance/id #uuid "4c27a658-d4b4-4ba4-a03e-1b73aa170912",
+   :instance/element :Bridges_Fragment,
+   :instance/value {:choice/selected :BridgeExtent},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :Bridges,
+   :instance/member-index 0}
+  {:instance/id #uuid "4c7e4bbf-48d3-482e-b61c-310e6c29aca8",
+   :instance/element :BridgePier,
+   :instance/value
+   {:ADACId "Pier1",
+    :BridgeID "Bridge1",
+    :Material "Composite",
+    :Geometry
+    {:Polygon
+     [[{:PolySegment
+        [{:X 495445.503, :Y 6935737.191}
+         {:X 495448.367, :Y 6935737.191}
+         {:X 495448.367, :Y 6935753.801}
+         {:X 495445.503, :Y 6935753.801}
+         {:X 495445.503, :Y 6935737.191}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "5d0046e1-69ef-4e28-8ad8-c16d5f111f59",
+   :instance/member-key :BridgePier}
+  {:instance/id #uuid "4cc0e35e-cb04-4562-8336-52a70e4cefa9",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "daffccbb-b41f-4353-883f-6c04048cf075",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "4d239e2f-2d1f-49a8-a33d-ba8eeaf28138",
+   :instance/element :BarrierContinuous,
+   :instance/value
+   {:Length_m 17.275,
+    :ADACId "111",
+    :LinkMaterial "None",
+    :TopMaterial "None",
+    :UprightMaterial "Timber",
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495489.095, :Y 6935723.08}
+         {:X 495488.97, :Y 6935727.195}
+         {:X 495489.157, :Y 6935733.117}
+         {:X 495489.033, :Y 6935740.349}]}]}},
+    :UprightNumber 4,
+    :Type "Bollard Run",
+    :Height_m 0.6},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :BarriersContinuous,
+   :instance/member-index 0}
+  {:instance/id #uuid "4dd32d6b-ee1c-43f1-a1f5-092fc01530a5",
+   :instance/element :Pipe,
+   :instance/value
+   {:Length_m 54.062,
+    :Protection "Uncoated",
+    :ADACId "Pipe1",
+    :Diameter_mm 100,
+    :WaterQuality "Drinking Water",
+    :Geometry
+    {:Polyline
+     {:Path
+      {:PolySegment
+       [{:X 495489.78,
+         :Y 6935667.615,
+         :Z :schemacraft/nil,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495489.789,
+         :Y 6935667.953,
+         :Z :schemacraft/nil,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495490.296,
+         :Y 6935684.757,
+         :Z :schemacraft/nil,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495490.384,
+         :Y 6935716.94,
+         :Z :schemacraft/nil,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495490.378,
+         :Y 6935720.704,
+         :Z :schemacraft/nil,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495490.392,
+         :Y 6935721.669,
+         :Z :schemacraft/nil,
+         :GNSSMetadata :schemacraft/nil}]}}},
+    :JointType "RRJ",
+    :Embedment "GBS",
+    :Depth_m 0.6,
+    :Alignment_m 1.5,
+    :Material "PVC-O",
+    :Use "Reticulation",
+    :Class "PN16",
+    :Lining "Unlined"},
+   :instance/root? false,
+   :instance/parent-id #uuid "64f3c5ec-924a-4926-99d1-20412bbc7187",
+   :instance/member-key :Pipes,
+   :instance/member-index 0}
+  {:instance/id #uuid "5025c198-0c39-4b4d-9714-b59d9a1d3403",
+   :instance/element :PramRamps_Fragment,
+   :instance/value {:choice/selected :PramRamp},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :PramRamps,
+   :instance/member-index 0}
+  {:instance/id #uuid "50b7b02c-9b95-4b9f-a2c5-e1b2b65a0f7d",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "eb157bc4-252b-447e-9a15-c04de59b79b9",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "50cbf115-d10f-4502-bce8-87795ac0aa78",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "9438f6f1-a6a9-47a3-b2f8-2d0ca4dd6862",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "5303383c-450b-4de6-82cc-b06d6e5e0608",
+   :instance/element :ADAC,
+   :instance/value {:version "5.0.1"},
+   :instance/root? false,
+   :instance/parent-id #uuid "cf4e97e9-4aa2-43a1-aa6f-3bc1a8fe06ff",
+   :instance/member-key :ADAC}
+  {:instance/id #uuid "5323343e-5da8-4cf0-a792-8eb7c684c6fc",
+   :instance/element :RoadReserve,
+   :instance/value
+   {:ADACId "RR",
+    :Name "Sir Lee Goldsmith Avenue",
+    :Geometry
+    {:Polygon
+     [{:PolySegment
+       [{:X 495491.211, :Y 6935667.793}
+        {:X 495491.809, :Y 6935722.124}
+        {:X 495476.308, :Y 6935722.175}
+        {:X 495476.15, :Y 6935674.368}
+        {:X 495475.337, :Y 6935671.371}
+        {:X 495473.134, :Y 6935669.182}
+        {:X 495470.131, :Y 6935668.388}
+        {:X 495491.211, :Y 6935667.793}]}]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "7bbecd60-b509-4868-b078-13048bc80d33",
+   :instance/member-key :RoadReserve}
+  {:instance/id #uuid "53a811b5-3f31-4c5f-850e-9178db25bbf5",
+   :instance/element :Seating,
+   :instance/value {:SeatType "Bench", :Places 8},
+   :instance/root? false,
+   :instance/parent-id #uuid "eeb81c58-aca8-42dd-a7ea-77fed32f8efb",
+   :instance/member-key :Seating}
+  {:instance/id #uuid "551b7ce1-7068-4e64-b081-7467758aeb8d",
+   :instance/element :Lintel,
+   :instance/value
+   {:LintelConstruction "Prefabricated", :LintelLength_m 2.4},
+   :instance/root? false,
+   :instance/parent-id #uuid "874f091b-79cc-4cfb-b7cc-d1de10704a83",
+   :instance/member-key :Lintel}
+  {:instance/id #uuid "55d7c087-0ed5-4b54-9766-fe08502fc070",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate "2017-06-28",
+    :DataQuality "A",
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Sewerage",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Existing"},
+   :instance/root? false,
+   :instance/parent-id #uuid "e82d96cb-1519-48ef-a990-3d95f12d569e",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "574c541e-b549-4058-a2c4-a0f2b8258cfe",
+   :instance/element :Pipe,
+   :instance/value
+   {:Length_m 5.677,
+    :ADACId "froggo - 4/1",
+    :Cells 1,
+    :Geometry
+    {:Polyline
+     [{:PolySegment
+       [{:X 495475.263,
+         :Y 6935721.066,
+         :Z 50.52,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495479.857,
+         :Y 6935717.733,
+         :Z 50.5,
+         :GNSSMetadata :schemacraft/nil}]}]},
+    :US_SurfaceLevel_m 52.953,
+    :DS_InvertLevel_m 50.5,
+    :ConcreteCoverType "Standard",
+    :Grade 0.35,
+    :US_InvertLevel_m 50.52,
+    :DS_SurfaceLevel_m 52.271},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :Pipes,
+   :instance/member-index 0}
+  {:instance/id #uuid "5763328c-b445-4b42-b845-30be8a335331",
+   :instance/element :Shelters_Fragment,
+   :instance/value {:choice/selected :Shelter},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :Shelters,
+   :instance/member-index 0}
+  {:instance/id #uuid "59220c90-7bf0-40b2-88a0-ce3bdb532d94",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "APlus",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Water Supply",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "a3e22f66-f9c3-4126-8769-08c7f2f22d9d",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "5cbede15-b215-4384-857b-1c2b8de8488b",
+   :instance/element :Pipe,
+   :instance/value
+   {:Length_m 13.12,
+    :ADACId "3/1 - 2/1",
+    :Cells 1,
+    :Geometry
+    {:Polyline
+     [{:PolySegment
+       [{:X 495480.008,
+         :Y 6935676.011,
+         :Z 49.893,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495479.234,
+         :Y 6935662.944,
+         :Z 49.002,
+         :GNSSMetadata :schemacraft/nil}]}]},
+    :US_SurfaceLevel_m 51.421,
+    :DS_InvertLevel_m 49.002,
+    :ConcreteCoverType "Standard",
+    :Grade 6.791,
+    :US_InvertLevel_m 49.893,
+    :DS_SurfaceLevel_m 50.999},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :Pipes,
+   :instance/member-index 3}
+  {:instance/id #uuid "5d0046e1-69ef-4e28-8ad8-c16d5f111f59",
+   :instance/element :Bridges_Fragment,
+   :instance/value {:choice/selected :BridgePier},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :Bridges,
+   :instance/member-index 6}
+  {:instance/id #uuid "5d5c44dc-9227-42e5-b4ac-33b040fbfc09",
+   :instance/element :RoadEdge,
+   :instance/value
+   {:ADACId "kerb 2",
+    :Type "Barrier Kerb",
+    :Material "Concrete",
+    :Width_mm 600,
+    :Length_m 54.352,
+    :PavementExtension_mm 150,
+    :Geometry
+    {:Polyline
+     [[{:PolySegment
+        [{:X 495487.19,
+          :Y 6935664.151,
+          :Z 51.367,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495487.195,
+          :Y 6935667.267,
+          :Z 51.435,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495487.241,
+          :Y 6935668.515,
+          :Z 51.457,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495487.339,
+          :Y 6935669.822,
+          :Z 51.471,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495487.383,
+          :Y 6935670.575,
+          :Z 51.468,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495487.411,
+          :Y 6935671.194,
+          :Z 51.465,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495487.498,
+          :Y 6935673.323,
+          :Z 51.465,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495487.511,
+          :Y 6935674.573,
+          :Z 51.474,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495487.494,
+          :Y 6935679.272,
+          :Z 51.517,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495487.666,
+          :Y 6935718.483,
+          :Z 52.409,
+          :GNSSMetadata :schemacraft/nil}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :RoadEdges,
+   :instance/member-index 1}
+  {:instance/id #uuid "5db565c6-d80e-4faa-9e25-fc55a8d89f4a",
+   :instance/element :ElectricalFitting,
+   :instance/value
+   {:ADACId "fitting1",
+    :Type "Light",
+    :Base "Fixed",
+    :Material "Aluminium",
+    :EnergySource "Main",
+    :Manufacturer "Manufacturer",
+    :ModelNumber "ModelNumber",
+    :Geometry {:Point {:X 495503.352, :Y 6935740.54}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :ElectricalFittings,
+   :instance/member-index 0}
+  {:instance/id #uuid "5e1d41ff-ebac-4a4c-bdb5-505ce6ec0259",
+   :instance/element :Lot,
+   :instance/value
+   {:ADACId "lot15",
+    :LotNo "15",
+    :PlanNo "SP123456",
+    :CancelledLotPlan "100RP987654",
+    :TitledArea_sqm 570.0,
+    :Geometry
+    {:Polygon
+     [{:PolySegment
+       [{:X 495451.131, :Y 6935668.451}
+        {:X 495470.131, :Y 6935668.388}
+        {:X 495473.134, :Y 6935669.182}
+        {:X 495475.337, :Y 6935671.371}
+        {:X 495476.15, :Y 6935674.368}
+        {:X 495476.2, :Y 6935689.2}
+        {:X 495448.2, :Y 6935689.293}
+        {:X 495448.14, :Y 6935671.461}
+        {:X 495451.131, :Y 6935668.451}]}]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "13fd023f-de42-4065-90da-81538651d3ea",
+   :instance/member-key :Lot}
+  {:instance/id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/element :StormWater,
+   :instance/value {},
+   :instance/root? false,
+   :instance/parent-id #uuid "2a455907-8d65-40e3-a253-020d56810cb1",
+   :instance/member-key :StormWater}
+  {:instance/id #uuid "5e4efdd4-8fd1-437a-aae1-924bfad1c86d",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Sewerage",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "723fcfa7-054f-4404-abbd-3f897daf5dcd",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "5e594a2e-cc89-4f86-b43c-df8cb52bc2ef",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "ca40dfd8-352c-487c-8ef6-7b8c579a7f4f",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "5e5afd78-01a5-4f56-9aa8-d938049ea861",
+   :instance/element :Fitting,
+   :instance/value
+   {:ADACId "froggo",
+    :FittingType "Frog Flap",
+    :Rotation 0.0,
+    :Geometry
+    {:Point
+     {:X 495475.263,
+      :Y 6935721.066,
+      :Z 50.499,
+      :GNSSMetadata :schemacraft/nil}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :Fittings,
+   :instance/member-index 0}
+  {:instance/id #uuid "5e5ed83d-b8ee-4a5c-9956-b1848c4cf603",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :TimeValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "652f6bc0-ecbf-41a3-be34-a0d2146dfe06",
+   :instance/member-key :Attributes,
+   :instance/member-index 4}
+  {:instance/id #uuid "5f33fa6b-9d52-41d7-9e12-3d7f4a0e6f24",
+   :instance/element :Engineer,
+   :instance/value
+   {:Name "FUBAR Engineering Pty Ltd", :DateApproved "2017-07-01"},
+   :instance/root? false,
+   :instance/parent-id #uuid "e1aef835-f202-4d53-93d4-f61d0bf9bd06",
+   :instance/member-key :Engineer}
+  {:instance/id #uuid "5fa75a80-39bc-47ff-a9ff-dee3b62de71f",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "85a431ee-8317-4e62-aaec-7fcaa17db873",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/element :Transport,
+   :instance/value {},
+   :instance/root? false,
+   :instance/parent-id #uuid "2a455907-8d65-40e3-a253-020d56810cb1",
+   :instance/member-key :Transport}
+  {:instance/id #uuid "60589ea6-b4b4-47cc-9663-4ec0da3d54b4",
+   :instance/element :ChamberSize,
+   :instance/value {:choice/selected :Circular},
+   :instance/root? false,
+   :instance/parent-id #uuid "12ed4a20-eb00-4da6-b37c-9b2eb1e20ffa",
+   :instance/member-key :ChamberSize}
+  {:instance/id #uuid "614f9985-5a65-4cbd-a79c-325ec504c8c3",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "c4d7121e-f517-44e0-8417-43c63ab9bc8e",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "617a7f09-7f76-4803-a1c9-411ddf47bcbd",
+   :instance/element :EndStructure,
+   :instance/value
+   {:ADACId "1/1",
+    :StructureID "1/1",
+    :StructureLevel_m 48.832,
+    :GrateType "None",
+    :TideGate "None",
+    :Geometry
+    {:Point
+     {:X 495476.444,
+      :Y 6935653.91,
+      :Z 48.832,
+      :GNSSMetadata :schemacraft/nil}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "a46fe9d1-a434-4171-be50-7903a34388ea",
+   :instance/member-key :EndStructure}
+  {:instance/id #uuid "6263a389-1fc2-4cb8-993d-294ab5f1e9d4",
+   :instance/element :TextValue,
+   :instance/value
+   {:TextValue_content "Example of text value",
+    :valname "TextFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "784f0aa0-4f12-4590-a58c-9ce88d5129ef",
+   :instance/member-key :TextValue}
+  {:instance/id #uuid "63fe7145-c23c-44c9-a456-3d22dfaa243c",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Sewerage",
+    :Notes "Extra information goes here",
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "ec813312-5a89-4194-b27b-0f8d626c6439",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "64b6ba40-7fc0-4bfd-b27d-9853f7408feb",
+   :instance/element :Pipe,
+   :instance/value
+   {:Length_m 39.928,
+    :ADACId "4/1 - 3/1",
+    :Cells 1,
+    :Geometry
+    {:Polyline
+     [{:PolySegment
+       [{:X 495480.154,
+         :Y 6935717.023,
+         :Z 50.405,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495480.004,
+         :Y 6935677.096,
+         :Z 50.183,
+         :GNSSMetadata :schemacraft/nil}]}]},
+    :US_SurfaceLevel_m 52.271,
+    :DS_InvertLevel_m 50.183,
+    :ConcreteCoverType "Standard",
+    :Grade 0.556,
+    :US_InvertLevel_m 50.405,
+    :DS_SurfaceLevel_m 51.421},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :Pipes,
+   :instance/member-index 2}
+  {:instance/id #uuid "64e5cb56-5e95-4719-b6ae-7a67d3772a28",
+   :instance/element :RefLineTo,
+   :instance/value {:Left 2.0, :Right 4.0},
+   :instance/root? false,
+   :instance/parent-id #uuid "dd97166d-4c53-440b-bc42-7eae02019a48",
+   :instance/member-key :RefLineTo}
+  {:instance/id #uuid "64f3c5ec-924a-4926-99d1-20412bbc7187",
+   :instance/element :WaterSupply,
+   :instance/value {},
+   :instance/root? false,
+   :instance/parent-id #uuid "2a455907-8d65-40e3-a253-020d56810cb1",
+   :instance/member-key :WaterSupply}
+  {:instance/id #uuid "652f6bc0-ecbf-41a3-be34-a0d2146dfe06",
+   :instance/element :PolylineFeature,
+   :instance/value
+   {:ADACId "SuppPolyline",
+    :Class "SupplementaryPolylineClass",
+    :Note "blah blah blah",
+    :Geometry
+    {:Polyline
+     [[{:PolySegment
+        [{:X 495525.235, :Y 6935750.719}
+         {:X 495528.116, :Y 6935733.155}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "82ce52bb-68f8-4db1-a907-c6d99e6a054c",
+   :instance/member-key :PolylineFeatures,
+   :instance/member-index 0}
+  {:instance/id #uuid "65978ee0-abcb-42b5-b224-6ae16fce4094",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :DecimalValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "eb157bc4-252b-447e-9a15-c04de59b79b9",
+   :instance/member-key :Attributes,
+   :instance/member-index 2}
+  {:instance/id #uuid "662a8fb0-a058-485c-a9a9-18a2f38a4e96",
+   :instance/element :Meter,
+   :instance/value
+   {:Manufacturer "ELSTER",
+    :ADACId "WM17",
+    :SerialNumber "SN123456",
+    :Diameter_mm 20,
+    :PlanNo "SP123456",
+    :Rotation 0.0,
+    :WaterQuality "Drinking Water",
+    :Geometry {:Point {:X 495475.994, :Y 6935713.894}},
+    :ModelNumber :schemacraft/nil,
+    :InstallationDate "2017-07-01",
+    :InitialReading 0,
+    :OffsetSide "Left",
+    :Type "Conventional",
+    :Offset_m 8.193,
+    :LotNo "17",
+    :Dials 8,
+    :PrivateBooster false},
+   :instance/root? false,
+   :instance/parent-id #uuid "64f3c5ec-924a-4926-99d1-20412bbc7187",
+   :instance/member-key :Meters,
+   :instance/member-index 0}
+  {:instance/id #uuid "671c33ec-7284-4ec7-bfe0-e006c9379440",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "APlus",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Water Supply",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "6df010cc-74e4-4313-8c60-79980c74d87f",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "67b68640-8a64-45c7-955d-c2fe8a5ef173",
+   :instance/element :ChamberSize,
+   :instance/value {:choice/selected :Circular},
+   :instance/root? false,
+   :instance/parent-id #uuid "e82d96cb-1519-48ef-a990-3d95f12d569e",
+   :instance/member-key :ChamberSize}
+  {:instance/id #uuid "687685df-0c37-496c-adf3-582f045d7f31",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "b5b2cb3e-8548-4d07-910d-88b1ca3b8e9b",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "6a1e2a11-28a6-4a36-b513-e00519e0a4cf",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "fb7d2248-a80f-4f30-aa8b-c59c267ef7d1",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "6b23798b-8a30-4eab-b077-e912a37861d8",
+   :instance/element :BaseLayer,
+   :instance/value
+   {:LayerType "GR21",
+    :LayerDepth_mm 100.0,
+    :Stabilisation :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "3c0e785e-039f-4a9c-bd27-2f7ad6056d50",
+   :instance/member-key :BaseLayer}
+  {:instance/id #uuid "6c254af1-b96d-41e0-b5b4-b776e447d8ab",
+   :instance/element :TimeValue,
+   :instance/value
+   {:TimeValue_content "12:00:00.0000000+10:00",
+    :valname "TimeFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "d7648d33-1c5b-4e2f-aef8-38b291734afb",
+   :instance/member-key :TimeValue}
+  {:instance/id #uuid "6d3439b7-bf66-4a9f-9c20-6da923ff7f0d",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "ec709e36-b41b-4f27-a5c1-2bba7d7ed673",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "6df010cc-74e4-4313-8c60-79980c74d87f",
+   :instance/element :Hydrant,
+   :instance/value
+   {:ADACId "fh1",
+    :Use "Spring",
+    :Diameter_mm 80,
+    :Rotation 0.0,
+    :WaterQuality "Drinking Water",
+    :Geometry {:Point {:X 495489.892, :Y 6935671.37}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "64f3c5ec-924a-4926-99d1-20412bbc7187",
+   :instance/member-key :Hydrants,
+   :instance/member-index 0}
+  {:instance/id #uuid "6e254e35-7e8a-446d-8334-ae21d97de641",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :DateValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "bc0a2970-fd02-46e0-94ca-2189636e4055",
+   :instance/member-key :Attributes,
+   :instance/member-index 3}
+  {:instance/id #uuid "70660c37-e86c-4006-97ac-39067288f8f4",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "APlus",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Water Supply",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "9cc3baa8-93a8-4911-9654-cbfb6d77ceba",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "723fcfa7-054f-4404-abbd-3f897daf5dcd",
+   :instance/element :PipeNonPressure,
+   :instance/value
+   {:Length_m 43.534,
+    :Protection "Uncoated",
+    :ADACId "3/1 - 2/1",
+    :Diameter_mm 150,
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495478.042,
+          :Y 6935719.703,
+          :Z 50.48,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495477.915,
+          :Y 6935676.178,
+          :Z 49.61,
+          :GNSSMetadata :schemacraft/nil}]}]}},
+    :JointType "RRJ",
+    :US_SurfaceLevel_m 52.602,
+    :Embedment "GBS",
+    :Depth_m 2.105,
+    :DS_InvertLevel_m 49.61,
+    :Alignment_m 1.5,
+    :Material "PVC-U",
+    :Use "Reticulation",
+    :Class "SN8",
+    :US_InvertLevel_m 50.48,
+    :DS_SurfaceLevel_m 51.698,
+    :PipeGrade 1.998,
+    :LineNumber "1",
+    :Lining "Unlined",
+    :RockExcavated false},
+   :instance/root? false,
+   :instance/parent-id #uuid "0efbe193-1c0f-45ca-9abd-d0c85f9453f9",
+   :instance/member-key :PipesNonPressure,
+   :instance/member-index 0}
+  {:instance/id #uuid "725e0594-f21d-48b0-b8ea-34c048fe6558",
+   :instance/element :PipeStructure,
+   :instance/value {:choice/selected :CircPipe},
+   :instance/root? false,
+   :instance/parent-id #uuid "5cbede15-b215-4384-857b-1c2b8de8488b",
+   :instance/member-key :PipeStructure}
+  {:instance/id #uuid "72f51193-a86b-4bcc-8656-d2653d5796ea",
+   :instance/element :Pathway,
+   :instance/value
+   {:ADACId "Pathway1",
+    :Use "Shared",
+    :Structure "In Ground",
+    :SurfaceMaterial "Concrete",
+    :Width_m 2.0,
+    :Depth_mm 100,
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495474.532, :Y 6935667.613}
+         {:X 495476.931, :Y 6935670.714}
+         {:X 495477.778, :Y 6935672.594}
+         {:X 495478.202, :Y 6935674.475}
+         {:X 495478.446, :Y 6935721.88}]}]}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "12cfeafa-2d25-4629-9d88-1e77c24e75c9",
+   :instance/member-key :Pathway}
+  {:instance/id #uuid "751df34e-74f0-4cb0-a6de-eb3dd5362c0d",
+   :instance/element :Pipe,
+   :instance/value
+   {:Length_m 7.004,
+    :ADACId "1/4 - 4/1",
+    :Cells 1,
+    :Geometry
+    {:Polyline
+     [{:PolySegment
+       [{:X 495487.46,
+         :Y 6935719.383,
+         :Z 50.58,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495480.703,
+         :Y 6935717.54,
+         :Z 50.5,
+         :GNSSMetadata :schemacraft/nil}]}]},
+    :US_SurfaceLevel_m 52.422,
+    :DS_InvertLevel_m 50.5,
+    :ConcreteCoverType "Standard",
+    :Grade 1.142,
+    :US_InvertLevel_m 50.58,
+    :DS_SurfaceLevel_m 52.271},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :Pipes,
+   :instance/member-index 1}
+  {:instance/id #uuid "75e4cf17-270e-46ce-8c9c-5839dd2cc07c",
+   :instance/element :Barbeque,
+   :instance/value
+   {:ADACId "bbq",
+    :EnergySource "Main",
+    :Plates 4,
+    :SurroundingMaterial "Masonry",
+    :TopMaterial "Concrete",
+    :Manufacturer "Webber",
+    :ModelNumber :schemacraft/nil,
+    :Geometry {:Point {:X 495510.741, :Y 6935725.823}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :Barbeques,
+   :instance/member-index 0}
+  {:instance/id #uuid "767aa6b1-024c-4cc6-a77c-b946e35d5ea3",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "5323343e-5da8-4cf0-a792-8eb7c684c6fc",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "7757fc49-cadf-4c2b-a41d-9dab2e0b9687",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "c23462b5-2ca7-4493-b7b5-235e7454f493",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "77a49576-960c-4c64-a86c-84d1149903d4",
+   :instance/element :RetainingWall,
+   :instance/value
+   {:ADACId "445",
+    :Use "Terrestrial",
+    :Material "Boulder",
+    :Construction "Gravity",
+    :Length_m 29.195,
+    :Height_m 1.58,
+    :Width_m 0.75,
+    :Geometry
+    {:Polyline
+     [[{:PolySegment
+        [{:X 495488.141, :Y 6935722.392}
+         {:X 495517.336, :Y 6935722.431}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :RetainingWalls,
+   :instance/member-index 0}
+  {:instance/id #uuid "77dbd290-9f10-4509-8569-5050bfbe2c9e",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "d131e131-69f4-4a46-b683-58ddd8bc3a89",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "784cadbf-49a9-4b6f-be1c-ba28de29ea8e",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "fcf12978-3704-4f3e-8093-6dff169e7d36",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "784f0aa0-4f12-4590-a58c-9ce88d5129ef",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :TextValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "bc0a2970-fd02-46e0-94ca-2189636e4055",
+   :instance/member-key :Attributes,
+   :instance/member-index 0}
+  {:instance/id #uuid "78b43498-c1ac-4e4e-9d39-7d973776cc1d",
+   :instance/element :LandParcels_Fragment,
+   :instance/value {:choice/selected :Lot},
+   :instance/root? false,
+   :instance/parent-id #uuid "b3121585-d926-4bc4-a2b6-df30b08af114",
+   :instance/member-key :LandParcels,
+   :instance/member-index 1}
+  {:instance/id #uuid "78c81b86-5e81-4a02-9476-588356946d82",
+   :instance/element :Inlet,
+   :instance/value
+   {:InletConfig "Centre",
+    :InletType "LIL Gully",
+    :InletSize "900x600"},
+   :instance/root? false,
+   :instance/parent-id #uuid "e53b7e1c-0974-4f64-9585-2afed58f5808",
+   :instance/member-key :Inlet}
+  {:instance/id #uuid "793397b3-dcde-421e-a2f2-65c8ae962a81",
+   :instance/element :EndWall,
+   :instance/value
+   {:Type "Pipe Endwall",
+    :Size "1/600x450",
+    :Length_m 2.092,
+    :Height_m 0.85,
+    :Thickness_m 0.1,
+    :Material "Concrete",
+    :Construction "Prefabricated"},
+   :instance/root? false,
+   :instance/parent-id #uuid "2b59058e-557c-407d-b83b-a8275002e56c",
+   :instance/member-key :EndWall}
+  {:instance/id #uuid "79501a51-a419-4e71-94b7-226851cc01af",
+   :instance/element :WasteCollectionPoint,
+   :instance/value
+   {:ADACId "444",
+    :Type "Wheelie Bin Enclosure",
+    :Material "Aluminium",
+    :Manufacturer "Wheelie bins",
+    :ModelNumber :schemacraft/nil,
+    :Geometry {:Point {:X 495507.31, :Y 6935735.237}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :WasteCollectionPoints,
+   :instance/member-index 0}
+  {:instance/id #uuid "799bbc09-9705-4ce7-8cc3-15a9db4e9078",
+   :instance/element :SouthWest,
+   :instance/value {:X 495386.979, :Y 6935638.499},
+   :instance/root? false,
+   :instance/parent-id #uuid "387c5850-3cf0-4146-9b6e-2a8dddfd5b29",
+   :instance/member-key :SouthWest}
+  {:instance/id #uuid "79b70c8e-a7df-4ced-9913-ff9df5bd3527",
+   :instance/element :WaterCourseReserve,
+   :instance/value
+   {:ADACId "water",
+    :Name "Canal",
+    :Geometry
+    {:Polygon
+     [{:PolySegment
+       [{:X 495522.295, :Y 6935720.514}
+        {:X 495520.812, :Y 6935667.78}
+        {:X 495530.348, :Y 6935667.674}
+        {:X 495531.619, :Y 6935720.726}
+        {:X 495522.295, :Y 6935720.514}]}]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "9cb4f65a-5eff-4974-b9f3-dc98195d9bbf",
+   :instance/member-key :WaterCourseReserve}
+  {:instance/id #uuid "7aeaf699-e6ef-487d-8aaa-bd851b6bae09",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "b56fd28a-0411-498c-8f50-b194f474430e",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "7bbecd60-b509-4868-b078-13048bc80d33",
+   :instance/element :LandParcels_Fragment,
+   :instance/value {:choice/selected :RoadReserve},
+   :instance/root? false,
+   :instance/parent-id #uuid "b3121585-d926-4bc4-a2b6-df30b08af114",
+   :instance/member-key :LandParcels,
+   :instance/member-index 4}
+  {:instance/id #uuid "7fa14d21-1145-480a-a8b1-66466be3b84d",
+   :instance/element :ChamberSize,
+   :instance/value {:choice/selected :Circular},
+   :instance/root? false,
+   :instance/parent-id #uuid "ec813312-5a89-4194-b27b-0f8d626c6439",
+   :instance/member-key :ChamberSize}
+  {:instance/id #uuid "800c6653-79a7-4bc1-ae84-3d8a2a8db413",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "999f9cfe-834e-466f-ac87-b7baf810c468",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "804de396-f2e3-437e-9e2b-456d87402d23",
+   :instance/element :ChamberSize,
+   :instance/value {:choice/selected :Circular},
+   :instance/root? false,
+   :instance/parent-id #uuid "2dbe0e85-85f8-4799-ac81-55c97a767d95",
+   :instance/member-key :ChamberSize}
+  {:instance/id #uuid "80a1a989-fed1-4204-b75a-a9533d0ee9ff",
+   :instance/element :Bridges_Fragment,
+   :instance/value {:choice/selected :BridgeDeck},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :Bridges,
+   :instance/member-index 1}
+  {:instance/id #uuid "8118767e-3b4e-4d69-8016-75c15f526b09",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "77a49576-960c-4c64-a86c-84d1149903d4",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "815ca1f5-5e49-4932-b5c0-7503e9ff606e",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Private",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "574c541e-b549-4058-a2c4-a0f2b8258cfe",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "81782338-1122-488c-b1a9-dbf138610322",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "beb24e76-afb7-4ace-9f85-83a1e5e05cf8",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "82ce52bb-68f8-4db1-a907-c6d99e6a054c",
+   :instance/element :Supplementary,
+   :instance/value {},
+   :instance/root? false,
+   :instance/parent-id #uuid "2a455907-8d65-40e3-a253-020d56810cb1",
+   :instance/member-key :Supplementary}
+  {:instance/id #uuid "82fff6cd-3634-4f93-b201-8a2f8f01bf5d",
+   :instance/element :PipeNonPressure,
+   :instance/value
+   {:Length_m 17.654,
+    :Protection "Plastic Wrapped",
+    :ADACId "EX1/1 - EX1/11",
+    :Diameter_mm 150,
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495489.0,
+          :Y 6935665.752,
+          :Z 48.542,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495488.061,
+          :Y 6935648.13,
+          :Z 48.043,
+          :GNSSMetadata :schemacraft/nil}]}]}},
+    :JointType "RRRJ",
+    :US_SurfaceLevel_m 51.731,
+    :Embedment "GBS",
+    :Depth_m 3.248,
+    :DS_InvertLevel_m 48.043,
+    :Alignment_m :schemacraft/nil,
+    :Material "DI",
+    :Use "Reticulation",
+    :Class "PN35",
+    :US_InvertLevel_m 48.542,
+    :DS_SurfaceLevel_m 51.35,
+    :PipeGrade 2.827,
+    :LineNumber "1",
+    :Lining "CL",
+    :RockExcavated false},
+   :instance/root? false,
+   :instance/parent-id #uuid "0efbe193-1c0f-45ca-9abd-d0c85f9453f9",
+   :instance/member-key :PipesNonPressure,
+   :instance/member-index 2}
+  {:instance/id #uuid "8336b1cd-df40-4bea-bc80-b073ad704ab6",
+   :instance/element :SubBaseLayer,
+   :instance/value
+   {:LayerType "GR23",
+    :LayerDepth_mm 150.0,
+    :Stabilisation :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "857711c2-0601-4b2c-a389-169af5e69471",
+   :instance/member-key :SubBaseLayer}
+  {:instance/id #uuid "8340585a-5197-477c-9ed8-81c72e285385",
+   :instance/element :PipeNonPressure,
+   :instance/value
+   {:Length_m 13.798,
+    :Protection "Uncoated",
+    :ADACId "2/1 - EX1/1",
+    :Diameter_mm 150,
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495478.111,
+          :Y 6935675.413,
+          :Z 49.542,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495488.636,
+          :Y 6935666.504,
+          :Z 49.043,
+          :GNSSMetadata :schemacraft/nil}]}]}},
+    :JointType "RRJ",
+    :US_SurfaceLevel_m 51.698,
+    :Embedment "GBS",
+    :Depth_m 2.422,
+    :DS_InvertLevel_m 49.043,
+    :Alignment_m :schemacraft/nil,
+    :Material "PVC-U",
+    :Use "Reticulation",
+    :Class "SN8",
+    :US_InvertLevel_m 49.542,
+    :DS_SurfaceLevel_m 51.731,
+    :PipeGrade 3.616,
+    :LineNumber "1",
+    :Lining "Unlined",
+    :RockExcavated false},
+   :instance/root? false,
+   :instance/parent-id #uuid "0efbe193-1c0f-45ca-9abd-d0c85f9453f9",
+   :instance/member-key :PipesNonPressure,
+   :instance/member-index 1}
+  {:instance/id #uuid "857711c2-0601-4b2c-a389-169af5e69471",
+   :instance/element :PavementStructure,
+   :instance/value {:PavementType "Flexible"},
+   :instance/root? false,
+   :instance/parent-id #uuid "daffccbb-b41f-4353-883f-6c04048cf075",
+   :instance/member-key :PavementStructure}
+  {:instance/id #uuid "85865edc-06c3-4e9a-b186-75c0ffa7bc90",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "0c810a7d-9a0b-4399-bd81-709453634b9d",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "85902727-b847-4f45-87a1-73b4fb43fb33",
+   :instance/element :ChamberSize,
+   :instance/value {:choice/selected :Circular},
+   :instance/root? false,
+   :instance/parent-id #uuid "f60f039b-bff8-4a98-bab2-72702d9aed86",
+   :instance/member-key :ChamberSize}
+  {:instance/id #uuid "85a431ee-8317-4e62-aaec-7fcaa17db873",
+   :instance/element :RoadPathway,
+   :instance/value
+   {:ADACId "456789",
+    :Use "CycleWay",
+    :Structure "On Road",
+    :SurfaceMaterial "Road Pavement",
+    :Width_m 1.8,
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495412.463, :Y 6935663.404}
+         {:X 495469.908, :Y 6935663.281}]}]}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "f1c26eb7-72ad-47c6-9a54-09efa524bc82",
+   :instance/member-key :RoadPathway}
+  {:instance/id #uuid "85ac9908-5e23-4a97-8da9-49be46593952",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "5cbede15-b215-4384-857b-1c2b8de8488b",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "864d3a59-c7ce-4cce-aa8e-f3651c9d8b01",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "79b70c8e-a7df-4ced-9913-ff9df5bd3527",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "8668c5bd-61cf-4c4c-ad66-b043b30f2a21",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "APlus",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Water Supply",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "f702b0db-7d0f-48d9-830f-605dd42777b7",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "8691e995-5fe9-4532-ae15-d3c593c5b9c9",
+   :instance/element :PramRamps_Fragment,
+   :instance/value {:choice/selected :PramRampPolygon},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :PramRamps,
+   :instance/member-index 1}
+  {:instance/id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/element :OpenSpace,
+   :instance/value {},
+   :instance/root? false,
+   :instance/parent-id #uuid "2a455907-8d65-40e3-a253-020d56810cb1",
+   :instance/member-key :OpenSpace}
+  {:instance/id #uuid "874f091b-79cc-4cfb-b7cc-d1de10704a83",
+   :instance/element :Pit,
+   :instance/value
+   {:PitNumber "1/4",
+    :ADACId "1/4",
+    :Rotation 0.0,
+    :SurfaceLevel_m 52.422,
+    :Geometry
+    {:Point
+     {:X 495487.981,
+      :Y 6935719.483,
+      :Z 52.422,
+      :GNSSMetadata :schemacraft/nil}},
+    :LidType :schemacraft/nil,
+    :Depth_m 1.842,
+    :Use "Pit",
+    :FireRetardant false,
+    :OutletType "Dry",
+    :InvertLevel_m 50.58,
+    :ChamberConstruction "Insitu"},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :Pits,
+   :instance/member-index 0}
+  {:instance/id #uuid "879ca13e-3940-4198-a948-c11dd222d478",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "75e4cf17-270e-46ce-8c9c-5839dd2cc07c",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "8b055be1-4dfd-42ed-bb59-46fb0a38141a",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "219da969-40c5-4b39-bf4b-f5c4e5b2fc10",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "8bc4c892-8adc-4ddd-9e8e-014590ed2684",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Sewerage",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Existing"},
+   :instance/root? false,
+   :instance/parent-id #uuid "82fff6cd-3634-4f93-b201-8a2f8f01bf5d",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "8c13b661-56b8-4f01-b0bf-0fabdfbceec5",
+   :instance/element :EndWall,
+   :instance/value
+   {:Type "Pipe Endwall",
+    :Size "1/600x450",
+    :Length_m 2.092,
+    :Height_m 0.85,
+    :Thickness_m 0.1,
+    :Material "Concrete",
+    :Construction "Prefabricated"},
+   :instance/root? false,
+   :instance/parent-id #uuid "617a7f09-7f76-4803-a1c9-411ddf47bcbd",
+   :instance/member-key :EndWall}
+  {:instance/id #uuid "8c760f06-fb8b-4d05-8f1f-f7d725457bcd",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "64b6ba40-7fc0-4bfd-b27d-9853f7408feb",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "8c7e465f-4cd9-40f7-a574-2e41794d8d0d",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Sewerage",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "8340585a-5197-477c-9ed8-81c72e285385",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "8da8ea96-600d-420f-9822-78a6a1055e87",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "b5fd44c0-579f-418f-a937-138218118e0a",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "8e08bc88-bf67-45bf-b758-2db5077d1da1",
+   :instance/element :Connection,
+   :instance/value
+   {:Length_m 2.492,
+    :Sediment_Trap false,
+    :ADACId "HC 16",
+    :IO_Distance_m 21.912,
+    :Diameter_mm 100,
+    :SurfaceLevel_m 51.843,
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495475.726, :Y 6935697.619, :Z 50.837}
+         {:X 495477.967, :Y 6935697.09, :Z 49.885}]}]}},
+    :SO_Nearest_m 0.501,
+    :DSMHID "2",
+    :Chainage_m 21.373,
+    :SO_Other_m 8.083,
+    :Material "PVC-U",
+    :Use "House",
+    :Type "Sloped Branch",
+    :Offset_m 2.252,
+    :Class "SN10",
+    :InvertLevel_m 50.837,
+    :LineNumber "1"},
+   :instance/root? false,
+   :instance/parent-id #uuid "0efbe193-1c0f-45ca-9abd-d0c85f9453f9",
+   :instance/member-key :Connections,
+   :instance/member-index 1}
+  {:instance/id #uuid "8e8eb6cc-f1de-4da7-bf6c-3b7d6ce60675",
+   :instance/element :PipeStructure,
+   :instance/value {:choice/selected :CircPipe},
+   :instance/root? false,
+   :instance/parent-id #uuid "64b6ba40-7fc0-4bfd-b27d-9853f7408feb",
+   :instance/member-key :PipeStructure}
+  {:instance/id #uuid "8ebbdec1-5bfe-44d3-9d4e-354b4103409e",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :DecimalValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "bc0a2970-fd02-46e0-94ca-2189636e4055",
+   :instance/member-key :Attributes,
+   :instance/member-index 2}
+  {:instance/id #uuid "8f9c8693-cca6-4614-a81f-d473e01f666a",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :IntegerValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "bc0a2970-fd02-46e0-94ca-2189636e4055",
+   :instance/member-key :Attributes,
+   :instance/member-index 1}
+  {:instance/id #uuid "90059070-8301-471c-8454-f502df1f1eaa",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "40d8a016-213d-4b97-91f5-e85d3e775199",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "90396730-87d3-4042-8ba0-42bef5ee5bf6",
+   :instance/element :ContainmentClass,
+   :instance/value {:ADACId nil, :BridgeID nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "9bce4c36-d146-4785-9197-b8f47cdd21bb",
+   :instance/member-key :ContainmentClass}
+  {:instance/id #uuid "91e65872-79ae-42e0-8589-de6031d0b8fa",
+   :instance/element :Circular,
+   :instance/value {:Diameter_mm 1050},
+   :instance/root? false,
+   :instance/parent-id #uuid "c19b3fc3-d0ea-4dc1-9ce0-2915029f448e",
+   :instance/member-key :Circular}
+  {:instance/id #uuid "92220ea3-6c92-4f7e-a0a5-d19ff9b71237",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "8e08bc88-bf67-45bf-b758-2db5077d1da1",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "937d0b9f-1d58-467d-81ca-72e84a82c724",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "4515d896-3b78-4986-95bb-87b889f9d391",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "939b2ef8-ab62-45c2-b108-ea33bd53c373",
+   :instance/element :Fitting,
+   :instance/value
+   {:Protection :schemacraft/nil,
+    :ADACId "Bend1",
+    :Rotation 0.0,
+    :WaterQuality "Drinking Water",
+    :BranchSize_mm :schemacraft/nil,
+    :Geometry {:Point {:X 495489.78, :Y 6935667.615}},
+    :BodySize_mm 100,
+    :Material "PE",
+    :Type "Bend",
+    :Lining :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "64f3c5ec-924a-4926-99d1-20412bbc7187",
+   :instance/member-key :Fittings,
+   :instance/member-index 0}
+  {:instance/id #uuid "93e89983-12d0-4f57-bb6f-4271bfe56bb3",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "2b59058e-557c-407d-b83b-a8275002e56c",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "9438f6f1-a6a9-47a3-b2f8-2d0ca4dd6862",
+   :instance/element :PathStructure,
+   :instance/value
+   {:ADACId "123456",
+    :Use "Shared",
+    :Structure "Stairs",
+    :SurfaceMaterial "Concrete",
+    :SubStructureMaterial "Concrete",
+    :Width_m 2.0,
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495478.446, :Y 6935721.88}
+         {:X 495478.463, :Y 6935734.196}]}]}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "23bb2f48-c9b4-4fc9-8f4d-4ee22b62d042",
+   :instance/member-key :PathStructure}
+  {:instance/id #uuid "94d25213-ad38-4961-902a-f37974e1323a",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "79501a51-a419-4e71-94b7-226851cc01af",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "954fb7c1-db97-4dd6-969a-8de86dae2866",
+   :instance/element :SpotHeight,
+   :instance/value
+   {:ADACId "45632",
+    :Status "Proposed",
+    :Elevation_m 52.0,
+    :Geometry {:Point {:X 495464.813, :Y 6935709.315}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "18b773c2-8731-4072-bea1-d202a50a863d",
+   :instance/member-key :SpotHeights,
+   :instance/member-index 0}
+  {:instance/id #uuid "95a6b5e7-687b-415e-b7a7-c780472767c3",
+   :instance/element :BoxPipe,
+   :instance/value
+   {:Height_mm 450, :Width_mm 600, :Material "RCBC", :Class "1"},
+   :instance/root? false,
+   :instance/parent-id #uuid "4a1a1066-9668-4042-8c41-ce074f2e64e6",
+   :instance/member-key :BoxPipe}
+  {:instance/id #uuid "960655ed-25af-4c26-aea2-26c57e663760",
+   :instance/element :OpenSpaceArea,
+   :instance/value
+   {:ADACId "Parent",
+    :Name "King Park",
+    :Type "Recreational",
+    :Geometry
+    {:Polygon
+     [[{:PolySegment
+        [{:X 495488.534, :Y 6935722.706}
+         {:X 495518.024, :Y 6935722.706}
+         {:X 495518.024, :Y 6935756.75}
+         {:X 495488.534, :Y 6935756.75}
+         {:X 495488.534, :Y 6935722.706}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :OpenSpaceAreas,
+   :instance/member-index 0}
+  {:instance/id #uuid "979889be-5143-44f4-b86e-03a537f20328",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "39ef6735-363c-4a8a-aaa1-6815ef789895",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "97aeeb66-ee69-46af-88b4-0449ab5961bf",
+   :instance/element :RoadSafetyBarrier,
+   :instance/value
+   {:HorizontalAlignment "Straight",
+    :BridgeTransition false,
+    :Length_m 59.681,
+    :StandardPostSpacing false,
+    :ADACId "Barrier5",
+    :LeadingEndTreatment "Breakmaster",
+    :PostType "Steel",
+    :StandardHeight true,
+    :RailType "Timber",
+    :Geometry
+    {:Polyline
+     [[{:PolySegment
+        [{:X 495412.459, :Y 6935653.959}
+         {:X 495472.139, :Y 6935654.406}]}]]},
+    :NumberOfBollards 8,
+    :PedestrianProtectionSheeting true,
+    :MotorcyclistProtectionType "Rub Rail",
+    :PostSpacing_m 2.4,
+    :TrailingEndTreatment "DOT",
+    :Type "Energy-absorbing Bollard",
+    :Height_m :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :RoadSafetyBarriers,
+   :instance/member-index 0}
+  {:instance/id #uuid "999f9cfe-834e-466f-ac87-b7baf810c468",
+   :instance/element :FlowManagementDevice,
+   :instance/value
+   {:ADACId "789456",
+    :Sqid_Id "789456",
+    :Type "Spillway",
+    :Material "Concrete",
+    :Length_m 5.124,
+    :CrestElevation_m 2.4,
+    :Geometry
+    {:Polyline
+     [{:PolySegment
+       [{:X 495471.21,
+         :Y 6935642.669,
+         :Z :schemacraft/nil,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495476.33,
+         :Y 6935642.862,
+         :Z :schemacraft/nil,
+         :GNSSMetadata :schemacraft/nil}]}]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :WSUDPolylines,
+   :instance/member-index 0}
+  {:instance/id #uuid "9aa3a84b-7416-409b-8c4b-fd6122a56db4",
+   :instance/element :Breakline,
+   :instance/value
+   {:ADACId "6982347",
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495480.388, :Y 6935705.077}
+         {:X 495480.426, :Y 6935712.219}]}]}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "18b773c2-8731-4072-bea1-d202a50a863d",
+   :instance/member-key :Breaklines,
+   :instance/member-index 0}
+  {:instance/id #uuid "9bce4c36-d146-4785-9197-b8f47cdd21bb",
+   :instance/element :ContainmentClass,
+   :instance/value {:ADACId "CC", :BridgeID "Bridge1"},
+   :instance/root? false,
+   :instance/parent-id #uuid "c4d237c9-3d8e-4835-ab5b-0762679e73b5",
+   :instance/member-key :ContainmentClass}
+  {:instance/id #uuid "9c7451e4-27b5-4f40-855d-fbe439b3b826",
+   :instance/element :Artwork,
+   :instance/value
+   {:ADACId "arty",
+    :Type "Entry Statement",
+    :Material "Aluminium",
+    :Geometry {:Point {:X 495488.534, :Y 6935722.706}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :Artworks,
+   :instance/member-index 0}
+  {:instance/id #uuid "9cb4f65a-5eff-4974-b9f3-dc98195d9bbf",
+   :instance/element :LandParcels_Fragment,
+   :instance/value {:choice/selected :WaterCourseReserve},
+   :instance/root? false,
+   :instance/parent-id #uuid "b3121585-d926-4bc4-a2b6-df30b08af114",
+   :instance/member-key :LandParcels,
+   :instance/member-index 5}
+  {:instance/id #uuid "9cc3baa8-93a8-4911-9654-cbfb6d77ceba",
+   :instance/element :Valve,
+   :instance/value
+   {:Manufacturer :schemacraft/nil,
+    :ADACId "Val1",
+    :Diameter_mm 100,
+    :Rotation 0.0,
+    :WaterQuality "Drinking Water",
+    :Geometry {:Point {:X 495490.092, :Y 6935678.003}},
+    :ModelNumber :schemacraft/nil,
+    :Use "Stop",
+    :Type "Gate"},
+   :instance/root? false,
+   :instance/parent-id #uuid "64f3c5ec-924a-4926-99d1-20412bbc7187",
+   :instance/member-key :Valves,
+   :instance/member-index 0}
+  {:instance/id #uuid "9fb8b09a-d142-4351-811b-8073fb474987",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "751df34e-74f0-4cb0-a6de-eb3dd5362c0d",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "9fcbced0-dc65-42e5-80c7-e7a67fb566f2",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Private",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e5afd78-01a5-4f56-9aa8-d938049ea861",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "9fde17e3-823e-4d1b-9174-35ec3e31253e",
+   :instance/element :Commercial,
+   :instance/value
+   {:Manufacturer "HUMES", :ModelNumber "Humeceptor STC27"},
+   :instance/root? false,
+   :instance/parent-id #uuid "a13eadd9-f9d8-4de4-9bc0-2c486aa3482e",
+   :instance/member-key :Commercial}
+  {:instance/id #uuid "9fff40de-7165-4270-a288-523163b9de54",
+   :instance/element :ChamberSize,
+   :instance/value {:choice/selected :Circular},
+   :instance/root? false,
+   :instance/parent-id #uuid "42459dac-ab08-4892-aa89-b272efce4719",
+   :instance/member-key :ChamberSize}
+  {:instance/id #uuid "a07d7ae9-81f9-4197-9127-8044d80dde9e",
+   :instance/element :DateValue,
+   :instance/value
+   {:DateValue_content "2017-07-01", :valname "DateFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "c763360d-62cf-49c0-933d-3c264904cac0",
+   :instance/member-key :DateValue}
+  {:instance/id #uuid "a0a6fd6f-48ea-4357-844b-36205a897f7c",
+   :instance/element :Engineer,
+   :instance/value
+   {:Name "Different Engineer", :DateApproved "2017-06-27"},
+   :instance/root? false,
+   :instance/parent-id #uuid "55d7c087-0ed5-4b54-9766-fe08502fc070",
+   :instance/member-key :Engineer}
+  {:instance/id #uuid "a13eadd9-f9d8-4de4-9bc0-2c486aa3482e",
+   :instance/element :Construction,
+   :instance/value {:choice/selected :Commercial},
+   :instance/root? false,
+   :instance/parent-id #uuid "34b397a6-50bd-4983-a333-2ef0a7d00b3b",
+   :instance/member-key :Construction}
+  {:instance/id #uuid "a1ccff1d-a0f4-436e-ab3e-3a8439d74d4b",
+   :instance/element :TimeValue,
+   :instance/value
+   {:TimeValue_content "12:00:00.0000000+10:00",
+    :valname "TimeFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e5ed83d-b8ee-4a5c-9956-b1848c4cf603",
+   :instance/member-key :TimeValue}
+  {:instance/id #uuid "a1e9472b-c0a0-4d7f-9fe8-2b30d5d503b1",
+   :instance/element :DateTimeValue,
+   :instance/value
+   {:DateTimeValue_content "2017-07-01T12:00:00.0000000+10:00",
+    :valname "DateTimeFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "4be6cb97-ddde-4068-bc96-e167f85b2942",
+   :instance/member-key :DateTimeValue}
+  {:instance/id #uuid "a2a4084c-ca5a-4f48-8733-d23190b294cb",
+   :instance/element :ActivityPoint,
+   :instance/value
+   {:Manufacturer :schemacraft/nil,
+    :ADACId "888",
+    :Geometry {:Point {:X 495491.278, :Y 6935724.639}},
+    :Units 1,
+    :ModelNumber :schemacraft/nil,
+    :Material "Combination",
+    :Use "Animal",
+    :Theme "Horse",
+    :Type "Horse Spring Rocker"},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :ActivityPoints,
+   :instance/member-index 0}
+  {:instance/id #uuid "a2fbfe69-d4e4-4726-b176-c65b95a5f997",
+   :instance/element :Bridges_Fragment,
+   :instance/value {:choice/selected :BridgeAbutment},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :Bridges,
+   :instance/member-index 5}
+  {:instance/id #uuid "a38f6bd3-c0fa-4b7d-9387-d01bb134c5cd",
+   :instance/element :Lintel,
+   :instance/value
+   {:LintelConstruction "Prefabricated", :LintelLength_m 2.4},
+   :instance/root? false,
+   :instance/parent-id #uuid "f60f039b-bff8-4a98-bab2-72702d9aed86",
+   :instance/member-key :Lintel}
+  {:instance/id #uuid "a3e22f66-f9c3-4126-8769-08c7f2f22d9d",
+   :instance/element :StorageTank,
+   :instance/value
+   {:ADACId "ST1",
+    :Material "Plastic",
+    :Source "Rain Water",
+    :Manufacturer :schemacraft/nil,
+    :ModelNumber :schemacraft/nil,
+    :Volume_m3 99.33,
+    :Rotation 0.0,
+    :Geometry {:Point {:X 495493.412, :Y 6935719.786}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "64f3c5ec-924a-4926-99d1-20412bbc7187",
+   :instance/member-key :StorageTanks,
+   :instance/member-index 0}
+  {:instance/id #uuid "a3f0dc99-471a-45a5-b750-bb5c258a866b",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "34b397a6-50bd-4983-a333-2ef0a7d00b3b",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "a4151321-9fce-42f8-85b5-b41102dc2d4f",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "72f51193-a86b-4bcc-8656-d2653d5796ea",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "a45d3bdd-2cea-4f90-9b7b-c7fb2cb1151c",
+   :instance/element :Rectangular,
+   :instance/value {:Length_mm 935, :Width_mm 835},
+   :instance/root? false,
+   :instance/parent-id #uuid "362326e4-9703-4ffa-9dfa-2ea13c9f5931",
+   :instance/member-key :Rectangular}
+  {:instance/id #uuid "a46fe9d1-a434-4171-be50-7903a34388ea",
+   :instance/element :EndStructures_Fragment,
+   :instance/value {:choice/selected :EndStructure},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :EndStructures,
+   :instance/member-index 0}
+  {:instance/id #uuid "a576789c-354f-45d7-a92e-3207be293c00",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "APlus",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Water Supply",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "4dd32d6b-ee1c-43f1-a1f5-092fc01530a5",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "a58cbb38-7848-4c1c-9ffe-d3ea6d43002a",
+   :instance/element :Engineer,
+   :instance/value
+   {:Name "Different Engineer", :DateApproved "2017-06-27"},
+   :instance/root? false,
+   :instance/parent-id #uuid "b3f2c31e-8660-409f-9038-3de4965ea64d",
+   :instance/member-key :Engineer}
+  {:instance/id #uuid "a5c438be-d6b3-41b0-96df-6f50ec8938d7",
+   :instance/element :IntegerValue,
+   :instance/value
+   {:IntegerValue_content 999, :valname "IntegerFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "00eec966-11c6-4041-a891-fbab8ebb19f3",
+   :instance/member-key :IntegerValue}
+  {:instance/id #uuid "a796f145-a1fb-450c-9eaf-68cbac61e64f",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "cb176f75-e96b-40f5-8980-c1668a0f6f16",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "a9528f58-5015-44cd-a2f8-de62279860dd",
+   :instance/element :Connection,
+   :instance/value
+   {:ADACId "956",
+    :Bearing 91.617,
+    :Distance_m 21.088,
+    :Geometry
+    {:Polyline
+     {:Path
+      {:PolySegment
+       [{:X 495470.131, :Y 6935668.388}
+        {:X 495491.211, :Y 6935667.793}]}}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "b3121585-d926-4bc4-a2b6-df30b08af114",
+   :instance/member-key :Connections,
+   :instance/member-index 0}
+  {:instance/id #uuid "a9e4ee7b-3640-488c-b47f-5b3ce83bcb70",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "4c7e4bbf-48d3-482e-b61c-310e6c29aca8",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "a9fe9c02-7870-4bf5-8552-6d519f7c28c7",
+   :instance/element :LandParcels_Fragment,
+   :instance/value {:choice/selected :Lot},
+   :instance/root? false,
+   :instance/parent-id #uuid "b3121585-d926-4bc4-a2b6-df30b08af114",
+   :instance/member-key :LandParcels,
+   :instance/member-index 3}
+  {:instance/id #uuid "ab4bbab7-47b7-449e-bb41-33b9a0010864",
+   :instance/element :ProfileLine,
+   :instance/value
+   {:ADACId "6873544",
+    :ProfileID "Pro1",
+    :ChainageID "CH1",
+    :Chainage_m 53.388,
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495483.499, :Y 6935668.01}
+         {:X 495484.054, :Y 6935721.396}]}]}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "18b773c2-8731-4072-bea1-d202a50a863d",
+   :instance/member-key :ProfileLines,
+   :instance/member-index 0}
+  {:instance/id #uuid "ab89a6eb-3055-48a1-89b5-5f41d1015375",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :TextValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "652f6bc0-ecbf-41a3-be34-a0d2146dfe06",
+   :instance/member-key :Attributes,
+   :instance/member-index 0}
+  {:instance/id #uuid "abbcc181-bb5d-4b6f-8189-548e0e419228",
+   :instance/element :Tree,
+   :instance/value
+   {:ADACId "tree",
+    :Species "Myrtaceae",
+    :Genus "Eucalyptus",
+    :RootBarrier false,
+    :Grate false,
+    :Geometry {:Point {:X 495507.978, :Y 6935748.287}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :Trees,
+   :instance/member-index 0}
+  {:instance/id #uuid "ac285471-0823-4709-8a49-81fbb2d8ba1b",
+   :instance/element :Circular,
+   :instance/value {:Diameter_mm 1050},
+   :instance/root? false,
+   :instance/parent-id #uuid "804de396-f2e3-437e-9e2b-456d87402d23",
+   :instance/member-key :Circular}
+  {:instance/id #uuid "ad4eb7af-9a4f-4279-8cd4-d6a03e1f7ca3",
+   :instance/element :Surface,
+   :instance/value
+   {:SurfaceType "AC",
+    :SurfaceThickness_mm 25,
+    :SurfaceArea_sqm 96.952},
+   :instance/root? false,
+   :instance/parent-id #uuid "fb7d2248-a80f-4f30-aa8b-c59c267ef7d1",
+   :instance/member-key :Surface}
+  {:instance/id #uuid "ae76923c-147a-455f-8c16-8cd5811bcc41",
+   :instance/element :PramRampPolygon,
+   :instance/value
+   {:ADACId "PR1",
+    :Rotation 0.0,
+    :Geometry
+    {:Polygon
+     {:Ring
+      [{:PolySegment
+        [{:X 495474.384, :Y 6935665.34}
+         {:X 495474.047, :Y 6935666.741}
+         {:X 495475.224, :Y 6935667.595}
+         {:X 495477.074, :Y 6935666.939}
+         {:X 495475.737, :Y 6935665.912}
+         {:X 495474.384, :Y 6935665.34}]}]}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "8691e995-5fe9-4532-ae15-d3c593c5b9c9",
+   :instance/member-key :PramRampPolygon}
+  {:instance/id #uuid "ae87e69b-9043-4554-9203-154b11775cbb",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "376f9125-351a-4182-b161-f1f9f2456ec6",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "aee07386-f853-4d34-b03e-d23b483153de",
+   :instance/element :Bridges_Fragment,
+   :instance/value {:choice/selected :BridgeAbutment},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :Bridges,
+   :instance/member-index 4}
+  {:instance/id #uuid "af777b72-ed34-41b9-8e6b-5ffe3e8dfab0",
+   :instance/element :Valve,
+   :instance/value
+   {:Manufacturer "Bermad",
+    :Protection "FBE",
+    :ADACId "Val 1",
+    :Diameter_mm 300,
+    :Rotation 0.0,
+    :Geometry
+    {:Point
+     {:X 495386.979,
+      :Y 6935638.499,
+      :Z 49.822,
+      :GNSSMetadata :schemacraft/nil}},
+    :ModelNumber :schemacraft/nil,
+    :Use "Gas Release",
+    :Type "Air Valve",
+    :Lining "CL"},
+   :instance/root? false,
+   :instance/parent-id #uuid "0efbe193-1c0f-45ca-9abd-d0c85f9453f9",
+   :instance/member-key :Valves,
+   :instance/member-index 0}
+  {:instance/id #uuid "b0b71808-5e4c-4491-8b8b-a9db92714d84",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "3a23967a-145b-4df0-ac05-1d36d1c5bf94",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "b132dace-b37f-4aae-94c6-3d4df8d3bece",
+   :instance/element :Rectangular,
+   :instance/value {:Length_mm 935, :Width_mm 835},
+   :instance/root? false,
+   :instance/parent-id #uuid "1258e06e-8720-40c2-a63e-9de531edb396",
+   :instance/member-key :Rectangular}
+  {:instance/id #uuid "b3121585-d926-4bc4-a2b6-df30b08af114",
+   :instance/element :Cadastre,
+   :instance/value {},
+   :instance/root? false,
+   :instance/parent-id #uuid "2a455907-8d65-40e3-a253-020d56810cb1",
+   :instance/member-key :Cadastre}
+  {:instance/id #uuid "b333f8c5-77fc-4e89-8704-a3bccd3e2ec2",
+   :instance/element :Inlet,
+   :instance/value
+   {:InletConfig "Left", :InletType "LIL Gully", :InletSize "900x600"},
+   :instance/root? false,
+   :instance/parent-id #uuid "f60f039b-bff8-4a98-bab2-72702d9aed86",
+   :instance/member-key :Inlet}
+  {:instance/id #uuid "b33db656-0c5a-4e4e-86eb-57ff5908cb3e",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "ff0ae72a-ca61-440a-b8dd-c5bb894479fb",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "b3f2c31e-8660-409f-9038-3de4965ea64d",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate "2017-06-28",
+    :DataQuality "APlus",
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Sewerage",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "af777b72-ed34-41b9-8e6b-5ffe3e8dfab0",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "b4b4cf2c-2d34-4a33-9277-1449a3ab9603",
+   :instance/element :WSUDArea,
+   :instance/value
+   {:MinSurfaceLevel_m 43.999,
+    :ADACId "456333",
+    :Sqid_Id "456333",
+    :Function3 "Bioretention",
+    :MaintenanceCycle_mnths :schemacraft/nil,
+    :MacrophyteZoneDepth_m :schemacraft/nil,
+    :PondingDepth_m 2.22,
+    :MacrophyteZoneArea_m2 :schemacraft/nil,
+    :PondingArea_m2 39.143,
+    :DrainageDepth_m :schemacraft/nil,
+    :Function2 "Vegetated Filtration",
+    :Geometry
+    {:Polygon
+     [[{:PolySegment
+        [{:X 495475.984,
+          :Y 6935639.476,
+          :Z :schemacraft/nil,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495480.565,
+          :Y 6935645.17,
+          :Z :schemacraft/nil,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495488.804,
+          :Y 6935640.976,
+          :Z :schemacraft/nil,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495480.796,
+          :Y 6935639.091,
+          :Z :schemacraft/nil,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495475.984,
+          :Y 6935639.476,
+          :Z :schemacraft/nil,
+          :GNSSMetadata :schemacraft/nil}]}]]},
+    :TransitionDepth_m :schemacraft/nil,
+    :HasSpillway false,
+    :PermanentPondLevel_m 43.2,
+    :Function1 "Gross Pollutant Capture",
+    :TreatmentMeasure "Bioretention Basin",
+    :SedimentVolume_m3 1.99,
+    :DesignFlow_m3s 12.0,
+    :FilterDepth_m :schemacraft/nil,
+    :FilterArea_m2 :schemacraft/nil,
+    :OutletLevel_m 43.42,
+    :CoarseSedimentArea_m2 :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :WSUDAreas,
+   :instance/member-index 0}
+  {:instance/id #uuid "b56fd28a-0411-498c-8f50-b194f474430e",
+   :instance/element :Lot,
+   :instance/value
+   {:ADACId "lot16",
+    :LotNo "16",
+    :PlanNo "SP123456",
+    :CancelledLotPlan "100RP987654",
+    :TitledArea_sqm 460.0,
+    :Geometry
+    {:Polygon
+     [{:PolySegment
+       [{:X 495448.256, :Y 6935705.793}
+        {:X 495448.2, :Y 6935689.293}
+        {:X 495476.2, :Y 6935689.2}
+        {:X 495476.254, :Y 6935705.7}
+        {:X 495448.256, :Y 6935705.793}]}]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "78b43498-c1ac-4e4e-9d39-7d973776cc1d",
+   :instance/member-key :Lot}
+  {:instance/id #uuid "b58a3b05-4a83-4878-9480-d83b348831f6",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "652f6bc0-ecbf-41a3-be34-a0d2146dfe06",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "b5b2cb3e-8548-4d07-910d-88b1ca3b8e9b",
+   :instance/element :Lot,
+   :instance/value
+   {:ADACId "lot17",
+    :LotNo "17",
+    :PlanNo "SP123456",
+    :CancelledLotPlan "100RP987654",
+    :TitledArea_sqm 460.0,
+    :Geometry
+    {:Polygon
+     [{:PolySegment
+       [{:X 495476.254, :Y 6935705.7}
+        {:X 495476.308, :Y 6935722.175}
+        {:X 495448.309, :Y 6935722.268}
+        {:X 495448.269, :Y 6935710.268}
+        {:X 495476.254, :Y 6935705.7}]}]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "1e7a040a-6c8e-4215-baf8-1e7241957af1",
+   :instance/member-key :Lot}
+  {:instance/id #uuid "b5fd44c0-579f-418f-a937-138218118e0a",
+   :instance/element :Seat,
+   :instance/value
+   {:ADACId "777",
+    :SeatType "Freestanding",
+    :Places 3,
+    :Material "Timber and Steel",
+    :Manufacturer "Seats Co.",
+    :ModelNumber "3 seater",
+    :Geometry {:Point {:X 495501.758, :Y 6935726.509}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :Seats,
+   :instance/member-index 0}
+  {:instance/id #uuid "b6cfc7c5-bc83-4966-ab6e-d65179261e88",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "97aeeb66-ee69-46af-88b4-0449ab5961bf",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "b71816cc-5fdd-4a94-8681-dcb6e66d4923",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "f43ef310-43db-4a6c-9133-b9b3552e4457",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "b90dec31-2eb6-4087-a1ad-863396154578",
+   :instance/element :PipePressure,
+   :instance/value
+   {:Length_m 101.381,
+    :Protection "Uncoated",
+    :ADACId "1234567",
+    :Diameter_mm 300,
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495386.979,
+          :Y 6935638.499,
+          :Z 49.822,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495403.871,
+          :Y 6935643.8,
+          :Z 49.211,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495487.46,
+          :Y 6935647.38,
+          :Z 48.888,
+          :GNSSMetadata :schemacraft/nil}]}]}},
+    :JointType "BW",
+    :Embedment "GBS",
+    :Depth_m 1.255,
+    :Alignment_m :schemacraft/nil,
+    :Material "PE-100",
+    :Use "Rising",
+    :Class "PN16",
+    :Lining "Unlined",
+    :RockExcavated true},
+   :instance/root? false,
+   :instance/parent-id #uuid "0efbe193-1c0f-45ca-9abd-d0c85f9453f9",
+   :instance/member-key :PipesPressure,
+   :instance/member-index 0}
+  {:instance/id #uuid "b9150b06-e99a-42e0-8b7b-6e68f77e83a7",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "35715ad3-5f11-4fd3-a068-664d69c61882",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "b986bd9d-0c09-4d20-9fd8-3402d777ca4b",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :TextValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "eb157bc4-252b-447e-9a15-c04de59b79b9",
+   :instance/member-key :Attributes,
+   :instance/member-index 0}
+  {:instance/id #uuid "bc0a2970-fd02-46e0-94ca-2189636e4055",
+   :instance/element :PointFeature,
+   :instance/value
+   {:ADACId "SuppPt",
+    :Class "SupplementaryPtClass",
+    :Note "SupplementaryPt specific notes",
+    :Geometry {:Point {:X 495525.235, :Y 6935750.719}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "82ce52bb-68f8-4db1-a907-c6d99e6a054c",
+   :instance/member-key :PointFeatures,
+   :instance/member-index 0}
+  {:instance/id #uuid "beb24e76-afb7-4ace-9f85-83a1e5e05cf8",
+   :instance/element :Connection,
+   :instance/value
+   {:Length_m 2.32,
+    :Sediment_Trap false,
+    :ADACId "HC 15",
+    :IO_Distance_m 2.137,
+    :Diameter_mm 100,
+    :SurfaceLevel_m 51.712,
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495475.056, :Y 6935675.666, :Z 49.701}
+         {:X 495477.371, :Y 6935675.773, :Z 49.602}]}]}},
+    :SO_Nearest_m 1.099,
+    :DSMHID "2",
+    :Chainage_m 0.0,
+    :SO_Other_m 7.294,
+    :Material "PVC-U",
+    :Use "House",
+    :Type "Stub",
+    :Offset_m 1.78,
+    :Class "SN10",
+    :InvertLevel_m 49.701,
+    :LineNumber "1"},
+   :instance/root? false,
+   :instance/parent-id #uuid "0efbe193-1c0f-45ca-9abd-d0c85f9453f9",
+   :instance/member-key :Connections,
+   :instance/member-index 2}
+  {:instance/id #uuid "c054f819-8398-4d8f-83c3-8a86d104ac2a",
+   :instance/element :WSUDPoints_Fragment,
+   :instance/value {:choice/selected :GPTComplex},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :WSUDPoints,
+   :instance/member-index 0}
+  {:instance/id #uuid "c16d3217-c1e7-449d-a5f0-fbb27a97ee59",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :DecimalValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "652f6bc0-ecbf-41a3-be34-a0d2146dfe06",
+   :instance/member-key :Attributes,
+   :instance/member-index 2}
+  {:instance/id #uuid "c19b3fc3-d0ea-4dc1-9ce0-2915029f448e",
+   :instance/element :ChamberSize,
+   :instance/value {:choice/selected :Circular},
+   :instance/root? false,
+   :instance/parent-id #uuid "39ef6735-363c-4a8a-aaa1-6815ef789895",
+   :instance/member-key :ChamberSize}
+  {:instance/id #uuid "c23462b5-2ca7-4493-b7b5-235e7454f493",
+   :instance/element :LandscapeArea,
+   :instance/value
+   {:ADACId "area1",
+    :Type "Garden",
+    :RootBarrier true,
+    :Irrigated true,
+    :Geometry
+    {:Polygon
+     [[{:PolySegment
+        [{:X 495490.725, :Y 6935756.221}
+         {:X 495489.724, :Y 6935752.098}
+         {:X 495493.725, :Y 6935748.849}
+         {:X 495501.789, :Y 6935749.224}
+         {:X 495507.666, :Y 6935751.911}
+         {:X 495512.979, :Y 6935749.224}
+         {:X 495514.23, :Y 6935746.413}
+         {:X 495517.355, :Y 6935746.413}
+         {:X 495517.48, :Y 6935756.284}
+         {:X 495490.725, :Y 6935756.221}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :LandscapeAreas,
+   :instance/member-index 0}
+  {:instance/id #uuid "c2e9cc61-abb8-4180-b1bd-84b14771f266",
+   :instance/element :EndStructures_Fragment,
+   :instance/value {:choice/selected :EndStructurePolyline},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :EndStructures,
+   :instance/member-index 1}
+  {:instance/id #uuid "c3eaa268-2fd4-4bb1-9d6d-60681bd593a8",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "APlus",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department "Water Supply",
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "0d53e61f-7d0e-43b2-8b82-b3d949001ee1",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "c44ba423-575c-4f6b-ad91-3b11409e842d",
+   :instance/element :DateTimeValue,
+   :instance/value
+   {:DateTimeValue_content "2017-07-01T12:00:00.0000000+10:00",
+    :valname "DateTimeFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "e49e6a23-a0fd-4750-a61f-3c1a4619d7cc",
+   :instance/member-key :DateTimeValue}
+  {:instance/id #uuid "c4d237c9-3d8e-4835-ab5b-0762679e73b5",
+   :instance/element :Bridges_Fragment,
+   :instance/value {:choice/selected :ContainmentClass},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :Bridges,
+   :instance/member-index 2}
+  {:instance/id #uuid "c4d7121e-f517-44e0-8417-43c63ab9bc8e",
+   :instance/element :BridgeAbutment,
+   :instance/value
+   {:ADACId "Butt2",
+    :BridgeID "Bridge1",
+    :Material "Prestressed Precast Concrete",
+    :Geometry
+    {:Polygon
+     [[{:PolySegment
+        [{:X 495473.692, :Y 6935736.369}
+         {:X 495478.022, :Y 6935736.369}
+         {:X 495478.022, :Y 6935754.584}
+         {:X 495473.692, :Y 6935754.584}
+         {:X 495473.692, :Y 6935736.369}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "a2fbfe69-d4e4-4726-b176-c65b95a5f997",
+   :instance/member-key :BridgeAbutment}
+  {:instance/id #uuid "c6458ab8-695b-49cc-8a22-2d124656903f",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "b4b4cf2c-2d34-4a33-9277-1449a3ab9603",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "c7172828-5ea2-4927-92ce-c1f39a197432",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "fab79132-f29d-42fc-967a-e77dbfc64fcb",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "c763360d-62cf-49c0-933d-3c264904cac0",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :DateValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "652f6bc0-ecbf-41a3-be34-a0d2146dfe06",
+   :instance/member-key :Attributes,
+   :instance/member-index 3}
+  {:instance/id #uuid "c7de2365-9588-46f2-8415-d6cb7a021b07",
+   :instance/element :DecimalValue,
+   :instance/value
+   {:DecimalValue_content 9.99, :valname "DecimalFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "c16d3217-c1e7-449d-a5f0-fbb27a97ee59",
+   :instance/member-key :DecimalValue}
+  {:instance/id #uuid "c95d3c8e-c9cc-4a94-a142-d5edc078f6f6",
+   :instance/element :Software,
+   :instance/value
+   {:Product "MS Visual Studio prepared by Lion Systems",
+    :Version "Product Version ID"},
+   :instance/root? false,
+   :instance/parent-id #uuid "e1aef835-f202-4d53-93d4-f61d0bf9bd06",
+   :instance/member-key :Software}
+  {:instance/id #uuid "c9b7ce8c-637d-478b-9721-60d4b4d0bafd",
+   :instance/element :SubSoilDrain,
+   :instance/value
+   {:ADACId "SSD1",
+    :Use "Side Drain",
+    :Type "Perforated Pipe",
+    :Length_m 18.153,
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495469.027, :Y 6935664.379}
+         {:X 495470.257, :Y 6935664.421}
+         {:X 495472.937, :Y 6935664.859}
+         {:X 495475.675, :Y 6935666.015}
+         {:X 495476.946, :Y 6935667.022}
+         {:X 495478.592, :Y 6935669.132}
+         {:X 495479.725, :Y 6935671.76}
+         {:X 495480.119, :Y 6935674.721}
+         {:X 495480.125, :Y 6935675.809}]}]}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :SubSoilDrains,
+   :instance/member-index 0}
+  {:instance/id #uuid "c9e2179b-4256-40a5-b99c-c14e2624d358",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "4bdd4905-1102-4cbf-9ece-6fc4181f114b",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "ca40dfd8-352c-487c-8ef6-7b8c579a7f4f",
+   :instance/element :PramRamp,
+   :instance/value
+   {:ADACId "PR1",
+    :Rotation 0.0,
+    :Geometry
+    {:Point
+     {:X 495475.737, :Y 6935665.912, :GNSSMetadata :schemacraft/nil}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "5025c198-0c39-4b4d-9714-b59d9a1d3403",
+   :instance/member-key :PramRamp}
+  {:instance/id #uuid "cab2dc7e-ff09-4c07-b8fb-f5739c2a7ab4",
+   :instance/element :Annotation,
+   :instance/value
+   {:ADACId "49673215",
+    :Rotation 90.0,
+    :Geometry {:Point {:X 495482.407, :Y 6935713.707}},
+    :Font "Arial",
+    :Text "Sir Lee Goldsmith Ave",
+    :Type "TRANSPORT_ANNO",
+    :Width_m 37.5,
+    :Justification "Right-Top",
+    :Height_m 2.5},
+   :instance/root? false,
+   :instance/parent-id #uuid "4562e112-a51b-4a2f-ae04-8ae28c7e4c64",
+   :instance/member-key :Annotations,
+   :instance/member-index 0}
+  {:instance/id #uuid "cb176f75-e96b-40f5-8980-c1668a0f6f16",
+   :instance/element :BridgeExtent,
+   :instance/value
+   {:ADACId "extent1",
+    :BridgeID "Bridge1",
+    :Geometry
+    {:Polygon
+     {:Ring
+      [{:PolySegment
+        [{:X 495411.047, :Y 6935735.322}
+         {:X 495482.282, :Y 6935735.322}
+         {:X 495482.282, :Y 6935755.91}
+         {:X 495411.047, :Y 6935755.91}
+         {:X 495411.047, :Y 6935735.322}]}]}},
+    :DesignLoad :schemacraft/nil,
+    :Spans 2,
+    :Use "Road",
+    :Name "Bridge To Nowhere",
+    :PredominantMaterial "Prestressed Precast Concrete",
+    :Type "Arch",
+    :CrossingType "Fresh Water",
+    :MinimumClearance_m 4.2},
+   :instance/root? false,
+   :instance/parent-id #uuid "4c27a658-d4b4-4ba4-a03e-1b73aa170912",
+   :instance/member-key :BridgeExtent}
+  {:instance/id #uuid "cb185908-555b-4764-b95f-d639fd753030",
+   :instance/element :DateTimeValue,
+   :instance/value
+   {:DateTimeValue_content "2017-07-01T12:00:00.0000000+10:00",
+    :valname "DateTimeFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "f5bd2c4a-c50d-4cff-ba13-063d69a6a3a7",
+   :instance/member-key :DateTimeValue}
+  {:instance/id #uuid "ccc007ba-664a-4faf-a687-dbaae7ebe45f",
+   :instance/element :RefLineFrom,
+   :instance/value {:Left -0.5, :Right 4.0},
+   :instance/root? false,
+   :instance/parent-id #uuid "dd97166d-4c53-440b-bc42-7eae02019a48",
+   :instance/member-key :RefLineFrom}
+  {:instance/id #uuid "cf91f114-6490-47b3-81dc-d0d08989c111",
+   :instance/element :Lintel,
+   :instance/value
+   {:LintelConstruction "Prefabricated", :LintelLength_m 2.4},
+   :instance/root? false,
+   :instance/parent-id #uuid "e53b7e1c-0974-4f64-9585-2afed58f5808",
+   :instance/member-key :Lintel}
+  {:instance/id #uuid "d0667f52-1a20-4065-82df-642ecee5e877",
+   :instance/element :Engineer,
+   :instance/value
+   {:Name "Different Engineer", :DateApproved "2017-06-27"},
+   :instance/root? false,
+   :instance/parent-id #uuid "13d976d8-cd23-4772-9d4e-8ff296153eea",
+   :instance/member-key :Engineer}
+  {:instance/id #uuid "d131e131-69f4-4a46-b683-58ddd8bc3a89",
+   :instance/element :Pipe,
+   :instance/value
+   {:Length_m 8.712,
+    :ADACId "2/1 - 1/1",
+    :Cells 1,
+    :Geometry
+    {:Polyline
+     [{:PolySegment
+       [{:X 495479.004,
+         :Y 6935662.198,
+         :Z 48.782,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495476.444,
+         :Y 6935653.91,
+         :Z 47.982,
+         :GNSSMetadata :schemacraft/nil}]}]},
+    :US_SurfaceLevel_m 50.999,
+    :DS_InvertLevel_m 47.982,
+    :ConcreteCoverType "Standard",
+    :Grade 9.183,
+    :US_InvertLevel_m 48.782,
+    :DS_SurfaceLevel_m 48.832},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :Pipes,
+   :instance/member-index 4}
+  {:instance/id #uuid "d4948d2e-81f3-4a6c-b7ed-0e4617312c74",
+   :instance/element :IntegerValue,
+   :instance/value
+   {:IntegerValue_content 999, :valname "IntegerFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "3781ba4a-1d1a-445f-9e07-81c1b0cc67fe",
+   :instance/member-key :IntegerValue}
+  {:instance/id #uuid "d7648d33-1c5b-4e2f-aef8-38b291734afb",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :TimeValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "eb157bc4-252b-447e-9a15-c04de59b79b9",
+   :instance/member-key :Attributes,
+   :instance/member-index 4}
+  {:instance/id #uuid "d7c170b1-f8c6-4968-a95e-00be0940fc6b",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "960655ed-25af-4c26-aea2-26c57e663760",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "dafca141-5492-4a2a-a044-2800e3faf623",
+   :instance/element :DecimalValue,
+   :instance/value
+   {:DecimalValue_content 9.99, :valname "DecimalFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "8ebbdec1-5bfe-44d3-9d4e-354b4103409e",
+   :instance/member-key :DecimalValue}
+  {:instance/id #uuid "daffccbb-b41f-4353-883f-6c04048cf075",
+   :instance/element :Pavement,
+   :instance/value
+   {:ADACId "456789",
+    :Name "Sir Lee Goldsmith Avenue",
+    :PavementGeoTextile "Class A",
+    :Geometry
+    {:Polygon
+     [[{:PolySegment
+        [{:X 495469.129, :Y 6935664.18, :Z 51.44}
+         {:X 495487.04, :Y 6935664.152, :Z 51.367}
+         {:X 495487.045, :Y 6935667.267, :Z 51.435}
+         {:X 495487.091, :Y 6935668.515, :Z 51.457}
+         {:X 495487.189, :Y 6935669.822, :Z 51.471}
+         {:X 495487.233, :Y 6935670.575, :Z 51.468}
+         {:X 495487.261, :Y 6935671.195, :Z 51.465}
+         {:X 495487.348, :Y 6935673.323, :Z 51.465}
+         {:X 495487.361, :Y 6935674.574, :Z 51.474}
+         {:X 495487.344, :Y 6935679.272, :Z 51.517}
+         {:X 495487.539, :Y 6935721.177, :Z 52.459}
+         {:X 495480.57, :Y 6935721.614, :Z 52.502}
+         {:X 495480.595, :Y 6935720.903, :Z 52.481}
+         {:X 495480.419, :Y 6935674.721, :Z 51.49}
+         {:X 495480.026, :Y 6935671.759, :Z 51.46}
+         {:X 495478.863, :Y 6935669.015, :Z 51.423}
+         {:X 495477.151, :Y 6935666.897, :Z 51.394}
+         {:X 495475.777, :Y 6935665.823, :Z 51.381}
+         {:X 495472.978, :Y 6935664.661, :Z 51.374}
+         {:X 495470.274, :Y 6935664.239, :Z 51.411}
+         {:X 495469.129, :Y 6935664.18, :Z 51.44}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :PavementAreas,
+   :instance/member-index 0}
+  {:instance/id #uuid "dd97166d-4c53-440b-bc42-7eae02019a48",
+   :instance/element :Dimension,
+   :instance/value
+   {:ADACId "6793425",
+    :Type "SEWER_MH_OFFSETS",
+    :Measure 1.738,
+    :FromFeatureId "FromID",
+    :ToFeatureId "ToID",
+    :BaseLineOffset -0.1,
+    :Geometry
+    {:Polyline
+     {:Path
+      {:PolySegment
+       [{:X 495477.893, :Y 6935675.717}
+        {:X 495476.155, :Y 6935675.723}]}}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "4562e112-a51b-4a2f-ae04-8ae28c7e4c64",
+   :instance/member-key :Dimensions,
+   :instance/member-index 0}
+  {:instance/id #uuid "de4b2537-86e2-4914-aa2c-3aa26050b4f8",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "a2a4084c-ca5a-4f48-8733-d23190b294cb",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "df7e5f1c-ec0a-4328-8656-c38862026064",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "e53b7e1c-0974-4f64-9585-2afed58f5808",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "e01384c9-e274-4e2b-b6f2-743b352886f3",
+   :instance/element :Lot,
+   :instance/value
+   {:ADACId "lot18",
+    :LotNo "18",
+    :PlanNo "SP123456",
+    :CancelledLotPlan "100RP987654",
+    :TitledArea_sqm 460.0,
+    :Geometry
+    {:Polygon
+     [{:PolySegment
+       [{:X 495516.248, :Y 6935703.294}
+        {:X 495516.313, :Y 6935722.043}
+        {:X 495491.809, :Y 6935722.124}
+        {:X 495491.747, :Y 6935703.375}
+        {:X 495516.248, :Y 6935703.294}]}]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "a9fe9c02-7870-4bf5-8552-6d519f7c28c7",
+   :instance/member-key :Lot}
+  {:instance/id #uuid "e1aef835-f202-4d53-93d4-f61d0bf9bd06",
+   :instance/element :Project,
+   :instance/value
+   {:Receiver "Authority Name",
+    :Owner "Council",
+    :ConstructionDate "2017-07-01",
+    :DrawingNumber "DWG123456",
+    :DrawingRevision "2017-07-02",
+    :WorksApprovalID "OPW123456",
+    :ExportDateTime "2017-07-01T12:00:00.0000000+10:00",
+    :Name "Sample ADAC V5.0.1 XML",
+    :Description "Sample data describing a staged subdivision",
+    :ProjectStatus "For Approval"},
+   :instance/root? false,
+   :instance/parent-id #uuid "5303383c-450b-4de6-82cc-b06d6e5e0608",
+   :instance/member-key :Project}
+  {:instance/id #uuid "e49e6a23-a0fd-4750-a61f-3c1a4619d7cc",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :DateTimeValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "bc0a2970-fd02-46e0-94ca-2189636e4055",
+   :instance/member-key :Attributes,
+   :instance/member-index 5}
+  {:instance/id #uuid "e4bf1dfc-9ad5-4917-8dd5-a2c3e7640ea1",
+   :instance/element :Fitting,
+   :instance/value
+   {:Protection "FBE",
+    :ADACId "Fitting 2",
+    :Rotation 0.0,
+    :BranchSize_mm :schemacraft/nil,
+    :Geometry
+    {:Point
+     {:X 495403.871,
+      :Y 6935643.8,
+      :Z 49.211,
+      :GNSSMetadata :schemacraft/nil}},
+    :BodySize_mm 300,
+    :Material "DI",
+    :Type "Bend",
+    :Lining "CL"},
+   :instance/root? false,
+   :instance/parent-id #uuid "0efbe193-1c0f-45ca-9abd-d0c85f9453f9",
+   :instance/member-key :Fittings,
+   :instance/member-index 0}
+  {:instance/id #uuid "e4fd46a7-2f3a-48ea-af42-98215a9bca08",
+   :instance/element :TextValue,
+   :instance/value
+   {:TextValue_content "Example of text value",
+    :valname "TextFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "b986bd9d-0c09-4d20-9fd8-3402d777ca4b",
+   :instance/member-key :TextValue}
+  {:instance/id #uuid "e53b7e1c-0974-4f64-9585-2afed58f5808",
+   :instance/element :Pit,
+   :instance/value
+   {:PitNumber "3/1",
+    :ADACId "3/1",
+    :Rotation 0.0,
+    :SurfaceLevel_m 51.421,
+    :Geometry
+    {:Point
+     {:X 495480.006,
+      :Y 6935676.605,
+      :Z 51.421,
+      :GNSSMetadata :schemacraft/nil}},
+    :LidType :schemacraft/nil,
+    :Depth_m 1.528,
+    :Use "Pit",
+    :FireRetardant false,
+    :OutletType "Dry",
+    :InvertLevel_m 49.893,
+    :ChamberConstruction "Insitu"},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :Pits,
+   :instance/member-index 2}
+  {:instance/id #uuid "e814541b-20d2-4f60-8ad7-f75dcabecfc4",
+   :instance/element :TimeValue,
+   :instance/value
+   {:TimeValue_content "12:00:00.0000000+10:00",
+    :valname "TimeFieldExample"},
+   :instance/root? false,
+   :instance/parent-id #uuid "1b343e66-11c4-49a1-a4af-0fe7dbc46710",
+   :instance/member-key :TimeValue}
+  {:instance/id #uuid "e82d96cb-1519-48ef-a990-3d95f12d569e",
+   :instance/element :MaintenanceHole,
+   :instance/value
+   {:FloorMaterial "Concrete",
+    :MH_Number "EX11",
+    :WallMaterial "Concrete",
+    :ADACId "EX1/11",
+    :Rotation 0.0,
+    :SurfaceLevel_m 51.35,
+    :Geometry
+    {:Point
+     {:X 495488.001,
+      :Y 6935647.64,
+      :Z 51.35,
+      :GNSSMetadata :schemacraft/nil}},
+    :LidMaterial "Cast Iron",
+    :DropType "Change In Direction Through MH",
+    :Chainage_m :schemacraft/nil,
+    :WallConstruction "Insitu",
+    :OffsetDistance_m :schemacraft/nil,
+    :RoofMaterial "Concrete",
+    :FloorConstruction "Insitu",
+    :TieDistance_m :schemacraft/nil,
+    :Use "Rising Main Discharge MH",
+    :InvertLevel_m 47.899,
+    :LineNumber "1",
+    :Lining :schemacraft/nil,
+    :CatchmentPS :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "0efbe193-1c0f-45ca-9abd-d0c85f9453f9",
+   :instance/member-key :MaintenanceHoles,
+   :instance/member-index 3}
+  {:instance/id #uuid "eb157bc4-252b-447e-9a15-c04de59b79b9",
+   :instance/element :PolygonFeature,
+   :instance/value
+   {:ADACId "SuppPolygon",
+    :Class "SupplementaryPolygonClass",
+    :Note :schemacraft/nil,
+    :Geometry
+    {:Polygon
+     [[{:PolySegment
+        [{:X 495522.642, :Y 6935742.657}
+         {:X 495528.692, :Y 6935745.968}
+         {:X 495529.845, :Y 6935739.777}
+         {:X 495524.947, :Y 6935737.978}
+         {:X 495522.642, :Y 6935742.657}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "82ce52bb-68f8-4db1-a907-c6d99e6a054c",
+   :instance/member-key :PolygonFeatures,
+   :instance/member-index 0}
+  {:instance/id #uuid "ec709e36-b41b-4f27-a5c1-2bba7d7ed673",
+   :instance/element :BridgeDeck,
+   :instance/value
+   {:ADACId "Deck1",
+    :BridgeID "Bridge1",
+    :Material "Fibre Composite",
+    :NomWidth_m 16.7,
+    :DeckLength_m 63.13,
+    :Geometry
+    {:Polygon
+     [[{:PolySegment
+        [{:X 495414.888, :Y 6935737.137}
+         {:X 495478.022, :Y 6935737.137}
+         {:X 495478.022, :Y 6935753.816}
+         {:X 495414.888, :Y 6935753.816}
+         {:X 495414.888, :Y 6935737.137}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "80a1a989-fed1-4204-b75a-a9533d0ee9ff",
+   :instance/member-key :BridgeDeck}
+  {:instance/id #uuid "ec813312-5a89-4194-b27b-0f8d626c6439",
+   :instance/element :MaintenanceHole,
+   :instance/value
+   {:FloorMaterial "Concrete",
+    :MH_Number "3",
+    :WallMaterial "Concrete",
+    :ADACId "3/1",
+    :Rotation 0.0,
+    :SurfaceLevel_m 52.602,
+    :Geometry {:Point {:X 495478.066, :Y 6935720.188, :Z 52.602}},
+    :LidMaterial "Cast Iron",
+    :DropType "Straight Through MH",
+    :Chainage_m :schemacraft/nil,
+    :WallConstruction "Prefabricated",
+    :OffsetDistance_m :schemacraft/nil,
+    :RoofMaterial "Concrete",
+    :FloorConstruction "Prefabricated",
+    :TieDistance_m :schemacraft/nil,
+    :Use "Maintenance Hole",
+    :InvertLevel_m 50.48,
+    :LineNumber "1",
+    :Lining "PVC",
+    :CatchmentPS :schemacraft/nil},
+   :instance/root? false,
+   :instance/parent-id #uuid "0efbe193-1c0f-45ca-9abd-d0c85f9453f9",
+   :instance/member-key :MaintenanceHoles,
+   :instance/member-index 0}
+  {:instance/id #uuid "ecceb2e9-6361-4430-90f3-ea3301c9f608",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "12966226-5a94-4879-82e3-0ca0fcfcf562",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "eeb81c58-aca8-42dd-a7ea-77fed32f8efb",
+   :instance/element :Table,
+   :instance/value
+   {:ADACId "999",
+    :Type "Table",
+    :Material "Aluminium",
+    :Manufacturer "IKEA",
+    :ModelNumber :schemacraft/nil,
+    :Geometry {:Point {:X 495510.054, :Y 6935728.629}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :Tables,
+   :instance/member-index 0}
+  {:instance/id #uuid "ef43a17f-b2c3-4a40-9698-4a7ef501f571",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "f60f039b-bff8-4a98-bab2-72702d9aed86",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "efc0e286-e21e-4f34-b05a-87dad0c7d527",
+   :instance/element :ComponentInfo,
+   :instance/value
+   {:InfrastructureCode :schemacraft/nil,
+    :Owner "Council",
+    :ConstructionDate :schemacraft/nil,
+    :DataQuality "A",
+    :Engineer :schemacraft/nil,
+    :DrawingNumber :schemacraft/nil,
+    :DrawingRevision :schemacraft/nil,
+    :Department :schemacraft/nil,
+    :Notes :schemacraft/nil,
+    :Surveyor :schemacraft/nil,
+    :SupportingFiles :schemacraft/nil,
+    :Status "Newly Constructed"},
+   :instance/root? false,
+   :instance/parent-id #uuid "e01384c9-e274-4e2b-b6f2-743b352886f3",
+   :instance/member-key :ComponentInfo}
+  {:instance/id #uuid "effa1d55-5efe-4df7-8895-7e5d8fe86e17",
+   :instance/element :Inlet,
+   :instance/value
+   {:InletConfig "Right",
+    :InletType "LIL Gully",
+    :InletSize "900x600"},
+   :instance/root? false,
+   :instance/parent-id #uuid "874f091b-79cc-4cfb-b7cc-d1de10704a83",
+   :instance/member-key :Inlet}
+  {:instance/id #uuid "f00b7893-d8a4-407d-aaff-ca5641c48262",
+   :instance/element :WSUDPoints_Fragment,
+   :instance/value {:choice/selected :GPTSimple},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :WSUDPoints,
+   :instance/member-index 1}
+  {:instance/id #uuid "f0493c51-5672-4c6f-8bd7-3a348a3e8af0",
+   :instance/element :Bridges_Fragment,
+   :instance/value {:choice/selected :BridgeSuperstructure},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :Bridges,
+   :instance/member-index 3}
+  {:instance/id #uuid "f1c26eb7-72ad-47c6-9a54-09efa524bc82",
+   :instance/element :Pathways_Fragment,
+   :instance/value {:choice/selected :RoadPathway},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :Pathways,
+   :instance/member-index 2}
+  {:instance/id #uuid "f43ef310-43db-4a6c-9133-b9b3552e4457",
+   :instance/element :Sign,
+   :instance/value
+   {:Manufacturer :schemacraft/nil,
+    :ADACId "sign1",
+    :Rotation 0.0,
+    :Structure "Post",
+    :Geometry {:Point {:X 495487.907, :Y 6935660.796}},
+    :SignText "Sir Lee Goldsmith Avenue",
+    :ModelNumber :schemacraft/nil,
+    :Material "Stainless Steel",
+    :Type "Naming"},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :Signs,
+   :instance/member-index 0}
+  {:instance/id #uuid "f57e7deb-a54a-40fa-adca-a1d4a712b696",
+   :instance/element :Easement,
+   :instance/value
+   {:ADACId "EMT G",
+    :LotNo "G",
+    :PlanNo "SP123456",
+    :Geometry
+    {:Polygon
+     [{:PolySegment
+       [{:X 495513.312, :Y 6935722.053}
+        {:X 495513.248, :Y 6935703.303}
+        {:X 495516.248, :Y 6935703.293}
+        {:X 495516.312, :Y 6935722.043}
+        {:X 495513.312, :Y 6935722.053}]}]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "b3121585-d926-4bc4-a2b6-df30b08af114",
+   :instance/member-key :Easements,
+   :instance/member-index 0}
+  {:instance/id #uuid "f5bd2c4a-c50d-4cff-ba13-063d69a6a3a7",
+   :instance/element :Attributes_Fragment,
+   :instance/value {:choice/selected :DateTimeValue},
+   :instance/root? false,
+   :instance/parent-id #uuid "eb157bc4-252b-447e-9a15-c04de59b79b9",
+   :instance/member-key :Attributes,
+   :instance/member-index 5}
+  {:instance/id #uuid "f60f039b-bff8-4a98-bab2-72702d9aed86",
+   :instance/element :Pit,
+   :instance/value
+   {:PitNumber "4/1",
+    :ADACId "4/1",
+    :Rotation 0.0,
+    :SurfaceLevel_m 52.271,
+    :Geometry
+    {:Point
+     {:X 495480.292,
+      :Y 6935717.479,
+      :Z 52.271,
+      :GNSSMetadata :schemacraft/nil}},
+    :LidType :schemacraft/nil,
+    :Depth_m 1.866,
+    :Use "Pit",
+    :FireRetardant false,
+    :OutletType "Dry",
+    :InvertLevel_m 50.405,
+    :ChamberConstruction "Insitu"},
+   :instance/root? false,
+   :instance/parent-id #uuid "5e29bf50-39eb-44f6-ae26-9beb1ae2eec0",
+   :instance/member-key :Pits,
+   :instance/member-index 1}
+  {:instance/id #uuid "f6947110-7e90-4785-953f-b32c5d622cf9",
+   :instance/element :Circular,
+   :instance/value {:Diameter_mm 3600},
+   :instance/root? false,
+   :instance/parent-id #uuid "4abb6cbb-6309-4fec-8a14-503880c665db",
+   :instance/member-key :Circular}
+  {:instance/id #uuid "f702b0db-7d0f-48d9-830f-605dd42777b7",
+   :instance/element :WaterService,
+   :instance/value
+   {:Length_m 14.462,
+    :Protection "Conduit",
+    :ADACId "123",
+    :Diameter_mm 25,
+    :WaterQuality "Drinking Water",
+    :Geometry
+    {:Polyline
+     {:Path
+      {:PolySegment
+       [{:X 495490.374,
+         :Y 6935713.222,
+         :Z :schemacraft/nil,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495488.875,
+         :Y 6935713.72,
+         :Z :schemacraft/nil,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495479.906,
+         :Y 6935713.831,
+         :Z :schemacraft/nil,
+         :GNSSMetadata :schemacraft/nil}
+        {:X 495475.994,
+         :Y 6935713.894,
+         :Z :schemacraft/nil,
+         :GNSSMetadata :schemacraft/nil}]}}},
+    :Termination "No Valve",
+    :Material "PE",
+    :Class "PN16"},
+   :instance/root? false,
+   :instance/parent-id #uuid "64f3c5ec-924a-4926-99d1-20412bbc7187",
+   :instance/member-key :WaterServices,
+   :instance/member-index 0}
+  {:instance/id #uuid "f8278720-be5b-41ca-b7a9-1b1c1231441f",
+   :instance/element :NorthEast,
+   :instance/value {:X 495531.619, :Y 6935756.75},
+   :instance/root? false,
+   :instance/parent-id #uuid "387c5850-3cf0-4146-9b6e-2a8dddfd5b29",
+   :instance/member-key :NorthEast}
+  {:instance/id #uuid "f936d283-abf8-47c8-bc92-c656dcfcf860",
+   :instance/element :Apron,
+   :instance/value
+   {:Apron_Width_m 3.038,
+    :Apron_Thickness_m 0.15,
+    :Apron_Area_m2 8.073,
+    :Apron_Material "Concrete Energy Dissepiment",
+    :Apron_Construction "Insitu"},
+   :instance/root? false,
+   :instance/parent-id #uuid "617a7f09-7f76-4803-a1c9-411ddf47bcbd",
+   :instance/member-key :Apron}
+  {:instance/id #uuid "fab79132-f29d-42fc-967a-e77dbfc64fcb",
+   :instance/element :Connection,
+   :instance/value
+   {:Length_m 2.524,
+    :Sediment_Trap false,
+    :ADACId "HC 17",
+    :IO_Distance_m 31.063,
+    :Diameter_mm 100,
+    :SurfaceLevel_m 52.339,
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495475.738, :Y 6935706.765, :Z 51.261}
+         {:X 495478.003, :Y 6935706.389, :Z 50.214}]}]}},
+    :SO_Nearest_m 0.52,
+    :DSMHID "2",
+    :Chainage_m 30.673,
+    :SO_Other_m 1.063,
+    :Material "PVC-U",
+    :Use "House",
+    :Type "Sloped Branch",
+    :Offset_m 2.267,
+    :Class "SN10",
+    :InvertLevel_m 51.261,
+    :LineNumber "1"},
+   :instance/root? false,
+   :instance/parent-id #uuid "0efbe193-1c0f-45ca-9abd-d0c85f9453f9",
+   :instance/member-key :Connections,
+   :instance/member-index 0}
+  {:instance/id #uuid "fb5f5ba9-f70a-474a-821a-8dd2374602d6",
+   :instance/element :CircPipe,
+   :instance/value
+   {:Diameter_mm 450, :Material "RCP", :Class "4", :JointType "RRJ"},
+   :instance/root? false,
+   :instance/parent-id #uuid "725e0594-f21d-48b0-b8ea-34c048fe6558",
+   :instance/member-key :CircPipe}
+  {:instance/id #uuid "fb7d2248-a80f-4f30-aa8b-c59c267ef7d1",
+   :instance/element :Parking,
+   :instance/value
+   {:ADACId "temp parking",
+    :Name "Temporary Parking",
+    :NoOfCarparks 99,
+    :OnOffStreet "On Street",
+    :PavementGeoTextile :schemacraft/nil,
+    :Geometry
+    {:Polygon
+     [[{:PolySegment
+        [{:X 495480.57,
+          :Y 6935721.614,
+          :Z 52.502,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495480.371,
+          :Y 6935734.276,
+          :Z 52.32,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495487.801,
+          :Y 6935735.452,
+          :Z 52.38,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495487.539,
+          :Y 6935721.177,
+          :Z 52.459,
+          :GNSSMetadata :schemacraft/nil}
+         {:X 495480.57,
+          :Y 6935721.614,
+          :Z 52.502,
+          :GNSSMetadata :schemacraft/nil}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "602718c6-95cc-463f-b6a7-96334eeadfbb",
+   :instance/member-key :ParkingAreas,
+   :instance/member-index 0}
+  {:instance/id #uuid "fc91a3b5-bdb8-4bef-9de3-85f73f3ac36e",
+   :instance/element :PipeStructure,
+   :instance/value {:choice/selected :CircPipe},
+   :instance/root? false,
+   :instance/parent-id #uuid "751df34e-74f0-4cb0-a6de-eb3dd5362c0d",
+   :instance/member-key :PipeStructure}
+  {:instance/id #uuid "fcf12978-3704-4f3e-8093-6dff169e7d36",
+   :instance/element :ElectricalConduit,
+   :instance/value
+   {:ADACId "conduit",
+    :Type "Medium Duty",
+    :Material "PVC",
+    :Diameter_mm 200,
+    :Length_m 17.37,
+    :Protection "Concrete Encased",
+    :Geometry
+    {:Polyline
+     [[{:PolySegment
+        [{:X 495503.352, :Y 6935740.54}
+         {:X 495503.102, :Y 6935723.172}]}]]}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :ElectricalConduits,
+   :instance/member-index 0}
+  {:instance/id #uuid "fe6936b2-92df-4bca-8046-74252dd1803a",
+   :instance/element :CoordinateSystem,
+   :instance/value
+   {:HorizontalCoordinateSystem "MGA56",
+    :HorizontalDatum "GDA94",
+    :VerticalDatum "AHD",
+    :IsApproximate false,
+    :OriginMark "PSM123456",
+    :Notes "Coordinate notes go here."},
+   :instance/root? false,
+   :instance/parent-id #uuid "e1aef835-f202-4d53-93d4-f61d0bf9bd06",
+   :instance/member-key :CoordinateSystem}
+  {:instance/id #uuid "ff0ae72a-ca61-440a-b8dd-c5bb894479fb",
+   :instance/element :Edging,
+   :instance/value
+   {:ADACId "456",
+    :Material "Timber",
+    :Length_m 60.488,
+    :Width_mm 150,
+    :Geometry
+    {:Polyline
+     {:Path
+      [{:PolySegment
+        [{:X 495502.756, :Y 6935740.349}
+         {:X 495489.532, :Y 6935740.349}
+         {:X 495489.532, :Y 6935723.329}
+         {:X 495502.756, :Y 6935723.329}]}]}}},
+   :instance/root? false,
+   :instance/parent-id #uuid "86e66a1c-9e62-4aad-860e-e1b59a787638",
+   :instance/member-key :ActivityLandscapeEdging,
+   :instance/member-index 0}],
+ :schemacraft/schema
+ {:id #uuid "d68453a3-10e1-5591-a519-a25d257733d1",
+  :name "ADAC V501",
+  :updated-at #inst "2026-08-05T01:48:08.570-00:00"},
+ :schemacraft/document
+ {:id #uuid "cf4e97e9-4aa2-43a1-aa6f-3bc1a8fe06ff", :label "501-test"}}

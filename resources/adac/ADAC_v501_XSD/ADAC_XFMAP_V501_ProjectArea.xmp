@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--***************************************************************************************-->
+<!--* 	 XFMAP Created By Ian Read - Redland City Council - 2009                          *-->
+<!--* 	 ADAC VERSION 4.0.0 PROTOTYPE            			 	   	                              *-->
+<!--***************************************************************************************-->
+<!--*   Last updated 17/11/2009  *-->
+<!---->
+<!--*   Update 16/04/2013  *-->
+<!--*   By Blake Slaven - Lion Systems for integration with the v4.1 schema *-->
+<!---->
+<!--*   Latest update 09/02/2016  *-->
+<!--*   By Blake Slaven - Lion Systems for integration with the v4.2 schema *-->
+<!---->
+<!--*   Latest update 07/2017  *-->
+<!--*   By Blake Slaven - Lion Systems for integration with the v5.0.0 schema *-->
+<!---->
+<!--*   Latest update 01/2018  *-->
+<!--*   By Blake Slaven - Lion Systems for integration with the v5.0.1 schema *-->
+<!---->
+<!--
+Purpose:   To create the ADAC Project object as a box polygon geometry representing the 
+coordinate extents of the job and exposing all of its member properties as attributes.
+This xfmap does not expose any asset features at all.-->
+<xfmap>
+  <schema-map>
+    <schema-type>
+      <inline>
+        <schema-feature type="ADAC_ProjectArea">
+          <schema-attribute name="fme_geometry{0}" type="xml_area"/>
+          <schema-attribute name="ExportDateTime" type="xml_char(32)"/>
+          <schema-attribute name="Name" type="xml_char(254)"/>
+          <schema-attribute name="Owner" type="xml_char(32)"/>
+          <schema-attribute name="Receiver" type="xml_char(254)"/>
+          <schema-attribute name="WorksApprovalID" type="xml_char(64)"/>
+          <schema-attribute name="DrawingNumber" type="xml_char(64)"/>
+          <schema-attribute name="DrawingRevision" type="xml_char(32)"/>
+          <schema-attribute name="ConstructionDate" type="xml_char(32)"/>
+          <schema-attribute name="HorizontalCoordinateSystem" type="xml_char(64)"/>
+          <schema-attribute name="HorizontalDatum" type="xml_char(64)"/>
+          <schema-attribute name="IsApproximate" type="xml_boolean"/>
+          <schema-attribute name="OriginMark" type="xml_char(64)"/>
+          <schema-attribute name="Notes" type="xml_char(254)"/>
+          <schema-attribute name="SouthWestX" type="xml_real64"/>
+          <schema-attribute name="SouthWestY" type="xml_real64"/>
+          <schema-attribute name="NorthEastX" type="xml_real64"/>
+          <schema-attribute name="NorthEastY" type="xml_real64"/>
+          <schema-attribute name="Description" type="xml_char(254)"/>
+          <schema-attribute name="ProjectStatus" type="xml_char(32)"/>
+          <schema-attribute name="Product" type="xml_char(32)"/>
+          <schema-attribute name="Version" type="xml_char(32)"/>
+		  <schema-attribute name="SurveyorName" type="xml_char(32)"/>
+		  <schema-attribute name="EngineerName" type="xml_char(32)"/>
+		  <schema-attribute name="SurveyorName" type="xml_char(32)"/>
+		  <schema-attribute name="EngineerName" type="xml_char(32)"/>
+        </schema-feature>
+      </inline>
+    </schema-type>
+  </schema-map>
+  <!--******************** FEATURE MAPPINGS ***************************************-->
+  <feature-map>
+    <!-- PROJECT-->
+    <mapping match="ADAC/Project">
+      <feature-type>
+        <literal expr="ADAC_ProjectArea" />
+      </feature-type>
+      <attributes>
+        <attribute><name><literal expr="ExportDateTime" /></name><value><extract expr="./ExportDateTime" /></value></attribute>
+        <attribute><name><literal expr="Name" /></name><value><extract expr="./Name" /></value></attribute>
+        <attribute><name><literal expr="Owner" /></name><value><extract expr="./Owner" /></value></attribute>
+        <attribute><name><literal expr="Receiver" /></name><value><extract expr="./Receiver" /></value></attribute>
+        <attribute><name><literal expr="WorksApprovalID" /></name><value><extract expr="./WorksApprovalID" /></value></attribute>
+        <attribute><name><literal expr="DrawingNumber" /></name><value><extract expr="./DrawingNumber" /></value></attribute>
+        <attribute><name><literal expr="DrawingRevision" /></name><value><extract expr="./DrawingRevision" /></value></attribute>
+        <attribute><name><literal expr="ConstructionDate" /></name><value><extract expr="./ConstructionDate" /></value></attribute>
+        <attribute><name><literal expr="HorizontalCoordinateSystem" /></name><value><extract expr="./CoordinateSystem/HorizontalCoordinateSystem" /></value></attribute>
+        <attribute><name><literal expr="HorizontalDatum" /></name><value><extract expr="./CoordinateSystem/HorizontalDatum" /></value></attribute>
+        <attribute><name><literal expr="VerticalDatum" /></name><value><extract expr="./CoordinateSystem/VerticalDatum" /></value></attribute>
+        <attribute><name><literal expr="IsApproximate" /></name><value><extract expr="./CoordinateSystem/IsApproximate" /></value></attribute>
+        <attribute><name><literal expr="OriginMark" /></name><value><extract expr="./CoordinateSystem/OriginMark" /></value></attribute>
+        <attribute><name><literal expr="Notes" /></name><value><extract expr="./CoordinateSystem/Notes" /></value></attribute>
+        <attribute><name><literal expr="SouthWestX" /></name><value><extract expr="./DrawingExtents/SouthWest/X" /></value></attribute>
+        <attribute><name><literal expr="SouthWestY" /></name><value><extract expr="./DrawingExtents/SouthWest/Y" /></value></attribute>
+        <attribute><name><literal expr="NorthEastX" /></name><value><extract expr="./DrawingExtents/NorthEast/X" /></value></attribute>
+        <attribute><name><literal expr="NorthEastY" /></name><value><extract expr="./DrawingExtents/NorthEast/Y" /></value></attribute>
+        <attribute><name><literal expr="Description" /></name><value><extract expr="./Description" /></value></attribute>
+        <attribute><name><literal expr="ProjectStatus" /></name><value><extract expr="./Status" /></value></attribute>
+        <attribute><name><literal expr="Product" /></name><value><extract expr="./Software/Product" /></value></attribute>
+        <attribute><name><literal expr="Version" /></name><value><extract expr="./Software/Version" /></value></attribute>
+		<attribute><name><literal expr="SurveyorName" /></name><value><extract expr="./Surveyor/Name" /></value></attribute>
+		<attribute><name><literal expr="EngineerName" /></name><value><extract expr="./Engineer/Name" /></value></attribute>
+      </attributes>
+      <!-- Activate an xml-box builder for the DrawingExtents -->
+      <geometry activate="xml-box">
+        <data name="axis-separator">
+          <literal expr=","/>
+        </data>
+        <data name="coord-separator">
+          <literal expr="whitespace"/>
+        </data>
+        <data name="data-string">
+          <extract expr="./DrawingExtents/SouthWest/X" />
+          <literal expr="," />
+          <extract expr="./DrawingExtents/SouthWest/Y" />
+          <literal expr=" " />
+          <extract expr="./DrawingExtents/NorthEast/X" />
+          <literal expr="," />
+          <extract expr="./DrawingExtents/NorthEast/Y" />
+        </data>
+      </geometry>
+    </mapping>
+</feature-map>
+</xfmap>

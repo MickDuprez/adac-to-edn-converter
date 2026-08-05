@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2007 rel. 3 sp1 (http://www.altova.com) by Celso Sumadsad (SKM) -->
+<!-- version 3.0.1 edited by Jonathan van Doore 2008 (SCRC) -->
+<!-- version 4.0.0 edited by Ian Read 2009 (RCC) -->
+<!-- version 4.0.0 edited by Ian Read 24 Feb 2011 (RCC) -->
+<!-- version 4.0.1 edited by Ian Read 25 Aug 2011 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 6 Aug 2012 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 4 Jan 2013 (RCC) -->
+<!-- version 4.2.0 edited by Martin Dore' July 2015 (LCC)-->
+<!-- version 5.0.0 edited by Blake Slaven July 2017 (Lion Systems)-->
+<!-- version 5.0.1 edited by Blake Slaven January 2018 (Lion Systems)-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.adac.com.au" targetNamespace="http://www.adac.com.au" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0.1">
+	<xs:annotation>
+		<xs:documentation>This schema provides for the description of objects representing as constructed public works.</xs:documentation>
+		<xs:documentation>The schema is maintained and approved by the ADAC Strategic Reference Group, under the governance of IPWEAQ.</xs:documentation>
+		<xs:documentation>The ADAC Version 5.0.0 Schema constrains all data within an ADAC Version 5.0.0 XML instance document.</xs:documentation>
+		<xs:documentation>Release: v 4.1.0 on 4 Jan 2013.  Prepared by Ian Read, Redland City Council on behalf of IPWEAQ. Supercedes the 6 Aug 2012 release by the inclusion of edit feedback from ADAC Member organisations.</xs:documentation>
+		<xs:documentation>Release: 4.2.0 July 2015.  Prepared by Martin Dore', Logan City Council on behalf of IPWEAQ. Supercedes the 4 Jan 2013 release by the inclusion of SEQ Water Service Providers feedback.</xs:documentation>
+    <xs:documentation>Release: 5.0.0 July 2017.  Prepared by Blake Slaven, Lion Systems on behalf of IPWEAQ and the ADAC Consortium. Supercedes the July 2015 release the inclusion of edit feedback from ADAC Member organisations.</xs:documentation>
+    <xs:documentation>Release: 5.0.1 January 2018.  Prepared by Blake Slaven, Lion Systems on behalf of IPWEAQ and the ADAC Consortium. Supercedes the July 2017 release as a result of feedback from ADAC Member organisations and ADAC Vendors.</xs:documentation>
+	</xs:annotation>
+	<!-- INCLUDES (Software developers may need to restate the SchemaLocations of includes explicitly. As not all software will find them with a relative path).-->
+	<!-- Geometry -->
+	<xs:include schemaLocation="ADACGeometry.xsd">
+		<xs:annotation>
+			<xs:documentation>Uses ADAC Geometry definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- Abstract Object Types -->
+	<xs:include schemaLocation="ADACGlobalTypes.xsd">
+		<xs:annotation>
+			<xs:documentation>Uses ADAC globally referenced type definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- Sewerage Objects -->
+	<xs:include schemaLocation="ADACSewerage.xsd">
+		<xs:annotation>
+			<xs:documentation>Uses ADAC sewerage object definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- Transport Objects -->
+	<xs:include schemaLocation="ADACTransport.xsd">
+		<xs:annotation>
+			<xs:documentation>Uses ADAC Transport object definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- StormWater Objects -->
+	<xs:include schemaLocation="ADACStormWater.xsd">
+		<xs:annotation>
+			<xs:documentation>Uses ADAC stormwater object definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- Water Supply Objects -->
+	<xs:include schemaLocation="ADACWaterSupply.xsd">
+		<xs:annotation>
+			<xs:documentation>Uses ADAC water supply object definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- OpenSpace Objects -->
+	<xs:include schemaLocation="ADACOpenSpace.xsd">
+		<xs:annotation>
+			<xs:documentation>Uses ADAC OpenSpace object definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- Cadastre Objects -->
+	<xs:include schemaLocation="ADACCadastre.xsd">
+		<xs:annotation>
+			<xs:documentation>Uses ADAC Cadastral object definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- Surface Objects -->
+	<xs:include schemaLocation="ADACSurface.xsd">
+		<xs:annotation>
+			<xs:documentation>Uses ADAC surface elevation object definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- Enhancement Objects -->
+	<xs:include schemaLocation="ADACEnhancements.xsd">
+		<xs:annotation>
+			<xs:documentation>Uses ADAC enhancement object definitions (e.g. annotations and dimensions)</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- Enhancement Objects -->
+	<xs:include schemaLocation="ADACSupplementary.xsd">
+		<xs:annotation>
+			<xs:documentation>Uses ADAC Supplementary object definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- *** ROOT ADAC ELEMENT *********************** -->
+	<!-- **************************************************************************************** -->
+	<!-- ADAC element consists of Project containing all other objects                            -->
+	<!-- **************************************************************************************** -->
+	<xs:element name="ADAC" nillable="false">
+		<xs:annotation>
+			<xs:documentation>The ADAC element is the root element of an ADAC XML.  It constrains all enclosed elements as follows.  There can be no other element in the root level of the document.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence minOccurs="1" maxOccurs="1">
+				<xs:element name="Project" nillable="false" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>The Project element encloses all data that is common to the whole project.</xs:documentation>
+						<xs:documentation>In Version 4.1.0, for technical simplicity, only a single project may exist within an instance document, but in future it may be feasible for multiple independent projects to be delivered in a single instance.</xs:documentation>
+						<xs:documentation>In version 4.2.0 while this limitation remains, certain fields at the project level have been repeated at the asset level to allow assets to differ from the global values set in Project</xs:documentation>
+						</xs:annotation>
+					<xs:complexType>
+						<xs:sequence minOccurs="1" maxOccurs="1">
+							<xs:element name="ExportDateTime" type="xs:dateTime" nillable="false" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>Export date and time in UTC. Format is yyyy-mm-ddThh:mm:ssZ (eg 2006-08-08T20:00:00Z) ISO 8601.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Name" type="String_254" nillable="false" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>The project or development name.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Owner" type="String_32" nillable="false" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>Are assets for the whole project owned by Council or another entity.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Receiver" type="String_254" nillable="false" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>The receiver of the ADAC file</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="WorksApprovalID" type="String_64" nillable="true" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>The works approval ID for the development that this information represents.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="DrawingNumber" type="String_64" nillable="false" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>The Receiver's drawing number of the as constructed plans.  This may not be known at the time of compilation.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="DrawingRevision" type="xs:date" nillable="true" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>Date the drawing was revised.  ISO 8601 is the accepted format.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ConstructionDate" type="xs:date" nillable="false" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>The accepted date of construction for the whole project.  Usually the project completion date. ISO 8601 is the accepted format.</xs:documentation>
+									<xs:documentation>Date may be used to calculate remaining life in an asset management system.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="CoordinateSystem" nillable="false" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>Records the particulars of the horizontal and vertical coordinate systems for the whole project.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence minOccurs="1" maxOccurs="1">
+										<xs:element name="HorizontalCoordinateSystem" type="String_64" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>Specifies the horizontal coordinate system used.  e.g. MGA56. Well known projections may be referred to by name only.  All spatial information in the project will be considered to be referenced to this system.  If custom local plane systems or projections are used by agreement with the receiver, then any parameters should be specified in the notes.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="HorizontalDatum" type="String_64" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>To Specifiy the Datum that the Horizontal Coordinate System is based on.  E.g. GDA94.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="VerticalDatum" type="String_64" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>To Specifiy the Datum of Height values.  E.g. AHD.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="IsApproximate" type="xs:boolean" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>Are the values supplied accurate or approximations.  If data is plane rectangular approximating MGA-56 then set to true</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="OriginMark" type="String_64" nillable="true" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>When data is plane rectangular this is the Permanent Survey Mark used as the origin.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Notes" type="xs:string" nillable="true" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>To contain any additional data required to specify the coordinate system.  If receiving systems are capable of accepting Well Known Text (WKT) string definitions of coordinate systems, then this element may be used to carry them.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="DrawingExtents" nillable="false" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>The rectangular coordinate envelope enclosing the project area</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence minOccurs="1" maxOccurs="1">
+										<xs:element name="SouthWest" type="geometry_position_3d" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>The coordinates of the southwest corner.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="NorthEast" type="geometry_position_3d" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>The coordinates of the northeast corner.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Description" type="String_254" nillable="false" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>Descriptive text summarising the project.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ProjectStatus" type="submission_status" nillable="false" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>The reason for the ADAC file creation.  This is not the same as Asset_status, which is at the asset level</xs:documentation>
+									<xs:documentation>Submission Status is usually related to the development assesment process or to data transfer between entities or systems</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Software" nillable="false" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>Details of the software product used to create the ADAC data set.</xs:documentation>
+									<xs:documentation>Software developers may choose to add this information programmatically via their product.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence minOccurs="1" maxOccurs="1">
+										<xs:element name="Product" type="xs:string" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>The name of the software product.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Version" type="xs:string" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>The version or release number of the product.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<!--Ben Pham added: Surveyor and Engineer elements are now referencing to the complex types defined in ADACGlobalTypes.xsd.-->
+							<!-- Certifying Surveyor -->
+							<xs:element name="Surveyor" type="surveyor_details" nillable="true" minOccurs="1" maxOccurs="1"/>
+							<!-- Certifying Engineer -->
+							<xs:element name="Engineer" type="engineer_details" nillable="true" minOccurs="1" maxOccurs="1"/>
+							<!-- PROJECT DATA -->
+							<!-- ProjectData encloses all feature datasets and hence, every object that is a child of this project -->
+							<xs:element name="ProjectData" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence minOccurs="1" maxOccurs="1">
+										<xs:element name="Sewerage" type="objectModelSewerage" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>The Sewerage element encloses all sewerage (waste water) feature descriptions.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Transport" type="objectModelTransport" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>The Roads element encloses all roads feature descriptions.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="WaterSupply" type="objectModelWaterSupply" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>The Water element encloses all water supply feature descriptions.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="StormWater" type="objectModelStormWater" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>The StormWater element encloses all stormwater feature descriptions.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="OpenSpace" type="objectModelOpenSpace" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>The OpenSpace element encloses all public open space feature descriptions.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Cadastre" type="objectModelCadastre" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>The Cadastre element encloses all cadastral feature descriptions.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Surface" type="objectModelSurface" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>The Surface element encloses Supplementary surface feature descriptions.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Enhancements" type="objectModelEnhancements" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>The Enhancements element encloses enhacements such as annotations and dimensions.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Supplementary" type="objectModelSupplementary" nillable="false" minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>The Supplementary element encloses all feature data not described specifically in the schema.  It is recommended to keep the use of unstructured data to a bare minimum.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" use="required" fixed="5.0.1">
+				<xs:annotation>
+					<xs:documentation>The version attribute marks the version of the instance document.  Only a value of 5.0.1 will validate against this schema.  Instance documents created against other versions of the ADAC schema should only be validated against the version of the ADAC schema to which they correspond.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

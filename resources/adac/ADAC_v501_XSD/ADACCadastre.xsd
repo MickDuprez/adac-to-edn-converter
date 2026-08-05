@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<!-- version 4.0.0 edited by Ian Read 24 Feb 2011 (RCC) -->
+<!-- version 4.0.1 edited by Ian Read 25 Aug 2011 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 6 Aug 2012 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 4 Jan 2013 (RCC) -->
+<!-- version 4.2.0 edited by Martin Dore' Feb 2015(LCC) to change version number only -->
+<!-- version 5.0.0 edited by Blake Slaven July 2017 (Lion Systems)-->
+<!-- version 5.0.1 edited by Blake Slaven January 2018 (Lion Systems) to change version number only -->
+<xs:schema version="5.0.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.adac.com.au" targetNamespace="http://www.adac.com.au" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <!-- INCLUDES -->
+  <!-- Enumerated Types -->
+  <xs:include schemaLocation="./ADACEnumeratedTypes.xsd">
+    <xs:annotation>
+      <xs:documentation>Uses ADAC enumerated SimpleType definitions</xs:documentation>
+    </xs:annotation>
+  </xs:include>
+  <!-- Global Types -->
+  <xs:include schemaLocation ="./ADACGlobalTypes.xsd">
+    <xs:annotation>
+      <xs:documentation>Contains ADAC globally referenced type definitions</xs:documentation>
+    </xs:annotation>
+  </xs:include>
+  <!-- Geometry -->
+  <xs:include schemaLocation ="./ADACGeometry.xsd">
+    <xs:annotation>
+      <xs:documentation>Contains ADAC geometry definitions</xs:documentation>
+    </xs:annotation>
+  </xs:include>
+  <!-- **************************************************************************************** -->
+  <!-- Cadastre - Contains the specification for all cadastral features                         -->
+  <!-- **************************************************************************************** -->
+  <xs:complexType name="objectModelCadastre">
+    <xs:annotation>
+      <xs:documentation>Data structure constraining information relating to cadastral features.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="LandParcels" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of cadastral parcels</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Lot" type="Feature_Cadastre_Lot" minOccurs="1" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a cadastral lot feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="WaterCourseReserve" type="Feature_Cadastre_WaterCourseReserve" minOccurs="1" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a cadastral Water Course Reserve feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="RoadReserve" type="Feature_Cadastre_RoadReserve" minOccurs="1" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a cadastral Road Reserve feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Easements" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of cadastral easements</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Easement" type="Feature_Cadastre_Easement" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a cadastral easement feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SurveyMarks" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of Survey Marks</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="SurveyMark" type="Feature_Cadastre_SurveyMark" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a cadastral SurveyMark feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Connections" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of cadastral Connections</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Connection" type="Feature_Cadastre_Connection" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents an observed and reduced cadastral connection feature.</xs:documentation>
+                <xs:documentation>A connection must run from the survey mark to the connected feature.  If this feature is used, the bearing and distance must be expressed on the same coordinate system as the project.  If this is other than the system on which the survey was conducted, then connections should not be represented.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChainageLines" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of cadastral Connections</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="ChainageLine" type="Feature_Cadastre_ChainageLine" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>A line of measured chainage with a defined start and end value. Polyline shape is only an approximation  of  true curve geometry, but the start and end points should coincide exactly with the actual start and end of chainage.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- FEATURE CADASTRE LOT -->
+  <xs:complexType name="Feature_Cadastre_Lot" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents the boundary of a titled, or proposed lot</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:group ref="lot_plan_details" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Standard element group called in to support lot and plan cadastral descriptions</xs:documentation>
+            </xs:annotation>
+          </xs:group>
+          <xs:element name="CancelledLotPlan" type="String_32" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The lot on plan cancelled by this boundary if applicable.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TitledArea_sqm" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The area in square metres enclosed by the boundary, as described by the survey plan.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_area_multipatch_simple" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The geometry of this feature in coordinate space.  May contain holes and islands. Boundaries must consist of straight lines.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE CADASTRE EASEMENT -->
+  <xs:complexType name="Feature_Cadastre_Easement" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents the boundary of a existing or new easement</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:group ref="lot_plan_details" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Standard element group called in to support lot and plan cadastral descriptions</xs:documentation>
+            </xs:annotation>
+          </xs:group>
+          <xs:element name="Geometry" type="geometry_area_multipatch_simple" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The geometry of this feature in coordinate space.  May contain holes and islands. Boundaries must consist of straight lines.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE CADASTRE WATERCOURSERESERVE -->
+  <xs:complexType name="Feature_Cadastre_WaterCourseReserve">
+    <xs:annotation>
+      <xs:documentation>Represents the boundary of a watercourse reserve</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Name" type="String_128" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The name of the watercourse reserve represented by this boundary</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_area_multipatch_simple" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The geometry of this feature in coordinate space.  May contain holes and islands. Boundaries must consist of straight lines.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE CADASTRE ROADRESERVE -->
+  <xs:complexType name="Feature_Cadastre_RoadReserve">
+    <xs:annotation>
+      <xs:documentation>Represents the boundary of a road reserve</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Name" type="String_128" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The name of the road reserve represented by this boundary</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_area_multipatch_simple" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The geometry of this feature in coordinate space.  May contain holes and islands. Boundaries must consist of straight lines.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE CADASTRE SURVEYMARK -->
+  <xs:complexType name="Feature_Cadastre_SurveyMark" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a survey mark </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="object_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="MarkName" type="String_64" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The name by which the survey mark may be uniquely identified from control records.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The geometry of this feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE CADASTRE CONNECTION -->
+  <xs:complexType name="Feature_Cadastre_Connection" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a cadastral connection as reduced from observation</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="object_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Bearing" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The bearing in decimal degrees clockwise from North in the coordinate system of this project.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Distance_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The distance in metres on the coordinate system of this project.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_segment_simple" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The geometry of this feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE CADASTRE CHAINAGE LINE -->
+  <xs:complexType name="Feature_Cadastre_ChainageLine" abstract="false">
+    <xs:annotation>
+      <xs:documentation>A line of measured chainage with a defined start and end value. Polyline shape is only an approximation  of  true curve geometry, but the start and end points should coincide exactly with the actual start and end of chainage.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="object_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="ChainageID" type="String_64" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Unique ID of this chainage line.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StartChainage_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Start Chainage in metres of this section.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EndChainage_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>End Chainage in metres of this section.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_singlepath_complex" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The geometry of this feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

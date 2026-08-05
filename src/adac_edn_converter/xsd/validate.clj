@@ -5,13 +5,20 @@
            [javax.xml.transform.stream StreamSource]
            [javax.xml.validation SchemaFactory]))
 
+(defn- stream-source
+  "StreamSource with systemId so relative xs:include/import resolve."
+  [path]
+  (let [f (io/file path)
+        uri (.toString (.toURI f))]
+    (StreamSource. (io/input-stream f) uri)))
+
 (defn validate!
   "Validate xml-path against xsd-path. Returns nil on success; throws on failure."
   [xsd-path xml-path]
   (let [factory (SchemaFactory/newInstance XMLConstants/W3C_XML_SCHEMA_NS_URI)
-        schema (.newSchema factory (StreamSource. (io/input-stream xsd-path)))
+        schema (.newSchema factory (stream-source xsd-path))
         validator (.newValidator schema)]
-    (.validate validator (StreamSource. (io/input-stream xml-path)))
+    (.validate validator (stream-source xml-path))
     nil))
 
 (defn valid?

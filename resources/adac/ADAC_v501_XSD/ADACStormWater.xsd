@@ -1,0 +1,1342 @@
+<?xml version="1.0"?>
+<!-- version 4.0.0 edited by Ian Read 24 Feb 2011 (RCC) -->
+<!-- version 4.0.1 edited by Ian Read 25 Aug 2011 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 6 Aug 2012 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 4 Jan 2013 (RCC) -->
+<!-- version 4.2.0 edited by Martin Dore' Feb 2015(LCC) change to version number only -->
+<!-- version 5.0.0 edited by Blake Slaven July 2017 (Lion Systems)-->
+<!-- version 5.0.1 edited by Blake Slaven January 2018 (Lion Systems)-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.adac.com.au" targetNamespace="http://www.adac.com.au" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0.1">
+  <xs:annotation>
+    <xs:documentation>The ADAC StormWater Schema constrains the data structure for all stormwater drainage features within an ADAC Project</xs:documentation>
+  </xs:annotation>
+  <!-- INCLUDES -->
+  <!-- Enumerated Types -->
+  <xs:include schemaLocation="./ADACEnumeratedTypes.xsd">
+    <xs:annotation>
+      <xs:documentation>Uses ADAC enumerated SimpleType definitions</xs:documentation>
+    </xs:annotation>
+  </xs:include>
+  <!-- Global Types -->
+  <xs:include schemaLocation="./ADACGlobalTypes.xsd">
+    <xs:annotation>
+      <xs:documentation>Uses ADAC globally referenced type definitions</xs:documentation>
+    </xs:annotation>
+  </xs:include>
+  <!-- Geometry -->
+  <xs:include schemaLocation="./ADACGeometry.xsd">
+    <xs:annotation>
+      <xs:documentation>Uses ADAC geometry definitions</xs:documentation>
+    </xs:annotation>
+  </xs:include>
+  <!-- **************************************************************************************** -->
+  <!-- Stormwater - contains the specification for all stormwater feature classes               -->
+  <!-- **************************************************************************************** -->
+  <xs:complexType name="objectModelStormWater">
+    <xs:annotation>
+      <xs:documentation>Data structure constraining information on stormwater features.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Pits" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of stormwater pits</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Pit" type="Feature_StormWater_Pit" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a stormwater maintenance hole or pit feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="EndStructures" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of stormwater EndStructures</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="EndStructure" type="Feature_StormWater_EndStructure" minOccurs="1" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a stormwater endstructure feature as a Point object</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="EndStructurePolyline" type="Feature_StormWater_EndStructure_Polyline" minOccurs="1" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a stormwater endstructure feature as a Polyline object</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Fittings" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of stormwater Fittings</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Fitting" type="Feature_StormWater_Fitting" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a stormwater fitting feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Pipes" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of stormwater pipes</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Pipe" type="Feature_StormWater_Pipe" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a stormwater pipe feature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+           </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SurfaceDrains" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of stormwater surface drains</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="SurfaceDrain" type="Feature_StormWater_SurfaceDrain" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a linear surface drain.  May include natural features as well as constructed where they function as part of a contributed asset.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="WSUDPoints" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of Water Sensitive Urban Design (WSUD) point features</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="GPTComplex" type="Feature_StormWater_GPTComplex" minOccurs="1" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a complex commercial or custom StormWater Quality Improvement Device (SQID).</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="GPTSimple" type="Feature_StormWater_GPTSimple" minOccurs="1" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a simple StormWater Quality Improvement Device (SQID), such as a net,basket or grate, whether freestanding or fitted to existing infrastructure.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="NonGPTSimple" type="Feature_StormWater_NonGPTSimple" minOccurs="1" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a WSUD point feature that is not a simple litter trap, such as a small sand filter, sediment pond, aquifer storage, infiltration measure or energy dissipater.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="WSUDPolylines" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of Water Sensitive Urban Design (WSUD) polyline features.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="FlowManagementDevice" type="Feature_StormWater_FlowManagementDevice" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a Flow Management Device.  Also often called a StormWater Quality Improvement Device (SQID).</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="WSUDAreas" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Represents the feature class of Water Sensitive Urban Design (WSUD) area features</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="WSUDArea" type="Feature_StormWater_WSUD_ComplexArea" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:annotation>
+                <xs:documentation>Represents a Water Sensitive Urban Design (WSUD) area feature.  Also often called a StormWater Quality Improvement Device (SQID).</xs:documentation>
+                <xs:documentation>Use area features to represent constructed wetlands, bioretention basins, biofiltration beds, swales etc.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- **************************************************************************************** -->
+  <!-- FEATURES  - Stormwater Drainage                                                          -->
+  <!-- **************************************************************************************** -->
+  <!-- FEATURE STORMWATER PIT -->
+  <xs:complexType name="Feature_StormWater_Pit" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a stormwater maintenance hole or pit feature</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="PitNumber" type="String_32" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The pit identifier.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Use" type="stormwater_pit_use" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Purpose of the feature in the network.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ChamberConstruction" type="construction_method" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Method of chamber construction.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ChamberSize" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Represents the essential dimensions of the chamber.  Contains a choice of structures that pertain to different configurations.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:choice minOccurs="1" maxOccurs="1">
+                <xs:element name="Rectangular" type="rectangular_struct_mm" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Dimensions of a rectangular chamber.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Circular" type="circular_struct_mm" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Dimensions of a circular chamber.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Extended" type="extended_struct_mm" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Dimensions of a circular chamber.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:choice>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="LidType" type="stormwater_pit_lid_type" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The type of lid or grate covering the opening.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:group ref="dimensions_point_levels_m" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Calls in the standard elements for surface and invert levels</xs:documentation>
+            </xs:annotation>
+          </xs:group>
+          <xs:element name="Depth_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The depth of the structure in metres.  May be user-entered, or auto-calculated as the difference between the surface level and the invert level of the pit.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Inlet" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Represents a surface inlet to the pit.  Set to nil if this pit does not have a surface inlet</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence minOccurs="1" maxOccurs="1">
+                <xs:element name="InletConfig" type="stormwater_pit_inlet_config" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Positioning of the inlet against the pit.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="InletType" type="stormwater_pit_inlet_type" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The type of inlet employed.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="InletSize" type="String_32" minOccurs="1" maxOccurs="1" nillable="false">
+                <xs:annotation>
+                  <xs:documentation>Dimensions of the inlet e.g. Diameter or Length x Width.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Lintel" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Represents the pit lintel.  Set to nil if this pit does not have a lintel.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence minOccurs="1" maxOccurs="1">
+                <xs:element name="LintelConstruction" type="construction_method" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Method of lintel construction.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="LintelLength_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the length in metres of the lintel.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="OutletType" type="stormwater_pit_outlet_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The type of outlet for this pit.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FireRetardant" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>True of false value indicating whether fire retardant measures are incorporated.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rotation" type="Float_Direction" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the manhole or pit feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE STORMWATER ENDSTRUCTURE -->
+  <xs:complexType name="Feature_StormWater_EndStructure" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a stormwater endstructure as a point object.  Can also be used for water supply scours and sewerage scours and outfalls</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence>
+          <xs:element name="StructureID" type="String_32" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The identifier for this end structure.  Usually the textual identifier it would be labelled with on the face of a plan.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StructureLevel_m" type="xs:float" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The surface level of the structure in metres against the vertical datum for the project.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EndWall" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Data structure representing the end wall.  Set to nil if this End Structure does not have an end wall.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence minOccurs="1" maxOccurs="1">
+                <xs:element name="Type" type="stormwater_end_structure_endwall_type" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The type of stormwater end wall structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Size" type="String_32" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Define the number of cells and sizes penetrating the End Structure ie. 3/750 or 2/1200x900 or 2/900x600+1/600.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Length_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the length in metres of the end wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Height_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the height in metres of the end wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Thickness_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the Thickness in metres of the end wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Material" type="stormwater_predominant_material_type" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The predominant construction material of the end wall structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Construction" type="construction_method" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The method of construction of the end wall structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="WingWall" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Data structure representing the wing wall.  Set to nil if this End Structure does not have any wing walls.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence minOccurs="1" maxOccurs="1">
+                <xs:element name="LWW_Length_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the length in metres of the left wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="LWW_Height_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the height in metres of the left wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="LWW_Thickness_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the thickness in metres of the left wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="LWW_Material" type="stormwater_predominant_material_type" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The predominant construction material of the left wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="LWW_Construction" type="construction_method" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The method of construction of the left wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="RWW_Length_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the length in metres of the right wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="RWW_Height_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the height in metres of the right wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="RWW_Thickness_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the thickness in metres of the right wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="RWW_Material" type="stormwater_predominant_material_type" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The predominant construction material of the right wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="RWW_Construction" type="construction_method" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The method of construction of the right wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Apron" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Data structure representing the apron.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence minOccurs="1" maxOccurs="1">
+                <xs:element name="Apron_Width_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the width in metres of apron on the End Structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Apron_Thickness_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the thickness in metres of apron on the End Structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Apron_Area_m2" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the area in square metres of apron on the End Structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Apron_Material" type="stormwater_outlet_protection_type" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The predominant construction material of apron on the End Structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Apron_Construction" type="construction_method" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The method of construction of apron on the End Structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="GrateType" type="stormwater_grate_type" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Type of grate used, if applicable.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TideGate" type="stormwater_tidegate_type" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Type of tide or flood gate used, if applicable.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the EndStructure in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Feature_StormWater_EndStructure_Polyline" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a stormwater endstructure as a polyline object.  Can also be used for water supply scours and sewerage scours and outfalls</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence>
+          <xs:element name="StructureID" type="String_32" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The identifier for this end structure.  Usually the textual identifier it would be labelled with on the face of a plan.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StructureLevel_m" type="xs:float" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The surface level of the structure in metres against the vertical datum for the project.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EndWall" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Data structure representing the end wall.  Set to nil if this End Structure does not have an end wall.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence minOccurs="1" maxOccurs="1">
+                <xs:element name="Type" type="stormwater_end_structure_endwall_type" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The type of stormwater end wall structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Size" type="String_32" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Define the number of cells and sizes penetrating the End Structure ie. 3/750 or 2/1200x900 or 2/900x600+1/600.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Length_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the length in metres of the end wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Height_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the height in metres of the end wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Thickness_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the Thickness in metres of the end wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Material" type="stormwater_predominant_material_type" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The predominant construction material of the end wall structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Construction" type="construction_method" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The method of construction of the end wall structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="WingWall" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Data structure representing the wing wall.  Set to nil if this End Structure does not have any wing walls.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence minOccurs="1" maxOccurs="1">
+                <xs:element name="LWW_Length_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the length in metres of the left wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="LWW_Height_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the height in metres of the left wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="LWW_Thickness_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the thickness in metres of the left wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="LWW_Material" type="stormwater_predominant_material_type" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The predominant construction material of the left wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="LWW_Construction" type="construction_method" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The method of construction of the left wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="RWW_Length_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the length in metres of the right wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="RWW_Height_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the height in metres of the right wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="RWW_Thickness_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the thickness in metres of the right wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="RWW_Material" type="stormwater_predominant_material_type" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The predominant construction material of the right wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="RWW_Construction" type="construction_method" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The method of construction of the right wing wall.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Apron" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Data structure representing the apron.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:sequence minOccurs="1" maxOccurs="1">
+                <xs:element name="Apron_Width_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the width in metres of apron on the End Structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Apron_Thickness_m" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the thickness in metres of apron on the End Structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Apron_Area_m2" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Represents the area in square metres of apron on the End Structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Apron_Material" type="stormwater_outlet_protection_type" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The predominant construction material of apron on the End Structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Apron_Construction" type="construction_method" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>The method of construction of apron on the End Structure.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="GrateType" type="stormwater_grate_type" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Type of grate used, if applicable.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TideGate" type="stormwater_tidegate_type" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Type of tide or flood gate used, if applicable.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_singlepath_simple" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the EndStructure in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE STORMWATER FITTING -->
+  <xs:complexType name="Feature_StormWater_Fitting" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a point fitting in a stormwater system.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="FittingType" type="stormwater_fitting_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The type of stormwater fitting.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rotation" type="Float_Direction" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the fitting in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE STORMWATER PIPE -->
+  <xs:complexType name="Feature_StormWater_Pipe" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a stormwater pipe feature</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:group ref="dimensions_invert_levels_m" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Calls in the standard elements for upstream and downstream invert levels</xs:documentation>
+            </xs:annotation>
+          </xs:group>
+          <xs:group ref="dimensions_surface_levels_m" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Calls in the standard elements for upstream and downstream surface levels</xs:documentation>
+            </xs:annotation>
+          </xs:group>
+          <xs:element name="PipeStructure" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Container for a choice of pipe cross-sectional measures.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:choice>
+                <xs:element name="CircPipe" type="stormwater_circpipe_struct" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Circular pipe cross-sectional description.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="BoxPipe" type="stormwater_boxpipe_struct" minOccurs="1" maxOccurs="1" nillable="false">
+                  <xs:annotation>
+                    <xs:documentation>Rectangular pipe cross-sectional description.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:choice>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Cells" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" default="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The number of cells in the pipe course.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ConcreteCoverType" type="stormwater_conc_cover_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The pipe protection regime employed.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Grade" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Pipe gradient as a percentage.  Derivable from invert levels and horizontal length.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Length_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Pipe material length in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_multipath_simple" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Polyline geometry representing the feature in coordinate space.</xs:documentation>
+              <xs:documentation>The recommendation for multicell courses is to store multiple paths within the polyline.  It is recommended that all paths are digitised in the direction of flow.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE STORMWATER SURFACEDRAIN -->
+  <xs:complexType name="Feature_StormWater_SurfaceDrain">
+    <xs:annotation>
+      <xs:documentation>Represents a linear surface drain.  May include natural and constructed features.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Type" type="stormwater_surface_drain_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The type of drain or channel.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DrainShape" type="stormwater_surface_drain_shape" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Cross-sectional shape of the drain.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LiningMaterial" type="stormwater_surface_drain_lining_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The material that the channel is lined with.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LinedWidth_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The width, in metres, of the lined portion of the channel.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BatterMaterial" type="stormwater_surface_drain_lining_material" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The material that the drain batter is lined with.  A null value may be supplied where the drain has no batter.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BatterWidth_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The total width, in metres, from lip of batter to opposite lip of batter.  A null value may be supplied where the drain has no batter.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:group ref="dimensions_invert_levels_m" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Calls in the standard elements for upstream and downstream invert levels</xs:documentation>
+            </xs:annotation>
+          </xs:group>
+          <xs:element name="AverageGrade" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The average gradient over the whole length of the feature, as a percentage.  Derivable from the difference in invert levels and the horizontal length of the geometry.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Length_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The material length, in metres, of the centreline of the channel.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_singlepath_simple" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Polyline geometry representing the feature in coordinate space.</xs:documentation>
+              <xs:documentation>Digitise each individual length of channel as a single unbroken path.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE STORMWATER WSUD GPTComplex -->
+  <xs:complexType name="Feature_StormWater_GPTComplex" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a commerial or custom in-pit GPT unit.</xs:documentation>
+      <xs:documentation>Must occur collocated with a pit.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Sqid_Id" type="String_32" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The string identifier of the device, as it would appear on a plan.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Construction">
+            <xs:complexType>
+              <xs:choice>
+                <xs:element name="Commercial">
+                  <xs:complexType>
+                    <xs:sequence minOccurs="1" maxOccurs="1">
+                      <xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+                        <xs:annotation>
+                          <xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+                        </xs:annotation>
+                      </xs:group>
+                      <xs:element name="Size" minOccurs="1" maxOccurs="1" nillable="true">
+                        <xs:annotation>
+                          <xs:documentation>The planimetric size of the device.  This element is nillable because the manufacturer and model are mandatory, but if capture software designers wish to automatically populate the sizes from a list of known device models, then all of the appropriate dimensions must be supplied</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                          <xs:choice minOccurs="1" maxOccurs="1">
+                            <xs:element name="Rectangular" type="rectangular_struct_mm" minOccurs="1" maxOccurs="1" nillable="false">
+                              <xs:annotation>
+                                <xs:documentation>Planimetric dimensions of a rectangular device.</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Circular" type="circular_struct_mm" minOccurs="1" maxOccurs="1" nillable="false">
+                              <xs:annotation>
+                                <xs:documentation>Planimetric dimensions of a circular device.</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:choice>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+                <xs:element name="Custom">
+                  <xs:complexType>
+                    <xs:sequence minOccurs="1" maxOccurs="1">
+                      <xs:element name="Size" minOccurs="1" maxOccurs="1" nillable="false">
+                        <xs:annotation>
+                          <xs:documentation>The dimensions of the device.  This element is mandatory for custom built devices.  The appropriate dimensions must be supplied</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                          <xs:choice minOccurs="1" maxOccurs="1">
+                            <xs:element name="Rectangular" type="rectangular_struct_mm" minOccurs="1" maxOccurs="1" nillable="false">
+                              <xs:annotation>
+                                <xs:documentation>Planimetric dimensions of a rectangular device.</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Circular" type="circular_struct_mm" minOccurs="1" maxOccurs="1" nillable="false">
+                              <xs:annotation>
+                                <xs:documentation>Planimetric dimensions of a circular device.</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:choice>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:choice>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Function1" type="stormwater_wsud_GPTComplex_function" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The first function of the WSUD point. The device must have at least one function.  Usually Gross Pollutant Capture will be the most important function.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Function2" type="stormwater_wsud_GPTComplex_function" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The second function of the WSUD point, if applicable</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Function3" type="stormwater_wsud_GPTComplex_function" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The third function of the device, if applicable</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="US_PipeDiameter_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The upstream pipe diameter in millimetres</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DS_PipeDiameter_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The downstream pipe diameter in millimetres</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SurfaceLevel_m" type="xs:float" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The surface level at the top of the device</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:group ref="dimensions_invert_levels_m" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Calls in the standard elements for upstream and downstream invert levels</xs:documentation>
+            </xs:annotation>
+          </xs:group>
+          <xs:element name="CleanoutLevel_m" type="xs:float" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The level to which the device must be cleaned out, in metres against the vertical datum of the project.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Depth_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The depth, in metres, of the device.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SumpDepth_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The depth, in metres, of the sump, if applicable</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="HasFilterMedia" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>True if the device has filtration media or a filter capsule installed.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="HasBasket" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>True if the device has a litter basket installed.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="HasBoards" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>True if the device has drop-boards or penstock installed.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DesignFlow_m3s" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Design Flow in cubic metres per second</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MaxContaminantVolume_m3" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Maximum contaminant retention volume in cubic metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MaxInternalVolume_m3" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Maximum internal volume in cubic metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MaintenanceCycle_mnths" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The minimum maintenance cycle in months (refer to specifications)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rotation" type="Float_Direction" default="0" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE STORMWATER WSUD GPTSimple -->
+  <xs:complexType name="Feature_StormWater_GPTSimple" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a Water Sensitive Urban Design point feature that is a simple grate, basket or net fitted to existing infrastructure.</xs:documentation>
+      <xs:documentation>Includes custom In-Pit or End-of-Line features or In-Line features such as trash-racks on drainage lines.</xs:documentation>
+      <xs:documentation>Spatially, these features must be collocated with pits, endstructures or placed on pipes or drainage lines.  Therefore, as in reality, whether the feature is In-Pit, In-Line or End-of-Line is determined by its placement with other features.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Sqid_Id" type="String_32" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The string identifier of the device, as it would appear on a plan.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Construction" type="construction_method" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The construction method</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+            </xs:annotation>
+          </xs:group>
+          <xs:element name="TreatmentMeasure" type="stormwater_wsud_GPTSimple_measure" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The treatment measure employed</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Function1" type="String_32" fixed="Gross Pollutant Capture" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The first function of the WSUD point.  Has a fixed value because all GPTSimple points are considered Gross Pollutant Capture devices.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Length_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The length of the device</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Width_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The width of the device</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Material" type="String_64" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Predominant material of device</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MaintenanceCycle_mnths" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The minimum maintenance cycle in months. This is the revisit interval for clearing captured rubbish.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rotation" type="Float_Direction" default="0" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Feature Stromwater WSUD NonGPTSimple -->
+  <xs:complexType name="Feature_StormWater_NonGPTSimple" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a Water Sensitive Urban Design point feature</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Sqid_Id" type="String_32" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The string identifier of the device, as it would appear on a plan.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Construction" type="construction_method" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The construction method</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+            </xs:annotation>
+          </xs:group>
+          <xs:element name="TreatmentMeasure" type="stormwater_wsud_NonGPTPoint_measure" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The treatment measure employed</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Function1" type="stormwater_wsud_NonGPTPoint_function" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The first function of the WSUD point. Must be supplied.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Function2" type="stormwater_wsud_NonGPTPoint_function" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The second function of the WSUD point, if applicable</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Function3" type="stormwater_wsud_NonGPTPoint_function" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The third function of the device, if applicable</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Length_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The length of the device</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Width_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The width of the device</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MaintenanceCycle_mnths" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The minimum maintenance cycle in months. This is the revisit interval for maintenance or inspection, if applicable.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rotation" type="Float_Direction" default="0" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_point_singlepoint" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Point geometry representing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Feature Stromwater WSUD FLOWMANAGEMENTDEVICE -->
+  <xs:complexType name="Feature_StormWater_FlowManagementDevice" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a Water Sensitive Urban Design polyline feature</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Sqid_Id" type="String_32" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The string identifier of the device, as it would appear on a plan.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Type" type="stormwater_wsud_line_type" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Stormwater Flow Management Device Type</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Material" type="stormwater_wsud_line_material" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The predominant material of the Stormwater Flow Management Device.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Length_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The material length, in metres, of the centreline of the feature.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CrestElevation_m" type="xs:float" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The RL of the highest point at the centre/mid point of feature.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_multipath_simple" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Polyline geometry representing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- FEATURE STORMWATER WSUD AREA -->
+  <xs:complexType name="Feature_StormWater_WSUD_ComplexArea" abstract="false">
+    <xs:annotation>
+      <xs:documentation>Represents a Water Sensitive Urban Design area feature</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Sqid_Id" type="String_32" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The string identifier of the device, as it would appear on a plan.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TreatmentMeasure" type="stormwater_wsud_area_measure" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The treatment measure employed.  Choose from a list relevant to complex area features.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Function1" type="stormwater_wsud_area_function" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>The first function of the WSUD area. At least one function must be supplied.  Choose  from a list relevant to complex area features.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Function2" type="stormwater_wsud_area_function" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The second function of the WSUD area, if applicable.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Function3" type="stormwater_wsud_area_function" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The third function of the WSUD area, if applicable.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PondingArea_m2" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Area of Temporary Ponding or Extended Detention in square metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PondingDepth_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Average depth of Temporary Ponding or Extended Detention in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FilterArea_m2" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Area of Bioretention filter media in square metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FilterDepth_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Depth of Bioretention filter media in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TransitionDepth_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Depth of the Bioretention Transition Layer in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DrainageDepth_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Depth of the Bioretention Drainage Layer in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MacrophyteZoneArea_m2" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The vegetated area in square metres (may be zero). Area of vegetated portion of constructed wetland (macrophyte zone)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MacrophyteZoneDepth_m" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Average depth of vegetated portion of constructed wetland (macrophyte zone).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CoarseSedimentArea_m2" type="Float_Positive_Zero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Maximum area of ponding (for coarse sediment capture) before bypass.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SedimentVolume_m3" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Volume of sediment capacity in cubic metres</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MinSurfaceLevel_m" type="xs:float" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Minimum surface level within structure (above or below water surface level).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PermanentPondLevel_m" type="xs:float" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>Water surface level during normal dry weather.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OutletLevel_m" type="xs:float" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The surface level in metres of the bypass, or spillway, or other overflow outlet structure.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DesignFlow_m3s" type="Float_Positive_NonZero" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The maximum design flow of the feature in cubic metres per second</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="HasSpillway" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Whether the feature has a spillway</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MaintenanceCycle_mnths" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="true">
+            <xs:annotation>
+              <xs:documentation>The minimum maintenance cycle in months (refer to specifications)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_area_multipatch_complex" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:annotation>
+              <xs:documentation>Polygon geometry representing the feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- **************************************************************************************** -->
+  <!-- ComplexTypes  - Stormwater Drainage                                                      -->
+  <!-- **************************************************************************************** -->
+  <xs:complexType name="stormwater_circpipe_struct">
+    <xs:annotation>
+      <xs:documentation>Data structure describing stormwater pipe with a circular cross section</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Diameter_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The internal diameter of the pipe in millimetres.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Material" type="stormwater_pipe_material" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The pipe wall material</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Class" type="stormwater_pipe_class_type" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The pipe wall class</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="JointType" type="stormwater_pipe_joint_type" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The joint type of the pipe section</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="stormwater_boxpipe_struct">
+    <xs:annotation>
+      <xs:documentation>Data structure describing stormwater pipe with a rectangular cross section</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Height_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Height in millimetres of the internal cross section</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Width_mm" type="xs:positiveInteger" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Width in millimetres of the internal cross section</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Material" type="stormwater_box_material" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>Wall material of the box section.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Class" type="stormwater_pipe_class_type" minOccurs="1" maxOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>The pipe wall class</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

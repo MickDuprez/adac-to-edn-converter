@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Intentionally XSD-invalid: bad Use enum, missing required ChamberSize, non-numeric InvertLevel_m.
+     Still well-formed ADAC XML for lenient import testing. -->
+<ADAC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.adac.com.au" version="6.0.0">
+  <Project>
+    <Name>Invalid fixture project</Name>
+    <Owner>Council</Owner>
+    <ProjectData>
+      <Sewerage>
+        <MaintenanceHoles>
+          <MaintenanceHole>
+            <ADACId>bad/1</ADACId>
+            <Use>NotAValidUseValue</Use>
+            <InvertLevel_m>not-a-number</InvertLevel_m>
+            <Geometry>
+              <Point>
+                <X>100.5</X>
+                <Y>200.5</Y>
+              </Point>
+            </Geometry>
+            <UnknownExtraField>dropped-on-import</UnknownExtraField>
+          </MaintenanceHole>
+        </MaintenanceHoles>
+      </Sewerage>
+    </ProjectData>
+  </Project>
+</ADAC>

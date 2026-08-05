@@ -4,6 +4,7 @@
             [adac-edn-converter.convert :as convert]
             [adac-edn-converter.edn.emit :as emit]
             [adac-edn-converter.edn.read :as edn-read]
+            [adac-edn-converter.instance.graph :as graph]
             [adac-edn-converter.instance.xml.read :as xml-read]
             [adac-edn-converter.instance.xml.write :as xml-write]
             [adac-edn-converter.xsd.validate :as validate]
@@ -104,20 +105,30 @@
        :slice slice
        :profile profile})))
 
+(defn- strip-flags
+  [args flags]
+  (let [flag-set (set flags)]
+    (vec (remove flag-set args))))
+
 (defn xml-to-edn!
-  [{:keys [schema xml out]}]
+  "XML → SchemaCraft :instance-graph document EDN (default) or assembled map."
+  [{:keys [schema xml out assembled?]}]
   (let [schema-path (if schema
                       (resolve-path schema nil)
                       (io/file "target/adac-v600.edn"))
         xml-path (resolve-path xml default-sample-xml)
         out-path (or out "target/adac-instance.edn")
         bundle (edn-read/read-edn schema-path)
-        instance (xml-read/read-file-path bundle (str xml-path))
+        assembled (xml-read/read-file-path bundle (str xml-path))
+        data (if assembled?
+               assembled
+               (graph/assembled->document-graph bundle assembled))
         _ (io/make-parents out-path)]
-    (emit/write-edn instance out-path)
-    {:out out-path}))
+    (emit/write-edn data out-path)
+    {:out out-path :format (if assembled? :assembled :instance-graph)}))
 
 (defn edn-to-xml!
+  "Assembled map or :instance-graph EDN → ADAC XML."
   [{:keys [schema instance out]}]
   (let [schema-path (if schema
                       (resolve-path schema nil)
@@ -128,8 +139,9 @@
         out-path (or out "target/adac-roundtrip.xml")
         bundle (edn-read/read-edn schema-path)
         instance-data (edn-read/read-edn instance-path)
+        assembled (graph/coerce-assembled bundle instance-data)
         _ (io/make-parents out-path)]
-    (xml-write/write-file bundle instance-data out-path)
+    (xml-write/write-file bundle assembled out-path)
     {:out out-path}))
 
 (defn validate-xml!
@@ -141,6 +153,24 @@
       (throw (ex-info "XML validation failed" {:error err}))
       {:valid? true :xml xml-path})))
 
+(defn round-trip!
+  "Full authority gate: XML→instance-graph→XML→validate-xml (requires schema EDN)."
+  [{:keys [schema xml out-edn out-xml]}]
+  (let [schema-path (if schema
+                      (resolve-path schema nil)
+                      (io/file "target/adac-v600.edn"))
+        _ (when-not (.exists (io/file (str schema-path)))
+            (convert! {:slice nil :profile :adac :out (str schema-path)}))
+        edn-out (or out-edn "target/adac-instance.edn")
+        xml-out (or out-xml "target/adac-roundtrip.xml")
+        _ (xml-to-edn! {:schema (str schema-path) :xml xml :out edn-out})
+        _ (edn-to-xml! {:schema (str schema-path) :instance edn-out :out xml-out})
+        v (validate-xml! {:xsd nil :xml xml-out})]
+    {:schema (str schema-path)
+     :edn edn-out
+     :xml xml-out
+     :valid? (:valid? v)}))
+
 (defn -main
   [& args]
   (cond
@@ -150,26 +180,47 @@
       \newline
       ["Usage:"
        "  lein run -- [xsd-path] [out.edn] [--slice sewerage-mh|none] [--full] [--schema adac|landxml|bcib]"
-       "  lein run -- xml-to-edn [schema.edn] [sample.xml] [out-instance.edn]"
+       "  lein run -- xml-to-edn [schema.edn] [sample.xml] [out-instance.edn] [--assembled]"
        "  lein run -- edn-to-xml [schema.edn] [instance.edn] [out.xml]"
        "  lein run -- validate-xml [xsd-path] [document.xml]"
+       "  lein run -- round-trip [schema.edn] [sample.xml] [out-instance.edn] [out.xml]"
+       ""
+       "  xml-to-edn writes a SchemaCraft :instance-graph document by default"
+       "  (Import document EDN). Pass --assembled for the ADAC body value map."
+       "  edn-to-xml accepts either graph or assembled EDN."
+       "  round-trip runs xml-to-edn → edn-to-xml → validate-xml."
        ""
        "  Default ADAC XSD: resources/adac/ADAC_V600_Flattened.xsd"
+       "  ADAC v5.0.1: lein run -- resources/adac/ADAC_v501_XSD/ADAC_V501.xsd target/adac-v501.edn --full"
        "  LandXML: lein run -- --schema landxml"
        "  BCIB:    lein run -- --schema bcib"
        "  Default sample XML: resources/adac/Sample-ADAC-V6.0.0.xml"]))
 
     (= "xml-to-edn" (first args))
-    (let [result (xml-to-edn! {:schema (nth args 1 nil)
-                               :xml (nth args 2 nil)
-                               :out (nth args 3 nil)})]
-      (println "Wrote" (:out result)))
+    (let [rest-args (rest args)
+          assembled? (boolean (some #{"--assembled"} rest-args))
+          pos (strip-flags rest-args ["--assembled"])
+          result (xml-to-edn! {:schema (nth pos 0 nil)
+                               :xml (nth pos 1 nil)
+                               :out (nth pos 2 nil)
+                               :assembled? assembled?})]
+      (println "Wrote" (:out result) (str "(" (name (:format result)) ")")))
 
     (= "edn-to-xml" (first args))
     (let [result (edn-to-xml! {:schema (nth args 1 nil)
                                :instance (nth args 2 nil)
                                :out (nth args 3 nil)})]
       (println "Wrote" (:out result)))
+
+    (= "round-trip" (first args))
+    (let [result (round-trip! {:schema (nth args 1 nil)
+                               :xml (nth args 2 nil)
+                               :out-edn (nth args 3 nil)
+                               :out-xml (nth args 4 nil)})]
+      (println "Schema" (:schema result))
+      (println "EDN" (:edn result))
+      (println "XML" (:xml result))
+      (println "Valid" (:valid? result)))
 
     (= "validate-xml" (first args))
     (let [result (validate-xml! {:xsd (nth args 1 nil)

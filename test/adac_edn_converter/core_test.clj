@@ -19,6 +19,30 @@
   [m]
   (filter #(and (keyword? %) (= "xml" (namespace %))) (keys m)))
 
+(deftest parse-v501-resolves-includes
+  (let [v501 (.getPath (io/resource "adac/ADAC_v501_XSD/ADAC_V501.xsd"))
+        schema (parse/parse-schema v501)
+        st (:simple-types schema)
+        ct (:complex-types schema)]
+    (is (= "5.0.1" (:version schema)))
+    (is (contains? (:elements schema) "ADAC"))
+    (is (contains? st "String_32"))
+    (is (contains? ct "Feature_Sewerage_MaintenanceHole"))
+    (is (contains? ct "geometry_point_singlepoint"))
+    (is (contains? (:groups schema) "geometry_fragment_complex"))
+    (is (contains? ct "objectModelSewerage"))
+    (is (> (count st) 50))
+    (is (> (count ct) 100))))
+
+(deftest convert-v501-schema-version
+  (let [v501 (.getPath (io/resource "adac/ADAC_v501_XSD/ADAC_V501.xsd"))
+        bundle (convert/convert (parse/parse-schema v501) :slice nil)]
+    (is (= 5.01M (get-in bundle [:schema :schema/version])))
+    (is (some #(= :ADAC (:record/name %)) (:elements bundle)))
+    (is (some #(and (= :Geometry (:record/name %))
+                    (= :host-event (:element/kind %)))
+              (:elements bundle)))))
+
 (deftest stable-uuid-deterministic
   (is (= (u/stable-uuid "typedef/String_32")
          (u/stable-uuid "typedef/String_32")))

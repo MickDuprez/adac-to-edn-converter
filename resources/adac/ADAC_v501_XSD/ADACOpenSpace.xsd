@@ -1,0 +1,1352 @@
+<?xml version="1.0"?>
+<!-- version 4.0.0 edited by Ian Read 24 Feb 2011 (RCC) -->
+<!-- version 4.0.1 edited by Ian Read 25 Aug 2011 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 6 Aug 2012 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 4 Jan 2013 (RCC) -->
+<!-- version 4.2.0 edited by Martin Dore' Feb 2015(LCC) change to version number only -->
+<!-- version 5.0.0 edited by Blake Slaven July 2017 (Lion Systems)-->
+<!-- version 5.0.1 edited by Blake Slaven January 2018 (Lion Systems)-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.adac.com.au" targetNamespace="http://www.adac.com.au" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0.1">
+	<!-- INCLUDES -->
+	<!-- Enumerated Types -->
+	<xs:include schemaLocation="./ADACEnumeratedTypes.xsd">
+		<xs:annotation>
+			<xs:documentation>Uses ADAC enumerated SimpleType definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- Global Types -->
+	<xs:include schemaLocation="./ADACGlobalTypes.xsd">
+		<xs:annotation>
+			<xs:documentation>Contains ADAC globally referenced type definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- Geometry -->
+	<xs:include schemaLocation="./ADACGeometry.xsd">
+		<xs:annotation>
+			<xs:documentation>Contains ADAC geometry definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- **************************************************************************************** -->
+	<!-- OpenSpace - Contains the specification for all OpenSpace information                     -->
+	<!-- **************************************************************************************** -->
+	<xs:complexType name="objectModelOpenSpace">
+		<xs:annotation>
+			<xs:documentation>Data structure constraining information relating to public open space features.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="OpenSpaceAreas" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of open space areas</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="OpenSpaceArea" type="Feature_OpenSpace_OpenSpaceArea" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents an open space area feature</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ActivityAreas" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of activity areas</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="ActivityArea" type="Feature_OpenSpace_ActivityArea" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents an activity area feature</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+      <xs:element name="ActivityLandscapeEdging" nillable="false" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Represents the Edging of an Activity Area or Landscaped Area</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Edging" type="Feature_OpenSpace_Edging" nillable="false" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents the Edging of an Activity Area or Landscaped Area</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+			<xs:element name="ActivityPoints" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of activity points</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="ActivityPoint" type="Feature_OpenSpace_ActivityPoint" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents an activity point feature.  E.g: Animal, Fitness, Play or Sports activity item.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Barbeques" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of barbeques</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="Barbeque" type="Feature_OpenSpace_Barbeque" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a barbeque feature</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Tables" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of Tables</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="Table" type="Feature_OpenSpace_Table" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a table feature.  May include fixed seating.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Seats" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of seats.  Does not include seating that is part of a table feature.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="Seat" type="Feature_OpenSpace_Seat" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a seat feature.  Includes freestanding seats and border seating mounted in garden walls.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="WasteCollectionPoints" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of waste collection points</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="WasteCollectionPoint" type="Feature_OpenSpace_WasteCollectionPoint" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a waste collection point feature</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BicycleFittings" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of bicycle fittings</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="BicycleFitting" type="Feature_OpenSpace_BicycleFitting" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a bicycle fitting feature</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GeneralFixtures" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of general fixtures.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="Fixture" type="Feature_OpenSpace_Fixture" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a general fixture feature.  This is a class of minor point based fixtures not complex enough for a specific feature class.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BarriersContinuous" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of continuous linear barriers.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="BarrierContinuous" type="Feature_OpenSpace_BarrierContinuous" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a continuous linear barrier feature, such as fencing, walls, handrail or bollard run.</xs:documentation>
+								<xs:documentation>Do not use for retaining walls.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BarriersPoint" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of point barriers.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="BarrierPoint" type="Feature_OpenSpace_BarrierPoint" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a barrier feature that controls access at a single point, such as a locking post or single bollard.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RetainingWalls" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of retaining walls.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="RetainingWall" type="Feature_OpenSpace_RetainingWall" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a continuous retaining wall feature.  Includes terrestrial, freshwater and marine revetment walls.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Shelters" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of shelters</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element name="Shelter" type="Feature_OpenSpace_Shelter" nillable="false" minOccurs="1" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a shelter feature as a Point object</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+            <xs:element name="ShelterPolygon" type="Feature_OpenSpace_Shelter_Polygon" nillable="false" minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Represents a shelter feature as a Polygon object</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Artworks" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of open space artworks</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="Artwork" type="Feature_OpenSpace_Artwork" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents an open space artwork feature</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Buildings" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of open space buildings</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="Building" type="Feature_OpenSpace_Building" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents an open space building feature, such as a toilet block, bandstand.</xs:documentation>
+								<xs:documentation>Not to be used for shelters.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BoatingFacilities" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of boating facilities</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="BoatingFacility" type="Feature_OpenSpace_BoatingFacility" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a boating facility feature, such as a pontoon, ramp or jetty.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ElectricalFittings" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of electrical fittings</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="ElectricalFitting" type="Feature_OpenSpace_ElectricalFitting" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents an electrical fitting point feature, including lighting, whether freestanding or fixed to an existing structure.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ElectricalConduits" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of electrical conduits</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="ElectricalConduit" type="Feature_OpenSpace_ElectricalConduit" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a continuous linear course of electrical conduit.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LandscapeAreas" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of landscape areas</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="LandscapeArea" type="Feature_OpenSpace_LandscapeArea" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a landscape area feature, such as a garden, shaped lawn, or landscape feature area.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Trees" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of trees</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="Tree" type="Feature_OpenSpace_Tree" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a tree feature.  Trees may qualify as assets when planted as street trees, or when significant specimens are retained or planted as part of an open space development.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Signs" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents the feature class of signs</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="Sign" type="Feature_OpenSpace_Sign" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a sign feature</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- **************************************************************************************** -->
+	<!-- Features - Contains the specification for all OpenSpace Features                         -->
+	<!-- **************************************************************************************** -->
+	<!-- Feature OpenSpace OpenSpace Area -->
+	<xs:complexType name="Feature_OpenSpace_OpenSpaceArea">
+		<xs:annotation>
+			<xs:documentation>Represents a top-level area of open space regarded as a single functional area, such as a park or recreation area.  May be, but not necessarily, coincident with cadastral boundary.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Name" type="String_64" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The offical  name or description  of the Open Space area  (eg: Smith St Park, Stockland Park Sporting complex)
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Type" type="openspace_area_type" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of Open Space area eg: Recreational, Bushland, Sporting Complex
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Geometry" type="geometry_area_multipatch_complex" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Activity Area -->
+	<xs:complexType name="Feature_OpenSpace_ActivityArea">
+		<xs:annotation>
+			<xs:documentation>Represents an activity area such as a playground or excercise area</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Use" type="openspace_activity_area_use" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of use for the  Activity Site eg: Animal, Fitness, Play, Sport
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Type" type="String_64" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of Activity Site. Eg: Sports Field, Cycling Facility
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Material" type="openspace_activity_area_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of Undersurfacing eg: Bark, Rubber, Grassed
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+          <xs:element name="Thickness_mm" type="Float_Positive_NonZero" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Thickness of the material in millimetres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+					<xs:element name="Geometry" type="geometry_area_multipatch_complex" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+  <!-- Feature OpenSpace Activity/Landscaping Edging -->
+  <xs:complexType name="Feature_OpenSpace_Edging">
+    <xs:annotation>
+      <xs:documentation>Represents the Edging of an Activity Area or Landscaped Area</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Material" type="openspace_edge_material" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>The material type of edging</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Length_m" type="Float_Positive_NonZero" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Length of material in metres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Width_mm" type="xs:positiveInteger" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Width of material in millimetres.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Geometry" type="geometry_linear_singlepath_complex" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Feature OpenSpace Activity Point -->
+	<xs:complexType name="Feature_OpenSpace_ActivityPoint">
+		<xs:annotation>
+			<xs:documentation>Represents an installation of animal, play, fitness or sports equipment</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Use" type="openspace_activity_item_use" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The activity use category
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Type" type="String_64" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The activity item type
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Material" type="openspace_activity_item_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of Activity Item eg: Timber, Aluminium
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Theme" type="String_64" nillable="true" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The theme of the Activity item. Eg: Kangaroo, Boat, Fort, Car
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Units" type="xs:positiveInteger" nillable="true" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The number of units present eg: 1, 2, 3
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+						</xs:annotation>
+					</xs:group>
+					<xs:element name="Geometry" type="geometry_point_singlepoint" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace BBQ -->
+	<xs:complexType name="Feature_OpenSpace_Barbeque">
+		<xs:annotation>
+			<xs:documentation>Represents an individual barbeque facility</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="EnergySource" type="openspace_bbq_EnergySource" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The Source of energy for the BBQ. Ie: Mains, Bottled, Solar
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Plates" type="openspace_bbq_plates" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The number of plates fitted in the BBQ structure.
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SurroundingMaterial" type="openspace_bbq_SurroundingMaterial" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of the surround structure ie: brick, steel and Timber
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TopMaterial" type="openspace_bbq_TopMaterial" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of the top structure ie: Tiled, marble,  steel
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+						</xs:annotation>
+					</xs:group>
+					<xs:element name="Geometry" type="geometry_point_singlepoint" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Table (may include inbuilt seating) -->
+	<xs:complexType name="Feature_OpenSpace_Table">
+		<xs:annotation>
+			<xs:documentation>Represents a table unit that may include fixed seating.  Not to be used for seating that does not include a table as its main feature.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Type" type="openspace_table_type" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of Unit eg: Table, Bench or counter.
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Seating" nillable="true" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Seating details.  Element should be nil if no seating is present.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence minOccurs="1" maxOccurs="1">
+								<xs:element name="SeatType" type="openspace_table_seattype" nillable="false" minOccurs="1" maxOccurs="1">
+									<xs:annotation>
+										<xs:documentation>The configuration of the associated seating.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Places" type="xs:positiveInteger" nillable="false" minOccurs="1" maxOccurs="1">
+									<xs:annotation>
+										<xs:documentation>
+                      The number of individuals the seating is designed for.  This attribute may be used to help determine the capacity of a recreational facility.
+                    </xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Material" type="openspace_table_Material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of Table/Seat eg: Timber, Aluminium
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+						</xs:annotation>
+					</xs:group>
+					<xs:element name="Geometry" type="geometry_point_singlepoint" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Table (may include inbuilt seating) -->
+	<xs:complexType name="Feature_OpenSpace_Seat">
+		<xs:annotation>
+			<xs:documentation>Represents a seat unit that does not include a table as its main feature.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="SeatType" type="openspace_seat_seattype" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The configuration of the seating.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Places" type="xs:positiveInteger" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The number of individuals the seating is designed for.  This attribute may be used to help determine the capacity of a recreational facility.
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Material" type="openspace_table_Material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The primary material type of Seat eg: Timber, Aluminium
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+						</xs:annotation>
+					</xs:group>
+					<xs:element name="Geometry" type="geometry_point_singlepoint" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Waste collection point -->
+	<xs:complexType name="Feature_OpenSpace_WasteCollectionPoint">
+		<xs:annotation>
+			<xs:documentation>Represents an individual waste collection point.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Type" type="openspace_bin_type" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The type of Bin/Waste collection point eg: Std Litter Bin, Wheelie Bin Enclosure</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Material" type="openspace_bin_Material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The material type of Bin/Waste collection point eg: Aluminium, Steel</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+						</xs:annotation>
+					</xs:group>
+					<xs:element name="Geometry" type="geometry_point_singlepoint" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Bicycle fitting -->
+	<xs:complexType name="Feature_OpenSpace_BicycleFitting">
+		<xs:annotation>
+			<xs:documentation>Represents an individual fitting for the use or safety of cyclists.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Type" type="openspace_bikefitting_type" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of Bicycle fitting eg: Bicycle Rack, Bannana Rail
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Material" type="openspace_bikefitting_Material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of Bicycle fitting  eg: Timber, Aluminium
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+						</xs:annotation>
+					</xs:group>
+					<xs:element name="Geometry" type="geometry_point_singlepoint" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Fixture -->
+	<xs:complexType name="Feature_OpenSpace_Fixture">
+		<xs:annotation>
+			<xs:documentation>Represents an individual general open space fixture.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Type" type="String_32" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of Fixture eg: Dog bag dispensers, Fish cleaning station
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Material" type="openspace_fixture_Material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of Fixture  eg: Timber, Aluminium
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+						</xs:annotation>
+					</xs:group>
+					<xs:element name="Geometry" type="geometry_point_singlepoint" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Barrier Continuous -->
+	<xs:complexType name="Feature_OpenSpace_BarrierContinuous">
+		<xs:annotation>
+			<xs:documentation>Represents a linear course of barrier material such as fencing, handrail, or bollards.  The combination of properties determines the nature of the barrier.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Type" type="openspace_barrier_type" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of Barrier eg: Safety Fencing, Bollard Run, Gate
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="UprightMaterial" type="openspace_barrier_upright_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of Barrier Uprights eg: Timber, Aluminium
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LinkMaterial" type="openspace_barrier_link_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of Barrier Link Material eg: None, Chain, Wire
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TopMaterial" type="openspace_barrier_top_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of Barrier Topping Material eg: None, Chain, Barbed Wire
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Length_m" type="Float_Positive_NonZero" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The lineal length of the barrier in metres</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Height_m" type="Float_Positive_NonZero" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The height of the barrier in metres</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="UprightNumber" type="xs:positiveInteger" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Total number of uprights in the run.  For fencing, this will be the number of posts.  For a bollard run, it will be the number of bollards.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Geometry" type="geometry_linear_singlepath_complex" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+							<xs:documentation>It is recommended, but not mandatory, that each vertex represents an upright, particularly for bollard runs. This allows the geometry to be exploited to identify the individual features if necessary.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Barrier Point -->
+	<xs:complexType name="Feature_OpenSpace_BarrierPoint">
+		<xs:annotation>
+			<xs:documentation>Represents an individual barrier feature such as a locking post or single bollard, intended to control access at a single point.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Type" type="openspace_singlebarrier_type" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of Barrier Point eg: Bollard, Locking Post
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="UprightMaterial" type="openspace_singlebarrier_upright_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of Barrier Uprights eg: Timber, Aluminium
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Geometry" type="geometry_point_singlepoint" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Retaining wall -->
+	<xs:complexType name="Feature_OpenSpace_RetainingWall">
+		<xs:annotation>
+			<xs:documentation>Represents a linear course of retaining wall.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Use" type="openspace_retainingwall_use" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Context of use for this wall.  i.e Terrestrial or Marine</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Material" type="openspace_retainingwall_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material/type of Retaining Wall eg: Rock, Conc. Block, Conc. Crib
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Construction" type="openspace_retainingwall_construction" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Construction principle of this wall (eg: Gravity, Piled, Cantilever)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Length_m" type="Float_Positive_NonZero" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The lineal length of the wall in metres</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Height_m" type="Float_Positive_NonZero" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The height (or average height) of the wall in metres</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Width_m" type="Float_Positive_NonZero" nillable="true" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The width of the wall in metres</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Geometry" type="geometry_linear_multipath_complex" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Shelter -->
+	<xs:complexType name="Feature_OpenSpace_Shelter">
+		<xs:annotation>
+			<xs:documentation>Represents an individual open space shelter feature as a point object</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Type" type="openspace_shelter_type" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of structure eg: Sail, Rigid
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ConstructionType" type="construction_method" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of shelter constructed eg: Prefab or Built insitu
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FloorMaterial" type="openspace_shelter_floor_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of the Floor  eg: Concrete, Timber
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="WallMaterial" type="openspace_shelter_wall_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of the Walls  eg: Timber/cladding, Reinforced Block
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RoofMaterial" type="openspace_shelter_roof_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of the Roof eg: Steel Sheeting, Masonary tiles
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+						</xs:annotation>
+					</xs:group>
+					<xs:element name="Geometry" type="geometry_point_singlepoint" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+  <xs:complexType name="Feature_OpenSpace_Shelter_Polygon">
+    <xs:annotation>
+      <xs:documentation>Represents an individual open space shelter feature as a polygon object</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="asset_abstract">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Type" type="openspace_shelter_type" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>
+                The type of structure eg: Sail, Rigid
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ConstructionType" type="construction_method" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>
+                The type of shelter constructed eg: Prefab or Built insitu
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FloorMaterial" type="openspace_shelter_floor_material" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>
+                The material type of the Floor  eg: Concrete, Timber
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WallMaterial" type="openspace_shelter_wall_material" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>
+                The material type of the Walls  eg: Timber/cladding, Reinforced Block
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RoofMaterial" type="openspace_shelter_roof_material" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>
+                The material type of the Roof eg: Steel Sheeting, Masonary tiles
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+            </xs:annotation>
+          </xs:group>
+          <xs:element name="Geometry" type="geometry_area_singlepatch_complex" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Feature OpenSpace Artwork -->
+	<xs:complexType name="Feature_OpenSpace_Artwork">
+		<xs:annotation>
+			<xs:documentation>Represents an individual instance of open space artwork</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Type" type="openspace_artwork_type" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of Artwork eg: Sculpture, Statue
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Material" type="openspace_artwork_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                 The material type of Artwork eg: Timber, Aluminium
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Geometry" type="geometry_point_singlepoint" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Building -->
+	<xs:complexType name="Feature_OpenSpace_Building">
+		<xs:annotation>
+			<xs:documentation>Represents an open space built structure such as a toilet block, or bandstand, other than a shelter.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Type" type="openspace_building_type" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of Building eg: Grandstand, Bandstand
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Material" type="openspace_building_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of Building eg: Timber, Brick
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Geometry" type="geometry_area_singlepatch_complex" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Boating Facility -->
+	<xs:complexType name="Feature_OpenSpace_BoatingFacility">
+		<xs:annotation>
+			<xs:documentation>Represents an individual boating facility such as a pontoon, ramp or jetty</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Type" type="openspace_boatingfacility_type" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of Boating Facility eg: Jetty, Pier
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Material" type="openspace_boatingfacility_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of Boating Facility eg: Timber, Aluminium
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Geometry" type="geometry_area_singlepatch_complex" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Electrical Fitting (incl. Lights) -->
+	<xs:complexType name="Feature_OpenSpace_ElectricalFitting">
+		<xs:annotation>
+			<xs:documentation>Represents an individual electrical fitting, including lighting, whether freestanding or affixed to an existing structure.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Type" type="openspace_electrical_fitting_type" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of Electrical Component eg: Light, Switch Board, Power Outlet
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Base" type="openspace_electrical_fitting_base" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of base (eg: Fixed or Slip)
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Material" type="openspace_electrical_fitting_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of the component eg: Aluminium, Steel
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="EnergySource" type="openspace_electrical_fitting_EnergySource" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of Power Source eg; Mains, Solar
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+						</xs:annotation>
+					</xs:group>
+					<xs:element name="Geometry" type="geometry_point_singlepoint" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Elecrical Conduit -->
+	<xs:complexType name="Feature_OpenSpace_ElectricalConduit">
+		<xs:annotation>
+			<xs:documentation>Represents a linear course of electrical conduit.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Type" type="openspace_electrical_conduit_type" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The conduit type eg: Medium Duty, Heavy Duty
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Material" type="openspace_electrical_conduit_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The conduit material type
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Diameter_mm" type="xs:positiveInteger" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The conduit diameter
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Length_m" type="Float_Positive_NonZero" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The lineal length of the barrier in metres</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Protection" type="openspace_electrical_conduit_protection" nillable="true" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of conduit protection used eg:  Concrete encased, rubber mat, tape only
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Geometry" type="geometry_linear_multipath_complex" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Landscape Area -->
+	<xs:complexType name="Feature_OpenSpace_LandscapeArea">
+		<xs:annotation>
+			<xs:documentation>Represents a landscape feature area, shaped lawn or garden</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Type" type="openspace_landscapearea_type" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of Garden/L'scape Area eg: Garden, Grass, Rem Vegetation
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RootBarrier" type="xs:boolean" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                Does Root Barrier exist - Yes or No
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+          <xs:element name="Irrigated" type="xs:boolean" nillable="false" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Is Landscaped Area irrigated?</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+					<xs:element name="Geometry" type="geometry_area_multipatch_complex" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Tree -->
+	<xs:complexType name="Feature_OpenSpace_Tree">
+		<xs:annotation>
+			<xs:documentation>Represents an individual tree.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Species" type="String_32" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The Tree Species
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Genus" type="String_32" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The Tree Genus
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RootBarrier" type="xs:boolean" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                Does Root Barrier exist - Yes or No
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Grate" type="xs:boolean" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                Does Tree Grate exist - Yes or No
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Geometry" type="geometry_point_singlepoint" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Feature OpenSpace Sign -->
+	<xs:complexType name="Feature_OpenSpace_Sign" abstract="false">
+		<xs:annotation>
+			<xs:documentation>Represents a sign. May also be used for transport signs</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="asset_abstract">
+				<xs:sequence minOccurs="1" maxOccurs="1">
+					<xs:element name="Type" type="openspace_sign_type" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The type of Sign eg: Regulatory, Naming, Information
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Material" type="openspace_sign_material" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+                The material type of sign  eg: Timber, Steel/Aluminium, Carved stone
+              </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:group ref="manufacturer_model_details" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Standard element group called in to support manufacturer and model details</xs:documentation>
+						</xs:annotation>
+					</xs:group>
+					<xs:element name="Structure" type="openspace_sign_structure" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The type of structure this sign blade is fixed to.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SignText" type="xs:string" nillable="true" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Sign Text</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Rotation" type="Float_Direction" nillable="true" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Rotation angle (cartesian - anti-clockwise 0 degrees = East)</xs:documentation>
+							<xs:documentation>May be used to denote direction of facing.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Geometry" type="geometry_point_singlepoint" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The geometry representing this feature in coordinate space.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

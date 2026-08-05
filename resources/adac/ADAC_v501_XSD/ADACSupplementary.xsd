@@ -1,0 +1,330 @@
+<?xml version="1.0"?>
+<!-- version 4.0.0 edited by Ian Read 24 Feb 2011 (RCC) -->
+<!-- version 4.0.1 edited by Ian Read 25 Aug 2011 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 6 Aug 2012 (RCC) -->
+<!-- version 4.1.0 edited by Ian Read 4 Jan 2013 (RCC) -->
+<!-- version 4.2.0 edited by Martin Dore' Feb 2015(LCC) change to version number only -->
+<!-- version 5.0.0 edited by Blake Slaven July 2017 (Lion Systems) to change version number only-->
+<!-- version 5.0.1 edited by Blake Slaven January 2018 (Lion Systems) to change version number only -->
+<xs:schema version="5.0.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.adac.com.au" targetNamespace="http://www.adac.com.au" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>The ADAC Supplementary Schema constrains the data structure for all unstructured Supplementary features within an ADAC Project</xs:documentation>
+		<xs:documentation>These features provide for the ability to describe points, polylines or polygons.  A class name must be set on each feature and a text note may be provided.  The class value may be used on extraction to filter features into GIS featureclasses or similar.</xs:documentation>
+	</xs:annotation>
+	<!-- INCLUDES -->
+	<!-- Enumerated Types -->
+	<xs:include schemaLocation="./ADACEnumeratedTypes.xsd">
+		<xs:annotation>
+			<xs:documentation>Uses ADAC enumerated SimpleType definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- Global Types -->
+	<xs:include schemaLocation="./ADACGlobalTypes.xsd">
+		<xs:annotation>
+			<xs:documentation>Contains ADAC globally referenced type definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- Geometry -->
+	<xs:include schemaLocation="./ADACGeometry.xsd">
+		<xs:annotation>
+			<xs:documentation>Contains ADAC geometry definitions</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- **************************************************************************************** -->
+	<!-- SupplementaryData - Contains unstructured data not included in the rigourous ADAC model  -->
+	<!-- **************************************************************************************** -->
+	<xs:complexType name="objectModelSupplementary">
+		<xs:annotation>
+			<xs:documentation>Data structure for generic description of objects not described elsewhere in the ADAC data model.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PointFeatures" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents a GIS layer of Supplementary point features.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PointFeature" type="Feature_Supplementary_Point" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a Supplementary point feature</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PolylineFeatures" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents a GIS layer of Supplementary polyline features.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PolylineFeature" type="Feature_Supplementary_Polyline" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a Supplementary polyline feature</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PolygonFeatures" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents a GIS layer of Supplementary polygon features.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PolygonFeature" type="Feature_Supplementary_Polygon" nillable="false" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Represents a Supplementary polygon feature</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- **************************************************************************************** -->
+	<!-- FEATURES  - Supplementary                                                                -->
+	<!-- **************************************************************************************** -->
+	<!-- FEATURE Supplementary POINT-->
+	<xs:complexType name="Feature_Supplementary_Point" abstract="false">
+		<xs:annotation>
+			<xs:documentation>Represents a Supplementary point feature.  Use these features to represent point detail that adds clarity or context to the strict ADAC features.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<!--Ben Pham modified: changed base extension from object_abstract to asset_abstract-->
+			<xs:extension base="asset_abstract">
+				<xs:sequence>
+					<xs:group ref="supplementary_content">
+						<xs:annotation>
+							<xs:documentation>Standard content for supplementary features</xs:documentation>
+						</xs:annotation>
+					</xs:group>
+					<xs:element name="Geometry" type="geometry_point_singlepoint" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Represents a point geometry</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- FEATURE Supplementary POLYLINE -->
+	<xs:complexType name="Feature_Supplementary_Polyline" abstract="false">
+		<xs:annotation>
+			<xs:documentation>Represents a Supplementary polyline feature.   Use these features to represent linear detail that adds clarity or context to the strict ADAC features.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<!--Ben Pham modified: changed base extension from object_abstract to asset_abstract-->
+			<xs:extension base="asset_abstract">
+				<xs:sequence>
+					<xs:group ref="supplementary_content">
+						<xs:annotation>
+							<xs:documentation>Standard content for supplementary features</xs:documentation>
+						</xs:annotation>
+					</xs:group>
+					<xs:element name="Geometry" type="geometry_linear_multipath_complex" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Represents a polyline geometry</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- FEATURE Supplementary POLYGON -->
+	<xs:complexType name="Feature_Supplementary_Polygon" abstract="false">
+		<xs:annotation>
+			<xs:documentation>Represents a Supplementary polygon feature.    Use these features to represent area detail that adds clarity or context to the strict ADAC features.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<!--Ben Pham modified: changed base extension from object_abstract to asset_abstract-->
+			<xs:extension base="asset_abstract">
+				<xs:sequence>
+					<xs:group ref="supplementary_content">
+						<xs:annotation>
+							<xs:documentation>Standard content for supplementary features</xs:documentation>
+						</xs:annotation>
+					</xs:group>
+					<xs:element name="Geometry" type="geometry_area_multipatch_complex" nillable="false" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Represents a polygon geometry</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Element group for supplementary feature contents -->
+	<xs:group name="supplementary_content">
+		<xs:annotation>
+			<xs:documentation>Standard content for supplementary features</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Class" type="String_32" nillable="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>User specified class names may be encoded here to identify the feature type.  As there is no enumeration, the class codes must be by prior agreement.</xs:documentation>
+					<xs:documentation>Not to be used for features that appear elsewhere in the ADAC Model.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Note" type="String_254" nillable="true" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>General purpose descriptive note.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Attributes" type="attribute_collection" nillable="true" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>a collection of named attributes.</xs:documentation>
+					<xs:documentation>This element must be present but may be empty.</xs:documentation>
+					<xs:documentation>Attributes of supported types may occur in any number and any order, but application developers are encouraged to exercise consistency in the use of supplementary attributes.  It is recommended that supplementary features given the same class are also given the same list of named attributes in the same order, so as to facilitate easier passage into receiving systems.  Attribute names should be chosen with the requirements of receiving systems in mind.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<!-- Building blocks for named attributes -->
+	<xs:complexType name="attribute_collection">
+		<xs:annotation>
+			<xs:documentation>This type controls the content of a collection of named attributes in any order.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="named_attributes" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Any one of the named attributes may be used in any order.</xs:documentation>
+				</xs:annotation>
+			</xs:group>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Group for named attributes -->
+	<xs:group name="named_attributes">
+		<xs:annotation>
+			<xs:documentation>This group enables a named attribute of any supported data type to be defined</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="TextValue" type="named_attribute_textvalue" nillable="true" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents a text string value.  The length is not specified, so it is the responsibility of data authors and software implementers to ensure that values are suitable for any particular application.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IntegerValue" type="named_attribute_integervalue" nillable="true" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents an integer numeric value, that may be positive or negative.  The bounds are not specified, so it is the responsibility of data authors and software implementers to ensure that values are suitable for any particular application.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DecimalValue" type="named_attribute_decimalvalue" nillable="true" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents a decimal numeric value, that may be positive or negative. The bounds are not specified, so it is the responsibility of data authors and software implementers to ensure that values are suitable for any particular application.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateValue" type="named_attribute_datevalue" nillable="true" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents a date of the W3C form YYYY-MM-DD (e.g: 2012-08-01).  This form assumes the local timezone.</xs:documentation>
+					<xs:documentation>For date in UTC (timezone Zulu), format is YYYY-MM-DDZ (e.g: 2012-08-01Z)</xs:documentation>
+					<xs:documentation>For date in a timezone an offset in hours and minutes must be specified, format is YYYY-MM-DD+hh:mm [offset can be positive or negative] (e.g: 2012-08-01+10:00)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeValue" type="named_attribute_timevalue" nillable="true" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents a time of the W3C form hh:mm:ss.s (e.g: 23:59:59.9).  this form assumes the local timezone.</xs:documentation>
+					<xs:documentation>For time in UTC (timezone Zulu), format is hh:mm:ssZ (e.g: 23:59:59Z)</xs:documentation>
+					<xs:documentation>For time in a timezone an offset in hours and minutes must be specified, format is hh:mm:ss+hh:mm [offset can be positive or negative] (e.g: 23:59:59+10:00)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTimeValue" type="named_attribute_datetimevalue" nillable="true" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Represents a date-time of the W3C form YYYY-MM-DDThh:mm:ss.s (e.g: 2012-08-01T20:00:00.0).  this form assumes the local timezone.</xs:documentation>
+					<xs:documentation>For date and time in UTC (timezone Zulu), format is YYYY-MM-DDhh:mm:ssZ (e.g: 2012-08-01T20:00:00Z)</xs:documentation>
+					<xs:documentation>For date and time in a timezone an offset in hours and minutes must be specified, format is YYYY-MM-DDThh:mm:ss+hh:mm [offset can be positive or negative] (e.g: 2012-08-01T20:00:00+10:00)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="named_attribute_textvalue">
+		<xs:annotation>
+			<xs:documentation>Represents a text string value.  The length is not specified, so it is the responsibility of data authors and software implementers to ensure that values are suitable for any particular application.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="valname" type="String_32" use="required" form="unqualified">
+					<xs:annotation>
+						<xs:documentation>A name must be supplied for the Feature Attribute. Typically this name will used as a field name in a receiving database or GIS.  It is the implementers responsibility to ensure that the name adheres to the requirements of receiving systems. Usually this means no spaces, alphanumerics only and a limit to the number of characters.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="named_attribute_integervalue">
+		<xs:annotation>
+			<xs:documentation>Represents an integer numeric value, that may be positive or negative.  The bounds are not specified, so it is the responsibility of data authors and software implementers to ensure that values are suitable for any particular application.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:integer">
+				<xs:attribute name="valname" type="String_32" use="required" form="unqualified">
+					<xs:annotation>
+						<xs:documentation>A name must be supplied for the Feature Attribute. Typically this name will used as a field name in a receiving database or GIS.  It is the implementers responsibility to ensure that the name adheres to the requirements of receiving systems. Usually this means no spaces, alphanumerics only and a limit to the number of characters.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="named_attribute_decimalvalue">
+		<xs:annotation>
+			<xs:documentation>Represents a decimal numeric value, that may be positive or negative. The bounds are not specified, so it is the responsibility of data authors and software implementers to ensure that values are suitable for any particular application.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:float">
+				<xs:attribute name="valname" type="String_32" use="required" form="unqualified">
+					<xs:annotation>
+						<xs:documentation>A name must be supplied for the Feature Attribute. Typically this name will used as a field name in a receiving database or GIS.  It is the implementers responsibility to ensure that the name adheres to the requirements of receiving systems. Usually this means no spaces, alphanumerics only and a limit to the number of characters.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="named_attribute_datevalue">
+		<xs:annotation>
+			<xs:documentation>Represents a date of the W3C form YYYY-MM-DD (e.g: 2012-08-01).  This form assumes the local timezone.</xs:documentation>
+			<xs:documentation>For date in UTC (timezone Zulu), format is YYYY-MM-DDZ (e.g: 2012-08-01Z)</xs:documentation>
+			<xs:documentation>For date in a timezone an offset in hours and minutes must be specified, format is YYYY-MM-DD+hh:mm [offset can be positive or negative] (e.g: 2012-08-01+10:00).  ISO 8601 is the accepted format.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:date">
+				<xs:attribute name="valname" type="String_32" use="required" form="unqualified">
+					<xs:annotation>
+						<xs:documentation>A name must be supplied for the Feature Attribute. Typically this name will used as a field name in a receiving database or GIS.  It is the implementers responsibility to ensure that the name adheres to the requirements of receiving systems. Usually this means no spaces, alphanumerics only and a limit to the number of characters.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="named_attribute_timevalue">
+		<xs:annotation>
+			<xs:documentation>Represents a time of the W3C form hh:mm:ss.s (e.g: 23:59:59.9).  this form assumes the local timezone.</xs:documentation>
+			<xs:documentation>For time in UTC (timezone Zulu), format is hh:mm:ssZ (e.g: 23:59:59Z)</xs:documentation>
+			<xs:documentation>For time in a timezone an offset in hours and minutes must be specified, format is hh:mm:ss+hh:mm [offset can be positive or negative] (e.g: 23:59:59+10:00)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:time">
+				<xs:attribute name="valname" type="String_32" use="required" form="unqualified">
+					<xs:annotation>
+						<xs:documentation>A name must be supplied for the Feature Attribute. Typically this name will used as a field name in a receiving database or GIS.  It is the implementers responsibility to ensure that the name adheres to the requirements of receiving systems. Usually this means no spaces, alphanumerics only and a limit to the number of characters.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="named_attribute_datetimevalue">
+		<xs:annotation>
+			<xs:documentation>Represents a date-time of the W3C form YYYY-MM-DDThh:mm:ss.s (e.g: 2012-08-01T20:00:00.0).  this form assumes the local timezone.</xs:documentation>
+			<xs:documentation>For date and time in UTC (timezone Zulu), format is YYYY-MM-DDhh:mm:ssZ (e.g: 2012-08-01T20:00:00Z)</xs:documentation>
+			<xs:documentation>For date and time in a timezone an offset in hours and minutes must be specified, format is YYYY-MM-DDThh:mm:ss+hh:mm [offset can be positive or negative] (e.g: 2012-08-01T20:00:00+10:00).  ISO 8601 is the accepted format.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:dateTime">
+				<xs:attribute name="valname" type="String_32" use="required" form="unqualified">
+					<xs:annotation>
+						<xs:documentation>A name must be supplied for the Feature Attribute. Typically this name will used as a field name in a receiving database or GIS.  It is the implementers responsibility to ensure that the name adheres to the requirements of receiving systems. Usually this means no spaces, alphanumerics only and a limit to the number of characters.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

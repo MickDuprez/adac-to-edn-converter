@@ -1,5 +1,5 @@
 (ns adac-edn-converter.xsd.parse
-  "Parse ADAC Flattened XSD into an indexable IR."
+  "Parse ADAC / LandXML XSD into an indexable IR (follows xs:include)."
   (:require [clojure.data.xml :as xml]
             [clojure.java.io :as io]
             [clojure.string :as str]
@@ -252,43 +252,118 @@
   [schema-el]
   (children schema-el))
 
+(def ^:private empty-indexes
+  {:simple-types {}
+   :complex-types {}
+   :groups {}
+   :elements {}})
+
+(defn- index-top-level
+  "Build IR index maps from one schema element's top-level children."
+  [tops]
+  {:simple-types
+   (into {}
+         (comp (filter #(= "simpleType" (tag-local %)))
+               (map parse-simple-type)
+               (map (juxt :name identity)))
+         tops)
+   :complex-types
+   (into {}
+         (comp (filter #(= "complexType" (tag-local %)))
+               (map (fn [el]
+                      (let [name (get-in el [:attrs :name])
+                            body (parse-complex-type-body el)]
+                        [name (assoc body
+                                     :name name
+                                     :abstract? (= "true" (get-in el [:attrs :abstract])))]))))
+         tops)
+   :groups
+   (into {}
+         (comp (filter #(and (= "group" (tag-local %))
+                             (get-in % [:attrs :name])))
+               (map parse-named-group)
+               (map (juxt :name identity)))
+         tops)
+   :elements
+   (into {}
+         (comp (filter #(= "element" (tag-local %)))
+               (map parse-element)
+               (map (juxt :name identity)))
+         tops)})
+
+(defn- merge-indexes
+  "Merge IR indexes; overlay keys win on name collisions."
+  [base overlay]
+  (-> base
+      (update :simple-types merge (:simple-types overlay))
+      (update :complex-types merge (:complex-types overlay))
+      (update :groups merge (:groups overlay))
+      (update :elements merge (:elements overlay))))
+
+(defn- source-key
+  "Canonical identity for cycle detection across include graphs."
+  [source]
+  (cond
+    (instance? java.net.URL source)
+    (.toExternalForm source)
+
+    :else
+    (let [f (io/file source)]
+      (try
+        (.getCanonicalPath f)
+        (catch Exception _
+          (.getAbsolutePath f))))))
+
+(defn- resolve-include-source
+  "Resolve xs:include schemaLocation relative to the including schema."
+  [parent-source schema-location]
+  (let [loc (-> schema-location str str/trim (str/replace #"^\./+" ""))]
+    (when-not (str/blank? loc)
+      (cond
+        (instance? java.net.URL parent-source)
+        (java.net.URL. parent-source loc)
+
+        :else
+        (let [parent-file (io/file parent-source)
+              dir (.getParentFile parent-file)]
+          (when dir
+            (io/file dir loc)))))))
+
+(defn- parse-schema*
+  "Parse one XSD and recursively merge same-TNS xs:include targets."
+  [source visited]
+  (let [key (source-key source)]
+    (if (contains? visited key)
+      empty-indexes
+      (let [visited (conj visited key)
+            root (xml/parse-str (slurp source))
+            local (index-top-level (schema-top-level root))
+            from-includes
+            (reduce
+             (fn [acc inc-el]
+               (if-let [resolved (resolve-include-source
+                                  source
+                                  (get-in inc-el [:attrs :schemaLocation]))]
+                 (merge-indexes acc (parse-schema* resolved visited))
+                 acc))
+             empty-indexes
+             (find-children root "include"))]
+        ;; Local components win over included duplicates.
+        (merge-indexes from-includes local)))))
+
 (defn parse-schema
-  "Parse an XSD File/URL/path into IR index maps."
+  "Parse an XSD File/URL/path into IR index maps.
+
+  Follows xs:include (same target namespace) relative to the including file.
+  Entry-document :version / :documentation / :target-namespace are kept from
+  the root source only."
   [source]
   (let [root (xml/parse-str (slurp source))
-        tops (schema-top-level root)
-        simple-types (into {}
-                           (comp (filter #(= "simpleType" (tag-local %)))
-                                 (map parse-simple-type)
-                                 (map (juxt :name identity)))
-                           tops)
-        complex-types (into {}
-                            (comp (filter #(= "complexType" (tag-local %)))
-                                  (map (fn [el]
-                                         (let [name (get-in el [:attrs :name])
-                                               body (parse-complex-type-body el)]
-                                           [name (assoc body
-                                                        :name name
-                                                        :abstract? (= "true" (get-in el [:attrs :abstract])))]))))
-                            tops)
-        groups (into {}
-                     (comp (filter #(and (= "group" (tag-local %))
-                                         (get-in % [:attrs :name])))
-                           (map parse-named-group)
-                           (map (juxt :name identity)))
-                     tops)
-        elements (into {}
-                       (comp (filter #(= "element" (tag-local %)))
-                             (map parse-element)
-                             (map (juxt :name identity)))
-                       tops)]
-    {:target-namespace (get-in root [:attrs :targetNamespace])
-     :version (get-in root [:attrs :version])
-     :documentation (documentation root)
-     :simple-types simple-types
-     :complex-types complex-types
-     :groups groups
-     :elements elements}))
+        indexes (parse-schema* source #{})]
+    (assoc indexes
+           :target-namespace (get-in root [:attrs :targetNamespace])
+           :version (get-in root [:attrs :version])
+           :documentation (documentation root))))
 
 (defn parse-classpath-xsd
   [resource-path]
