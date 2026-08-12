@@ -1,0 +1,1 @@
+src;resources;C:\Users\Mick\.m2\repository\org\clojure\clojure\1.12.2\clojure-1.12.2.jar;C:\Users\Mick\.m2\repository\org\clojure\data.xml\0.2.0-alpha9\data.xml-0.2.0-alpha9.jar;C:\Users\Mick\.m2\repository\org\clojure\core.specs.alpha\0.4.74\core.specs.alpha-0.4.74.jar;C:\Users\Mick\.m2\repository\org\clojure\spec.alpha\0.5.238\spec.alpha-0.5.238.jar

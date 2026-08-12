@@ -6,15 +6,35 @@
             [adac-edn-converter.xsd.parse :as parse]
             [clojure.string :as str]))
 
+(def adac-schema-id-v600
+  (u/stable-uuid "schema/ADAC-6.0.0"))
+
+(def adac-schema-id-v501
+  (u/stable-uuid "schema/ADAC-5.0.1"))
+
+(defn adac-schema-id-for
+  "Stable SchemaCraft schema UUID for an ADAC XSD/XML version string."
+  [version]
+  (let [v (str/trim (str (or version "")))]
+    (cond
+      (str/starts-with? v "5.") adac-schema-id-v501
+      :else adac-schema-id-v600)))
+
 (def adac-schema-id
-  (u/stable-uuid "schema/ADAC"))
+  "Default ADAC schema id (v6.0.0)."
+  adac-schema-id-v600)
 
 (def schema-id
-  "Backward-compatible alias for ADAC schema id."
-  adac-schema-id)
+  "Backward-compatible alias for ADAC v6 schema id."
+  adac-schema-id-v600)
 
 (def landxml-schema-id
   (u/stable-uuid "schema/LandXML-1.2"))
+
+(defn- adac-version-label
+  [version fallback]
+  (let [v (str/trim (str (or version "")))]
+    (str "ADAC " (if (str/blank? v) fallback v))))
 
 (defn- parse-schema-version
   "Coerce XSD @version to :schema/version BigDecimal.
@@ -107,7 +127,7 @@
       (swap! *typedefs assoc n (td/emit-typedef schema-id (:simple-types schema) n)))))
 
 (defn- profile-config
-  [profile]
+  [profile schema]
   (case profile
     :landxml
     {:schema-id landxml-schema-id
@@ -119,22 +139,24 @@
      :host-events? false
      :segment-host-events? true
      :flatten-type-choices? true}
-    ;; default ADAC
-    {:schema-id adac-schema-id
-     :root-name "ADAC"
-     :schema-name "ADAC"
-     :schema-label "ADAC"
-     ;; Fallback only when the XSD omits @version (entry doc version is preferred).
-     :version-default "6.0.0"
-     :seed-all-simple? false
-     :host-events? true}))
+    ;; default ADAC — distinct stable ids per major line (5.x vs 6.x)
+    (let [ver (or (:version schema) "6.0.0")
+          label (adac-version-label ver "6.0.0")]
+      {:schema-id (adac-schema-id-for ver)
+       :root-name "ADAC"
+       :schema-name label
+       :schema-label label
+       ;; Fallback only when the XSD omits @version (entry doc version is preferred).
+       :version-default "6.0.0"
+       :seed-all-simple? false
+       :host-events? true})))
 
 (defn convert
   "Convert parsed schema IR to SchemaCraft bundle.
   opts: {:slice :sewerage-mh | nil
          :profile :adac | :landxml}"
   [schema & {:keys [slice profile] :or {profile :adac}}]
-  (let [cfg (profile-config profile)
+  (let [cfg (profile-config profile schema)
         schema-id (:schema-id cfg)
         *typedefs (atom {})
         store (atom (el/empty-store))]
