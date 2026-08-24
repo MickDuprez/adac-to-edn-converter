@@ -1,6 +1,8 @@
 (ns adac-edn-converter.core
-  "CLI: ADAC/LandXML XSD ↔ SchemaCraft EDN ↔ Instance XML; BCIB legacy → EDN"
-  (:require [adac-edn-converter.bcib.convert :as bcib]
+  "CLI: ADAC/LandXML XSD ↔ SchemaCraft EDN ↔ Instance XML; BCIB legacy → EDN;
+  LandXML survey geometry import."
+  (:require [adac-edn-converter.api :as api]
+            [adac-edn-converter.bcib.convert :as bcib]
             [adac-edn-converter.convert :as convert]
             [adac-edn-converter.edn.emit :as emit]
             [adac-edn-converter.edn.read :as edn-read]
@@ -171,6 +173,20 @@
      :xml xml-out
      :valid? (:valid? v)}))
 
+(defn landxml-to-geometry!
+  "LandXML instance XML → survey overlay catalog EDN."
+  [{:keys [xml out]}]
+  (when (str/blank? (str xml))
+    (throw (ex-info "LandXML input path is required" {})))
+  (let [xml-path (resolve-path xml nil)
+        out-path (or out "target/landxml-survey-geometry.edn")
+        catalog (api/landxml->survey-geometry (io/file (str xml-path)))
+        _ (io/make-parents out-path)]
+    (emit/write-edn catalog out-path)
+    {:out out-path
+     :object-count (count (:objects catalog))
+     :warning-count (count (:warnings catalog))}))
+
 (defn -main
   [& args]
   (cond
@@ -180,6 +196,7 @@
       \newline
       ["Usage:"
        "  lein run -- [xsd-path] [out.edn] [--slice sewerage-mh|none] [--full] [--schema adac|landxml|bcib]"
+       "  lein run -- landxml-to-geometry [in.xml] [out.edn]"
        "  lein run -- xml-to-edn [schema.edn] [sample.xml] [out-instance.edn] [--assembled]"
        "  lein run -- edn-to-xml [schema.edn] [instance.edn] [out.xml]"
        "  lein run -- validate-xml [xsd-path] [document.xml]"
@@ -192,9 +209,17 @@
        ""
        "  Default ADAC XSD: resources/adac/ADAC_V600_Flattened.xsd"
        "  ADAC v5.0.1: lein run -- resources/adac/ADAC_v501_XSD/ADAC_V501.xsd target/adac-v501.edn --full"
-       "  LandXML: lein run -- --schema landxml"
+       "  LandXML schema: lein run -- --schema landxml"
+       "  LandXML geometry: lein run -- landxml-to-geometry survey.xml target/landxml-survey-geometry.edn"
        "  BCIB:    lein run -- --schema bcib"
        "  Default sample XML: resources/adac/Sample-ADAC-V6.0.0.xml"]))
+
+    (= "landxml-to-geometry" (first args))
+    (let [result (landxml-to-geometry! {:xml (nth args 1 nil)
+                                        :out (nth args 2 nil)})]
+      (println "Wrote" (:out result)
+               "objects=" (:object-count result)
+               "warnings=" (:warning-count result)))
 
     (= "xml-to-edn" (first args))
     (let [rest-args (rest args)

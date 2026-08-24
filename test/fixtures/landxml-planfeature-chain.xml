@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Typical 12d-style strings: PlanFeature CoordGeom Lines + Chain, plus a Location. -->
+<LandXML xmlns="http://www.landxml.org/schema/LandXML-1.2"
+         date="2026-08-24" time="00:00:00" version="1.2">
+  <Units>
+    <Metric linearUnit="meter" areaUnit="squareMeter"
+            volumeUnit="cubicMeter" temperatureUnit="celsius"
+            pressureUnit="HPA" diameterUnit="millimeter"
+            widthUnit="meter" heightUnit="meter"/>
+  </Units>
+  <CoordinateSystem datum="GDA2020" horizontalDatum="MGA2020-56"/>
+  <CgPoints>
+    <CgPoint name="P1" code="MH">1000 2000 10</CgPoint>
+    <CgPoint name="P2" code="IP">1100 2000 10</CgPoint>
+    <CgPoint name="P3" code="IP">1200 2100 10</CgPoint>
+    <CgPoint name="P4">1000 2100 10</CgPoint>
+  </CgPoints>
+  <PlanFeatures>
+    <PlanFeature name="KERB-01" code="KB" desc="Kerb string">
+      <CoordGeom>
+        <Line>
+          <Start pntRef="P1"/>
+          <End pntRef="P2"/>
+        </Line>
+        <Line>
+          <Start pntRef="P2"/>
+          <End pntRef="P3"/>
+        </Line>
+      </CoordGeom>
+    </PlanFeature>
+    <PlanFeature name="PIPE-01" code="SEW" desc="Sewer string">
+      <CoordGeom>
+        <Chain>P1 P2 P3</Chain>
+      </CoordGeom>
+    </PlanFeature>
+    <PlanFeature name="LOT-01" code="LOT">
+      <CoordGeom>
+        <Line>
+          <Start pntRef="P1"/>
+          <End pntRef="P2"/>
+        </Line>
+        <Line>
+          <Start pntRef="P2"/>
+          <End pntRef="P3"/>
+        </Line>
+        <Line>
+          <Start pntRef="P3"/>
+          <End pntRef="P4"/>
+        </Line>
+        <Line>
+          <Start pntRef="P4"/>
+          <End pntRef="P1"/>
+        </Line>
+      </CoordGeom>
+    </PlanFeature>
+    <PlanFeature name="TREE-01" code="TR">
+      <Location pntRef="P4"/>
+    </PlanFeature>
+  </PlanFeatures>
+</LandXML>

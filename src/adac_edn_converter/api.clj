@@ -1,7 +1,6 @@
 (ns adac-edn-converter.api
-  "Library API: ADAC XML ↔ SchemaCraft instance-graph (import + export).
-
-  LandXML stays CLI-only — not exposed here."
+  "Library API: ADAC XML ↔ SchemaCraft instance-graph (import + export),
+  plus LandXML survey geometry import."
   (:require [adac-edn-converter.convert :as convert]
             [adac-edn-converter.edn.read :as edn-read]
             [adac-edn-converter.instance.graph :as graph]
@@ -9,6 +8,7 @@
             [adac-edn-converter.instance.xml.read :as xml-read]
             [adac-edn-converter.instance.xml.write :as xml-write]
             [adac-edn-converter.instance.xml-util :as xu]
+            [adac-edn-converter.landxml.survey :as landxml-survey]
             [adac-edn-converter.upgrade :as upgrade]
             [adac-edn-converter.xsd.validate :as xsd-validate]
             [clojure.java.io :as io]
@@ -282,6 +282,14 @@
     (and (map? data) (contains? data :ADAC)) (:ADAC data)
     (and (map? data) (contains? data :ADACRoot)) (:ADACRoot data)
     :else data))
+
+(defn landxml->survey-geometry
+  "Parse LandXML (string, bytes, File, URL, URI, stream, or path) into a survey
+  overlay catalog of CgPoints and linework with ADAC Geometry payloads.
+
+  Returns {:schemacraft/format :landxml-survey-geometry :objects […] …}."
+  [xml-source]
+  (landxml-survey/read-file (xml-input xml-source)))
 
 (defn export-adac-xml
   "Assembled map or instance-graph → XML string + soft XSD validation report.
