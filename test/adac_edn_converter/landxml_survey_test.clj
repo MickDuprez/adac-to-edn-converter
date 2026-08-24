@@ -96,6 +96,8 @@
     (is (nil? admin) "administrative parcels without CoordGeom are skipped")
     (is (= :polygon (:kind lot)))
     (is (= :parcel (:source lot)))
+    (is (string? (:class lot)))
+    (is (string? (:name lot)))
     (is (= "Y" (get-in lot [:properties "areaSurveyedFlag"])))
     (is (= "Freehold" (get-in lot [:properties "dcdbTenureRecord"])))
     (is (= 5 (count ring)))

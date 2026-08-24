@@ -45,6 +45,7 @@
   [node]
   (cond-> {}
     (attr node "name") (assoc :name (attr node "name"))
+    (attr node "class") (assoc :class (attr node "class"))
     (attr node "code") (assoc :code (attr node "code"))
     (attr node "desc") (assoc :desc (attr node "desc"))
     (attr node "oID") (assoc :oID (attr node "oID"))
@@ -390,7 +391,7 @@
      (merge {:id id :source source}
             (when kind {:kind kind})
             (when Geometry {:Geometry Geometry})
-            (select-keys fields [:name :code :desc :oID :state])
+            (select-keys fields [:name :class :code :desc :oID :state])
             (when (seq properties) {:properties properties})
             (when (seq pnt-refs) {:pnt-refs pnt-refs})))))
 
