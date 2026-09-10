@@ -97,7 +97,12 @@
         out (io/file "target/test-roundtrip-mh.xml")]
     (xml-write/write-file b instance (str out))
     (is (true? (validate/valid? xsd-path (str out)))
-        (validate/validation-error xsd-path (str out)))))
+        (validate/validation-error xsd-path (str out)))
+    (let [xml (slurp out)]
+      (is (re-find #"xmlns=\"http://www.adac.com.au\"" xml))
+      (is (re-find #"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" xml))
+      (is (re-find #"xsi:nil=\"true\"" xml))
+      (is (not (re-find #"xmlns:a=" xml))))))
 
 (deftest invalid-fixture-imports-without-throw
   (let [b (bundle)

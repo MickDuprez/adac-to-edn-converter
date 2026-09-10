@@ -38,12 +38,27 @@
     (catch Exception _
       (trim-str s))))
 
+(defn- typedef-primitive
+  [typedef]
+  (or (:typedef/primitive typedef)
+      (get-in typedef [:element/data :type/primitive])
+      :string))
+
+(defn- coerce-boolean-token
+  [x]
+  (case (str/lower-case (str x))
+    ("true" "1") true
+    ("false" "0") false
+    nil))
+
 (defn format-value
   "Format Instance value → XML text for export. Never throws."
   [v typedef]
   (try
     (cond
       (nil? v) nil
+      (and (sequential? v) (= :boolean (typedef-primitive typedef)))
+      (format-value (or (first (keep coerce-boolean-token v)) false) typedef)
       (instance? BigDecimal v) (.toPlainString ^BigDecimal v)
       (number? v) (str v)
       (boolean? v) (if v "true" "false")

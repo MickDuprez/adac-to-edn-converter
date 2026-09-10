@@ -12,6 +12,8 @@
       (java.net.URLEncoder/encode "UTF-8")
       (str/replace "+" "%20")))
 
+(def xmlns-ns "http://www.w3.org/2000/xmlns/")
+
 (defn xml-tag-kw
   "Build a clojure.data.xml namespaced element tag."
   [uri local]
@@ -20,7 +22,13 @@
 (defn xsi-nil-attrs
   "Attribute map for xsi:nil=\"true\"."
   []
-  {(keyword (str "xmlns." (encode-xmlns-uri xsi-ns)) "nil") true})
+  {(xml-tag-kw xsi-ns "nil") "true"})
+
+(defn adac-root-ns-attrs
+  "Default ADAC xmlns + xmlns:xsi, matching Sample ADAC V6 / FME-friendly form."
+  []
+  {:xmlns adac-ns
+   (xml-tag-kw xmlns-ns "xsi") xsi-ns})
 
 (defn tag-local
   "Keyword or string tag → local element/attribute name."

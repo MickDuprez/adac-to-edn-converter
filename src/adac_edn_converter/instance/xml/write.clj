@@ -263,12 +263,15 @@
 
 (defn write-complex
   [idx el data]
-  (let [name (name (:record/name el))
+  (let [el-name (name (:record/name el))
         attrs (into {}
                     (mapcat #(parent-property-attrs idx % data)
                             (filter idx/parent-property? (idx/children idx el))))
+        attrs (if (= "ADAC" el-name)
+                (merge (xu/adac-root-ns-attrs) attrs)
+                attrs)
         content (write-complex-content idx el data)]
-    (xml-node (xml-tag name) attrs content)))
+    (xml-node (xml-tag el-name) attrs content)))
 
 (defn instance->xml-node
   "Convert Instance EDN (ADAC map) → XML element node."
@@ -278,7 +281,7 @@
 
 (defn emit-str
   [idx instance]
-  (xml/emit-str (instance->xml-node idx instance)))
+  (xml/indent-str (instance->xml-node idx instance)))
 
 (defn write-file
   [bundle instance out-path]
